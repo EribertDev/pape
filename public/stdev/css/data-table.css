@@ -1,0 +1,93 @@
+/* styles.css */
+.my-custom-header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.my-custom-table {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.my-custom-table td {
+    color: blue;
+    text-align: center;
+    padding: 10px;
+}
+
+.my-custom-column {
+    font-weight: bold;
+}
+
+/* Style pour la pagination */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #4CAF50; /* Couleur de fond par défaut */
+    color: white !important; /* Couleur du texte par défaut */
+    border: 1px solid #4CAF50; /* Bordure */
+    border-radius: 4px; /* Bordure arrondie */
+    margin: 0 2px; /* Espacement entre les boutons */
+    padding: 5px 10px; /* Espacement intérieur */
+    cursor: pointer; /* Curseur en forme de main */
+}
+
+/* Couleur de fond au survol */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    background-color: #45a049 !important; /* Couleur de fond au survol */
+    border-color: #45a049; !important;
+    background:#45a049;!important;/* Couleur de bordure au survol */
+}
+
+/* Couleur de fond du bouton actif */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #45a049; /* Couleur de fond du bouton actif */
+    border-color: #45a049; /* Couleur de bordure du bouton actif */
+    color: white !important; /* Couleur du texte du bouton actif */
+}
+
+/* Couleur de fond des boutons désactivés */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    background-color: #ccc; /* Couleur de fond des boutons désactivés */
+    border-color: #ccc; /* Couleur de bordure des boutons désactivés */
+    color: #666 !important; /* Couleur du texte des boutons désactivés */
+    cursor: not-allowed; /* Curseur de non-disponibilité */
+}
+
+/* Style pour le champ "show entries" */
+.custom-show-entries {
+    float: left;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.custom-show-entries label {
+    color: #4CAF50;
+}
+
+.custom-show-entries select {
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    padding: 5px;
+    color: #4CAF50;
+    background-color: #fff;
+}
+
+/* Style pour le champ de recherche */
+.custom-search {
+    float: right;
+    font-weight: bold;
+}
+
+.custom-search label {
+    color: #4CAF50;
+}
+
+.custom-search input {
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    padding: 5px;
+    color: #4CAF50;
+    background-color: #fff;
+}

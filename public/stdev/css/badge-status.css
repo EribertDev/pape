@@ -1,0 +1,142 @@
+/* Status Badge Styles */
+.badge-status {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center; /* Centrer le texte */
+    margin: 0.2rem; /* Espacement entre les badges */
+}
+
+/* Custom colors and text color variations for each status */
+.badge-actif {
+    background-color: #28a745; /* Vert pour actif */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-inactif {
+    background-color: #6c757d; /* Gris pour inactif */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-en-attente {
+    background-color: #ffc107; /* Jaune pour en attente */
+    color: #212529; /* Texte foncé */
+}
+
+.badge-approuve {
+    background-color: #007bff; /* Bleu pour approuvé */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-rejete {
+    background-color: #dc3545; /* Rouge pour rejeté */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-traiter {
+    background-color: #17a2b8; /* Cyan pour traiter */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-en-cours {
+    background-color: #007bff; /* Bleu pour en cours */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-termine {
+    background-color: #28a745; /* Vert pour terminé */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-en-pause {
+    background-color: #ffc107; /* Jaune pour en pause */
+    color: #212529; /* Texte foncé */
+}
+
+.badge-a-venir {
+    background-color: #007bff; /* Bleu pour à venir */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-expire {
+    background-color: #6c757d; /* Gris pour expiré */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-supprime {
+    background-color: #343a40; /* Noir pour supprimé */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-archive {
+    background-color: #6610f2; /* Violet pour archivé */
+    color: #ffffff; /* Texte blanc */
+}
+
+/* Order Statuses */
+.badge-en-traitement {
+    background-color: #17a2b8; /* Cyan pour en traitement */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-expedie {
+    background-color: #007bff; /* Bleu pour expédié */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-livre {
+    background-color: #28a745; /* Vert pour livré */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-annule {
+    background-color: #dc3545; /* Rouge pour annulé */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-rembourse {
+    background-color: #17a2b8; /* Cyan pour remboursé */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-retourne {
+    background-color: #ffc107; /* Jaune pour retourné */
+    color: #212529; /* Texte foncé */
+}
+
+/* Payment Statuses */
+.badge-payer {
+    background-color: #28a745; /* Vert pour payé */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-en-attente-de-paiement {
+    background-color: #ffc107; /* Jaune pour attente de paiement */
+    color: #212529; /* Texte foncé */
+}
+
+.badge-paiement-recu {
+    background-color: #28a745; /* Vert pour paiement reçu */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-paiement-en-cours {
+    background-color: #17a2b8; /* Cyan pour paiement en cours */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-echec-du-paiement {
+    background-color: #dc3545; /* Rouge pour échec du paiement */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-remboursement-initie {
+    background-color: #17a2b8; /* Cyan pour remboursement initié */
+    color: #ffffff; /* Texte blanc */
+}
+
+.badge-remboursement-termine {
+    background-color: #28a745; /* Vert pour remboursement terminé */
+    color: #ffffff; /* Texte blanc */
+}
