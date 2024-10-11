@@ -57,7 +57,9 @@
                     <div class="row mt-0">
                         <div class="col-lg-12 col-sm-12 col-xs-12 text-center mt-0">
                             <div class="error_page">
-                                <img src="{{asset("clients/assets/images/icon/logo-syrram.png")}}" class="img-fluid" alt="syrram" style="width: 230px;height: 200px">
+                                {{--                                
+                                    <img src="{{asset("clients/assets/images/icon/logo-syrram.png")}}" class="img-fluid" alt="syrram" style="width: 230px;height: 200px">
+                                --}}
                                 <h2 class="mt-0">Site en maintenance</h2>
                                 <h5>Le site est actuellement en maintenance. Merci de patienter.</h5>
                                 {{-- <div class="d-flex justify-content-center">
