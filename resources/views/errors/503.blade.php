@@ -58,8 +58,9 @@
                         <div class="col-lg-12 col-sm-12 col-xs-12 text-center mt-0">
                             <div class="error_page">
                                 <img src="{{asset("clients/assets/images/icon/logo-syrram.png")}}" class="img-fluid" alt="syrram" style="width: 230px;height: 200px">
-                                <h2 class="mt-0">Bientôt disponible</h2>
-                                <div class="d-flex justify-content-center">
+                                <h2 class="mt-0">Site en maintenance</h2>
+                                <h5>Le site est actuellement en maintenance. Merci de patienter.</h5>
+                                {{-- <div class="d-flex justify-content-center">
                                     <div class="text-start">
                                         <ul style="list-style: circle!important; lighting-color: black">
                                             <li><span>👉</span> Rédaction de thèses, mémoires et articles scientifiques</li>
@@ -68,7 +69,7 @@
                                             <li><span>👉</span> Bibliothèque de mémoires et de projets</li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class=" d-flex justify-content-center my-3">
                                     <div class="pd_social_icon fs-4">
