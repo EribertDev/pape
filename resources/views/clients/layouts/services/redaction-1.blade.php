@@ -372,9 +372,9 @@
                         <p>Nous vous remercions d'avoir choisi SyRRaM pour la rédaction de votre mémoire ou thèse. Nous souhaitons toutefois vous informer de certaines conditions d'utilisation de nos services :</p>
                         <ul>
                             <li>🔒 <strong>Confidentialité :</strong> Chez SyRRaM, nous nous engageons à garder confidentielles vos informations personnelles et ne les diffuserons qu'avec votre autorisation écrite.</li>
-                            <li>✍️ <strong>Auteur :</strong> En commandant la rédaction de votre mémoire ou thèse par SyRRaM, vous devenez l'auteur exclusif de votre travail. SyRRaM ne pourra jamais revendiquer la paternité de votre recherche. Cependant, nous nous réservons le droit de publier votre travail dans notre moteur de recherche interne, en indiquant vos informations personnelles clés comme auteur de ce document.</li>
-                            <li>💰 <strong>Paiement :</strong> Vous êtes tenu de régler les frais de prise de contact avant le démarrage de la rédaction par nos services compétents.</li>
-                            <li>⚠️ <strong>Avertissement :</strong> En cas de non-règlement de la totalité des frais de rédaction, vous perdrez vos droits d'auteur sur votre travail de recherche.</li>
+                            <li>✍️ <strong>Auteur :</strong> En vous inscrivant au PAPE vous devenez l'auteur exclusif de votre travail</li>
+                            <li>💰 <strong>Paiement :</strong> Vous êtes tenu de régler les frais de prise de contact avant le démarrage du coaching par nos service compétents.</li>
+                            <li>⚠️ <strong>Avertissement :</strong> En cas de non-règlement de la totalité des frais de d'inscription, vous perdrez vos droits d'auteur sur votre travail de recherche.</li>
                         </ul>
                 </div>
                 <div class="content px-5 mt-2">
@@ -399,7 +399,7 @@
         $('#typeService').niceSelect();
        
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script> --}}
     <script type="module" src="{{asset('clients/js-data/commande.js?'.Str::uuid())}}">
     </script>
     <!-- <script>
