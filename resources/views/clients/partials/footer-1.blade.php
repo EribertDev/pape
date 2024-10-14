@@ -6,7 +6,7 @@
             <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="single_footer">
                     <a href="{{route('home')}}"><img src="{{asset('clients/assets/images/icon/logo-syrram.png')}}" style="width: 70px;height: 60px" alt=""></a>
-                    <p style="text-align: justify">SyRRaM, votre allié digital pour une rédaction rapide et efficace de mémoires et thèses, avec un suivi personnalisé.</p>
+                    {{-- <p style="text-align: justify">SyRRaM, votre allié digital pour une rédaction rapide et efficace de mémoires et thèses, avec un suivi personnalisé.</p> --}}
                     <div class="pd_social_icon fs-4">
                         <a href="https://www.facebook.com/CESIEofficiel?mibextid=ZbWKwL" style="color: white"><i class="fa fa-facebook"></i></a>
                         <a href="https://wa.me/22962435929" style="color: white"><i class="fa fa-whatsapp"></i></a>
@@ -46,7 +46,7 @@
                     <div class="sf_contact">
                         <span class="ti-email"></span>
                         <h3>Email Address</h3>
-                        <p>syrram@cesiebenin.com</p>
+                        <p>pape@cesiebenin.com</p>
                     </div>
                     <div class="sf_contact">
                         <span class="ti-map"></span>
@@ -64,12 +64,12 @@
         <div class="row fc">
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="footer_menu">
-                    <p style="color: white; font-weight: bold">Site réalisé par:<a href="https://www.linkedin.com/in/m-silas-dako-stdev-%F0%9F%92%BB%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB-40b91125b/"> STDev</a></p>
+                    <p><span>&copy; Copyright {{date("Y")}}  </span>  <span style="color: white; font-weight: bold"> Site réalisé par:<a href="https://www.linkedin.com/in/m-silas-dako-stdev-%F0%9F%92%BB%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB-40b91125b/"> STDev</a></span></p>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="footer_k cnhcopyright" >
-                    <p>&copy; Copyright {{date("Y")}}</p>
+                    
                 </div>
             </div><!-- END COL -->
         </div>

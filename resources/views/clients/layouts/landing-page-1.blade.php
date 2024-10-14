@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
-                        <h2 class="fw-bold text-center"><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec SyRRaM</h2>
+                        <h2 class="fw-bold text-center"><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec PAPE</h2>
                         <p class="mt-4  text-center">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles de recherche, documents administratifs, et autres</p>
                        <div class="row">
                             @guest
@@ -34,30 +34,30 @@
                             @auth
                                 <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
-                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Commander maintenant</span></a>
+                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a>
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>
                             @endauth
                        </div>
                     </div>
                    <div class="home_content  d-none d-lg-block">
-                        <h2 class="fw-bold "><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec SyRRaM</h2>
+                        <h2 class="fw-bold "><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec PAPE</h2>
                         <p class="mt-3">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles de recherche, documents administratifs, et autres</p>
                         <div class="row">
                             @guest
-                                <div class="col-lg-4 col-md-3 col-sm-8 ms-2 mb-4">
+                                <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
                                     <div class="call_to_action">
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>
                             @endguest
-                            <div class="col-lg-7 col-md-3 col-sm-8 mb-4">
+                            <div class="col-lg-8 col-md-3 col-sm-8 mb-4">
                                 <div class="call_to_action">
                                     @auth
-                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Commander maintenant</span></a> 
+                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a> 
                                     @endauth
                                     @guest
-                                        <a class="btn_two" type="button" href="{{route('service.redaction')}}"> <span>Commander maintenant</span></a> 
+                                        <a class="btn_two" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a> 
                                     @endguest
                                 </div><!--- END SOCIAL PROFILE -->
                             </div>
@@ -81,25 +81,22 @@
                 <div class="col-lg-4 col-md-4 col-12 no-padding wow fadeInUp" data-wow-duration="1s"
                      data-wow-delay="0.2s" data-wow-offset="0">
                     <div class="single_tp">
-                        <h3>Accompagnement dans la rédaction de mémoires et thèses</h3>
-                        <p>Accompagnement dans la rédaction de mémoires et thèses, garantissant qualité et conformité
-                            académique.</p>
+                        <h3>Coaching dans la rédaction de vos mémoires et thèses</h3>
+                        <p>Faîtes-vous coacher par le programme  PAPE pour rédiger vite, bien et sans plagiat vos mémoires de fin de formation</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s"
                      data-wow-delay="0.3s" data-wow-offset="0">
                     <div class="single_tp">
-                        <h3>Assistance pour la rédaction de documents administratifs</h3>
-                        <p>Profitez de notre expertise pour rédiger vos documents administratifs avec précision, en
-                            respectant les normes et exigences.</p>
+                        <h3>Assistance pour la recherche de stage académique et professionnel</h3>
+                        <p>Inscrivez-vous au programme PAPE pour bénéficier des opportunités gratuites de stage académique et professionnel</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s"
                      data-wow-delay="0.4s" data-wow-offset="0">
                     <div class="single_tp">
                         <h3>Collecte et analyse de données pour vos recherches</h3>
-                        <p>SyRRaM collecte et analyse des données fiables pour appuyer vos recherches, offrant des
-                            résultats précis et exploitables.</p>
+                        <p>Le PAPE vous permet de vite réaliser vos collectes et analyses de données dans le cadre de votre travail de recherche de fin de formation</p>
                     </div>
                 </div><!-- END COL -->
             </div><!-- END ROW -->
@@ -112,7 +109,7 @@
         <div class="container">
             <div class="section-title">
                 <h2></h2>
-                <p>Pourquoi choisir Syrram.</p>
+                <p>Pourquoi choisir PAPE.</p>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s"
@@ -120,10 +117,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-book ss_one"></span>
-                            <h2><a href="single-service.html" target="_blank">Expertise et Expérience</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Expertise et Expériences</a></h2>
                         </div>
-                        <p>Encadrement professionnel pour aider les étudiants à chaque étape de la rédaction
-                            académique.</p>
+                        <p>Plus de 500 étudiants et chercheurs ont déjà bénéficier de notre expertise et sont satisfaits</p>
                     </div>
                 </div><!-- END COL -->
 
@@ -133,10 +129,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-heart ss_two"></span>
-                            <h2><a href="single-service.html" target="_blank">Accompagnement Personnalisé</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Coaching Personnalisé</a></h2>
                         </div>
-                        <p>Un suivi sur mesure adapté aux besoins spécifiques, du protocole de recherche à la mise en
-                            forme finale.</p>
+                        <p>Un suivi personnalisé adapté aux besoins de l’étudiant ou du chercheur</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s"
@@ -144,10 +139,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-user ss_three"></span>
-                            <h2><a href="single-service.html" target="_blank">Gain de Temps</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Gain de temps</a></h2>
                         </div>
-                        <p>Optimisation de chaque étape de la rédaction pour produire rapidement des travaux de haute
-                            qualité.</p>
+                        <p>Notre accompagnement vous assure un redoutable gain de temps</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s"
@@ -155,10 +149,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-eye ss_four"></span>
-                            <h2><a href="single-service.html" target="_blank">Qualité Garantie</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Qualité garantie</a></h2>
                         </div>
-                        <p>Les travaux respectent les normes académiques, avec rigueur scientifique et cohérence du
-                            contenu.</p>
+                        <p>Nos coachings respectent les normes universitaires et vous évitent le plagiat.</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s"
@@ -166,10 +159,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-light-bulb ss_five"></span>
-                            <h2><a href="single-service.html" target="_blank">Confidentialité Assurée</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Confidentialité assurée</a></h2>
                         </div>
-                        <p>Vos données sont protégées et SyRRaM garantit la confidentialité totale de vos documents
-                            soumis.</p>
+                        <p>Nous garantissons la confidentialité totale de vos informations personnelles</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s"
@@ -177,10 +169,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-email ss_six"></span>
-                            <h2><a href="single-service.html" target="_blank">Service Réactif et Disponible</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Service réactif et disponible</a></h2>
                         </div>
-                        <p>Une équipe toujours disponible pour vous accompagner rapidement et répondre à vos
-                            questions.</p>
+                        <p>Une équipe toujours disponible pour vous accompagner et pour répondre à vos préoccupations.</p>
                     </div>
                 </div><!-- END COL -->
             </div><!-- END ROW -->
@@ -189,14 +180,14 @@
     <!-- END WHY CHOOSE US -->
 
     <!-- START COURSE PROMOTION -->
-    <section class="course_promo section-padding">
+    {{-- <section class="course_promo section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s"
                      data-wow-offset="0">
                     <div class="cp_content">
                         <h2>Prêt à vous lancez?</h2>
-                        <p>Commander un mémoire maintenant et bénéficier d'une <u>50%</u> de réduction</p>
+                        {{-- <p>Commander un mémoire maintenant et bénéficier d'une <u>50%</u> de réduction</p> 
                         <ul>
                             <li><span class="ti-check"></span>9/10 Average Satisfaction Rate</li>
                             <li><span class="ti-check"></span>96% Completitation Rate</li>
@@ -204,7 +195,7 @@
                         </ul>
                     </div>
                     <div class="cp_btn">
-                        <a href="{{route('service.redaction')}}" class="cta"><span>Commander maintenant</span>
+                        <a href="{{route('service.redaction')}}" class="cta"><span>Incrivez-vous maintenant</span>
                             <svg width="13px" height="10px" viewBox="0 0 13 10">
                                 <path d="M1,5 L11,5"></path>
                                 <polyline points="8 1 12 5 8 9"></polyline>
@@ -223,7 +214,7 @@
                 </div><!--- END COL -->
             </div><!--- END ROW -->
         </div><!--- END CONTAINER -->
-    </section>
+    </section> --}}
     <!-- END COURSE PROMOTION -->
 
     <!--START COURSE -->
@@ -263,7 +254,7 @@
                 <p>Nos expériences</p>
             </div>
             <div class="row gy-4">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="count-box">
                         <i class="ti-face-smile"></i>
                         <div>
@@ -274,18 +265,8 @@
                         </div>
                     </div>
                 </div><!--- END COL -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="count-box">
-                        <i class="ti-files" style="color: #ee6c20;"></i>
-                        <div>
-                            <div class="d-flex"><span data-purecounter-start="0" data-purecounter-end="312"
-                                                      data-purecounter-duration="1"
-                                                      class="purecounter"></span><span>+</span></div>
-                            <p>Document Rédiger</p>
-                        </div>
-                    </div>
-                </div><!--- END COL -->
-                <div class="col-lg-3 col-md-6">
+            
+                <div class="col-lg-4 col-md-6">
                     <div class="count-box">
                         <i class="ti-headphone-alt" style="color: #15be56;"></i>
                         <div>
@@ -296,7 +277,7 @@
                         </div>
                     </div>
                 </div><!--- END COL -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="count-box">
                         <i class="ti-user" style="color: #bb0852;"></i>
                         <div>
@@ -422,7 +403,7 @@
     <section class="faq_area section-padding">
         <div class="container">
             <div class="section-title-two">
-                <h2>FAQ</h2>
+                <h2>FAQ – PAPE 📝</h2>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -431,17 +412,19 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Qu’est-ce que le SyRRaM ?
+                                        Qu’est-ce que le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM est un système digital conçu pour encadrer les étudiants et chercheurs dans
-                                    la rédaction de mémoires et thèses. Il offre un appui technique tout au long du
-                                    processus de rédaction, depuis la revue documentaire jusqu’à l’analyse des données.
-                                    Le système permet une rédaction rapide, efficace et conforme aux normes
-                                    universitaires.
+                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de :
+                                    <ul>
+                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) à l'étudiant dans le cadre de son stage éducatif.</li>
+                                        <li>👉 Coacher l'étudiant ou le chercheur dans la rédaction de son mémoire ou thèse.</li>
+                                        <li>👉 Coacher l'étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
+                                        <li>👉 Former l'étudiant ou le chercheur à la conduite des vielen de recherche.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -449,14 +432,13 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Quels sont les services offerts par SyRRaM ?
+                                        Quels sont les services offerts par le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM propose une large gamme de services pour la rédaction de mémoires et de
-                                    thèses, notamment :
+                                    Le PAPE offre au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
                                     <ul>
                                         <li>👉 Rédaction complète du mémoire ou de la thèse</li>
                                         <li>👉 Protocole de recherche</li>
@@ -473,16 +455,19 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    À qui s'adresse SyRRaM ?
+                                        À qui s'adresse le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM est destiné aux étudiants et chercheurs qui travaillent sur des mémoires, des
-                                    thèses ou tout autre travail de recherche. Il convient aussi bien aux débutants
-                                    qu’aux chercheurs confirmés qui cherchent à optimiser leur temps et la qualité de
-                                    leur rédaction.
+                                    Le programme est destiné aux :
+                                    <ul>
+                                        <li>👉 Etudiants ou chercheurs</li>
+                                        <li>👉 Particuliers</li>
+                                        <li>👉 Administrations</li>
+                                        <li>👉 Ou tout autre personne désireuse d’avoir des aptitudes en conduite d’études ou recherches</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -491,35 +476,16 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    Comment puis-je commander un mémoire ou une thèse via SyRRaM ?
+                                        Comment puis-je bénéficier du PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Vous pouvez passer commande directement sur la plateforme. Après avoir spécifié vos
-                                    besoins et les informations nécessaires, le système s’occupe de rédiger le mémoire
-                                    ou la thèse et vous le livre dans un délai record.
+                                    En exprimant ses requêtes via la plateforme du programme
                                 </div>
                             </div>
-                        </div><!-- END ACCORDION ITEM  -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive" aria-expanded="true"
-                                        aria-controls="collapseFive">
-                                    SyRRaM prend-il en charge l’analyse des données ?
-                                </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    Absolument. Le système inclut des outils et un accompagnement pour l'analyse des
-                                    données. Vous pouvez soumettre vos données et recevoir une analyse complète qui
-                                    répond aux exigences de votre recherche.
-                                </div>
-                            </div>
-                        </div><!-- END ACCORDION ITEM  -->
+                        </div><!-- END ACCORDION ITEM  -->                        
                     </div>
                 </div><!-- END COL  -->
             </div><!--END  ROW  -->

@@ -21,7 +21,7 @@
     <section class="faq_area section-padding">
         <div class="container">
             <div class="section-title-two">
-                <h2>FAQ – SyRRaM 📝</h2>
+                <h2>FAQ – PAPE 📝</h2>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -30,13 +30,19 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Qu’est-ce que le SyRRaM ?
+                                        Qu’est-ce que le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM est un système digital conçu pour encadrer les étudiants et chercheurs dans la rédaction de mémoires et thèses. Il offre un appui technique tout au long du processus de rédaction, depuis la revue documentaire jusqu’à l’analyse des données. Le système permet une rédaction rapide, efficace et conforme aux normes universitaires. 🚀📚
+                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de :
+                                    <ul>
+                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) à l'étudiant dans le cadre de son stage éducatif.</li>
+                                        <li>👉 Coacher l'étudiant ou le chercheur dans la rédaction de son mémoire ou thèse.</li>
+                                        <li>👉 Coacher l'étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
+                                        <li>👉 Former l'étudiant ou le chercheur à la conduite des vielen de recherche.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -44,13 +50,13 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Quels sont les services offerts par SyRRaM ?
+                                        Quels sont les services offerts par le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM propose une large gamme de services pour la rédaction de mémoires et de thèses, notamment :
+                                    Le PAPE offre au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
                                     <ul>
                                         <li>👉 Rédaction complète du mémoire ou de la thèse</li>
                                         <li>👉 Protocole de recherche</li>
@@ -67,13 +73,19 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    À qui s'adresse SyRRaM ?
+                                        À qui s'adresse le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM est destiné aux étudiants et chercheurs qui travaillent sur des mémoires, des thèses ou tout autre travail de recherche. Il convient aussi bien aux débutants qu’aux chercheurs confirmés qui cherchent à optimiser leur temps et la qualité de leur rédaction. 🎓📖
+                                    Le programme est destiné aux :
+                                    <ul>
+                                        <li>👉 Etudiants ou chercheurs</li>
+                                        <li>👉 Particuliers</li>
+                                        <li>👉 Administrations</li>
+                                        <li>👉 Ou tout autre personne désireuse d’avoir des aptitudes en conduite d’études ou recherches</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -82,13 +94,13 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    Comment puis-je commander un mémoire ou une thèse via SyRRaM ?
+                                        Comment puis-je bénéficier du PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Vous pouvez passer commande directement sur la plateforme. Après avoir spécifié vos besoins et les informations nécessaires, le système s’occupe de rédiger le mémoire ou la thèse et vous le livre dans un délai record. 🛒⏱️
+                                    En exprimant ses requêtes via la plateforme du programme
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -97,13 +109,13 @@
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFive" aria-expanded="true"
                                         aria-controls="collapseFive">
-                                    SyRRaM prend-il en charge l’analyse des données ?
+                                        Le PAPE prend-il en compte l’analyse des données ?
                                 </button>
                             </h2>
                             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Absolument. Le système inclut des outils et un accompagnement pour l'analyse des données. Vous pouvez soumettre vos données et recevoir une analyse complète qui répond aux exigences de votre recherche. 📈🔍
+                                    Absolument. Le PAPE fournit une assistance complète pour la collecte, l’analyse rapide et fiable des données conformément aux orientations du travail et aux normes universitaires. 
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -112,13 +124,13 @@
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseSix" aria-expanded="true"
                                         aria-controls="collapseSix">
-                                    Combien de temps prend la rédaction d’un mémoire ou d’une thèse avec SyRRaM ?
+                                        En combien de temps, l’étudiant arrive-t-il à rédiger son mémoire ou sa thèse avec le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le temps dépend du type de service commandé et de la complexité de la recherche. Cependant, SyRRaM est conçu pour accélérer chaque étape du processus, garantissant une rédaction en un temps record. ⏳🚀
+                                    En Cinq (05) séances de coaching au maximum
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -127,31 +139,17 @@
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFive" aria-expanded="true"
                                         aria-controls="collapseFive">
-                                    Comment puis-je suivre l'avancement de mon mémoire ou de ma thèse ?
+                                        Comment puis-je suivre le traitement de mes requêtes sur le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    SyRRaM vous permet de suivre en temps réel l’avancement de votre projet. Vous serez informé des différentes étapes franchies et recevrez des mises à jour régulières sur l’état d’avancement de la rédaction. 🔄📱
+                                    En ligne via la présente plateforme dédiée au programme
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingFive">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive" aria-expanded="true"
-                                        aria-controls="collapseFive">
-                                    Est-ce que SyRRaM garantit le respect des normes universitaires ?
-                                </button>
-                            </h2>
-                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    Oui, SyRRaM garantit que les mémoires et thèses produits respectent strictement les normes universitaires en vigueur, tant sur le fond que sur la forme. ✅🎓
-                                </div>
-                            </div>
-                        </div><!-- END ACCORDION ITEM  -->
+                        
                     </div>
                 </div><!-- END COL  -->
             </div><!--END  ROW  -->

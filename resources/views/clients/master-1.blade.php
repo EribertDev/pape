@@ -10,7 +10,7 @@
         <meta name="keywords" content="theme_ocean, college, course, e-learning, education, high school, kids, learning, online, online courses, school, student, teacher, tutor, university">
         <meta name="author" content="theme_ocean">
         <!-- SITE TITLE -->
-        <title>SyRRam</title>
+        <title>PAPE</title>
         <!-- Latest Bootstrap min CSS -->
         <link rel="stylesheet" href="{{asset('clients/assets/bootstrap/css/bootstrap.min.css')}}">
         <!-- Google Font -->

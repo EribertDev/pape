@@ -33,7 +33,7 @@
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">
                 <div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-                    <h1>Commande de Rédaction</h1>
+                    <h1>Coaching en rédaction de mémoire et thèse</h1>
                     {{--<ul>
                         <li><a href="index.html">Home</a></li>
                         <li> / Chcekout</li>
@@ -46,7 +46,7 @@
     <!-- Start Checkout -->
     <section class="shop checkout section">
         <div class="container">
-            <h2 class="fw-bold text-center">Commander la rédaction de votre document en tout sécurité</h2>
+            <h2 class="fw-bold text-center">Inscrivez-vous au programme PAPE pour rédiger rapidement, facillement et bien vos mémoires et thèses</h2>
            <div class="container ml-2">
                <p class="text-center">Renseigner l'information de votre document</p>
            </div>
@@ -223,7 +223,7 @@
 							<div class="single-widget get-button">
 								<div class="content">
 									<div class="button">
-										<a  id="commanderBtn" type="button" class="btn">  Commander</a>
+										<a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
 									</div>
 								</div>
 							</div>
@@ -239,7 +239,7 @@
     </section>
     <!--/ End Checkout -->
     <!-- Start Shop Services Area  -->
-    <section class="shop-services section home">
+    {{-- <section class="shop-services section home">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
@@ -280,10 +280,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End Shop Services -->
     <!-- END TESTIMONIALS -->
-    <section class="faq_area section-padding">
+    {{-- <section class="faq_area section-padding">
         <div class="container">
             <div class="section-title-two">
                 <h2>FAQ Commande</h2>
@@ -355,7 +355,7 @@
                 </div><!-- END COL  -->
             </div><!--END  ROW  -->
         </div><!--- END CONTAINER -->
-    </section>
+    </section> --}}
 @endsection
 
 @section('extra-scripts')

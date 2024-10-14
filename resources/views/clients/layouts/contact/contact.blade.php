@@ -40,7 +40,7 @@
                     <div class="single_address">
                         <i class="ti-email"></i>
                         <h4>Email</h4>
-                        <p>syrram@cesiebenin.com</p>
+                        <p>pape@cesiebenin.com</p>
 
                     </div>
                 </div><!-- END COL -->
