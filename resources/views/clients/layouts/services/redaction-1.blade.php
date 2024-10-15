@@ -27,7 +27,7 @@
 @endsection
 
 @section('page-content')
-   
+
     <!-- START SECTION TOP -->
     <section class="section-top">
         <div class="container">
@@ -63,7 +63,7 @@
                                             <div class="form-group my-3">
                                                 <label for="cars">Type de service</label>
                                                 <select  name="typeService" id="typeService">
-                                                  
+
                                                     @if (!empty($options['typeService']))
                                                         @php
                                                             foreach ($options['typeService'] as $datas){
@@ -117,7 +117,7 @@
                                                 <label for="check_choose">Chosire un theme</label>
                                             </div>
                                         </div>
-                                           
+
                                             <!-- <div class="form-check form-check-inline mt-lg-5" >
                                                 <input class="form-check-input" type="checkbox" id="check_choose" value="1" name="choose_theme" checked>
                                                 <label class="form-check-label" for="check_choose">Chosire un theme</label>
@@ -131,7 +131,7 @@
                                             <div class="form-group mt-2">
                                                 <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="" hidden/>
                                             </div>
-                                                           
+
                                             <div class="form-group mt-2" id="div_theme">
                                                 <label for="cars">Theme Mémoires</label>
                                                 <select name="theme" id="theme" hidden>
@@ -142,13 +142,13 @@
                                                                 //$discip = $datas->discipline;
                                                                // data-discipline="'.$discip->name.'"
                                                                 echo '<option value="'.$datas->uuid.'" >'.$datas->title.'</option>';
-                                                            
+
                                                             }
-                                                        @endphp 
+                                                        @endphp
                                                     @endif
                                                 </select>
                                             </div>
-                        
+
                                             <div class="row">
                                                 <div class="form-group col-6">
                                                     <label class="fieldlabels" for="nbrPage" >Nombre de pages</label>
@@ -173,15 +173,15 @@
                                         name="descrip_file"
                                         accept=".pdf, .doc, .docx"
                                         multiple />
-                                    </div>               
+                                    </div>
                                         <div class="form-group">
                                             <label class="fieldlabels" for="description">Description</label>
                                             <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="nbrPage" >Code affiliation (Ex : AF85XX77)</label>
+                                            <label class="fieldlabels" for="nbrPage" >Code affiliation (Ex : 000000)</label>
                                             <input type="text" name="codeAf" id="codeAf" class="no-spinner">
-                                        </div> 
+                                        </div>
                                         <!-- <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="document">Fichier </label>
@@ -193,7 +193,7 @@
                                     </div>
                                 </div>
                                 <!-- Button Widget -->
-                               
+
                                 <!--/ End Button Widget -->
                             </div>
                         </form>
@@ -211,7 +211,7 @@
 										<li class="last"><span></span></li>
 									</ul>
 								</div>
-							</div>  
+							</div>
 							<!--/ End Payment Method Widget -->
 							<!-- Button Widget -->
 							<div class="single-widget get-button">
@@ -386,7 +386,7 @@
     <script src="{{asset('clients/assets/js/nicesellect.js?'.Str::uuid())}}"></script>
     <script type="text/javascript">
         $('#dicipline').niceSelect();
-        $('#typeService').niceSelect();  
+        $('#typeService').niceSelect();
     </script>
 
     <script type="module" src="{{asset('clients/js-data/commande.js?'.Str::uuid())}}"></script>
@@ -400,5 +400,5 @@
             }
         });
     </script>
-    
+
 @endsection

@@ -84,17 +84,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function addNewMember(array $member): int
     {
 
-        $password = $randomString ="abcd123" /*Str::random(8)*/;
+       // $password = $randomString ="abcd123" /*Str::random(8)*/;
         $user = self::create([
             'email' => $member["email"],
-            'password' => Hash::make($password),
+            'password' => Hash::make($member["password"]),
             'roles_id'=> $member["roles_id"],
             'status_id'=>  Status::getIdByName('Actif')
         ]);
         // Envoie l'email de confirmation
        // event(new Registered($user));
-       
-
         $userId = $user->id;
         unset($member["email"], $member["password"], $member["roles_id"]);
         $member["user_id"] = $userId;

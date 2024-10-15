@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded",function (){
                         minLength:8,
                         maxLength: 100,
                     },
-                    passwordField:{
+                    /*passwordField:{
                         uppercase:false,
                         minLength:8,
-                    },
+                    },*/
                 },
             }
         }
@@ -101,14 +101,14 @@ document.addEventListener("DOMContentLoaded",function (){
                         $.each(xhr.responseJSON.errors, function(key, value) {
                             msg+= '<li>' + value[0] + '</li> ';
                            // console.log(value[0]);
-                          
+
                         });
                         document.getElementById('alert').innerHTML =
                          `<div class="alert alert-danger">
                          <ul>
                            ${msg}
-                         </ul>  
-                          
+                         </ul>
+
                           </div>`;
                         //showElement(document.getElementById("alert"));
                     }

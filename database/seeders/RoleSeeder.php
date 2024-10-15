@@ -18,6 +18,7 @@ class RoleSeeder extends Seeder
             ['name' => 'Administrateur', 'description' => 'Full access to the system.'],
             ['name' => 'Editeur', 'description' => 'Can edit content.'],
             ['name' => 'Client', 'description' => 'Can view content.'],
+            ['name' => 'Affilier', 'description' => 'Can view content.'],
         ];
 
         DB::table('roles')->insert($roles);

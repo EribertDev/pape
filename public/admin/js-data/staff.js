@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     //process for add new member
     document.querySelector("#memberFormSubmit").addEventListener("click",(e)=>{
         e.preventDefault();
-
-
+        let selectR = document.getElementById('role');
+        var selectRole = selectR.options[selectR.selectedIndex].text;
         let stdevForm = new StdevForm();
         let isValideInput = false;
         stdevForm.setFormElement(memberForm);
@@ -55,12 +55,41 @@ document.addEventListener("DOMContentLoaded",()=>{
                     digitsField:true,
                 },
             },
+
+            password:{
+                name:'password',
+                typeField:{
+                    textField:{
+                        minLength:1,
+                        maxLength: 100,
+                    },
+                },
+            },
         }
+
+
+
        // console.log(fieldsConfig);
         isValideInput= stdevForm.validateFields(
-            ['lastName','firstName','email','phoneNumber'],fieldsConfig,
+            ['lastName','firstName','email','phoneNumber','password'],fieldsConfig,
             "form-control is-invalid",
             "form-control is-valid");
+            if (selectRole ==='Affilier') {
+                fieldsConfig.codeaf = {
+                    name:'codeaf',
+                    typeField:{
+                        textField:{
+                            minLength:1,
+                            maxLength: 10,
+                        },
+                    },
+                }
+
+                isValideInput= stdevForm.validateFields(
+                    ['codeaf'],fieldsConfig,
+                    "form-control is-invalid",
+                    "form-control is-valid");
+            }
 
         if (isValideInput){
             document.querySelector("#memberFormSubmit").disabled = true;
@@ -208,6 +237,17 @@ document.addEventListener("DOMContentLoaded",()=>{
         memberForm.reset();
         memberModale.modal('hide');
     })
+    //
+    document.getElementById('role').addEventListener('change', function() {
+        var selectedText = this.options[this.selectedIndex].text;
+        var codeaf = document.getElementById('codeaf-div');
+
+        if (selectedText !== 'Affilier') {
+            codeaf.hidden = true;
+        } else {
+            codeaf.hidden = false;
+        }
+    });
 
     //ouvert de l'app d'envoi de email
     document.querySelectorAll(".email").forEach((link)=>{

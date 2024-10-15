@@ -8,14 +8,14 @@
                     <div class="d-none d-md-block col-md-6">
                         <img src="{{asset('clients/assets/images/all-img/become-ins.png')}}" class="img-fluid">
                     </div>
-                   
+
                     <div class="register col-12 col-md-6 border border-0">
                         <form id="registerForm">
                             @csrf
                             <h4 class="login_register_title">Créer un compte</h4>
                             <div id="alert">
                             </div>
-                          
+
                             <div class="form-group">
                                 <label for="last_name">Nom <span class="text-danger">*</span> </label>
                                 <input type="text" id="last_name" class=" form-control requiredField input-label" name="last_name">
@@ -36,8 +36,8 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-12">
-                                    <label for="_password">Mot de passe <span class="text-danger">*</span> 
-                                    <span class="text-small" style="font-size:11px"> (le mot de passe doit contenir au moins 8 caractères et au moins une lettre un chiffre et un symbole " - @\/*." )</span>
+                                    <label for="_password">Mot de passe <span class="text-danger">*</span>
+                                    <span class="text-small" style="font-size:11px"> (le mot de passe doit contenir au moins 8 caractères et au moins )</span>
                                     </label>
                                     <input type="password" id="_password" class="form-control requiredField input-label" name="_password">
                                 </div>

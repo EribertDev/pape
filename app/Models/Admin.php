@@ -34,7 +34,8 @@ class Admin extends Model
     {
        return self::with([
             'status:id,name',
-            'user:id,email'
+            'user:id,email,roles_id', // Ajoutez role_id pour récupérer l'ID du rôle
+            'user.role:id,name'
         ])->whereHas('status', function($query) {
             $query->where('name', '!=', 'supprimé');
         })->paginate($value,['id','reference', 'last_name','fist_name', 'status_id', 'user_id']);
@@ -83,6 +84,10 @@ class Admin extends Model
         return $this->belongsTo(Status::class);
     }
 
+    /*public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }*/
     public function user()
     {
         return $this->belongsTo(User::class);

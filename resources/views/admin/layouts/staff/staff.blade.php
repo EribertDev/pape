@@ -51,6 +51,7 @@
                                             <div class="ms-3">
                                                 <p class="fw-bold mb-1">{{$membre->fist_name ." ".$membre->last_name}}</p>
                                                 <p class="text-muted mb-0">{{!empty($membre->user->email)?$membre->user->email:""}}</p>
+                                                <p class="text-muted mb-0">{{!empty($membre->user->role)?$membre->user->role->name:""}}</p>
                                             </div>
                                         </div>
                                         <span class="badge rounded-pill badge-success" >{{$membre->status->name}}</span>
@@ -143,6 +144,14 @@
                                </select>
                            </div>
                        </div>
+                        <div class="mb-1">
+                            <label for="password" class="col-form-label">Mot de passe</label>
+                            <input type="text" class="form-control" id="password" name="password"  />
+                        </div>
+                        <div class="mb-1" id="codeaf-div">
+                            <label for="codeaf" class="col-form-label">Code affiliation</label>
+                            <input type="text" class="form-control" id="codeaf" name="codeaf"  />
+                        </div>
                         <div class="mb-3">
                             <label for="bio" class="col-form-label">Bio</label>
                             <textarea class="form-control" id="bio" name="bio"></textarea>
