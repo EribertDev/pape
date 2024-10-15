@@ -19,10 +19,10 @@ class LandingPageController extends Controller
     public function __invoke(Request $request)
     {
        // $catThemes = Categorie::getAllSelectField(['id','name','info']);
-        $bd = (new BaseDonne())->getByMarge(4,["reference","name","amount","uuid"]);
+       // $bd = (new BaseDonne())->getByMarge(4,["reference","name","amount","uuid"]);
         $data = [
         //    "categories"=>$catThemes,
-            "bd"=>$bd,
+        //    "bd"=>$bd,
         ];
 
         // Retourner la vue avec les données

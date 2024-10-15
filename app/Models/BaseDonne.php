@@ -33,7 +33,7 @@ class BaseDonne extends Model
         })->get();
     }
     //
-    public function getByMarge(int $marge, array $field)
+ /*   public function getByMarge(int $marge, array $field)
     {
         return self::select($field)
             ->with('status')
@@ -42,7 +42,7 @@ class BaseDonne extends Model
             })
             ->take($marge)
             ->get();
-    }
+    }*/
     //
     public function getAllAndPaginate($pagine): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {

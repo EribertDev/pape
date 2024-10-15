@@ -13,7 +13,7 @@
     <!-- START HOME -->
     @php
       //  $categories = $data["categories"];
-        $bd = $data["bd"];
+       // $bd = $data["bd"];
     @endphp
     <section id="home" class="home_bg"
              style="background-image: url({{asset('clients/assets/images/banner/home.png')}});  background-size:cover; background-position: center center;">
@@ -54,10 +54,10 @@
                             <div class="col-lg-8 col-md-3 col-sm-8 mb-4">
                                 <div class="call_to_action">
                                     @auth
-                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a> 
+                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a>
                                     @endauth
                                     @guest
-                                        <a class="btn_two" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a> 
+                                        <a class="btn_two" type="button" href="{{route('service.redaction')}}"> <span>Incrivez-vous maintenant au PAPE</span></a>
                                     @endguest
                                 </div><!--- END SOCIAL PROFILE -->
                             </div>
@@ -102,7 +102,7 @@
         </div><!-- END CONTAINER -->
     </section>
     <!-- END TOP PROMO FEATURES -->
-    
+
     <!-- START WHY CHOOSE US-->
     <section class="marketing_content_area section-padding">
         <div class="container">
@@ -120,7 +120,7 @@
                         <p>Plus de 500 étudiants et chercheurs ont déjà bénéficié de notre expertise et en sont satisfaits.</p>
                     </div>
                 </div><!-- END COL -->
-    
+
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
                     <div class="single_feature_one">
                         <div class="sf_top">
@@ -169,7 +169,7 @@
             </div><!-- END ROW -->
         </div><!-- END CONTAINER -->
     </section>
-    
+
     <!-- END WHY CHOOSE US -->
 
     <!-- START COURSE PROMOTION -->
@@ -180,7 +180,7 @@
                      data-wow-offset="0">
                     <div class="cp_content">
                         <h2>Prêt à vous lancez?</h2>
-                        {{-- <p>Commander un mémoire maintenant et bénéficier d'une <u>50%</u> de réduction</p> 
+                        {{-- <p>Commander un mémoire maintenant et bénéficier d'une <u>50%</u> de réduction</p>
                         <ul>
                             <li><span class="ti-check"></span>9/10 Average Satisfaction Rate</li>
                             <li><span class="ti-check"></span>96% Completitation Rate</li>
@@ -259,7 +259,7 @@
                         </div>
                     </div>
                 </div><!-- END COL -->
-    
+
                 <div class="col-lg-4 col-md-6">
                     <div class="count-box">
                         <i class="ti-headphone-alt" style="color: #15be56;"></i>
@@ -272,7 +272,7 @@
                         </div>
                     </div>
                 </div><!-- END COL -->
-    
+
                 <div class="col-lg-4 col-md-6">
                     <div class="count-box">
                         <i class="ti-user" style="color: #bb0852;"></i>
@@ -289,7 +289,7 @@
         </div><!-- END CONTAINER -->
     </section>
     <!-- END COUNTER -->
-    
+
     <section class="testi_home_area section-padding">
         <div class="container">
             <div class="section-title">
@@ -316,7 +316,7 @@
                                 <small class="post">- Expert en Design</small>
                             </div>
                         </div><!-- END TESTIMONIAL -->
-                        
+
                         <div class="testimonial">
                             <div class="testimonial_content">
                                 <i class="fa fa-star"></i>
@@ -334,7 +334,7 @@
                                 <small class="post">- Expert en Marketing</small>
                             </div>
                         </div><!-- END TESTIMONIAL -->
-                        
+
                         <div class="testimonial">
                             <div class="testimonial_content">
                                 <i class="fa fa-star"></i>
@@ -352,7 +352,7 @@
                                 <small class="post">- Fondateur</small>
                             </div>
                         </div><!-- END TESTIMONIAL -->
-    
+
                         <div class="testimonial">
                             <div class="testimonial_content">
                                 <i class="fa fa-star"></i>
@@ -370,7 +370,7 @@
                                 <small class="post">- Mastan Group</small>
                             </div>
                         </div><!-- END TESTIMONIAL -->
-    
+
                         <div class="testimonial">
                             <div class="testimonial_content">
                                 <i class="fa fa-star"></i>
@@ -394,7 +394,7 @@
         </div><!-- END CONTAINER -->
     </section>
     <!-- END COURSE -->
-    
+
 
     <section class="faq_area section-padding">
         <div class="container">
@@ -481,13 +481,13 @@
                                     Pour bénéficier du PAPE, vous devez exprimer vos requêtes via la plateforme du programme.
                                 </div>
                             </div>
-                        </div><!-- END ACCORDION ITEM  -->                        
+                        </div><!-- END ACCORDION ITEM  -->
                     </div>
                 </div><!-- END COL  -->
             </div><!-- END ROW  -->
         </div><!-- END CONTAINER -->
     </section>
-    
+
 
 @endsection
 

@@ -35,7 +35,7 @@
                     <div class="ab_content">
                         <h2 class="mb-2 fs-2">A propos de <u><span>PAPE  </span></u></h2>
                         <p class="text-justify">
-                            <strong>PAPE</strong>, un service du cabinet <strong>CESIE BENIN</strong>, est un système innovant conçu pour accompagner les étudiants et chercheurs dans la rédaction de mémoires et thèses. Grâce à un ensemble d'outils digitaux, PAPE offre un appui technique tout au long du processus de rédaction, garantissant une qualité optimale et le respect des normes universitaires.
+                            PAPE, un service du cabinet CESIE BENIN, est un programme innovant conçu pour accompagner les étudiants et chercheurs dans la rédaction de mémoires et thèses. Ce programme, offre un appui technique tout au long du processus de rédaction, garantissant une qualité optimale et le respect des normes universitaires.
                         </p>
                         <p class="text-justify">
                             Notre mission est de rendre la rédaction académique plus rapide, efficace, et accessible à tous, en proposant un encadrement personnalisé à chaque étape, depuis la revue documentaire jusqu’à l’analyse des données.
@@ -51,9 +51,10 @@
 
                         <p class="text-justify">
                             Notre équipe, réactive et disponible, est dédiée à vous fournir un soutien complet pour vos projets académiques.
+
                         </p>
                         <p class="text-justify">
-                            Avec PAPE, vous avez la garantie d’un travail de qualité, livré dans les délais, tout en assurant la confidentialité de vos données et de vos travaux.
+                            Avec PAPE, vous avez la garantie d’un travail de qualité, tout en assurant la confidentialité de vos données et de vos travaux.
                         </p>
                     </div>
                 </div><!--- END COL -->
@@ -138,7 +139,7 @@
             </div><!--END  ROW  -->
         </div><!--- END CONTAINER -->
     </section>
-    
+
 
 @endsection
 

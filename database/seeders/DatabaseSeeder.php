@@ -15,18 +15,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-           // AcademicLevelSeeder::class,
-            TypeOfServiceSeeder::class,
-         //   TypeOfWorkSeeder::class,
-            DisciplineSeeder::class,
-           // NaturePaymentSeeder::class,
-            //TypeDocumentSeeder::class,
-            StatusSeeder::class,
-            RoleSeeder::class,
-            //CategorieSeeder::class
-          AdminSeeder::class,
-          AffilerSeeder::class,
-          ThemeMemoireSeeder::class
+                TypeOfServiceSeeder::class,
+                DisciplineSeeder::class,
+                StatusSeeder::class,
+                RoleSeeder::class,
+                AdminSeeder::class,
+                AffilerSeeder::class,
+                ThemeMemoireSeeder::class
         ]);
     }
 }
