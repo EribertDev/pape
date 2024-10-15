@@ -18,9 +18,9 @@
                 <div class="single_footer">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="{{route('service.redaction')}}">Commander une rédaction</a></li>
+                        <li><a href="{{route('service.redaction')}}">Coatching une rédaction</a></li>
                         <li><a href="#">Base de données</a></li>
-                        <li><a href="#">Bibliothèque de thèmes</a></li>
+                        {{-- <li><a href="#">Bibliothèque de thèmes</a></li> --}}
                     </ul>
                 </div>
             </div><!--- END COL -->
