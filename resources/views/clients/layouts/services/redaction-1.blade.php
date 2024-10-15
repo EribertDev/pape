@@ -211,13 +211,7 @@
 										<li class="last"><span></span></li>
 									</ul>
 								</div>
-							</div>
-							
-							<!-- <div class="single-widget payement">
-								<div class="content">
-									<img src="assets/img/payment-method.html" class="img-fluid" alt="#">
-								</div>
-							</div> -->
+							</div>  
 							<!--/ End Payment Method Widget -->
 							<!-- Button Widget -->
 							<div class="single-widget get-button">
@@ -227,10 +221,6 @@
 									</div>
 								</div>
 							</div>
-                            <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button class="btn_one btn btn-primary me-md-2 border-0" id="commanderBtn" type="button">
-                                        Commander</button>
-                                </div> -->
 							<!--/ End Button Widget -->
 						</div>
 					</div>
@@ -396,70 +386,19 @@
     <script src="{{asset('clients/assets/js/nicesellect.js?'.Str::uuid())}}"></script>
     <script type="text/javascript">
         $('#dicipline').niceSelect();
-        $('#typeService').niceSelect();
-       
+        $('#typeService').niceSelect();  
     </script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script> --}}
-    <script type="module" src="{{asset('clients/js-data/commande.js?'.Str::uuid())}}">
-    </script>
-    <!-- <script>
-        Loader.close()
-        //dropezone confiq
-        let uploadedDocumentMap = {};
-        Dropzone.options.documentDropzone = {
-            url:'{{route('files.store.temp')}}',
-            maxFilesize: 4, // MB
-            addRemoveLinks: true,
-            maxFiles:3,
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            success: function (file, response) {
-                uploadedDocumentMap[file.name] = response.name
-                console.log(uploadedDocumentMap);
-            },
-            removedfile: function (file) {
-                var name = file.file_name || uploadedDocumentMap[file.name];
-                console.log('name:',JSON.stringify({ name: name }));
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json;charset=utf-8',
-                        'X-CSRF-TOKEN':"{{ csrf_token() }}"
-                    },
-                    url: '{{route('files.delete.temp')}}',
-                    type:'POST',
-                    data: { name: name,tt:"mama" },
-                    dataType: 'JSON',
-                    success: function (response) {
-                        console.log(response);
-                        file.previewElement.remove()
-                        if (typeof file.file_name !== 'undefined') {
-                            name = file.file_name
-                        } else {
-                            name = uploadedDocumentMap[file.name]
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(xhr);
-                    },
-                    complete: function () {
-                    }
-                });
-            },
-            init: function () {
-            }
-        };
-    </script> -->
 
+    <script type="module" src="{{asset('clients/js-data/commande.js?'.Str::uuid())}}"></script>
     <script>
         $("#theme").hide();
        new TomSelect("#theme",{
-        create: false,
-        sortField: {
-            field: "text",
-            direction: "asc"
-        }
-    });
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            }
+        });
     </script>
     
 @endsection

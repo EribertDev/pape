@@ -71,18 +71,17 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Qu’est-ce que le PAPE 
+                                    Qu’est-ce que le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de :
+                                    Le PAPE est un Programme d’accompagnement Professionnel des Étudiants avec pour objectifs de :
                                     <ul>
-                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) à l’étudiant dans le cadre de son stage académique.</li>
-                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou thèse.</li>
+                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) pour l’étudiant dans le cadre de son stage académique.</li>
+                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou de sa thèse.</li>
                                         <li>👉 Coacher l’étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
                                         <li>👉 Former l’étudiant ou le chercheur à la conduite des travaux de recherche.</li>
-                                    
                                     </ul>
                                 </div>
                             </div>
@@ -95,7 +94,7 @@
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE est un programme didactique destiné à accompagner l’étudiant dans sa formation universitaire. Il ne se substitue pas l’étudiant ou au chercheur dans le cadre de sa rédaction. De plus, le PAPE contribue à l’insertion de l’étudiant ou du chercheur dans une administration pour la réalisation de son stage
+                                    Le PAPE est un programme didactique destiné à accompagner l’étudiant dans sa formation universitaire. Il ne se substitue pas à l’étudiant ou au chercheur dans le cadre de sa rédaction. De plus, le PAPE contribue à l’insertion de l’étudiant ou du chercheur dans une administration pour la réalisation de son stage.
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -109,10 +108,10 @@
                                 <div class="accordion-body">
                                     Le programme est destiné aux :
                                     <ul>
-                                        <li>👉 Etudiants ou chercheurs</li>
+                                        <li>👉 Étudiants ou chercheurs</li>
                                         <li>👉 Particuliers</li>
                                         <li>👉 Administrations</li>
-                                        <li>👉 Ou tout autre personne désireuse d’avoir des aptitudes en conduite d’études ou recherches</li>
+                                        <li>👉 Ou toute autre personne désireuse d’acquérir des aptitudes en conduite d’études ou en recherches</li>
                                     </ul>
                                 </div>
                             </div>
@@ -125,7 +124,7 @@
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le Programme est basé au Bénin avec la possibilité de servir aussi au-delà des frontières béninoises
+                                    Le programme est basé au Bénin, avec la possibilité de servir également au-delà des frontières béninoises.
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -139,6 +138,7 @@
             </div><!--END  ROW  -->
         </div><!--- END CONTAINER -->
     </section>
+    
 
 @endsection
 
