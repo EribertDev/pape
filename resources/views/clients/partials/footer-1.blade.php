@@ -61,7 +61,7 @@
                 </div>
             </div><!--- END COL -->
         </div><!--- END ROW -->
-        <div class="row fc">
+        {{-- <div class="row fc">
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="footer_menu">
                     <p><span>&copy; Copyright {{date("Y")}}  </span>  <span style="color: white; font-weight: bold"> Site réalisé par:<a href="https://www.linkedin.com/in/m-silas-dako-stdev-%F0%9F%92%BB%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB-40b91125b/"> STDev</a></span></p>
@@ -69,10 +69,10 @@
             </div>
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="footer_k cnhcopyright" >
-                    
+
                 </div>
             </div><!-- END COL -->
-        </div>
+        </div> --}}
     </div><!--- END CONTAINER -->
 </div>
 <!-- END FOOTER -->

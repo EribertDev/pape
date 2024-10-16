@@ -8,9 +8,9 @@
 <p>Bonjour {{ $client->last_name }},</p>
 <p>Nous venons de confirmer votre </p>
 <p><span>Sujet : </span> <span>{{$commande->subject}} </span> </p>
-<p>Veilleur payer les frais de prise de contacte dans votre dashboard </p>
-<p>Rendez sur votre dashboard pour effectuer les payements.</p>
-<p>Merci de nous faire confiance </p>
-<img src="https://cesiebenin.com/storage/leaflet_file/logo-syrram.png" style="width: 70px;height: 60px" alt="">
+<p>Commande acceptée
+    Votre demande de rédaction de mémoire ou thèse exprimée le .... Portant sur.......est acceptée.
+    CESIE vous remercie de l'avoir choisi et vous demande de payer les frais de prise de contact pour acter le démarrage de la rédaction de votre travail de recherche. Merci</p>
+<img src="https://syrram.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
 </body>
 </html>

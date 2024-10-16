@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
+    <title>Message de commande reçue</title>
 </head>
 <body>
-<p style="font-weight: bold">Salut, {{ $client }}</p>
+<p style="font-weight: bold">Message de commande reçue</p>
 
     <p>
-        Nous vous remercions d'avoir choisi SyRRaM pour vous accompagner dans la rédaction de votre document. Votre commande a bien été reçue, et nous sommes déjà à pied d'œuvre pour répondre à vos attentes.
+        M. ou madame {{ $client }}, CESIE vous remercie de l'avoir choisi pour la rédaction de votre mémoire ou thèse.
     </p>
+     <ul>
+        <li>Thème du travail : néant</li>
+        <li>Thème issu de la bibliothèque en ligne de CESIE : --</li>
+        <li>Niveau :--</li>
+        <li>Date de la commande :--</li>
+        <li>Date limite de rédaction souhaitée :--</li>
+        <li>Coût du travail :--</li>
+     </ul>
     <p>
-         Pour garantir un service personnalisé et de qualité, nous vous invitons à partager toute information complémentaire ou directive spécifique qui pourrait nous aider à mieux cerner vos besoins. Si vous disposez de documents de référence ou d'un plan détaillé, n'hésitez pas à nous les transmettre.
+        Nous restons à votre disposition pour toute question ou précision. Merci encore de votre confiance en SyRRaM.Votre  commande est enregistrée avec succès et les experts de CESIE vous contacteront dans les heures à venir
     </p>
-    <p>
-        SyRRaM s'engage à vous tenir informé(e) à chaque étape de la rédaction, afin que vous puissiez suivre l'évolution de votre projet en toute tranquillité. Notre objectif est de vous fournir un document final qui reflète pleinement vos exigences.
-    </p>
-    <p>
-        Nous restons à votre disposition pour toute question ou précision. Merci encore de votre confiance en SyRRaM.
-    </p>
-    <img src="https://cesiebenin.com/storage/leaflet_file/logo-syrram.png" style="width: 70px;height: 60px" alt="">
+    <img src="https://syrram.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
 </body>
 </html>
+
+
+
+
+
+
+Date limite de rédaction souhaitée :
+Coût du travail :
+
+

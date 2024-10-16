@@ -36,10 +36,10 @@
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE est un Programme d’Accompagnement Professionnel des Étudiants, avec pour objectifs de :
+                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de 
                                     <ul>
-                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) pour l’étudiant dans le cadre de son stage éducatif.</li>
-                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou thèse.</li>
+                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) à l’étudiant dans le cadre de son stage académique.</li>
+                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou thèse</li>
                                         <li>👉 Coacher l’étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
                                         <li>👉 Former l’étudiant ou le chercheur à la conduite des travaux de recherche.</li>
                                     </ul>
@@ -56,14 +56,14 @@
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE offre, au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
+                                    Le PAPE offre au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
                                     <ul>
                                         <li>👉 Rédaction complète du mémoire ou de la thèse</li>
-                                        <li>👉 Élaboration du protocole de recherche</li>
+                                        <li>👉 Protocole de recherche</li>
                                         <li>👉 Analyse des données</li>
                                         <li>👉 Mise en forme du document</li>
-                                        <li>👉 Commande et livraison rapide du mémoire ou de la thèse</li>
-                                        <li>👉 Vente de bases de données issues des collectes de données</li>
+                                        {{-- <li>👉 Commande et livraison rapide du mémoire ou de la thèse</li> --}}
+                                        <li>👉 Vente de bases de données issues des collectes de donnée</li>
                                     </ul>
                                 </div>
                             </div>
@@ -73,18 +73,18 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    À qui s'adresse le PAPE ?
+                                        À qui s'adresse le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le programme est destiné aux :
+                                    Le programme est destiné aux  :
                                     <ul>
                                         <li>👉 Étudiants ou chercheurs</li>
                                         <li>👉 Particuliers</li>
                                         <li>👉 Administrations</li>
-                                        <li>👉 Toute personne désireuse d’acquérir des compétences en conduite d’études ou de recherches</li>
+                                        <li>👉 Ou tout autre personne désireuse d’avoir des aptitudes en conduite d’études ou recherches</li>
                                     </ul>
                                 </div>
                             </div>
@@ -94,13 +94,13 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    Comment puis-je bénéficier du PAPE ?
+                                        Comment puis-je bénéficier du PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    En exprimant vos requêtes via la plateforme du programme.
+                                    En exprimant ses requêtes via la plateforme du programme
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -109,13 +109,13 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFive" aria-expanded="false"
                                         aria-controls="collapseFive">
-                                    Le PAPE prend-il en compte l’analyse des données ?
+                                        Le PAPE prend-il en compte l’analyse des données ?
                                 </button>
                             </h2>
                             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Absolument. Le PAPE fournit une assistance complète pour la collecte, l’analyse rapide et fiable des données conformément aux exigences du travail et aux normes universitaires.
+                                    Absolument. Le PAPE fournit une assistance complète pour la collecte, l’analyse rapide et fiable des données conformément aux orientations du travail et aux normes universitaires.
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -124,13 +124,13 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseSix" aria-expanded="false"
                                         aria-controls="collapseSix">
-                                    En combien de temps l’étudiant peut-il rédiger son mémoire ou sa thèse avec le PAPE ?
+                                        En combien de temps, l’étudiant arrive-t-il à rédiger son mémoire ou sa thèse avec le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    En cinq (05) séances de coaching au maximum.
+                                    En Cinq (05) séances de coaching au maximum
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -139,13 +139,28 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseSeven" aria-expanded="false"
                                         aria-controls="collapseSeven">
-                                    Comment puis-je suivre le traitement de mes requêtes sur le PAPE ?
+                                        Comment puis-je suivre le traitement de mes requêtes sur le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    En ligne via la plateforme dédiée au programme.
+                                    En ligne via la présente plateforme dédiée au programme
+                                </div>
+                            </div>
+                        </div><!-- END ACCORDION ITEM  -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseSeven" aria-expanded="false"
+                                        aria-controls="collapseSeven">
+                                        Est-ce que le PAPE garantit le respect des normes universitaires ?
+                                </button>
+                            </h2>
+                            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                        Absolument. Le PAPE mets en place un coaching selon les exigences des règles universitaires.
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
@@ -154,7 +169,7 @@
             </div><!-- END ROW  -->
         </div><!-- END CONTAINER -->
     </section>
-    
+
 @endsection
 
 @section('extra-scripts')

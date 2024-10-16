@@ -136,7 +136,7 @@
                             <span class="ti-user ss_three"></span>
                             <h2><a href="single-service.html" target="_blank">Gain de Temps</a></h2>
                         </div>
-                        <p>Notre accompagnement vous garantit un gain de temps considérable.</p>
+                        <p>Notre accompagnement vous assure un redoutable gain de temps.</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
@@ -152,7 +152,7 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-light-bulb ss_five"></span>
-                            <h2><a href="single-service.html" target="_blank">Confidentialité Assurée</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Confidentialité assurée</a></h2>
                         </div>
                         <p>Nous garantissons la confidentialité totale de vos informations personnelles.</p>
                     </div>
@@ -408,18 +408,18 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Qu’est-ce que le PAPE ?
+                                    Qu'est-ce que le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE est un Programme d’accompagnement Professionnel des Étudiants, visant à :
+                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de 
                                     <ul>
-                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) pour l'étudiant dans le cadre de son stage éducatif.</li>
-                                        <li>👉 Coacher l'étudiant ou le chercheur dans la rédaction de son mémoire ou de sa thèse.</li>
-                                        <li>👉 Accompagner l'étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
-                                        <li>👉 Former l'étudiant ou le chercheur à la conduite de projets de recherche.</li>
+                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) à l’étudiant dans le cadre de son stage académique.</li>
+                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou thèse</li>
+                                        <li>👉 Coacher l’étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
+                                        <li>👉 Former l’étudiant ou le chercheur à la conduite des travaux de recherche.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -434,14 +434,14 @@
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE propose, au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
+                                    Le PAPE offre au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
                                     <ul>
-                                        <li>👉 Rédaction complète du mémoire ou de la thèse.</li>
-                                        <li>👉 Élaboration de protocoles de recherche.</li>
-                                        <li>👉 Analyse des données.</li>
-                                        <li>👉 Mise en forme des documents.</li>
-                                        <li>👉 Commande et livraison rapide de mémoires ou thèses.</li>
-                                        <li>👉 Vente de bases de données issues des collectes de données.</li>
+                                        <li>👉 Rédaction complète du mémoire ou de la thèse</li>
+                                        <li>👉 Protocole de recherche</li>
+                                        <li>👉 Analyse des données</li>
+                                        <li>👉 Mise en forme du document</li>
+                                        {{-- <li>👉 Commande et livraison rapide du mémoire ou de la thèse</li> --}}
+                                        <li>👉 Vente de bases de données issues des collectes de donnée</li>
                                     </ul>
                                 </div>
                             </div>
@@ -451,18 +451,18 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                    À qui s'adresse le PAPE ?
+                                        À qui s'adresse le PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le programme s'adresse à :
+                                    Le programme est destiné aux  :
                                     <ul>
-                                        <li>👉 Étudiants ou chercheurs.</li>
-                                        <li>👉 Particuliers.</li>
-                                        <li>👉 Administrations.</li>
-                                        <li>👉 Toute personne désireuse d’acquérir des compétences en conduite d’études ou de recherches.</li>
+                                        <li>👉 Étudiants ou chercheurs</li>
+                                        <li>👉 Particuliers</li>
+                                        <li>👉 Administrations</li>
+                                        <li>👉 Ou tout autre personne désireuse d’avoir des aptitudes en conduite d’études ou recherches</li>
                                     </ul>
                                 </div>
                             </div>
@@ -472,13 +472,13 @@
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseFour" aria-expanded="false"
                                         aria-controls="collapseFour">
-                                    Comment puis-je bénéficier du PAPE ?
+                                        Comment puis-je bénéficier du PAPE ?
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Pour bénéficier du PAPE, vous devez exprimer vos requêtes via la plateforme du programme.
+                                    En exprimant ses requêtes via la plateforme du programme
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->
