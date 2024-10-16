@@ -82,8 +82,8 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <li><a class="dropdown-item" href="#" data-reference="{{$membre->reference}}" data-action="detail">Détail</a></li>
-                                            <li><a class="dropdown-item" href="#" data-reference="{{$membre->reference}}" data-action="locked">Bloqué</a></li>
-                                            <li><a class="dropdown-item" href="#" data-reference="{{$membre->reference}}" data-action="delete">Supprimé</a></li>
+                                            {{-- <li><a class="dropdown-item" href="#" data-reference="{{$membre->reference}}" data-action="locked">Bloqué</a></li>
+                                            <li><a class="dropdown-item" href="#" data-reference="{{$membre->reference}}" data-action="delete">Supprimé</a></li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -156,6 +156,8 @@
                             <label for="bio" class="col-form-label">Bio</label>
                             <textarea class="form-control" id="bio" name="bio"></textarea>
                         </div>
+                        <input type="text" hidden class="form-control" id="id_admin" name="id_admin"/>
+                        <input type="text" hidden class="form-control" id="id_user" name="id_user"/>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">Annulé</button>
                             <button type="button" class="btn btn-primary" data-mdb-ripple-init id="memberFormSubmit"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" hidden ></span>Ajouter

@@ -152,12 +152,12 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingSeven">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseSeven" aria-expanded="false"
-                                        aria-controls="collapseSeven">
+                                        data-bs-target="#collapseSevene" aria-expanded="false"
+                                        aria-controls="collapseSevene">
                                         Est-ce que le PAPE garantit le respect des normes universitaires ?
                                 </button>
                             </h2>
-                            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                            <div id="collapseSevene" class="accordion-collapse collapse" aria-labelledby="headingSevene"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                         Absolument. Le PAPE mets en place un coaching selon les exigences des règles universitaires.
@@ -169,7 +169,6 @@
             </div><!-- END ROW  -->
         </div><!-- END CONTAINER -->
     </section>
-
 @endsection
 
 @section('extra-scripts')

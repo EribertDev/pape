@@ -98,6 +98,40 @@ class User extends Authenticatable implements MustVerifyEmail
         $member["user_id"] = $userId;
         return (new Admin())->addNew($member);
     }
+    //
+    public function editMember($user_id, array $member)
+    {
+        $user = self::find($user_id);
+
+        // Vérifie si l'utilisateur existe
+        if (!$user) {
+            throw new \Exception("Utilisateur non trouvé.");
+        }
+
+        // Prépare les données à mettre à jour
+        $data = [
+            'email' => $member["email"],
+            'roles_id' => $member["roles_id"],
+            'status_id' => Status::getIdByName('Actif'),
+        ];
+
+        // Vérifie si le mot de passe existe et n'est pas vide
+        if (!empty($member["password"])) {
+            $data['password'] = Hash::make($member["password"]);
+        }
+
+        // Effectue la mise à jour avec Eloquent
+        $user->update($data);
+
+        // Récupère l'id_admin et supprime les clés non nécessaires
+        $id_admin = $member["id_admin"];
+        unset($member["email"], $member["password"], $member["roles_id"], $member["status_id"], $member["id_admin"]);
+
+        // Met à jour les informations de l'administrateur
+        return (new Admin())->edit($id_admin, $member); // Assure-toi que $member est un tableau
+    }
+
+
     protected $table= "users";
     public function getUserEmailByID($id)
     {

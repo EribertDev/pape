@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="form-group col-12">
                                     <label for="_password">Mot de passe <span class="text-danger">*</span>
-                                    <span class="text-small" style="font-size:11px"> (le mot de passe doit contenir au moins 8 caractères et au moins )</span>
+                                    <span class="text-small" style="font-size:11px"> (le mot de passe doit contenir au moins 8 caractères)</span>
                                     </label>
                                     <input type="password" id="_password" class="form-control requiredField input-label" name="_password">
                                 </div>

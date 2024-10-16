@@ -5,14 +5,18 @@ document.addEventListener("DOMContentLoaded",()=>{
     const memberModale = $('#memberModale');
     const memberForm = document.getElementById("memberForm");
     const csrfToken = document.querySelector('input[name="_token"]').value;
+    var codeaf = document.getElementById('codeaf-div');
+    let selectR = document.getElementById('role');
+
     //process for add new member
     document.querySelector("#memberFormSubmit").addEventListener("click",(e)=>{
         e.preventDefault();
-        let selectR = document.getElementById('role');
+
         var selectRole = selectR.options[selectR.selectedIndex].text;
         let stdevForm = new StdevForm();
         let isValideInput = false;
         stdevForm.setFormElement(memberForm);
+
         const fieldsConfig = {
             lastName:{
                 name:'lastName',
@@ -66,14 +70,25 @@ document.addEventListener("DOMContentLoaded",()=>{
                 },
             },
         }
-
-
-
-       // console.log(fieldsConfig);
+        //
         isValideInput= stdevForm.validateFields(
-            ['lastName','firstName','email','phoneNumber','password'],fieldsConfig,
+            ['lastName','firstName','email','phoneNumber'],fieldsConfig,
             "form-control is-invalid",
             "form-control is-valid");
+        let url ="";
+        if( document.getElementById('memberFormSubmit').innerText !== "MODIFIER"){
+             url ="/admin/staff/add/member";
+             isValideInput= stdevForm.validateFields(
+                ['password'],fieldsConfig,
+                "form-control is-invalid",
+                "form-control is-valid");
+
+        }else{
+             url="/admin/staff/edit/member";
+             delete fieldsConfig.password;
+        }
+       // console.log(fieldsConfig);
+
             if (selectRole ==='Affilier') {
                 fieldsConfig.codeaf = {
                     name:'codeaf',
@@ -93,9 +108,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         if (isValideInput){
             document.querySelector("#memberFormSubmit").disabled = true;
-            document.querySelector("#memberFormSubmit span").hidden = false;
+           // document.querySelector("#memberFormSubmit span").hidden = false;
            // console.log(stdevForm.getDataFormData());
-            let url ="/admin/staff/add/member";
+
+
             $.ajax({
                 headers: {
                     'Accept': 'application/json;charset=utf-8',
@@ -154,7 +170,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                 },
                 complete: function () {
                     document.querySelector("#memberFormSubmit").disabled = false;
-                    document.querySelector("#memberFormSubmit span").hidden = true;
+                 //   document.querySelector("#memberFormSubmit span").hidden = true;
                 }
             });
         }
@@ -189,7 +205,16 @@ document.addEventListener("DOMContentLoaded",()=>{
                         document.getElementById("phoneNumber").value=response.phone_number;
                         document.getElementById("bio").value=response.bio;
                         document.getElementById("role").value=response.user?.role.id;
+                        document.getElementById("id_admin").value=response.id;
+                        document.getElementById("id_user").value=response.user_id;
+                        document.getElementById("codeaf").value=response.code_af;
                         document.getElementById('memberFormSubmit').innerText = "MODIFIER"
+                        let selectedT = selectR.options[selectR.selectedIndex].text;
+                        if (selectedT !== 'Affilier') {
+                            codeaf.hidden = true;
+                        } else {
+                            codeaf.hidden = false;
+                        }
                         memberModale.modal('show');
                     },
                     error: function (xhr, status, error) {

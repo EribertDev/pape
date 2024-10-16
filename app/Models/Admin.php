@@ -57,8 +57,46 @@ class Admin extends Model
             'user.role:id,name',
             'status:id,name'
         ])->where('reference',$reference)
-            ->first( ['id','last_name', 'fist_name','phone_number', 'bio', 'status_id', 'user_id']);
+            ->first( ['id','last_name', 'fist_name','phone_number', 'bio', 'status_id', 'user_id','code_af']);
     }
+    //
+
+
+    /**
+     * Met à jour les attributs d'un administrateur spécifié par son identifiant.
+     *
+     * @param int $id_admin L'identifiant de l'administrateur à mettre à jour.
+     * @param array $attributes Les attributs à mettre à jour.
+     * @return Model L'objet administrateur mis à jour.
+     * @throws \Exception Si l'administrateur n'est pas trouvé.
+     */
+    public function edit($id_admin, array $attributes)
+    {
+        // Vérifie si l'administrateur existe
+        $admin = self::find($id_admin);
+        if (!$admin) {
+            throw new \Exception("Administrateur non trouvé.");
+        }
+
+        // Crée un tableau pour stocker les attributs valides
+      /*  $fillableAttributes = array_filter($attributes, function ($key) use ($admin) {
+            return in_array($key, $admin->getFillable());
+        }, ARRAY_FILTER_USE_KEY);
+
+        // Vérifie si le tableau d'attributs n'est pas vide
+        if (empty($fillableAttributes)) {
+            throw new \Exception("Aucun attribut valide à mettre à jour.");
+        }*/
+
+        // Effectue la mise à jour avec le constructeur de requêtes
+        $updated = DB::table('admins')
+            ->where('id', $id_admin)
+            ->update($attributes);
+
+        return $updated ? self::find($id_admin) : null; // Retourne l'administrateur mis à jour ou null
+    }
+
+
 
     /**
      * Recupérer les rédacteurs dont le role est $role
@@ -71,11 +109,9 @@ class Admin extends Model
             'user:id,email,roles_id',
             'user.role:id,name',
             'status:id,name'
-        ])
-            ->whereHas('user.role', function($query) use ($role) {
+        ])->whereHas('user.role', function($query) use ($role) {
                 $query->where('name', $role);
-            })
-            ->get(['id', 'last_name', 'fist_name', 'status_id', 'user_id']);
+        })->get(['id', 'last_name', 'fist_name', 'status_id', 'user_id']);
     }
 
     //relations

@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-use Faker\Core\File;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use Faker\Core\File;
+use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Commande extends Model
 {
@@ -38,7 +40,7 @@ class Commande extends Model
      */
     public function getAllCommandes(): \Illuminate\Database\Eloquent\Collection|array
     {
-        return self::with(['client', 'status', 'service', 'typeDocument', 'discipline', 'academicLevel', 'payments', 'filesPath']) 
+        return self::with(['client', 'status', 'service', 'typeDocument', 'discipline', 'academicLevel', 'payments', 'filesPath'])
         ->orderBy('commandes.updated_at', 'desc')
         ->get();
     }
@@ -78,6 +80,20 @@ class Commande extends Model
             ->paginate(5);
     }
 
+
+    public function getTotalCommandeByAffiliateCodeForMonth($affiliateCode, $month, $year)
+    {
+        // Définir le début et la fin du mois
+        $startDate = Carbon::createFromDate($year, $month, 1);
+        $endDate = $startDate->copy()->endOfMonth();
+        // Compter les commandes de l'utilisateur pour le mois
+        $totalOrders = Commande::where('affilier_id', $affiliateCode)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->count();
+        return $totalOrders;
+    }
+
+
     public function getCommandeByUuid($commandeUuid)
     {
         return self::where("uuid", $commandeUuid)
@@ -88,7 +104,7 @@ class Commande extends Model
             'discipline',
             'redactor',
             'payments',
-            'filesPath' 
+            'filesPath'
         ])
         ->first();
     }
@@ -122,7 +138,6 @@ class Commande extends Model
     public function getDateLimit()
     {
         $aujourdhui = Carbon::now();
-       
         return DB::table($this->table)
         ->select('deadline')
         ->where('deadline', '>', $aujourdhui) // Filtrer pour les dates futures
@@ -181,7 +196,7 @@ class Commande extends Model
             'discipline',
             'redactor',
             'payments',
-            'filesPath' 
+            'filesPath'
         ])
         ->first();
     }

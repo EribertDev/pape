@@ -22,7 +22,7 @@
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
                         <h2 class="fw-bold text-center"><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec PAPE</h2>
-                        <p class="mt-4  text-center">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles de recherche, documents administratifs, et autres</p>
+                        <p class="mt-4  text-center">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles scientifiques, documents administratifs, et autres</p>
                        <div class="row">
                             @guest
                                 <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
@@ -42,7 +42,7 @@
                     </div>
                    <div class="home_content  d-none d-lg-block">
                         <h2 class="fw-bold "><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec PAPE</h2>
-                        <p class="mt-3">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles de recherche, documents administratifs, et autres</p>
+                        <p class="mt-3">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles scientifiques, documents administratifs, et autres</p>
                         <div class="row">
                             @guest
                                 <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
@@ -95,7 +95,7 @@
                 <div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
                     <div class="single_tp">
                         <h3>Collecte et analyse de données pour vos recherches</h3>
-                        <p>Le PAPE vous aide à réaliser rapidement vos collectes et analyses de données dans le cadre de votre travail de recherche de fin de formation.</p>
+                        <p>Le PAPE vous permet de vite réaliser vos collectes et analyses de données dans le cadre de votre travail de recherche de fin de formation.</p>
                     </div>
                 </div><!-- END COL -->
             </div><!-- END ROW -->
@@ -170,77 +170,6 @@
         </div><!-- END CONTAINER -->
     </section>
 
-    <!-- END WHY CHOOSE US -->
-
-    <!-- START COURSE PROMOTION -->
-    {{-- <section class="course_promo section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s"
-                     data-wow-offset="0">
-                    <div class="cp_content">
-                        <h2>Prêt à vous lancez?</h2>
-                        {{-- <p>Commander un mémoire maintenant et bénéficier d'une <u>50%</u> de réduction</p>
-                        <ul>
-                            <li><span class="ti-check"></span>9/10 Average Satisfaction Rate</li>
-                            <li><span class="ti-check"></span>96% Completitation Rate</li>
-                            <li><span class="ti-check"></span>Friendly Environment & Expert Teacher</li>
-                        </ul>
-                    </div>
-                    <div class="cp_btn">
-                        <a href="{{route('service.redaction')}}" class="cta"><span>Incrivez-vous maintenant</span>
-                            <svg width="13px" height="10px" viewBox="0 0 13 10">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </div><!--- END COL -->
-                <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s"
-                     data-wow-offset="0">
-                    <div class="cp_img">
-                        <img src="{{asset('clients/assets/images/all-img/promo.png')}}" class="img-fluid" alt="image">
-                        <!-- <div class="wc_year">
-                            <h3>20 Years of Experience <br />from 2002</h3>
-                        </div> -->
-                    </div>
-                </div><!--- END COL -->
-            </div><!--- END ROW -->
-        </div><!--- END CONTAINER -->
-    </section> --}}
-    <!-- END COURSE PROMOTION -->
-
-    <!--START COURSE -->
-    {{-- <div class="best-cpurse section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>Sujets et thème de mémoire d'actualités </h2>
-                <p>Bibliothèque de thèmes de mémoires </p>
-            </div>
-            <div class="row">
-                @if(!empty($categories))
-                    @foreach($categories->take(6) as $categorie)
-                        @php
-                            $info = json_decode($categorie->info, true, 512, JSON_THROW_ON_ERROR);
-                        @endphp
-                        <div class="col-lg-4 col-sm-6 col-xs-12">
-                            <div class="single_tca">
-                                <img src="{{asset($info["icon_path"])}}" alt=""/>
-                                <h2><a href="#">{{$categorie->name}}</a></h2>
-                                <span>+{{$info["theme_count"]}} Thèmes</span>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div><!-- END ROW -->
-            <div class="col-lg-12 text-center">
-                <div class="cc_btn">
-                    <a class="btn_one" href="{{route('tm.all')}}">Voir Plus</a>
-                </div>
-            </div><!--END COL -->
-        </div><!--END CONTAINER -->
-    </div> --}}
-    <!--END COURSE -->
     <section id="counts" class="counts section-padding">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
@@ -487,14 +416,8 @@
             </div><!-- END ROW  -->
         </div><!-- END CONTAINER -->
     </section>
-
-
 @endsection
 
 @section('extra-scripts')
-
-    <script>
-
-    </script>
 
 @endsection

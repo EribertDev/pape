@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\PayementController;
 use App\Http\Controllers\Admin\BaseDonneController;
 use App\Http\Controllers\Admin\ThemeMemoireController;
 
-Route::middleware(['auth','role:Administrateur'])->group(function () {
+Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     //
     Route::get('/admin/dash', DashController::class)->name('admin.dash');
     //
@@ -27,6 +27,7 @@ Route::middleware(['auth','role:Administrateur'])->group(function () {
     Route::get('/admin/staff', [StaffController::class, 'index'])->name('admin.staff');
     Route::post('/admin/staff/add/member', [StaffController::class, 'addMember'])->name('admin.staff.add.member');
     Route::post('/admin/staff/detail/member', [StaffController::class, 'getMembre'])->name('admin.staff.detail.member');
+    Route::post('/admin/staff/edit/member', [StaffController::class, 'editMembre'])->name('admin.staff.edit.member');
     Route::post('/admin/staff/locked/member', [StaffController::class, 'lockedMember'])->name('admin.staff.locked.member');
     Route::post('/admin/staff/delete/member', [StaffController::class, 'deleteMembre'])->name('admin.staff.detail.member');
     //

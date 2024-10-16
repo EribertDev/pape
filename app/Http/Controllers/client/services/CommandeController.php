@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client\services;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderReceivedSuccessfully;
+use App\Models\Admin;
 use App\Models\Affiler;
 use App\Models\Commande;
 use App\Models\Discipline;
@@ -34,11 +35,11 @@ class CommandeController extends Controller
             'codeAf'=>'string',
         ]);
 
-        $status ='En attente';// 
+        $status ='En attente';//
         $data = $request->all();
         $data["typeService"]=TypeOfService::getByReference($data["typeService"]);
         $prix =  $data["typeService"]->prix;
-        
+
         //si un theme de la bibliothèque est choisir
         if ($request->has('choose_theme')) {
             $request->validate([
@@ -46,8 +47,6 @@ class CommandeController extends Controller
             ], [
                 'theme.required' => "Le thème est requis."
             ]);
-
-            
             $theme_uuid = $request->input('theme');
             $tm =(new ThemeMemoire())->getByUuid($theme_uuid);
             $theme_id =$tm?->id;
@@ -71,7 +70,7 @@ class CommandeController extends Controller
             if (isset($protocole)&&$protocole!= '') {
                $status = 'Traiter';
                $data["protocole"]=$protocole;
-               $prix +=3000; 
+               $prix +=3000;
             }
         } else {
             $theme_id = NULL; // Définir theme_id à null si la case n'est pas cochée
@@ -90,7 +89,7 @@ class CommandeController extends Controller
            // try{
                 $data["dicipline"]=Discipline::getNameAndIdByReference($data["dicipline"]);
                 $client = session()->get("clientInfo");
-                $affilier = (new Affiler())->getByCode($data['codeAf']);
+                $affilier = (new Admin())->getByCode($data['codeAf']);
                 if($affilier){
                     $affilier_id = $affilier->id;
                 }else{
@@ -173,7 +172,7 @@ class CommandeController extends Controller
                 $theme_redactor =NULL;
             }
             // else {
-               
+
             // }
 
             $data = $request->all();
@@ -337,28 +336,28 @@ class CommandeController extends Controller
     public function downloadFinalFile(Request $request) {
         $uuid = $request->input('uuid');
         $cmd = (new Commande())->getCommandeByUuid($uuid);
-    
+
         if (!$cmd || !$cmd->payments) {
             return response()->json(['error' => 'Commande or payment not found.'], 404);
         }
-    
+
         if ($cmd->payments[0]->status_id !== Status::getIdByName('Payer')) {
             return response()->json(['error' => 'Payment status not valid for download.'], 403);
         }
-    
+
         $filePath = (new Commande())->getFinaleFileByUuid($uuid);
         if (!$filePath) {
             return response()->json(['msg' => 'File not found', 'success' => false], 200);
         }
-    
+
         $path = storage_path('app/public/' . $filePath);
         if (!file_exists($path)) {
             return response()->json(['msg' => 'File not found on server.', 'success' => false], 200);
         }
-    
+
         $fileContent = file_get_contents($path);
         $base64 = base64_encode($fileContent);
-    
+
         return response()->json([
             'msg' => 'File downloaded',
             'filename' => time(),
@@ -367,5 +366,5 @@ class CommandeController extends Controller
         ], 200);
 
     }
-    
+
 }

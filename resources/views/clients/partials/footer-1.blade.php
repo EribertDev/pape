@@ -18,8 +18,8 @@
                 <div class="single_footer">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="{{route('service.redaction')}}">Coatching une rédaction</a></li>
-                        <li><a href="#">Base de données</a></li>
+                        <li><a href="{{route('service.redaction')}}">Demander un coaching</a></li>
+                        {{-- <li><a href="#">Base de données</a></li> --}}
                         {{-- <li><a href="#">Bibliothèque de thèmes</a></li> --}}
                     </ul>
                 </div>
@@ -28,10 +28,10 @@
                 <div class="single_footer">
                     <h4>Lien Rapides</h4>
                     <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#">A propos</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="{{ route('home') }}">Accueil</a></li>
+                        <li><a href="{{ route('a-propos') }}">A propos</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                        <li><a href="{{ route('faqs') }}">FAQ</a></li>
                     </ul>
                 </div>
             </div><!--- END COL -->
@@ -43,11 +43,11 @@
                         <h3>Contact</h3>
                         <p><a href="tel:+22962435929" style="color: white">+229 62 43 59 29 </a></p>
                     </div>
-                    <div class="sf_contact">
+                    {{-- <div class="sf_contact">
                         <span class="ti-email"></span>
                         <h3>Email Address</h3>
                         <p>pape@cesiebenin.com</p>
-                    </div>
+                    </div> --}}
                     <div class="sf_contact">
                         <span class="ti-map"></span>
                         <h3>Office Address</h3>
