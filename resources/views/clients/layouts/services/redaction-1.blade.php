@@ -179,7 +179,7 @@
                                             <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="nbrPage" >Code affiliation (Ex : 000000)</label>
+                                            <label class="fieldlabels" for="nbrPage" >Code affiliation (Ex : 00000000)</label>
                                             <input type="text" name="codeAf" id="codeAf" class="no-spinner">
                                         </div>
                                         <!-- <div class="col-12 col-md-6">
