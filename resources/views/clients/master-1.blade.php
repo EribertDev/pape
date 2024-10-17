@@ -7,8 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="Penn - Education HTML Template">
-        <meta name="keywords" content="theme_ocean, college, course, e-learning, education, high school, kids, learning, online, online courses, school, student, teacher, tutor, university">
+        <meta name="keywords" content="PAPE,pape,éducation,thème,memoire,thèse,article scientique">
         <meta name="author" content="theme_ocean">
+        <link rel="icon" href="{{ asset('clients/assets/images/icon/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('clients/assets/images/icon/favicon.ico') }}" type="image/x-icon">
         <!-- SITE TITLE -->
         <title>PAPE</title>
         <!-- Latest Bootstrap min CSS -->
