@@ -69,7 +69,7 @@
                                 <div class="single_agent_content">
                                     <h4>{{ session('clientInfo') ->fist_name .' '. session('clientInfo') ->last_name}}</h4>
                                     <h5>Client Syrram</h5>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever type book.</p>
+                                    {{-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever type book.</p> --}}
                                     <form id="infoForm">
                                         @csrf
                                        <div class="row">
