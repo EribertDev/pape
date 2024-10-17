@@ -51,7 +51,7 @@
                             <div class="col-xs-12 bg-white">
                                 <div class="prdct_dtls_content bg-white">
 
-                                    <a class="pd_title" href="#">{{$commande->service->name}}</a>
+                                    {{-- <a class="pd_title" href="#">{{$commande->service->name}}</a> --}}
                                     <div class="pd_price_dtls fix">
                                         @php
                                             $badge ='badge-'.$commande->status->name;
@@ -61,7 +61,7 @@
                                         <p class="mb-2"><span class="fw-bold text-black fs-6">Status :</span> <span
                                                 class=" badge {{$badge}}">{{$commande->status->name}}</span></p>
                                         <p class="mb-2"><span class="fw-bold text-black fs-6">Discipline :</span> <span
-                                                class="fs-6">{{$commande->discipline->name}}</span></p>                        
+                                                class="fs-6">{{$commande->discipline->name}}</span></p>
                                         <p class="mb-2"><span class="fw-bold text-black fs-6">Délais :</span> <span
                                                 class="fs-6">{{$commande['deadline']}}</span></p>
                                         <p class="mb-2"><span class="fw-bold text-black fs-6">Montant :</span> <span
@@ -73,7 +73,7 @@
                                             $service = $commande->service->name;
                                             $service = strtolower($service);
                                             $status = strtolower($commande->status->name);
-                                           
+
                                         @endphp
                                         @if ( $status!=="en attente")
                                             @if (!empty($commande->payments) && count($commande->payments) > 0)
@@ -81,8 +81,8 @@
                                                 <button class="btn_one border-0 download" type="button"   data-uuid ="{{$commande->uuid}}"
                                                     data-pay-id = "{{$commande->payments[0]->id}}"
                                                     data-pay-status = "{{$commande->payments[0]->status->name}}"
-                                                    @if ($status=="Traiter") 
-                                                        disabled 
+                                                    @if ($status=="Traiter")
+                                                        disabled
                                                     @endif
                                                     >
                                                     <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden >
@@ -101,7 +101,7 @@
                                                     >
                                                     <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
                                                 </button>
-                                            @endif  
+                                            @endif
                                             @else
                                                 <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
                                                     <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
@@ -131,7 +131,7 @@
                                                 <i class="ti-download  mx-2"></i>
                                             </a>
                                        </span>
-                                        
+
                                     @else
                                         <p>Aucun fichier joint disponible.</p>
                                     @endif
