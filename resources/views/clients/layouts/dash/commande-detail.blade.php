@@ -51,7 +51,7 @@
                             <div class="col-xs-12 bg-white">
                                 <div class="prdct_dtls_content bg-white">
 
-                                    {{-- <a class="pd_title" href="#">{{$commande->service->name}}</a> --}}
+                                    <a class="pd_title" href="#">{{$commande->service?->name}}</a>
                                     <div class="pd_price_dtls fix">
                                         @php
                                             $badge ='badge-'.$commande->status->name;
@@ -70,7 +70,7 @@
                                         <div class="pd_text">
                                         </div>
                                         @php
-                                            $service = $commande->service->name;
+                                            $service = $commande->service?->name;
                                             $service = strtolower($service);
                                             $status = strtolower($commande->status->name);
 
