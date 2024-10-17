@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Faker\Core\File;
-use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -83,15 +84,27 @@ class Commande extends Model
 
     public function getTotalCommandeByAffiliateCodeForMonth($affiliateCode, $month, $year)
     {
+        $admin = (new Admin())->getByCode($affiliateCode);
+        if(!$admin) {
+        //    echo "code invalide";
+            return 0;
+        }
+        // Validation du mois et de l'année
+        if ($month < 1 || $month > 12 || $year < 2000) {
+            throw new InvalidArgumentException("Mois ou année invalide.");
+        }
         // Définir le début et la fin du mois
         $startDate = Carbon::createFromDate($year, $month, 1);
         $endDate = $startDate->copy()->endOfMonth();
+
         // Compter les commandes de l'utilisateur pour le mois
-        $totalOrders = Commande::where('affilier_id', $affiliateCode)
+        $totalOrders = Commande::where('admin_af_id', $admin->id)
             ->whereBetween('created_at', [$startDate, $endDate])
             ->count();
+
         return $totalOrders;
     }
+
 
 
     public function getCommandeByUuid($commandeUuid)

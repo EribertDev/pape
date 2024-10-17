@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('commandes', function (Blueprint $table) {
             //
-             $table->unsignedBigInteger('affilier_id')->nullable();
-             $table->foreign('affilier_id')->references('id')->on('affilers')->onDelete('set null')->onUpdate('cascade');
+            $table->unsignedBigInteger('admin_af_id')->nullable();
+            $table->foreign('admin_af_id')->references('id')->on('admins')->onDelete('set null')->onUpdate('cascade');
 
         });
     }

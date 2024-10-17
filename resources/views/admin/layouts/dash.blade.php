@@ -7,84 +7,129 @@
     <div class="content">
             <div class="container-fluid">
                 <h4 class="page-title">Tableau de bord</h4>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card card-stats card-warning">
-                            <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-users"></i>
+                @if(session()->has('role')&& session()->get('role') == 'Affilier')
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-stats card-warning">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-users"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Commandes Total du mois</p>
+                                                <h4 class="card-title">{{$data['afTotalMonth']}}</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-category">Clients</p>
-                                            <h4 class="card-title">{{$data['clientsTotal']}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-stats card-success">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-bar-chart"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Gain total du mois</p>
+                                                <h4 class="card-title">{{$data['monthGain']}}</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card card-stats card-success">
-                            <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-bar-chart"></i>
+                @else
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card card-stats card-warning">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-users"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Clients</p>
+                                                <h4 class="card-title">{{$data['clientsTotal']}}</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-category">Revenu</p>
-                                            <h4 class="card-title">{{$data['payementTotal']}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats card-success">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-bar-chart"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Revenu</p>
+                                                <h4 class="card-title">{{$data['payementTotal']}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats card-danger">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-newspaper-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Commande</p>
+                                                <h4 class="card-title">{{$data['commandeTotal']}}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card card-stats card-primary">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="icon-big text-center">
+                                                <i class="la la-check-circle"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <div class="numbers">
+                                                <p class="card-category">Commande</p>
+                                                <h4 class="card-title">{{$data['commandeTraiterTotal']}}</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card card-stats card-danger">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-newspaper-o"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-category">Commande</p>
-                                            <h4 class="card-title">{{$data['commandeTotal']}}</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-stats card-primary">
-                            <div class="card-body ">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="icon-big text-center">
-                                            <i class="la la-check-circle"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-7 d-flex align-items-center">
-                                        <div class="numbers">
-                                            <p class="card-category">Commande</p>
-                                            <h4 class="card-title">{{$data['commandeTraiterTotal']}}</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endif
+
+
                 {{-- <div class="card">
                     <div class="card-header">
                         <div class="card-title">Les dernière commandes</div>

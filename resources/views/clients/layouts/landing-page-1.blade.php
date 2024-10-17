@@ -181,7 +181,7 @@
                         <i class="ti-face-smile"></i>
                         <div>
                             <div class="d-flex">
-                                <span data-purecounter-start="0" data-purecounter-end="100" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end="500" data-purecounter-duration="1" class="purecounter"></span>
                                 <span>+</span>
                             </div>
                             <p>Étudiants Accompagnés</p>
@@ -194,7 +194,7 @@
                         <i class="ti-headphone-alt" style="color: #15be56;"></i>
                         <div>
                             <div class="d-flex">
-                                <span data-purecounter-start="0" data-purecounter-end="252" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end="752" data-purecounter-duration="1" class="purecounter"></span>
                                 <span>+</span>
                             </div>
                             <p>Assistance Fournie</p>
@@ -207,7 +207,7 @@
                         <i class="ti-user" style="color: #bb0852;"></i>
                         <div>
                             <div class="d-flex">
-                                <span data-purecounter-start="0" data-purecounter-end="324" data-purecounter-duration="1" class="purecounter"></span>
+                                <span data-purecounter-start="0" data-purecounter-end="425" data-purecounter-duration="1" class="purecounter"></span>
                                 <span>+</span>
                             </div>
                             <p>Clients Satisfaits</p>

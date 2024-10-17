@@ -14,23 +14,19 @@ class CheckAuthClient
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,string $role): Response
+    public function handle(Request $request, Closure $next,string  ...$roles): Response
     {
+
         // Vérifiez si l'utilisateur est authentifié
         if (!Auth::check()) {
             return redirect('/home');
         }
-
-        // Vérifiez si l'utilisateur a le rôle requis
-        if (session()->has('role') && session()->get('role') !== $role) {
-            // Vérifie si l'utilisateur est un administrateur ou rédacteur
-            if (session()->get('role') === "Administrateur" || session()->get('role') === "Rédacteur" || session()->get('role') === "Charger Clientelle" || session()->get('role') === "Super Admin") {
+        if (session()->has('role') && session()->get('role') !== $roles) {
+            if (session()->get('role') === "Administrateur" || session()->get('role') === "Rédacteur" || session()->get('role') === "Affilier" || session()->get('role') === "Super Admin") {
                 return redirect('/admin/dash');
             }
-            // Redirection vers la page utilisateur standard
             return redirect('/home');
         }
-
         return $next($request);
     }
 }

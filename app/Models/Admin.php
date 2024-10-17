@@ -60,7 +60,10 @@ class Admin extends Model
             ->first( ['id','last_name', 'fist_name','phone_number', 'bio', 'status_id', 'user_id','code_af']);
     }
     //
-
+    public function getByCode($code)
+    {
+        return self::where('code_af', $code)->first();
+    }
 
     /**
      * Met à jour les attributs d'un administrateur spécifié par son identifiant.

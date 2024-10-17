@@ -67,19 +67,19 @@ Route::get('/a-propos',function (){
 })->name('a-propos');
 //route Contact
 Route::get('contact',[ContactController::class,'index'])->name('contact');
-Route::middleware(['auth','check.role:Client','role:Client'])->group(function (){
-    
+Route::middleware(['auth','role:Client'])->group(function (){
+
     //
     Route::get('/mon-espace',[ClientDashController::class,'index'])->name('dash.client');
     Route::get('/mon-espace/commande/detail/{uuid}',[ClientDashController::class,'commandeDetaile'])->name('dash.client.commande.detail');
-   
+
     //route commande clients
     Route::post('/service-offre/commande/verify',[CommandeController::class,'newCommande'])->name('commande.verify');
     Route::post('/service-offre/commande/finalization',[CommandeController::class,'finalization']);
     Route::get('/service-offre/commandeFinish/{idCmd}',[CommandeController::class,'commandeFinish'])->name("commande.finish");
     Route::get('/service-offre/commandeStatus',[CommandeController::class,'commandeStatus'])->name("commande.status");
     Route::post('/download/commmande/finale/file', [CommandeController::class,'downloadFinalFile'])->name('download.commmande.finale.file');
-  
+
     //route commande pay
     Route::post('/pay/commande',[PayementController::class,'newPayCommande'])->name('pay.commande');
     Route::post('/pay/commande/verify',[PayementController::class,'verifyPayement'])->name('pay.verify');
@@ -87,7 +87,7 @@ Route::middleware(['auth','check.role:Client','role:Client'])->group(function ()
     Route::post('/pay/commande/finish',[PayementController::class,'finishPayement'])->name('pay.finish');
     Route::get('/pay/commande/reclamation',[PayementController::class,'reclamation'])->name('pay.reclamation');
     Route::post('/pay/commande/reclamation/post',[PayementController::class,'reclamation'])->name('pay.reclamation.post');
-   
+
     //
     Route::get('/email/verify/sucess',function(){return view('clients.layouts.email-verify.email-verify-sucess');})->name('email.verify.sucess');
     Route::get('/email/verify/error',function(){return view('clients.layouts.email-verify.email-verify-error');})->name('email.verify.error');

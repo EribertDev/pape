@@ -106,7 +106,7 @@ class CommandeController extends Controller
                     'theme_memoire_id' => $theme_id,
                     'amount'=>  $prix,
                     'redactor_id'=> $theme_redactor,
-                    'affilier_id'=> $affilier_id,
+                    'admin_af_id'=> $affilier_id,
                     'status_id'=>Status::getIdByName($status)
                 ]);
 
