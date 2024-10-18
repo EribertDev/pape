@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {/*
+    {
         $id=DB::table('users')->insertGetId([
             'email'=>'admin@cesiebenin.com',
             'password'=>Hash::make('pape@2024'),
@@ -27,20 +27,6 @@ class AdminSeeder extends Seeder
             [
                 'fist_name'=>'Admin',
                 'last_name'=>'CESIE',
-                'user_id'=>$id
-            ]
-        );*/
-
-        $id=DB::table('users')->insertGetId([
-            'email'=>'stdev@cesiebenin.com',
-            'password'=>Hash::make('stdev@2024'),
-            'email_verified_at'=>now(),
-            'status_id'=>Status::getIdByName('Actif'),
-            'roles_id'=>Role::getIdByName('Administrateur')]);
-        (new Admin())->addNew(
-            [
-                'fist_name'=>'stdev',
-                'last_name'=>'stdev',
                 'user_id'=>$id
             ]
         );
