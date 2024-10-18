@@ -10,7 +10,7 @@
             <div class="photo">
                 <p
                     style="
-                         background-color:rgba(182,13,130,0.89);
+                         background-color:rgba(230, 19, 166, 0.89);
                          width: 40px ;
                          height: 40px;
                          border-radius: 50px;
@@ -35,12 +35,12 @@
                             }
                         @endphp
 
-                        <span class="caret"></span>
+                        {{-- <span class="caret"></span> --}}
                     </span>
                 </a>
                 <div class="clearfix"></div>
 
-                <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                {{-- <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
                     <ul class="nav">
                         <li>
                             <a href="#profile">
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
         @if (session()->has('role') && session()->get('role') == 'Affilier')

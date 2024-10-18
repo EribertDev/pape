@@ -36,7 +36,7 @@
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                  data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de 
+                                    Le PAPE est un Programme d’accompagnement Professionnel des étudiants avec pour objectifs de: 
                                     <ul>
                                         <li>👉 Rechercher une administration d’accueil (publique ou privée) à l’étudiant dans le cadre de son stage académique.</li>
                                         <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou thèse</li>

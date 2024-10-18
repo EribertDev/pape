@@ -139,16 +139,12 @@
                                                     @if (!empty($options['TMs']))
                                                         @php
                                                             foreach ($options['TMs'] as $datas){
-                                                                //$discip = $datas->discipline;
-                                                               // data-discipline="'.$discip->name.'"
                                                                 echo '<option value="'.$datas->uuid.'" >'.$datas->title.'</option>';
-
                                                             }
                                                         @endphp
                                                     @endif
                                                 </select>
                                             </div>
-
                                             <div class="row">
                                                 <div class="form-group col-6">
                                                     <label class="fieldlabels" for="nbrPage" >Nombre de pages</label>
@@ -179,17 +175,9 @@
                                             <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="nbrPage" >Code affiliation (Ex : 00000000)</label>
+                                            <label class="fieldlabels" for="nbrPage" >Code point focal (Entrer 0000 si aucun)</label>
                                             <input type="text" name="codeAf" id="codeAf" class="no-spinner">
                                         </div>
-                                        <!-- <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label for="document">Fichier </label>
-                                                <div class="needsclick dropzone" id="document-dropzone">
-
-                                                </div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- Button Widget -->

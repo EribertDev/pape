@@ -63,27 +63,17 @@
             <div class="row mt-0">
                 <div class="col-lg-12 col-sm-12 col-xs-12 text-center mt-0">
                     <div class="error_page">
+
+                                    <img src="{{asset("clients/assets/images/icon/logo-syrram.png")}}" class="img-fluid" alt="syrram" style="width: 270px;height: 200px">
+
                         <h3 class="mt-4">Réinitialisation du mot de passe</h2>
                         <div class="row  d-flex justify-content-center">
-                            <h5>Entrer votre address email</h5>
-                            <div class="">
+                            <h5 class="mt-2">Entrer votre address email</h5>
+                            <div class="mt-2">
                                 <div class="checkout-form">
                                     <!-- Form -->
-                                    <form id="cmdForm"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="row">
-                                                <div >
-                                                    <div class="form-group mt-2" id="div_email">
-                                                        <input class="px-2 py-2 col-10 col-md-8 col-lg-6" type="email" name="email"
-                                                            id="email" placeholder="" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!--/ End Form -->
+                                        <p>Ce lien de récupération de mot de passe est expiré.</p>
+                                        <button class="btn_one mt-3"><a href="{{route('password.request')}}">Reinitialiser le mot de passe</a></button>
                                 </div>
                             </div>
                         </div>

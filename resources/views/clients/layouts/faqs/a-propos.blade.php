@@ -79,10 +79,10 @@
                                 <div class="accordion-body">
                                     Le PAPE est un Programme d’accompagnement Professionnel des Étudiants avec pour objectifs de :
                                     <ul>
-                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) pour l’étudiant dans le cadre de son stage académique.</li>
-                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou de sa thèse.</li>
-                                        <li>👉 Coacher l’étudiant ou le chercheur dans la collecte et l’analyse des données de terrain.</li>
-                                        <li>👉 Former l’étudiant ou le chercheur à la conduite des travaux de recherche.</li>
+                                        <li>👉 Rechercher une administration d’accueil (publique ou privée) à l’étudiant dans le cadre de son stage académique</li>
+                                        <li>👉 Coacher l’étudiant ou le chercheur dans la rédaction de son mémoire ou thèse</li>
+                                        <li>👉 Coacher l’étudiant ou le chercheur dans la collecte et l’analyse des données de terrain</li>
+                                        <li>👉 Former l’étudiant ou le chercheur à la conduite des travaux de recherche</li>
                                     </ul>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
                                         <li>👉 Étudiants ou chercheurs</li>
                                         <li>👉 Particuliers</li>
                                         <li>👉 Administrations</li>
-                                        <li>👉 Ou toute autre personne désireuse d’acquérir des aptitudes en conduite d’études ou en recherches</li>
+                                        <li>👉 Ou tout autre personne désireuse d’avoir des aptitudes en conduite d’études ou recherches</li>
                                     </ul>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    Le programme est basé au Bénin, avec la possibilité de servir également au-delà des frontières béninoises.
+                                    Le Programme est basé au Bénin avec la possibilité de servir aussi au-delà des frontières béninoises
                                 </div>
                             </div>
                         </div><!-- END ACCORDION ITEM  -->

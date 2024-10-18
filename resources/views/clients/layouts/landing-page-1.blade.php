@@ -80,16 +80,16 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
                     <div class="single_tp">
-                        <h3>Coaching pour la rédaction de vos mémoires et thèses</h3>
+                        <h3>Coaching dans la rédaction de vos mémoires et thèses</h3>
                         <p>
-                            Faites-vous accompagner par le programme PAPE pour rédiger rapidement, efficacement et sans plagiat vos mémoires de fin de formation.
+                            Faîtes-vous coacher par le programme  PAPE pour rédiger vite, bien et sans plagiat vos mémoires de fin de formation
                         </p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
                     <div class="single_tp">
-                        <h3>Assistance pour la recherche de stages académiques et professionnels</h3>
-                        <p>Inscrivez-vous au programme PAPE pour bénéficier d'opportunités gratuites de stages académiques et professionnels.</p>
+                        <h3>Assistance pour la recherche de stage académique et professionnel</h3>
+                        <p>Inscrivez-vous au programme PAPE pour bénéficier des opportunités gratuites de stage académique et professionnel.</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-4 col-xs-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s" data-wow-offset="0">
@@ -115,9 +115,9 @@
                     <div class="single_feature_one">
                         <div class="sf_top">
                             <span class="ti-book ss_one"></span>
-                            <h2><a href="single-service.html" target="_blank">Expertise et Expérience</a></h2>
+                            <h2><a href="single-service.html" target="_blank">Expertise et Expériences</a></h2>
                         </div>
-                        <p>Plus de 500 étudiants et chercheurs ont déjà bénéficié de notre expertise et en sont satisfaits.</p>
+                        <p>Plus de 500 étudiants et chercheurs ont déjà bénéficier de notre expertise et en sont satisfaits.</p>
                     </div>
                 </div><!-- END COL -->
 
@@ -163,7 +163,7 @@
                             <span class="ti-email ss_six"></span>
                             <h2><a href="single-service.html" target="_blank">Service Réactif et Disponible</a></h2>
                         </div>
-                        <p>Une équipe toujours disponible pour vous accompagner et répondre à vos préoccupations.</p>
+                        <p>Une équipe toujours disponible pour vous accompagner et pour répondre à vos préoccupations.</p>
                     </div>
                 </div><!-- END COL -->
             </div><!-- END ROW -->

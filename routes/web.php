@@ -6,10 +6,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\client\FaqController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\client\BiblioController;
 use App\Http\Controllers\client\ContactController;
-use App\Http\Controllers\client\PayementController;
 
+use App\Http\Controllers\client\PayementController;
 use App\Http\Controllers\client\BaseDonneController;
 use App\Http\Controllers\client\ClientDashController;
 use App\Http\Controllers\client\LandingPageController;
@@ -66,9 +67,9 @@ Route::get('/a-propos',function (){
     return view('clients.layouts.faqs.a-propos');
 })->name('a-propos');
 
-Route::get('/reset-password',function (){
+/*Route::get('/reset-password',function (){
     return view('clients.layouts.reset-password.reset-password');
-})->name('reset.password');
+})->name('reset.password');*/
 
 //route Contact
 Route::get('contact',[ContactController::class,'index'])->name('contact');
@@ -117,5 +118,26 @@ require __DIR__.'/admin.php';
 */
 
 Route::post('/register/client',[AuthController::class,'registerClient'])->name('register');
+
+
+
+Route::middleware('guest')->group(function () {
+    // Afficher le formulaire pour demander un lien de réinitialisation
+    Route::get('forgot-password', [PasswordController::class, 'create'])
+        ->name('password.request');
+
+    // Envoyer le lien de réinitialisation
+    Route::post('forgot-password', [PasswordController::class, 'sendResetLinkEmail'])
+        ->name('password.email');
+
+    // Afficher le formulaire de réinitialisation de mot de passe
+    Route::get('reset-password/{token}', [PasswordController::class, 'edit'])
+        ->name('password.reset');
+
+    // Réinitialiser le mot de passe
+    Route::post('reset-password', [PasswordController::class, 'reset']) // Utilisez 'reset-password' au lieu de 'update-password'
+        ->name('password.update');
+});
+
 
 require __DIR__.'/auth.php';

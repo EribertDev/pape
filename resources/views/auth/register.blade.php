@@ -5,8 +5,8 @@
             <div class="modal-body">
                 <div class="row">
 
-                    <div class="d-none d-md-block col-md-6">
-                        <img src="{{asset('clients/assets/images/all-img/become-ins.png')}}" class="img-fluid">
+                    <div class="d-none d-md-block col-md-6 mt-5 mb-5 pt-5">
+                        <img src="{{asset('clients/assets/images/icon/logo-syrram.png')}}" class="img-fluid mt-5" >
                     </div>
 
                     <div class="register col-12 col-md-6 border border-0">
@@ -48,10 +48,6 @@
                             </div>
                             <div class="form-group col-lg-12">
                             <button type="button" class="btn_one  btn btn-primary border-0" id="submitRegisterBtnId"><span class="spinner-border spinner-border-sm" aria-hidden="true" id="spnBtnId" hidden></span><span>Créer un compte</span></button>
-
-                                {{-- <button class="btn_one " type="button"  id="submitRegisterBtnId">
-                                    <span class="spinner-border spinner-border-sm spinner me-2"  id="spnBtnId" hidden></span> <span role="status">Créer un compte</span>
-                                </button> --}}
                             </div>
                         </form>
                         <p>Vous avez déjà un compte ? <a href="#" id="loginBtnId">Connexion</a></p>
