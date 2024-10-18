@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Penn - Education HTML Template">
-    <meta name="keywords" content="theme_ocean, college, course, e-learning, education, high school, kids, learning, online, online courses, school, student, teacher, tutor, university">
-    <meta name="author" content="theme_ocean">
+    <meta name="description" content="PAPE, un service du cabinet CESIE BENIN, est un programme innovant conçu pour accompagner les étudiants et chercheurs dans la rédaction de mémoires et thèses. Ce programme, offre un appui technique tout au long du processus de rédaction, garantissant une qualité optimale et le respect des normes universitaires.">
+    <meta name="keywords" content="PAPE,pape,éducation,thème,memoire,thèse,article scientique">
+    <meta name="author" content="CESIE BENIN">
+    <link rel="icon" href="{{ asset('clients/assets/images/icon/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('clients/assets/images/icon/favicon.ico') }}" type="image/x-icon">
     <!-- SITE TITLE -->
-    <title>SyRRam</title>
+    <title>PAPE</title>
     <!-- Latest Bootstrap min CSS -->
     <link rel="stylesheet" href="{{asset('clients/assets/bootstrap/css/bootstrap.min.css')}}">
     <!-- Google Font -->
@@ -57,7 +59,7 @@
                     <div class="row mt-0">
                         <div class="col-lg-12 col-sm-12 col-xs-12 text-center mt-0">
                             <div class="error_page">
-                                {{--                                
+                                {{--
                                     <img src="{{asset("clients/assets/images/icon/logo-syrram.png")}}" class="img-fluid" alt="syrram" style="width: 230px;height: 200px">
                                 --}}
                                 <h2 class="mt-0">Site en maintenance</h2>

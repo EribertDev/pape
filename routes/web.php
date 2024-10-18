@@ -65,6 +65,11 @@ Route::get('/faqs',FaqController::class)->name('faqs');
 Route::get('/a-propos',function (){
     return view('clients.layouts.faqs.a-propos');
 })->name('a-propos');
+
+Route::get('/reset-password',function (){
+    return view('clients.layouts.reset-password.reset-password');
+})->name('reset.password');
+
 //route Contact
 Route::get('contact',[ContactController::class,'index'])->name('contact');
 Route::middleware(['auth','role:Client'])->group(function (){

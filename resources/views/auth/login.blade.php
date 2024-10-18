@@ -21,7 +21,7 @@
                             <div class="form-group ">
                                 <label for="password">Password</label>
                                 <input type="password" id="password" class="form-control requiredField input-label" name="password">
-                                <p class="text-end mb-2"> <a href="#" type="button" >Mot de passe oublié?</a></p>
+                                <p class="text-end mb-2"> <a href="{{ route('reset.password') }}" type="button" >Mot de passe oublié?</a></p>
                             </div>
 
                             <div class="form-group col-lg-12">
