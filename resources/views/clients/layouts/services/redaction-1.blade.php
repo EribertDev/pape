@@ -342,7 +342,7 @@
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="scrollableModalLabel">Condition d'utilisation et de vente</h5>
+                    <h5 class="modal-title fw-bold" id="scrollableModalLabel">Condition d'utilisation</h5>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
@@ -350,45 +350,43 @@
                             La plateforme PAPE mise à votre disposition est soumise à des conditions d’utilisation. En accédant à cette plateforme, vous acceptez de vous soumettre à ces Conditions d’utilisation, aux directives et aux règles mentionnées dans cet accord. Si vous ne souhaitez pas accepter ces conditions, veuillez ne pas utiliser la plateforme.
                             Le présent Contrat définit les conditions qui s’appliquent à l’utilisation de ce site par tout utilisateur. Ainsi :
                         </p>
-                        <p>
-                            <strong>Article 1 : </strong> Le Programme d'Accompagnement Professionnel des Etudiants (PAPE)
-                            Le PAPE est un programme destiné à :
-                        </p>
+                        <p><strong>Article 1 : </strong> Le Programme d'Accompagnement Professionnel des Etudiants (PAPE) 📚 <br> Le PAPE est un programme destiné à :</p>
+
                         <ul class="mb-1">
                             <li>👉 Accorder aux étudiants une administration d'accueil (publique ou privée) pour la réalisation de son mémoire ou de sa thèse</li>
                             <li>👉 Coacher les étudiants et chercheurs dans la réalisation de leurs travaux de recherche (mémoire ou thèse)</li>
                             <li>👉 Accompagner ces étudiants et chercheurs dans la collecte et l'analyse à bonne date des données de terrain</li>
                             <li>👉 Former ces étudiants et chercheurs dans le processus de réalisation des travaux de recherche </li>
                         </ul>
-                        <p>
-                            <strong>Article 2 : Ethique</strong><br>
+                        <p class="mb-1">
+                            <strong>Article 2 : Ethique</strong> 🤝<br>
                             Le PAPE n'est pas destiné à se substituer aux étudiants et chercheurs pour rédiger à leur place les travaux de recherche de fin de formation. Il est plutôt destiné à accompagner ces étudiants et chercheurs dans le processus de réalisation des travaux de recherche.
                         </p>
-                        <p>
-                            <strong>Article 3 : Rôle du PAPE </strong><br>
+                        <p class="mb-1">
+                            <strong>Article 3 : Rôle du PAPE </strong> 🎯<br>
                             Le PAPE permet aux étudiants et chercheurs de rédiger en cinq séances de coaching au maximum leur mémoire ou thèse.
                         </p>
-                        <p>
-                            <strong>Article 4 : Protection des données</strong><br>
+                        <p class="mb-1">
+                            <strong>Article 4 : Protection des données</strong> 🔒<br>
                             Le PAPE permet aux étudiants et chercheurs de rédiger en cinq séances de coaching au maximum leur mémoire ou thèse.
                         </p>
-                        <p>
-                            <strong>Article 5 : Démarches pour bénéficier du PAPE</strong><br>
+                        <p class="mb-1">
+                            <strong>Article 5 : Démarches pour bénéficier du PAPE</strong> 📝<br>
                             Le PAPE permet aux étudiants et chercheurs de rédiger en cinq séances de coaching au maximum leur mémoire ou thèse.
                         </p>
-                        <p>
-                            <strong>Article 6 : Rémunération</strong><br>
+                        <p class="mb-1">
+                            <strong>Article 6 : Rémunération</strong> 💰<br>
                             Le coaching dans la rédaction des mémoires et thèses n'est pas gratuit et coût diffère selon le niveau d'étude. La plateforme fournit systématiquement le montant à payer par le postulant
                         </p>
-                        <p>
-                            <strong>Article 7 : Abandon du coaching</strong><br>
+                        <p class="mb-1">
+                            <strong>Article 7 : Abandon du coaching</strong> 🚫<br>
                             Pendant le coaching, les étudiants et chercheurs qui disparaissent pendant plus de trois (03) mois et qui désirent continuer à nouveau sont astreints au paiement d'une pénalité d'abandon de 30% du montant du coaching.
                         </p>
-                        <p>
-                            <strong>Article 8 : Droit d'auteur</strong><br>
+                        <p class="mb-1">
+                            <strong>Article 8 : Droit d'auteur</strong> ©️<br>
                             Le coaching du PAPE ne confère nullement à ce dernier le droit d'auteur sur les travaux coacher.
                         </p>
-                        <p>
+                        <p class="mb-1">
                             <strong>Article 9 :</strong><br>
                             Le PAPE est la propriété du Cabinet CESIE qui se réserve le droit de publier une copie du travail de recherche du postant dans sa base de données bibliographique tout en respectant le droit d'auteur.
                         </p>
