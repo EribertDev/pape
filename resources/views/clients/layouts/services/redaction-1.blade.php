@@ -346,8 +346,10 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <h3>Cher client,</h3>
-                        <p>Nous vous remercions d'avoir choisi SyRRaM pour la rédaction de votre mémoire ou thèse. Nous souhaitons toutefois vous informer de certaines conditions d'utilisation de nos services :</p>
+
+                        <p>La plateforme PAPE mise à votre disposition est soumise à des conditions d’utilisation. En accédant à cette plateforme, vous acceptez de vous soumettre à ces Conditions d’utilisation, aux directives et aux règles mentionnées dans cet accord. Si vous ne souhaitez pas accepter ces conditions, veuillez ne pas utiliser la plateforme.
+                            Le présent Contrat définit les conditions qui s’appliquent à l’utilisation de ce site par tout utilisateur. Ainsi :
+                        </p>
                         <ul>
                             <li>🔒 <strong>Confidentialité :</strong> Chez SyRRaM, nous nous engageons à garder confidentielles vos informations personnelles et ne les diffuserons qu'avec votre autorisation écrite.</li>
                             <li>✍️ <strong>Auteur :</strong> En vous inscrivant au PAPE vous devenez l'auteur exclusif de votre travail</li>
