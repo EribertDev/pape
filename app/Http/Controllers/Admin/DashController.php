@@ -22,13 +22,15 @@ class DashController extends Controller
         $data=[];
 
        if (Role::getNameById(Auth::user()->roles_id) == "Affilier") {
-            $code_af = (new Admin())->where('user_id', Auth::user()->id)->first()->code_af;
+            $code_af = (new Admin())->where('user_id', Auth::user()->id)->first();
+
             if ($code_af !== null) {
                 $afTotalMonth = (new Commande())->getTotalCommandeByAffiliateCodeForMonth($code_af, date('m'), date('Y'));
                 $monthGain = 1000*$afTotalMonth;
                // dd($afTotalMonth);
 
                 $data = [
+                    'code_af' => $code_af,
                     'afTotalMonth' => $afTotalMonth,
                     'monthGain' => $monthGain
                 ];
