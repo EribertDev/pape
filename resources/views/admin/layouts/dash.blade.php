@@ -8,7 +8,15 @@
             <div class="container-fluid">
                 <h4 class="page-title">Tableau de bord</h4>
                 @if(session()->has('role')&& session()->get('role') == 'Affilier')
-                    <h5 class="page-title">Code : {{ $data['code_af']['code_af'] }}</h3>
+                   @php
+                     if (session()->has('adminInfo')) {
+                        $adminInfo = session()->get('adminInfo');
+                    }
+                   @endphp
+                    <h6 class="page-title">Nom : {{ $adminInfo->last_name}}</h6>
+                    <h6 class="page-title">Prénoms : {{ $adminInfo->fist_name}}</h6>
+                    <h6 class="page-title">Code : {{ $data['code_af']}}</h6>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card card-stats card-warning">
