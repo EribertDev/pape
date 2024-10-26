@@ -25,7 +25,7 @@ class DashController extends Controller
             $code_af = (new Admin())->where('user_id', Auth::user()->id)->first()->code_af;
             if ($code_af !== null) {
                 $afTotalMonth = (new Commande())->getTotalCommandeByAffiliateCodeForMonth($code_af, date('m'), date('Y'));
-                $monthGain = 1000*$afTotalMonth;
+                $monthGain = 500 * $afTotalMonth;
                // dd($afTotalMonth);
 
                 $data = [
