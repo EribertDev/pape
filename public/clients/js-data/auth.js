@@ -1,3 +1,4 @@
+import { info } from "../../stdev/js/StdeUsefulFunction";
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -6,11 +7,14 @@ document.addEventListener("DOMContentLoaded", function() {
         $('#loginModal').modal('hide');
         $('#registerModal').modal('show');
     });
-
     document.querySelector('#loginBtnId').addEventListener('click',function (e){
         e.preventDefault();
         $('#loginModal').modal('show');
         $('#registerModal').modal('hide');
     });
+
+
+
+
 });
 

@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         if (selectedUuids.length > 0) {
             // Faites quelque chose avec selectedUuids
-            console.log('UUIDs sélectionnés:', selectedUuids);
+           // console.log('UUIDs sélectionnés:', selectedUuids);
         } else {
             alert('Veuillez sélectionner au moins une ligne.');
         }

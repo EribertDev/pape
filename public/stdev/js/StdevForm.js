@@ -88,7 +88,7 @@ export class StdevForm{
         return this.#response;
     }
     isValidate(checkFormValidation) {
-        console.log(checkFormValidation)
+      //  console.log(checkFormValidation)
         for (let key in checkFormValidation){
             this.isValidateInput(checkFormValidation);
         }
@@ -180,10 +180,10 @@ export class StdevForm{
                     body:  JSON.stringify(data),
                     responseType: 'json'
                 });
-                console.log('Success:', response);
+               // console.log('Success:', response);
                 return response;
             } catch (error) {
-                console.error(error.cause)
+               // console.error(error.cause)
             }
         }else {
             throw new Error('form validation error');

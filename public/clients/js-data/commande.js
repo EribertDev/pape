@@ -33,7 +33,7 @@ function attachInputChangeEvents() {
 }
 //
 document.addEventListener("DOMContentLoaded", function() {
- 
+
     //  initializeFormFromLocalStorage();
     // attachInputChangeEvents();
     //
@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function() {
     //
     const csrfToken = document.querySelector('input[name="_token"]').value;
     //
-    
+
     document.querySelector('#commanderBtn').addEventListener("click",function (){
         if (typeof isAuthenticated !== 'undefined' ){
             stdevForm.setFormElement(cmdForm);
-            console.log(service)
+           // console.log(service)
             //regle de validation des champs
             const fieldsConfig = {
                 subject: {
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
 
             //verification des champs
-            console.log(stdevForm.getDataFormData())
+           // console.log(stdevForm.getDataFormData())
             isValideInput= stdevForm.validateFields(
                 ['subject','nbrPage','deadline','description','codeAf'],fieldsConfig,
                 "border border-danger",
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('div_subject').hidden = false;
         }
     });
-    
+
     if(document.getElementById('check_choose').checked){
         document.getElementById('div_theme').hidden = false;
         document.getElementById('div_subject').hidden = true;
@@ -198,12 +198,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // $('#theme').on('change', function() {
     //     // Récupérer l'option sélectionnée
     //     var selectedOption = $(this).find('option:selected');
-    //     var value = $(this).val(); 
+    //     var value = $(this).val();
     //     var discipline = selectedOption.data('discipline');
     //     var text = selectedOption.text();
-    //     $('#subject').val(text); 
+    //     $('#subject').val(text);
     // });
-    // 
+    //
     // Fonction pour mettre à jour le sujet en fonction de la sélection du thème
     function updateSubject() {
         // Récupérer l'option sélectionnée
@@ -222,9 +222,9 @@ document.addEventListener("DOMContentLoaded", function() {
         let service = selectedOption.text();
         montant = selectedOption.data('montant');
         document.getElementById('amount').value = montant;
-        
+
         document.getElementById('montant').innerText = `${montant} F cfa(XOF)`;
-       // console.log(montant);       
+       // console.log(montant);
         if (service.includes("Rédaction complète") || service.includes("Protocole")) {
             document.getElementById('check_choose').checked = true;
             showElement( document.getElementById('check_choose'));
@@ -249,8 +249,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     //download file final
-   
-    
+
+
 
 });
 

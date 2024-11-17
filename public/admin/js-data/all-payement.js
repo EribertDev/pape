@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded",function (){
 
         if (selectedUuids.length > 0) {
             // Faites quelque chose avec selectedUuids
-            console.log('UUIDs sélectionnés:', selectedUuids);
+          //  console.log('UUIDs sélectionnés:', selectedUuids);
         } else {
             alert('Veuillez sélectionner au moins une ligne.');
         }
@@ -118,9 +118,9 @@ document.addEventListener("DOMContentLoaded",function (){
         let data = row.data();
         let reference = data[6]; // Récupère le contenu de la colonne "Montant"
         navigator.clipboard.writeText(reference).then(() => {
-            console.log('Montant copié dans le presse-papiers');
+          //  console.log('Montant copié dans le presse-papiers');
         }).catch(err => {
-            console.error('Erreur lors de la copie dans le presse-papiers : ', err);
+         //   console.error('Erreur lors de la copie dans le presse-papiers : ', err);
         });
     });
 

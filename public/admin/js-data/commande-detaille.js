@@ -206,11 +206,11 @@ document.addEventListener("DOMContentLoaded",function (){
         });
     }
 
-   
+
     document.querySelectorAll(".reject").forEach(btn => {
         btn.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("Click")
+          //  console.log("Click")
             reject();
         });
     });
@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded",function (){
             let data ={
                 uuid:document.getElementById('cmdUuid').value,
             };
-    
+
             $.ajax({
                 headers: {
                     'Accept': 'application/json;charset=utf-8',
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded",function (){
                     // console.log(error);
                 },
                 complete: function () {
-    
+
                 }
             });
         });
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded",function (){
             let isValideInput = true;
             stdevForm.setFormElement(ficheForm);
 
-           
+
            if(document.getElementById('customFile').value.length<=0){
                removeClass('customFile', "form-control is-valid")
                addClass('customFile', "form-control is-invalid");
@@ -284,9 +284,9 @@ document.addEventListener("DOMContentLoaded",function (){
                                 title: "Ajouté",
                                 text: "Thème de mémoire ajoutée avec succè.😊",
                                 icon: "success"
-                            });  
+                            });
                        }else if(response.success===false){
-                            
+
                            swalWithBootstrapButtons.fire({
                                title: "Erreur",
                                text: "Une erreur est survenu ressayer.😥",
@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded",function (){
            }
         });
     });
-    
+
 });
 
 

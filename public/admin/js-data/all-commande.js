@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded",function (){
 
         if (selectedUuids.length > 0) {
             // Faites quelque chose avec selectedUuids
-            console.log('UUIDs sélectionnés:', selectedUuids);
+           // console.log('UUIDs sélectionnés:', selectedUuids);
         } else {
             alert('Veuillez sélectionner au moins une ligne.');
         }
@@ -234,6 +234,6 @@ document.addEventListener("DOMContentLoaded",function (){
                 });
             }*/
         });
-        console.log(uuid);
+       // console.log(uuid);
     });
 })

@@ -73,7 +73,7 @@
         <!-- scripts js -->
         <script src="{{asset('clients/assets/js/scripts.js')}}"></script>
         @guest
-            <script src="{{asset('clients/js-data/auth.js')}}"></script>
+            <script type="module" src="{{asset('clients/js-data/auth.js')}}"></script>
             <script type="module" src="{{asset('clients/js-data/register.js')}}"></script>
             <script type="module" src="{{asset('clients/js-data/login.js')}}"></script>
         @endguest
@@ -81,6 +81,7 @@
             <script>
                 var isAuthenticated = @json(auth()->check());
             </script>
+            <script type="module" src="{{asset('clients/js-data/info.js')}}"></script>
         @endauth
         @yield('extra-scripts')
     </body>

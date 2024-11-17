@@ -92,11 +92,11 @@ document.addEventListener("DOMContentLoaded", function() {
             contentType: false,
             dataType: 'JSON',
             success: function (response) {
-                console.log(response);
+               // console.log(response);
                 location.reload();
             },
             error: function (xhr, status, error) {
-                console.log(xhr);
+              //  console.log(xhr);
             },
             complete: function () {
               //  document.getElementById('submitRegisterBtnId').innerHTML = `<span role="status">Créer un compte</span>`;

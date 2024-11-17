@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     const csrfToken = document.querySelector('input[name="_token"]').value;
-   
+
     function downloadFile(uuid){
         $.ajax({
             url: '/download/commmande/finale/file', // Remplacez par l'URL cible de votre requête
@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 _token:csrfToken// Ajoutez le token CSRF si nécessaire
             },
             success: function(response) {
-                console.log(response);
+               // console.log(response);
                 if (response.success) {
                     var link = document.createElement('a');
-                    link.href = response.data;  
-                    link.download =  response.filename;  
+                    link.href = response.data;
+                    link.download =  response.filename;
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let url ="";
             let data = {};
 
-            console.log(uuid,pay_status);
+         //   console.log(uuid,pay_status);
             if (pay_status === "Payer") {
                 downloadFile(uuid);
             }else{
@@ -72,15 +72,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 };
             }
             $.ajax({
-                url: url, 
+                url: url,
                 type: 'POST',
                 data:data,
                 success: function(response) {
-                    console.log(response);
+                 //   console.log(response);
                     if(response.success ===true){
                         var pay = document.createElement('button');
                         pay.setAttribute('data-environment', 'sandbox');
-                        FedaPay.init(pay, { 
+                        FedaPay.init(pay, {
                             public_key: 'pk_sandbox_YejKf1nZO1d3XEGd61VK1IOV',
                             customer:{
                                 lastname:response.data.client?.last_name,
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 amount: response.data.amount
                             },
                             onComplete: function(reason) {
-                                console.log(reason);
+                              //  console.log(reason);
                                if(reason?.reason === "CHECKOUT COMPLETE"){
                                     $.ajax({
                                         url: '/pay/commande/finish', // Remplacez par l'URL cible de votre requête
@@ -105,17 +105,17 @@ document.addEventListener("DOMContentLoaded", function() {
                                             _token:csrfToken// Ajoutez le token CSRF si nécessaire
                                         },
                                         success: function(response) {
-                                            console.log("response = ",response);
+                                           // console.log("response = ",response);
                                             if (response.success===true) {
                                                 $('#payModal').modal('show');
                                             }
                                            // window.location.reload();
                                         },
                                         error: function(xhr) {
-                                            
+
                                         },
                                         complete: function() {
-                                             spinner.hidden = true; 
+                                             spinner.hidden = true;
                                         }
                                     });
                                }else{
@@ -130,34 +130,34 @@ document.addEventListener("DOMContentLoaded", function() {
                                         _token:csrfToken// Ajoutez le token CSRF si nécessaire
                                     },
                                     success: function(response) {
-                                        console.log("response = ",response);
+                                       // console.log("response = ",response);
                                        if (response.success===true) {
                                            // document.getElementById("ref__cmd").innerHTML = response.data?.cmd_ref;
                                             //document.getElementById("id__pay").innerHTML = response.data?.transaction_id;
                                        }
                                          //   document.getElementById("id_pay").value = reason?.transaction.id;
-                                        
+
                                         $('#payErrorModal').modal('show');
                                     },
                                     error: function(xhr) {
-                                        
+
                                     },
                                     complete: function() {
-                                        spinner.hidden = true;           
+                                        spinner.hidden = true;
                                     }
                                 });
                                }
                            /*     console.log(reason);
                                 console.log(transaction);*/
                             }
-                    
+
                         });
                         pay.click();
-                    
+
                    }
                 },
                 error: function(xhr) {
-                    console.error(xhr.responseText);
+                   // console.error(xhr.responseText);
                 }
             });
         });
@@ -179,13 +179,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 //     amount_type:amount_type,
                 _token:csrfToken
             };
-            
+
             $.ajax({
-                url: url, 
+                url: url,
                 type: 'POST',
                 data:data,
                 success: function(response) {
-                    console.log(response);
+                  //  console.log(response);
                     if(response.success ===true){
                         if (response.data?.status === "Payer") {
                             document.getElementById("s_title_msg").innerHTML = "Paiement vérifier avec Succès";

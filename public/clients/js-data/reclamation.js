@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded",function (){
                 contentType: false,
                 dataType: 'JSON',
                 success: function (response) {
-                    console.log(response);
+                  //  console.log(response);
                 },
                 error: function (xhr, status, error) {
                     //console.log(xhr);

@@ -235,88 +235,54 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
-                                <p>Grâce à [Nom du service], j'ai pu finaliser mon mémoire dans les délais et avec une qualité exceptionnelle.</p>
+                                <p class="fst-italic">
+                                    "Le coaching m'a donné confiance en moi et m'a aidé à gérer mon stress. J’aborde mes études avec plus de sérénité. Merci à l’équipe de PAPE CESIE BENIN !
+                                </p>
                             </div>
                             <div class="testi_pic_title tpt_one">
                                 <div class="pic">
-                                    <img src="{{asset('clients/assets/images/all-img/t2.png')}}" alt="">
+                                    <img src="{{asset('clients/assets/images/all-img/user.png')}}" alt="" width="30" height="30">
                                 </div>
-                                <h4>James Clayton</h4>
-                                <small class="post">- Expert en Design</small>
+                                <h4> Aïcha D.</h4>
+                                <small class="post">Étudiante en Médecine</small>
                             </div>
-                        </div><!-- END TESTIMONIAL -->
-
+                        </div>
                         <div class="testimonial">
                             <div class="testimonial_content">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <p>L'équipe m'a aidé à structurer et rédiger mon document administratif avec une grande efficacité.</p>
-                            </div>
-                            <div class="testi_pic_title tpt_two">
-                                <div class="pic">
-                                    <img src="{{asset('clients/assets/images/all-img/t2.png')}}" alt="">
-                                </div>
-                                <h4>James Simmons</h4>
-                                <small class="post">- Expert en Marketing</small>
-                            </div>
-                        </div><!-- END TESTIMONIAL -->
-
-                        <div class="testimonial">
-                            <div class="testimonial_content">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <p>Un service exceptionnel qui m'a permis d'atteindre mes objectifs avec succès.</p>
-                            </div>
-                            <div class="testi_pic_title tpt_three">
-                                <div class="pic">
-                                    <img src="{{asset('clients/assets/images/all-img/t2.png')}}" alt="">
-                                </div>
-                                <h4>Alex Feroundo</h4>
-                                <small class="post">- Fondateur</small>
-                            </div>
-                        </div><!-- END TESTIMONIAL -->
-
-                        <div class="testimonial">
-                            <div class="testimonial_content">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <p>Le soutien apporté a été inestimable et a fait toute la différence.</p>
+                                <p class="fst-italic">
+                                    "La préparation aux examens avec PAPE Césiebenin a été essentielle pour réussir mon concours. Les méthodes et l'accompagnement sont super efficaces. Je recommande à tous les étudiants !"
+                                </p>
                             </div>
                             <div class="testi_pic_title tpt_one">
                                 <div class="pic">
-                                    <img src="{{asset('clients/assets/images/all-img/t2.png')}}" alt="">
+                                    <img src="{{asset('clients/assets/images/all-img/user.png')}}" alt="" width="30" height="30">
                                 </div>
-                                <h4>Kallu Mastan</h4>
-                                <small class="post">- Mastan Group</small>
+                                <h4> Lamine S.</h4>
+                                <small class="post">Étudiant en Droit</small>
                             </div>
-                        </div><!-- END TESTIMONIAL -->
-
+                        </div>
                         <div class="testimonial">
                             <div class="testimonial_content">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <p>Une expérience enrichissante qui a dépassé mes attentes.</p>
+                                <p class="fst-italic">
+                                    "J'étais perdu quant à mon orientation, mais l'équipe de PAPE Césiebenin m'a aidé à clarifier mes choix. Maintenant, j'ai une vision claire de mon avenir."
+                                </p>
                             </div>
-                            <div class="testi_pic_title tpt_two">
+                            <div class="testi_pic_title tpt_one">
                                 <div class="pic">
-                                    <img src="{{asset('clients/assets/images/all-img/t2.png')}}" alt="">
+                                    <img src="{{asset('clients/assets/images/all-img/user.png')}}" alt="" width="30" height="30">
                                 </div>
-                                <h4>Devid Max</h4>
-                                <small class="post">- Max Inc.</small>
+                                <h4> Claire M.</h4>
+                                <small class="post"> Étudiante en Sciences Sociales</small>
                             </div>
-                        </div><!-- END TESTIMONIAL -->
+                        </div>
+                        <!-- END TESTIMONIAL -->
                     </div><!-- END TESTIMONIAL SLIDER -->
                 </div><!-- END COL -->
             </div><!-- END ROW -->
