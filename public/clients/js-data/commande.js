@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //
 
     document.querySelector('#commanderBtn').addEventListener("click",function (){
+        
         if (typeof isAuthenticated !== 'undefined' ){
             stdevForm.setFormElement(cmdForm);
            // console.log(service)
@@ -104,18 +105,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 codeAf:{
                     name:'codeAf',
                     typeField:{
-                        textField:{
-                            minLength:8,
+                        integerField:{
+                            minLength:4,
                             maxLength: 8,
+                            
                         },
                     },
                 },
+                universite:{
+                    name:'universite',
+                    typeField:{
+                        textField:{
+                            minLength:1,
+                            maxLength: 100
+                        },
+                        
+                    },
+                },
+               
             };
 
             //verification des champs
            // console.log(stdevForm.getDataFormData())
+           
             isValideInput= stdevForm.validateFields(
-                ['subject','nbrPage','deadline','description','codeAf'],fieldsConfig,
+                ['subject','nbrPage','deadline','description','universite','codeAf'],fieldsConfig,
                 "border border-danger",
                 'border border-success');
                 if (!(service.includes("Rédaction complète") || service.includes("Protocole"))) {

@@ -32,7 +32,9 @@ class CommandeController extends Controller
             'subject' => 'required|string',
             'nbrPage' => 'required|Integer',
             'deadline' => 'required|date',
-            'codeAf'=>'string',
+            'codeAf'=>  'nullable|Integer',
+            'universite'=>'required|string'
+
         ]);
 
         $status ='En attente';//
