@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelector('#registerBtnId').addEventListener('click',function (e){

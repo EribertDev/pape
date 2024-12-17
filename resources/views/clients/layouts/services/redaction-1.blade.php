@@ -60,6 +60,31 @@
                                 <div class="form-card">
                                     <div class="row">
                                         <div class=" col-12 ">
+                                            <div class="row">
+                                                <h4 class="text-center mb-4" >Informations personnelles </h4>
+                                                @if(Auth::check())
+                                                    <div class="form-group col-6">
+                                                        <label class="fieldlabels" for="nom">Nom</label>
+                                                        <input type="text" id="nom" name="nom" value="{{session('clientInfo') ->fist_name }}" disabled>                                                    </div>
+
+                                                    <div class="form-group col-6">
+                                                        <label class="fieldlabels" for="faculte">Prénom</label>
+                                                        <input  class="px-2 py-2" type="text" name="prenom" id="prenom" value="{{session('clientInfo') ->last_name }}" disabled />
+                                                    </div> 
+                                                    <div class="form-group col-6">
+                                                        <label class="fieldlabels" for="nom">Téléphone</label>
+                                                        <input type="text" id="nom" name="telephone" value="{{session('clientInfo') ->phone_number }}" disabled>                                                    </div>
+
+                                                    <div class="form-group col-6">
+                                                        <label class="fieldlabels" for="faculte">Email</label>
+                                                        <input  class="px-2 py-2" type="text" name="email" id="email" value="{{Auth::user()->email}}" disabled />
+                                                    </div>
+                                                @else
+                                                <p>Veuillez vous connecter pour voir vos informations personnelles  </p> 
+                                                @endif
+                                                    
+                                            </div>
+                                            <h4 class="text-center mb-4" >Informations de la commande  </h4>
                                             <div class="form-group my-3">
                                                 <label for="cars">Type de service</label>
                                                 <select  name="typeService" id="typeService">
@@ -97,18 +122,75 @@
                                                    @endif
                                                 </select>
                                             </div>
-                                            {{--<div class="form-group my-3 ">
-                                                <label for="cars">Niveau académique</label>
-                                                <select  name="academicLevel" id="academicLevel">
-                                                   @if (!empty($options['academicLevel']))
-                                                        @php
-                                                            foreach ($options['academicLevel'] as $datas){
-                                                                echo '<option value="'.$datas->reference.'">'.$datas->name.'</option>';
-                                                            }
-                                                        @endphp
-                                                   @endif
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="universite">Université</label>
+                                                    <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" required/>
+                                                </div>
+
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="faculte">Faculté/Ecole</label>
+                                                    <input  class="px-2 py-2" type="text" name="faculte" id="faculte" placeholder="Quelle est votre faculté ou Ecole" />
+                                                </div>  
+                                                    
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="domaine">Domaine</label>
+                                                    <input  class="px-2 py-2" type="text" name="domaine" id="domaine" placeholder="Veuillez entrez votre domaine" />
+                                                </div>
+
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="specialite">Spécialité</label>
+                                                    <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Enter the speciality please" />
+                                                </div>  
+                                                    
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="niveau">Niveau d'etude</label>
+                                                    <input  class="px-2 py-2" type="text" name="niveau" id="niveau" placeholder="Votre niveau d'étude" />
+                                                </div>
+
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="academique">Annéé academique</label>
+                                                    <input  class="px-2 py-2" type="text" name="academique" id="academique" placeholder="L'année academique" />
+                                                </div>  
+                                                    
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="directeur">Directeur de Travail</label>
+                                                    <input  class="px-2 py-2" type="text" name="directeur" id="directeur" placeholder="" />
+                                                </div>
+
+                                                <div class="form-group col-6">
+                                                    <label class="fieldlabels" for="lieu">Lieu de Stage </label>
+                                                    <input  class="px-2 py-2" type="text" name="lieu" id="lieu" placeholder="Votre lieu de stage " />
+                                                </div>  
+                                                    
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                           
+                                            <div class="form-group ">
+                                                <label for="periode">Periode de Stage</label>
+                                                <input  type="text" id="periode"  name="periode"  id="periode" placeholder=" Veuillez entrer la période du stage " >
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                           
+                                            <div class="form-group ">
+                                                <label for="country">Pays </label>
+                                                <select name="country" id="country" class="form-control">
+                                                  @foreach ($countries as $country )
+                                                      <option value="{{$country['name']}}"> {{$country['name']}}</option>
+                                                  @endforeach
                                                 </select>
-                                            </div>--}}
+                                               
+                                            </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="col-12">
@@ -175,9 +257,14 @@
                                             <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="nbrPage" >Code point focal (Entrer 0000 si aucun)</label>
+                                            <label class="fieldlabels" for="probleme">Quel problème principal désirez vous résoudre à travers cette thématique ?</label>
+                                            <textarea placeholder=""  rows="2" name="probleme" id="probleme" class="form-control mb-3" style="height: 150px;"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="fieldlabels" for="nbrPage" >Code point focal </label>
                                             <input type="text" name="codeAf" id="codeAf" class="no-spinner">
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <!-- Button Widget -->
