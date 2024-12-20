@@ -1,4 +1,4 @@
-import {StdevForm} from "../../stdev/js/StdevForm.js";
+ import {StdevForm} from "../../stdev/js/StdevForm.js";
 import {
     clearLocalStorage,
     generateRandomString,
@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Définir la date minimale pour l'input
     dateInput.setAttribute('min', formattedDate);
 
-    //
+   
     const csrfToken = document.querySelector('input[name="_token"]').value;
-    //
+  
 
     document.querySelector('#commanderBtn').addEventListener("click",function (){
         
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     name:'nbrPage',
                     typeField:{
                         textField:{
-                            minLength:1,
+                            minLength:0,
                             maxLength: 100
                         },
                         digitsField:true
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     name:'deadline',
                     typeField:{
                         textField:{
-                            minLength:10,
+                            minLength:0,
                             maxLength: 10,
                         },
                     },
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 codeAf:{
                     name:'codeAf',
                     typeField:{
-                        integerField:{
+                        numericField:{
                             minLength:4,
                             maxLength: 8,
                             
@@ -114,6 +114,36 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 universite:{
                     name:'universite',
+                    typeField:{
+                        textField:{
+                            minLength:1,
+                            maxLength: 200
+                        },
+                        
+                    },
+                },
+                specialite:{
+                    name:'specialite',
+                    typeField:{
+                        textField:{
+                            minLength:1,
+                            maxLength: 100
+                        },
+                        
+                    },
+                },
+                pays:{
+                    name:'pays',
+                    typeField:{
+                        textField:{
+                            minLength:1,
+                            maxLength: 200
+                        },
+                        
+                    },
+                },
+                niveau:{
+                    name:'niveau',
                     typeField:{
                         textField:{
                             minLength:1,
@@ -129,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
            // console.log(stdevForm.getDataFormData())
            
             isValideInput= stdevForm.validateFields(
-                ['subject','nbrPage','deadline','description','universite','codeAf'],fieldsConfig,
+                ['subject','description','universite','codeAf','specialite','pays','niveau','nbrPage','deadline'],fieldsConfig,
                 "border border-danger",
                 'border border-success');
                 if (!(service.includes("Rédaction complète") || service.includes("Protocole"))) {
@@ -157,6 +187,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (checkBoxConditionId.checked){
             document.getElementById('commanderBtn').hidden = true;
             document.querySelector('#acceptedConditionBtn span').hidden = false
+            
+            console.log(stdevForm.getFormData());
             $.ajax({
                 headers: {
                     'Accept': 'application/json;charset=utf-8',
@@ -171,13 +203,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 success: function (response) {
                     $('#conditionOfUseModale').modal('hide');
+                    
                     if(response.success===true){
                         clearLocalStorage();
                         window.location.href = "/service-offre/commandeFinish/"+response.data.idCmd;
+                    
                     }
+                   
                 },
                 error: function (xhr, status, error) {
                     document.getElementById('commanderBtn').hidden = false;
+                    
                 },
                 complete: function () {
                     Loader.close()
@@ -229,6 +265,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // Écouter le changement de sélection pour le thème
     $('#theme').on('change', updateSubject);
     updateSubject();
+
+
+
+
+
+
     // Fonction pour mettre à jour les éléments en fonction de l'option sélectionnée
     function updateElements() {
         // Récupérer l'option sélectionnée
@@ -239,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById('montant').innerText = `${montant} F cfa(XOF)`;
        // console.log(montant);
-        if (service.includes("Rédaction complète") || service.includes("Protocole")) {
+     if (service.includes("Rédaction complète") || service.includes("Protocole")) {
             document.getElementById('check_choose').checked = true;
             showElement( document.getElementById('check_choose'));
             document.querySelector('label[for="check_choose"]').style.display = 'block';
@@ -253,15 +295,63 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('div_subject').hidden=false;
         }
     }
+    
+   
+   
+    function updateMontant() {
+        // Récupérer l'option sélectionnée
+        let selectedOption = $('#typeService').find('option:selected');
+        let service = selectedOption.text();
+        montant = selectedOption.data('montant');
+        document.getElementById('amount').value = montant;
 
-    // Appel de la fonction au chargement de la page
-    updateElements();
+        document.getElementById('montant').innerText = `${montant} F cfa(XOF)`;
+       // console.log(montant);
 
+       var codeAf = $('#codeAf').val();
+
+    // Si le code promo est valide
+
+           // par défaut, le montant final est le montant initial
+       
+           if (codesPromoValides.includes(codeAf)) {
+               let reduction = 0.30;  // Par exemple, 30% de réduction
+               montantFinal = montant * (1 - reduction);
+               let montantReduit =montant- montantFinal     ;  // Par exemple, 30% de réduction
+
+
+               $('#promo-message').text(`🎉 Code promo "${codeAf}" valide ! Réduction de 30% appliquée.`);
+               $('#montantReduit').text(` ${montantReduit} F cfa(XOF)`);
+               $('#montantFinal').text(` ${montantFinal} F cfa(XOF)`);
+
+           } else {
+               $('#promo-message').text('Code promo invalide.');
+               montantReduit =0 ;
+                montantFinal = montant;
+                $('#montantFinal').text(` ${montantFinal} F cfa(XOF)`);
+               $('#montantReduit').text(`${montantReduit} F cfa(XOF)`);
+           }
+           
+
+
+
+
+       
+    }
+   
+ // Événement 'input' sur le champ #codeAf
+ $('#codeAf').on('input', function() {
+    let codeSaisi = $(this).val(); // Code promo saisi
+    updateMontant();
+     // Mise à jour du montant final basé sur le code promo
+});
     //Écouter l'événement change
     $('#typeService').on('change', function() {
         updateElements();
+     
+    updateMontant();
     });
-
+   
     //download file final
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client\services;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotificationServiceClient;
 use App\Mail\OrderReceivedSuccessfully;
 use App\Models\Admin;
 use App\Models\Affiler;
@@ -17,6 +18,7 @@ use App\Models\TypeOfService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -24,16 +26,29 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 class CommandeController extends Controller
+
+
+
+    
 {
+
+
+    
+              
+
 
     public function newCommande(Request $request){
 
         $validated = $request->validate([
             'subject' => 'required|string',
-            'nbrPage' => 'required|Integer',
-            'deadline' => 'required|date',
+            'nbrPage' => 'nullable|Integer',
+            'deadline' => 'nullable|date',
             'codeAf'=>  'nullable|Integer',
-            'universite'=>'required|string'
+            'universite'=>'nullable|string',
+            'pays' => 'required|string',
+            'specialite' => 'required|string',
+            'annee_academique' => 'nullable|string',
+            'niveau' => 'nullable|string',
 
         ]);
 
@@ -92,11 +107,14 @@ class CommandeController extends Controller
                 $data["dicipline"]=Discipline::getNameAndIdByReference($data["dicipline"]);
                 $client = session()->get("clientInfo");
                 $affilier = (new Admin())->getByCode($data['codeAf']);
+              
+               
                 if($affilier){
                     $affilier_id = $affilier->id;
                 }else{
                     $affilier_id = NULL;
                 }
+             
                 $idCommande = (new Commande())->addNew([
                     'client_id' => $client->id,
                     'services_id' => $data["typeService"]->id,
@@ -109,7 +127,12 @@ class CommandeController extends Controller
                     'amount'=>  $prix,
                     'redactor_id'=> $theme_redactor,
                     'admin_af_id'=> $affilier_id,
-                    'status_id'=>Status::getIdByName($status)
+                    'status_id'=>Status::getIdByName($status),
+                    'universite'=>  $data["universite"],
+                    'pays' => $data["pays"],
+                    'specialite' => $data["specialite"],
+                    'annee_academique' =>  $data["annee_academique"],
+                    'niveau' =>  $data["niveau"],
                 ]);
 
                 if ($request->hasFile('descrip_file')) {
@@ -124,7 +147,9 @@ class CommandeController extends Controller
                     $filCmd = new FilePatchOfCommande();
                     $filCmd->addNew(['commande_id'=>$idCommande,'path'=>  $protocole ,'type'=>true,'description'=>'fichier finale de la commande']);
                  }
+                
                 Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully());
+                
                 session()->put('idCmd',$idCommande);
                 return response()->json([
                     "msg" => "successfully commande add",
@@ -151,13 +176,19 @@ class CommandeController extends Controller
         ]);*/
 
    //  try {
-
-           $validated = $request->validate([
-               'subject' => 'required|string',
-               'nbrPage' => 'required|Integer',
-               'deadline' => 'required|date',
+    
+            $request->validate([
+            'subject' => 'nullable|string',
+            'nbrPage' => 'nullable|Integer',
+            'deadline' => 'nullable|date',
+           'codeAf'=>  'nullable|Integer',
+            'universite'=>'nullable|string',
+            'pays' => 'required|string',
+            'specialite' => 'required|string',
+            'annee_academique' =>'nullable|string',
+            'niveau' => 'nullable|string',
            ]);
-
+            
            if ($request->has('choose_theme')) {
                 $request->validate([
                     'theme' => 'required',
@@ -178,6 +209,7 @@ class CommandeController extends Controller
             // }
 
             $data = $request->all();
+           
             $data["typeService"]=TypeOfService::getByReference($data["typeService"]);
            // $typeService =TypeOfService::getByReference($data["typeService"]);
            // dd($typeService);
@@ -185,6 +217,7 @@ class CommandeController extends Controller
            // $data["academicLevel"]=AcademicLevel::getNameAndIdByReference($data["academicLevel"]);
             $data["dicipline"]=Discipline::getNameAndIdByReference($data["dicipline"]);
             $client = session()->get("clientInfo");
+        
             $idCommande = (new Commande())->addNew([
              'client_id' => $client->id,
              'services_id' => $data["typeService"]->id,
@@ -193,8 +226,13 @@ class CommandeController extends Controller
              'description' => $data["description"],
              'max_pages' => $data["nbrPage"],
              'deadline' => $data["deadline"],
+             'universite'=>  $data["universite"],
+             'pays' => $data["pays"],
+             'specialite' => $data["specialite"],
+             'annee_academique' =>  $data["annee_academique"],
+             'niveau' =>  $data["niveau"],
              'theme_memoire_id' => $theme_id,
-             'amount'=> $data["typeService"]->prix,
+             'amount'=> $data["montantFinalInput"],
              'redactor_id'=> $theme_redactor,
          ]);
          /*$tmpFiles = Session::get('tmp_files', []);
@@ -217,6 +255,9 @@ class CommandeController extends Controller
          }*/
         // Session::forget('tmp_files');
          Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully());
+       
+        
+        
              session()->put('idCmd',$idCommande);
          return response()->json([
              "msg" => "successfully commande add",
@@ -262,6 +303,12 @@ class CommandeController extends Controller
                     'description' => $data["description"],
                     'max_pages' => $data["nbrPage"],
                     'deadline' => $data["deadline"],
+                    'universite'=>  $data["universite"],
+                    'pays' => $data["pays"],
+                    'specialite' => $data["specialite"],
+                    'annee_academique' =>  $data["annee_academique"],
+                    'niveau' =>  $data["niveau"],
+                    
                 ]);
                 $payemment = new Payement();
                 //ajout payement prise de contacte
@@ -324,6 +371,9 @@ class CommandeController extends Controller
         if (!($_idCmd === $idCmd)) {
             // Supprimer la clé 'idCmd' de la session
             session()->forget('idCmd');
+
+            Mail::to('serviceclient@cesiebenin.com')->send(new NotificationServiceClient());
+
             // Retourner la vue de confirmation
             return view('clients.layouts.services.commande-finish');
         }

@@ -30,6 +30,15 @@
 
     <!-- START SECTION TOP -->
     <section class="section-top">
+    <style>
+        @media (max-width: 768px) {
+            .section-top {
+                margin-top: 70px; /* Adapte l'espace pour les mobiles */
+                padding: 50px 15px; /* Réduit le padding sur mobile */
+            }
+        }
+    </style>
+    
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">
                 <div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
@@ -65,7 +74,8 @@
                                                 @if(Auth::check())
                                                     <div class="form-group col-6">
                                                         <label class="fieldlabels" for="nom">Nom</label>
-                                                        <input type="text" id="nom" name="nom" value="{{session('clientInfo') ->fist_name }}" disabled>                                                    </div>
+                                                        <input type="text" id="nom" name="nom" value="{{session('clientInfo') ->fist_name }}" disabled>                                                    
+                                                    </div>
 
                                                     <div class="form-group col-6">
                                                         <label class="fieldlabels" for="faculte">Prénom</label>
@@ -73,7 +83,8 @@
                                                     </div> 
                                                     <div class="form-group col-6">
                                                         <label class="fieldlabels" for="nom">Téléphone</label>
-                                                        <input type="text" id="nom" name="telephone" value="{{session('clientInfo') ->phone_number }}" disabled>                                                    </div>
+                                                        <input type="text" id="telephone" name="telephone" value="{{session('clientInfo') ->phone_number }}" disabled>                                                    
+                                                    </div>
 
                                                     <div class="form-group col-6">
                                                         <label class="fieldlabels" for="faculte">Email</label>
@@ -88,6 +99,7 @@
                                             <div class="form-group my-3">
                                                 <label for="cars">Type de service</label>
                                                 <select  name="typeService" id="typeService">
+                                                    <option value="" selected disabled>Quels type de service souhaitez vous ?</option>
 
                                                     @if (!empty($options['typeService']))
                                                         @php
@@ -112,7 +124,10 @@
                                             --}}
                                             <div class="form-group my-3">
                                                 <label for="cars">Discipline</label>
+                                                
                                                 <select  name="dicipline" id="dicipline">
+                                                   
+
                                                    @if (!empty($options['discipline']))
                                                    @php
                                                         foreach ($options['discipline'] as $datas){
@@ -120,40 +135,44 @@
                                                          }
                                                     @endphp
                                                    @endif
+                                                   <option value="autre" >Autre</option>
                                                 </select>
                                             </div>
                                             <div class="col-12">
                                            
                                                 <div class="form-group ">
                                                     <label for="country">Pays </label>
-                                                    <select name="country" id="country" class="form-control">
+                                                    <select name="pays" id="pays" class="form-control">
+                                                    <option value="" selected disabled>-- Sélectionnez un pays --</option>
                                                       @foreach ($countries as $country )
-                                                          <option value="{{$country['name']}}"> {{$country['name']}}</option>
+                                                          <option  value="{{$country['name']}}"> {{$country['name']}}</option>
                                                       @endforeach
                                                     </select>
                                                    
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="form-group col-6">
+                                                <div class="form-group ">
                                                     <label class="fieldlabels" for="universite">Université</label>
-                                                    <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" required/>
+                                                    <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" />
                                                 </div>
-
-                                                <div class="form-group col-6">
-                                                    <label class="fieldlabels" for="specialite">Spécialité</label>
-                                                    <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Enter the speciality please" />
-                                                </div> 
-
-                                               
                                             </div>
+
+                                            <div class="row">
+                                                <div class="form-group ">
+                                                    <label class="fieldlabels" for="specialite">Spécialité</label>
+                                                <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Enter the speciality please" />
+                                                </div>
+                                            </div>
+
+                                           
                                         
                                             <div class="row">
-                                                <div class="form-group col-6">
+                                                <div class="form-group ">
                                                     <label for="niveau">Niveau d'étude </label>
                                                     <select name="niveau" id="niveau" class="form-control">
                                                      
-                                                        <option value="bac"> BACCALAUREAT</option>
+                                                        <option value="bac"> BACALAUREAT</option>
                                                         <option value="bts">BTS </option>
                                                         <option value="licence"> LICENCE</option>
                                                         <option value="master">MASTER </option>
@@ -161,13 +180,17 @@
                                                      
                                                     </select>
                                                 </div>  
-
-                                                <div class="form-group col-6">
-                                                    <label class="fieldlabels" for="academique">Annéé academique</label>
-                                                    <input  class="px-2 py-2" type="text" name="academique" id="academique" placeholder="L'année academique" />
-                                                </div>  
-                                                    
                                             </div>
+
+                                            <div class="row">
+                                                <div class="form-group ">
+                                                    <label class="fieldlabels" for="annee_academique">Année academique</label>
+                                                    <input  class="px-2 py-2" type="text" name="annee_academique" id="annee_academique" placeholder="L'année academique" />
+                                                </div>  
+                                            </div>
+
+                                                    
+                                            
 
                                             
                                         </div>
@@ -177,7 +200,7 @@
                                             <div class="col-12">
                                             <div class="form-group create-account">
                                                 <input  type="checkbox" id="check_choose" value="1" name="choose_theme" checked>
-                                                <label for="check_choose">Chosire un theme</label>
+                                                <label for="check_choose">Chosir un theme du répertoire CESIE</label>
                                             </div>
                                         </div>
 
@@ -193,6 +216,7 @@
 
                                             <div class="form-group mt-2">
                                                 <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="" hidden/>
+                                                <input  class="px-2 py-2" type="text" name="montantFinalInput" id="montantFinalInput" placeholder="" hidden/>
                                             </div>
 
                                             <div class="form-group mt-2" id="div_theme">
@@ -239,8 +263,9 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="nbrPage" >Code point focal </label>
-                                            <input type="text" name="codeAf" id="codeAf" class="no-spinner">
+                                            <label class="fieldlabels" for="codeAf" >Code point focal (Entrez 0000 si aucun)</label>
+                                            <input type="number" name="codeAf" id="codeAf" class="no-spinner">
+                                            <li><span id="promo-message"></span></li> 
                                         </div>
                                         
                                     </div>
@@ -257,12 +282,16 @@
 						<div class="order-details">
 							<!-- Order Widget -->
 							<div class="single-widget">
-								<h2>Détails</h2>
+								<h2>Coût de la prestation </h2>
 								<div class="content">
 									<ul>
-                                        <li>Montant<span id="montant">-----</span></li>
-										<li class="last"><span></span></li>
+                                        <li>Montant normal<span id="montant">-----</span></li>
+                                        <li>Réduction<span id="montantReduit">-----</span></li>
+                                        <li>Montant à payer: <span id="montantFinal"> </span></li>
+
+										
 									</ul>
+                                        
 								</div>
 							</div>
 							<!--/ End Payment Method Widget -->
@@ -411,6 +440,9 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
+                    <div id="promo-success-message" class="alert alert-success" style="display: none;">
+                        <!-- Le message du code promo valide sera inséré ici -->
+                      </div>
                         <p class="mb-1">
                             La plateforme PAPE mise à votre disposition est soumise à des conditions d’utilisation. En accédant à cette plateforme, vous acceptez de vous soumettre à ces Conditions d’utilisation, aux directives et aux règles mentionnées dans cet accord. Si vous ne souhaitez pas accepter ces conditions, veuillez ne pas utiliser la plateforme.
                             Le présent Contrat définit les conditions qui s’appliquent à l’utilisation de ce site par tout utilisateur. Ainsi :
@@ -479,6 +511,10 @@
     </script>
 
     <script type="module" src="{{asset('clients/js-data/commande.js?'.Str::uuid())}}"></script>
+    
+    <script src="{{ asset('stdev/js/StdeUsefulFunction.js') }}"></script>
+
+
     <script>
         $("#theme").hide();
        new TomSelect("#theme",{
@@ -489,5 +525,11 @@
             }
         });
     </script>
+
+    <script  type="text/javascript">
+    // Intégration des codes promo valides dans une variable JavaScript
+    const codesPromoValides = @json($codesPromoValides);
+    console.log(codesPromoValides);  // Vous pouvez vérifier si les codes sont bien passés
+</script>
 
 @endsection

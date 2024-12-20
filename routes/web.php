@@ -18,6 +18,8 @@ use App\Http\Controllers\client\ThemeMemoireController;
 use App\Http\Controllers\client\ClientProfileController;
 use App\Http\Controllers\client\services\ServiceController;
 use App\Http\Controllers\client\services\CommandeController;
+use App\Models\Affiler;
+use GuzzleHttp\Psr7\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,10 @@ Route::get('/service-offre/redaction',\App\Http\Controllers\client\services\Reda
 Route::get('/service-offre/tarif',function (){
     return view('clients.layouts.services.tarifs');
 })->name('service.tarif');
+
+
+Route::get('/api/codes-af', [CommandeController::class, 'getCodesAf']);
+
 
 //route de stockage temporaire de media
 Route::post('files/store/temp',[FileController::class,'storeFileTemp'])->name('files.store.temp');
