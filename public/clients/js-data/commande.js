@@ -314,22 +314,34 @@ document.addEventListener("DOMContentLoaded", function() {
            // par défaut, le montant final est le montant initial
        let montantFinal=montant;
        let montantReduit=0;
+       $('#promo-message').removeClass('text-success text-danger text-warning');
+
            if (codesPromoValides.includes(codeAf)) {
            // Vérifie la valeur de 'montant'
-         
-
+               
                let reduction = 0.30;  // Par exemple, 30% de réduction
               montantFinal = montant*(1 - reduction);
                montantFinal = Math.round(montantFinal / 100) * 100;
                let montantReduit =montant- montantFinal     ;  // Par exemple, 30% de réduction
 
 
-               $('#promo-message').text(`🎉 Code promo "${codeAf}" valide ! Réduction de 30% appliquée.`);
+               $('#promo-message').text(`🎉 Code promo "${codeAf}" valide ! Réduction de 30% appliquée.`)
+               .addClass('text-success');
                $('#montantReduit').text(` ${montantReduit} F cfa(XOF)`);
                $('#montantFinal').text(` ${montantFinal} F cfa(XOF)`);
 
-           } else {
-               $('#promo-message').text('Code promo invalide.');
+           } 
+           else if (codeAf === "1000") {
+            // Aucun code promo saisi, applique une réduction de 1000
+            montantFinal = montant;
+            montantReduit = 0; // La réduction appliquée est fixe ici (1000)
+            $('#montantFinal').text(` ${montant} F cfa(XOF)`);
+            $('#promo-message').text("✅ Code promo 1000 valide ! Aucune réduction appliquée. Code standard utilisé.")
+            .addClass('text-warning');}
+           else {
+
+               $('#promo-message').text('🚫 Code promo  invalide. Aucun changement dans le montant.')
+               .addClass('text-danger');
                montantReduit =0 ;
                 montantFinal = montant;
                 $('#montantFinal').text(` ${montantFinal} F cfa(XOF)`);

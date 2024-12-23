@@ -161,7 +161,7 @@
                                             <div class="row">
                                                 <div class="form-group ">
                                                     <label class="fieldlabels  fw-bold" for="specialite">Spécialité</label>
-                                                <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Enter the speciality please" />
+                                                <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Votre Spécialité" />
                                                 </div>
                                             </div>
 
@@ -184,7 +184,7 @@
 
                                             <div class="row">
                                                 <div class="form-group ">
-                                                    <select name="niveau" id="niveau" class="form-control">
+                                                  
                                                     <label class="fieldlabels fw-bold " for="annee_academique">Année academique</label>
                                                     <input  class="px-2 py-2" type="text" name="annee_academique" id="annee_academique" placeholder="L'année academique" />
                                                 </div>  
@@ -212,18 +212,18 @@
 
                                             <div class="form-group mt-2" id="div_subject">
                                                 <label class="fieldlabels fw-bold" for="subject">Inscrivez votre thème</label>
-                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="" />
+                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme" />
                                             </div>
 
                                             <div class="form-group mt-2">
                                                 <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="" hidden/>
-                                                <input  class="px-2 py-2" type="text" name="montantFinalInput" id="montantFinalInput" placeholder="" hidden/>
+                                              
                                             </div>
 
                                             <div class="form-group mt-2" id="div_theme">
                                                 <label for="cars"  class="fw-bold">Thème de Recherche </label>
                                                 <select name="theme" id="theme" hidden>
-                                                    <option value="">Select a state...</option>
+                                                    <option value="">Veuillez entrer votre theme</option>
                                                     @if (!empty($options['TMs']))
                                                         @php
                                                             foreach ($options['TMs'] as $datas){
@@ -264,7 +264,7 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="fieldlabels fw-bold" for="codeAf" >Code point focal (Entrez 0000 si aucun)</label>
+                                            <label class="fieldlabels fw-bold" for="codeAf" >Code point focal (Entrez 1000 si aucun)</label>
                                             <input type="number" name="codeAf" id="codeAf" class="no-spinner">
                                             <li><span id="promo-message"></span></li> 
                                         </div>
