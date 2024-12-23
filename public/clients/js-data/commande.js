@@ -270,7 +270,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-
     // Fonction pour mettre à jour les éléments en fonction de l'option sélectionnée
     function updateElements() {
         // Récupérer l'option sélectionnée
@@ -317,6 +316,7 @@ document.addEventListener("DOMContentLoaded", function() {
            if (codesPromoValides.includes(codeAf)) {
                let reduction = 0.30;  // Par exemple, 30% de réduction
                montantFinal = montant * (1 - reduction);
+               montantFinal = Math.round(montantFinal / 100) * 100;
                let montantReduit =montant- montantFinal     ;  // Par exemple, 30% de réduction
 
 
