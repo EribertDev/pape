@@ -31,6 +31,7 @@ class Affiler extends Model
     public function getByCode($code)
     {
         return self::where('code', $code)->first();
+        
     }
    
 }

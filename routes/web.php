@@ -48,8 +48,6 @@ Route::get('/service-offre/tarif',function (){
 })->name('service.tarif');
 
 
-Route::get('/api/codes-af', [CommandeController::class, 'getCodesAf']);
-
 
 //route de stockage temporaire de media
 Route::post('files/store/temp',[FileController::class,'storeFileTemp'])->name('files.store.temp');

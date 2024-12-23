@@ -312,10 +312,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Si le code promo est valide
 
            // par défaut, le montant final est le montant initial
-       
+       let montantFinal=montant;
+       let montantReduit=0;
            if (codesPromoValides.includes(codeAf)) {
+           // Vérifie la valeur de 'montant'
+         
+
                let reduction = 0.30;  // Par exemple, 30% de réduction
-               montantFinal = montant * (1 - reduction);
+              montantFinal = montant*(1 - reduction);
                montantFinal = Math.round(montantFinal / 100) * 100;
                let montantReduit =montant- montantFinal     ;  // Par exemple, 30% de réduction
 

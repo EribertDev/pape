@@ -26,15 +26,8 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 class CommandeController extends Controller
-
-
-
     
 {
-
-
-    
-              
 
 
     public function newCommande(Request $request){

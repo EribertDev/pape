@@ -97,7 +97,7 @@
                                             </div>
                                             <h4 class="text-center mb-4" >Informations de la commande  </h4>
                                             <div class="form-group my-3">
-                                                <label for="cars">Type de service</label>
+                                                <label for="cars" class="fw-bold">Type de service</label>
                                                 <select  name="typeService" id="typeService">
                                                     <option value="" selected disabled>Quels type de service souhaitez vous ?</option>
 
@@ -123,7 +123,7 @@
                                                 </div>
                                             --}}
                                             <div class="form-group my-3">
-                                                <label for="cars">Discipline</label>
+                                                <label for="cars" class="fw-bold">Discipline</label>
                                                 
                                                 <select  name="dicipline" id="dicipline">
                                                    
@@ -141,7 +141,7 @@
                                             <div class="col-12">
                                            
                                                 <div class="form-group ">
-                                                    <label for="country">Pays </label>
+                                                    <label for="country" class="fw-bold">Pays </label>
                                                     <select name="pays" id="pays" class="form-control">
                                                     <option value="" selected disabled>-- Sélectionnez un pays --</option>
                                                       @foreach ($countries as $country )
@@ -153,14 +153,14 @@
                                             </div>
                                             <div class="row">
                                                 <div class="form-group ">
-                                                    <label class="fieldlabels" for="universite">Université</label>
+                                                    <label class="fieldlabels fw-bold" for="universite">Université</label>
                                                     <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" />
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="form-group ">
-                                                    <label class="fieldlabels" for="specialite">Spécialité</label>
+                                                    <label class="fieldlabels  fw-bold" for="specialite">Spécialité</label>
                                                 <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Enter the speciality please" />
                                                 </div>
                                             </div>
@@ -169,7 +169,7 @@
                                         
                                             <div class="row">
                                                 <div class="form-group ">
-                                                    <label for="niveau">Niveau d'étude </label>
+                                                    <label for="niveau" class="fw-bold">Niveau d'étude </label>
                                                     <select name="niveau" id="niveau" class="form-control">
                                                      
                                                         <option value="bac"> BACALAUREAT</option>
@@ -184,7 +184,8 @@
 
                                             <div class="row">
                                                 <div class="form-group ">
-                                                    <label class="fieldlabels" for="annee_academique">Année academique</label>
+                                                    <select name="niveau" id="niveau" class="form-control">
+                                                    <label class="fieldlabels fw-bold " for="annee_academique">Année academique</label>
                                                     <input  class="px-2 py-2" type="text" name="annee_academique" id="annee_academique" placeholder="L'année academique" />
                                                 </div>  
                                             </div>
@@ -200,7 +201,7 @@
                                             <div class="col-12">
                                             <div class="form-group create-account">
                                                 <input  type="checkbox" id="check_choose" value="1" name="choose_theme" checked>
-                                                <label for="check_choose">Chosir un theme du répertoire CESIE</label>
+                                                <label for="check_choose"  class="fw-bold">Chosir un theme du répertoire CESIE</label>
                                             </div>
                                         </div>
 
@@ -210,7 +211,7 @@
                                             </div> -->
 
                                             <div class="form-group mt-2" id="div_subject">
-                                                <label class="fieldlabels" for="subject">Sujet</label>
+                                                <label class="fieldlabels fw-bold" for="subject">Inscrivez votre thème</label>
                                                 <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="" />
                                             </div>
 
@@ -220,7 +221,7 @@
                                             </div>
 
                                             <div class="form-group mt-2" id="div_theme">
-                                                <label for="cars">Theme Mémoires</label>
+                                                <label for="cars"  class="fw-bold">Thème de Recherche </label>
                                                 <select name="theme" id="theme" hidden>
                                                     <option value="">Select a state...</option>
                                                     @if (!empty($options['TMs']))
@@ -234,14 +235,14 @@
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-6">
-                                                    <label class="fieldlabels" for="nbrPage" >Nombre de pages</label>
+                                                    <label class="fieldlabels fw-bold" for="nbrPage" >Nombre de pages</label>
                                                     <input type="number" name="nbrPage" id="nbrPage" class="no-spinner">
                                                 </div>
                                                 <div class="form-group col-6">
                                                 @php
                                                    // echo $dateLimit = $options['date'];
                                                 @endphp
-                                                    <label class="fieldlabels">Date limite</label>
+                                                    <label class="fieldlabels fw-bold">Date limite</label>
                                                     <input  class="px-2 py-2" type="date" name="deadline" id="deadline" placeholder="" value="" />
                                                 </div>
                                             </div>
@@ -249,7 +250,7 @@
                                     </div>
                                     <div class="row">
                                     <div class="form-group ">
-                                        <label for="descrip_file">Ajouter un fichier (.pdf, .doc, .docx)</label>
+                                        <label for="descrip_file"  class="fw-bold">Ajouter un fichier (.pdf, .doc, .docx)</label>
                                         <input
                                         type="file"
                                         id="descrip_file"
@@ -258,12 +259,12 @@
                                         multiple />
                                     </div>
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="description">Quel problème principal désirez vous résoudre à travers cette thématique ?</label>
+                                            <label class="fieldlabels fw-bold" for="description">Quel problème principal désirez vous résoudre à travers cette thématique ?</label>
                                             <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="fieldlabels" for="codeAf" >Code point focal (Entrez 0000 si aucun)</label>
+                                            <label class="fieldlabels fw-bold" for="codeAf" >Code point focal (Entrez 0000 si aucun)</label>
                                             <input type="number" name="codeAf" id="codeAf" class="no-spinner">
                                             <li><span id="promo-message"></span></li> 
                                         </div>
@@ -526,10 +527,10 @@
         });
     </script>
 
-    <script  type="text/javascript">
+    <script >
     // Intégration des codes promo valides dans une variable JavaScript
     const codesPromoValides = @json($codesPromoValides);
-    console.log(codesPromoValides);  // Vous pouvez vérifier si les codes sont bien passés
-</script>
+   // Vérifie si 'montant' est défini et correct
+    </script>
 
 @endsection
