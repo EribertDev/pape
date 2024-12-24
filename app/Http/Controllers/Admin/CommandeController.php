@@ -115,7 +115,7 @@ class CommandeController extends Controller
        //dd($commande);
        $userEmail = (new User())->getUserEmailByID($commande["client"]["user_id"]);
        $commande["client"]["email"]= $userEmail;
-       $redactors = (new Admin())->getAllByRole("Rédacteur");
+       $redactors = (new Admin())->getAllByRole("Editeur");
        $data = ["commande"=>$commande,"redactors"=>$redactors];
        //dd($data);
 

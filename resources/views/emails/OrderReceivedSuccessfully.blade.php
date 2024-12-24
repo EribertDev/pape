@@ -10,15 +10,13 @@
         M. ou madame {{ $client }}, CESIE vous remercie de l'avoir choisi pour la rédaction de votre mémoire ou thèse.
     </p>
      <ul>
-        <li>Thème du travail : néant</li>
-        <li>Thème issu de la bibliothèque en ligne de CESIE : --</li>
-        <li>Niveau :--</li>
-        <li>Date de la commande :--</li>
-        <li>Date limite de rédaction souhaitée :--</li>
-        <li>Coût du travail :--</li>
+        <li>Thème du travail : </li>
+       
+        <li>Niveau :  </li>
+       
      </ul>
     <p>
-        Nous restons à votre disposition pour toute question ou précision. Merci encore de votre confiance en SyRRaM.Votre  commande est enregistrée avec succès et les experts de CESIE vous contacteront dans les heures à venir
+        Dès que nos experts valideront votre demande vous recevrez un message de comfirmation via cette meme adresse mail
     </p>
     <img src="https://syrram.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
 </body>
@@ -29,7 +27,5 @@
 
 
 
-Date limite de rédaction souhaitée :
-Coût du travail :
 
 
