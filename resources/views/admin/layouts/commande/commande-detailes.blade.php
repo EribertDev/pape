@@ -60,6 +60,11 @@
                             <p class="card-text"><span class="fw-bold">Nombre : </span><span>{{$commande["max_pages"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Date : </span><span>{{$commande["deadline"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Subject : </span><span>{{$commande["subject"]}}</span> </p>
+                            <p class="card-text"><span class="fw-bold">Université : </span><span>{{$commande["universite"]}}</span> </p>
+                            <p class="card-text"><span class="fw-bold">Pays </span><span>{{$commande["pays"]}}</span> </p>
+                            <p class="card-text"><span class="fw-bold">Année académique : </span><span>{{$commande["annee_academique"]}}</span> </p>
+                            <p class="card-text"><span class="fw-bold">Problème principal à résoudre : </span><span>{{$commande["description"]}}</span> </p>
+
                             <p class="card-text"><span class="fw-bold">Fichier joint :  
                                 @if(!empty($commande["filesPath"]))
                                     @foreach($commande["filesPath"] as $filePath)
@@ -73,7 +78,7 @@
                                     @endforeach 
                                 @endif
                             </p>
-                            <p class="card-text"><span class="fw-bold">Description : </span><span>{{$commande["description"]}}</span> </p>
+                           
                           
                             
                         </div>
@@ -191,6 +196,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Fichier finale: 
+                               
                                 @if(!empty($commande["filesPath"]))
                                 @foreach($commande["filesPath"] as $filePath)
                                 @if ($filePath["type"]==1)
@@ -206,6 +212,13 @@
                             <div class="form-group">
                                 <form id="ficheForm">
                                     @csrf
+
+                                    <label for="type">Type</label>
+                                    <select  class="form-control input-square" name="type" id="type">
+                                        <option value="protocole">Protocole</option>
+                                        <option value="complete">Rédaction Complete </option>
+                                    </select>
+
                                     <input type="text" value="{{$commande["uuid"]}}" name="uuid" hidden >
                                     <label class="form-label" for="customFile">Ajouter un fichier(.pdf,.docx)</label>
                                     <input type="file" class="form-control" id="customFile" name="customFile" accept=".docx,.xlsx,.pdf" />

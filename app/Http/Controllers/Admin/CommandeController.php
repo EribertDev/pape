@@ -15,8 +15,12 @@ use function Pest\Laravel\json;
 use Illuminate\Http\JsonResponse;
 use App\Models\FilePatchOfCommande;
 use App\Http\Controllers\Controller;
+use App\Mail\NotificationServiceClient;
+use App\Mail\RedactionFinished;
+use App\Mail\RédactorMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Spatie\LaravelIgnition\FlareMiddleware\AddJobs;
 
 class CommandeController extends Controller
 {
@@ -100,10 +104,21 @@ class CommandeController extends Controller
     public function addRedactor(Request $request){
 
         $redactorId = $request->input('redactorId');
+        $redactor = Admin::find($redactorId);
+        
+        $redactorEmail = $redactor->user->email;
         $cmdUuid = $request ->input('cmdUuid');
+        $commande = Commande::where('uuid', $cmdUuid)->first(); 
+        $clientInfo = $commande->client;
+
         $cmd= (new Commande())->updateCommande($cmdUuid,["redactor_id"=>$redactorId,"status"=>"En traitement"]);
         if ($cmd){
+
+
+            Mail::to($redactorEmail)->send(new RédactorMail($commande,$clientInfo));
+
             return response()->json(["message"=>"success"]);
+         
         }
         return response()->json(["message"=>"echec"]);
     }
@@ -124,33 +139,48 @@ class CommandeController extends Controller
 
     public function fileUpdate(Request $request){
         $idCmd = (new Commande())->getIdByUuid($request -> input('uuid'));
+        $commande=(new Commande())->getCommandeByUuid($request -> input('uuid'));
+        $user=(new Commande())->getClientByCommandeUuid($request -> input('uuid'));
+        $userEmail = (new User())->getUserEmailByID($commande["client"]["user_id"]);
         $ff = (new FilePatchOfCommande())->getFinalByIdCommande($idCmd);
         $cmdStatus = 'Traiter';
+      
         if ($ff) {
             // Vérifie si un fichier a été téléchargé
             if ($request->hasFile('customFile')) {
-                $file = $request->file('customFile');
                 
+                $file = $request->file('customFile');
+                $type = $request->input('type');
                 // Si le fichier précédent existe, le supprimer
                 if (Storage::exists("public/" . $ff->path)) {
                     Storage::delete("public/" . $ff->path);
+                  
                 }
-                
+               
                 // Génére un nom de fichier unique
                 $uniqueFileName = 'fncmd_' . time() . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('files/commande', $uniqueFileName, 'public');
                 // Met à jour le chemin dans la base de données
-                (new FilePatchOfCommande())->updateFile($ff->id, ['path' => $path]);
+                (new FilePatchOfCommande())->updateFile($ff->id, ['path' => $path,'description' => $type]);
+               
+                
+              
                 (new Commande())->updateCommandeStatusByUuid($request -> input('uuid'),$cmdStatus);
+                Mail::to($userEmail)->send(new RedactionFinished($commande,$ff,$user));
+
                 return response()->json([
                     "msg" => "File uploaded",
                     "success" => true,
                     "data" =>[
                         "path" => $path,
                         "cmd_status"=>$cmdStatus,
+                       
+                       
                     ]
                 ], 200);
+               
             }
+
             return response()->json([
                 "msg" => "Error: file request",
                 "success" => false
@@ -161,16 +191,18 @@ class CommandeController extends Controller
                 $file = $request->file('customFile');
                 $uniqueFileName = 'fncmd_' . time() . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('files/commande', $uniqueFileName, 'public');
-                
+                $type = $request->input('type');
                 // Ajoute un nouvel enregistrement
                 (new FilePatchOfCommande())->addNew([
                     'path' => $path,
                     "type" => 1,
                     "commande_id" => $idCmd,
-                    "description" => "Fichier final de la commande"
+                    "description" => $type
                 ]);
 
                 (new Commande())->updateCommandeStatusByUuid($request -> input('uuid'),$cmdStatus);
+                Mail::to($userEmail)->send(new RedactionFinished($commande,$ff,$user));
+
                 return response()->json([
                     "msg" => "File uploaded",
                     "success" => true,
@@ -179,12 +211,17 @@ class CommandeController extends Controller
                         "cmd_status"=>$cmdStatus,
                     ]
                 ], 200);
+
+             
             }
             return response()->json([
                 "msg" => "Error: file request",
                 "success" => false
             ], 500);
+
+
+          
+
         }
-        
     }
 }

@@ -77,31 +77,31 @@
                                         @endphp
                                         @if ( $status!=="en attente")
                                             @if (!empty($commande->payments) && count($commande->payments) > 0)
-                                            @if (strtolower($commande->payments[0]->status->name)=="payer")
-                                                <button class="btn_one border-0 download" type="button"   data-uuid ="{{$commande->uuid}}"
-                                                    data-pay-id = "{{$commande->payments[0]->id}}"
-                                                    data-pay-status = "{{$commande->payments[0]->status->name}}"
-                                                    @if ($status=="Traiter")
-                                                        disabled
-                                                    @endif
-                                                    >
-                                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden >
-                                                        </span>
-                                                        <span role="status"> Télécharger</span>
-                                                </button>
-                                            @else
-                                                <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}"
-                                                    data-pay-id = "{{$commande->payments[0]->id}}"
-                                                    data-pay-status = "{{$commande->payments[0]->status->name}}"
-                                                    >
-                                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
-                                                </button>
-                                                <button class="btn_two border-0 payer_confirme ms-2 " type="button" data-pay-id = "{{$commande->payments[0]->id}}"
-                                                    data-pay-status = "{{$commande->payments[0]->status->name}}"
-                                                    >
-                                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
-                                                </button>
-                                            @endif
+                                                @if (strtolower($commande->payments[0]->status->name)=="payer")
+                                                    <button class="btn_one border-0 download" type="button"   data-uuid ="{{$commande->uuid}}"
+                                                        data-pay-id = "{{$commande->payments[0]->id}}"
+                                                        data-pay-status = "{{$commande->payments[0]->status->name}}"
+                                                        @if ($status=="Traiter")
+                                                            disabled
+                                                        @endif
+                                                        >
+                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden >
+                                                            </span>
+                                                            <span role="status"> Télécharger</span>
+                                                    </button>
+                                                @else
+                                                    <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}"
+                                                        data-pay-id = "{{$commande->payments[0]->id}}"
+                                                        data-pay-status = "{{$commande->payments[0]->status->name}}"
+                                                        >
+                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
+                                                    </button>
+                                                    <button class="btn_two border-0 payer_confirme ms-2 " type="button" data-pay-id = "{{$commande->payments[0]->id}}"
+                                                        data-pay-status = "{{$commande->payments[0]->status->name}}"
+                                                        >
+                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
+                                                    </button>
+                                                @endif
                                             @else
                                                 <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
                                                     <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>

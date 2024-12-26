@@ -6,6 +6,7 @@ use App\Models\Commande;
 use App\Models\Payement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\FilePatchOfCommande;
 use App\Models\Status;
 
 class PayementController extends Controller
@@ -31,6 +32,8 @@ class PayementController extends Controller
         }
         if($data['pay_id']!==""){
             $payement = (new Payement())->getById($data['pay_id']);
+
+
             if($payement && $payement->status_id !== Status::getIdByName('Payer')){
                 return response()->json([
                     "msg" => "Payment already registered",
@@ -42,19 +45,38 @@ class PayementController extends Controller
                         "transaction_id"=>$payement->transaction_id,
                         "reference"=>$payement->reference,
                         "client"=>$client,
+                        ""
+                        
                     ]
                 ]);
             }
         }
         $commande = (new Commande())->getCommandeByUuid($data['uuid']);
+     
+        $file=(new FilePatchOfCommande())->getFinalByIdCommande($commande['id']);
+        $description = $file->description;
+
         if($commande){
             $amount_type = $data['amount_type'];
             if($amount_type =='PC'){
                 $amount = 3000;
                 $description = "payement de la prise de contact";
             }else if($amount_type == 'PS'){
+
+                        if (strtolower($description) === 'protocole') {
+                // Diviser le montant par deux si la description est "protocole"
+                $amount = $commande->amount/2;
+                $description = "Payement de 50% pour le protocole";
+            } elseif (strtolower($description) === 'complete') {
                 $amount = $commande->amount;
-                $description = "payement des frais de services";
+                // Garder le montant total si la description est "complete"
+                $description = "Payement complet";
+            } else {
+                throw new \Exception("Description inconnue : {$description}");
+            }
+                
+               
+               
             }
             //$trans = generateUniqueReference('',12,'payements','transaction_id',true,'digits');
             $pay=[

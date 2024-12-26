@@ -77,8 +77,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 data:data,
                 success: function(response) {
                  //   console.log(response);
+
                     if(response.success ===true){
+
+                    
                         var pay = document.createElement('button');
+
+
+                     
+
                         pay.setAttribute('data-environment', 'sandbox');
                         FedaPay.init(pay, {
                             public_key: 'pk_sandbox_YejKf1nZO1d3XEGd61VK1IOV',
