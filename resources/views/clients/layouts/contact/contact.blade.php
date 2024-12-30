@@ -55,23 +55,43 @@
             <div class="row">
                 <div class="offset-lg-1 col-lg-10 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
                     <div class="contact">
-                        <form class="form" name="enq" method="post" action="https://wphtml.com/html/tf/penn/contact.php" onsubmit="return validation();">
+                        <form class="form" name="enq" method="post" action="{{ route('contact.send') }}" method="POST" >
+                            @csrf
                             <div class="row">
+
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+
                                 <div class="form-group col-md-6">
                                     <label for="">Nom et Prénoms (*)</label>
                                     <input type="text" name="name" class="form-control" required="required">
+                                    @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Email (*)</label>
                                     <input type="email" name="email" class="form-control" required="required">
+                                    @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Sujet (*)</label>
                                     <input type="text" name="subject" class="form-control" required="required">
+                                    @error('subject')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="">Message (*)</label>
                                     <textarea rows="6" name="message" class="form-control" required="required"></textarea>
+                                        @error('message')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                 </div>
                                 <div class="col-md-12 text-center">
                                     <button type="submit" value="Send message" name="submit" id="submitButton" class="btn_one" title="Submit Your Message!">Envoyer</button>

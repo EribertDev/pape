@@ -113,9 +113,12 @@ class CommandeController extends Controller
 
         $cmd= (new Commande())->updateCommande($cmdUuid,["redactor_id"=>$redactorId,"status"=>"En traitement"]);
         if ($cmd){
+  // Récupérer le fichier attaché à la commande
+  $filePatch = FilePatchOfCommande::where('commande_id', $commande->id)->first();
+  $filePath = $filePatch ? storage_path('app/public/' . $filePatch->path) : null;
 
 
-            Mail::to($redactorEmail)->send(new RédactorMail($commande,$clientInfo));
+            Mail::to($redactorEmail)->send(new RédactorMail($commande,$clientInfo,$filePath));
 
             return response()->json(["message"=>"success"]);
          

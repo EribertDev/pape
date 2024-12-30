@@ -18,8 +18,7 @@ class OrderReceivedSuccessfully extends Mailable
      */
     public $user;
     public $clientName;
-    public $commandeTheme;
-    public $commandeNiveau;
+    
 
     public function __construct()
     {

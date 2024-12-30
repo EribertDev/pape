@@ -14,35 +14,45 @@ class RédactorMail extends Mailable
     use Queueable, SerializesModels;
     public $commande; 
     public  $clientInfo;
+    public $filePath;
     /**
      * Create a new message instance.
      */
-    public function __construct($commande, $clientInfo)
+    public function __construct($commande, $clientInfo,$filePath)
     {
         $this->commande = $commande;
        $this->clientInfo=$clientInfo;
-    }
+       $this->filePath = $filePath;
+       
+    } 
 
     /**
      * Get the message envelope.
      */
- /*   public function envelope(): Envelope
+   public function envelope(): Envelope
     {
         return new Envelope(
             subject: 'Rédactor Mail',
         );
-    }*/
+    }
 
     /**
      * Get the message content definition.
      */
     public function build()
-    {
+    {  
+
+
         return $this->view('emails.RedactorEmail')
                 ->with(['commande' => $this->commande,
                         
                         'clientInfo' => $this->clientInfo,])
+                        ->attach($this->filePath, [
+                            'as' => 'commande.pdf', // Nom personnalisé
+                            'mime' => 'application/pdf',
+                        ])
                 ->subject('Nouvelle commande de rédaction assignée à votre compte');
+                
     }
 
     /**

@@ -35,6 +35,7 @@ class PayementController extends Controller
 
 
             if($payement && $payement->status_id !== Status::getIdByName('Payer')){
+              
                 return response()->json([
                     "msg" => "Payment already registered",
                     "success" => true,
@@ -63,21 +64,26 @@ class PayementController extends Controller
                 $description = "payement de la prise de contact";
             }else if($amount_type == 'PS'){
 
-                        if (strtolower($description) === 'protocole') {
+                if (strtolower($description) === 'protocole') {
                 // Diviser le montant par deux si la description est "protocole"
                 $amount = $commande->amount/2;
                 $description = "Payement de 50% pour le protocole";
-            } elseif (strtolower($description) === 'complete') {
-                $amount = $commande->amount;
-                // Garder le montant total si la description est "complete"
-                $description = "Payement complet";
-            } else {
-                throw new \Exception("Description inconnue : {$description}");
-            }
+                } elseif (strtolower($description) === 'complete') {
+                    $amount = $commande->amount;
+                    // Garder le montant total si la description est "complete"
+                    $description = "Payement complet";
+                } else {
+                    throw new \Exception("Description inconnue : {$description}");
+                }
                 
                
                
+            }elseif($amount_type == 'PP')
+            {
+                $amount = $commande->amount/2;
+                
             }
+        
             //$trans = generateUniqueReference('',12,'payements','transaction_id',true,'digits');
             $pay=[
                 'commande_id'=> $commande->id,
@@ -108,6 +114,9 @@ class PayementController extends Controller
             ], 500);
         }
         //PC,PS
+
+
+        
 
     }
 
@@ -151,7 +160,7 @@ class PayementController extends Controller
 
     public function confirmePayement(Request $request) {
         //Api key 
-        \FedaPay\FedaPay::setApiKey("sk_sandbox_c3_O0SRDtrnAamS6SLwReQpP");
+        \FedaPay\FedaPay::setApiKey("sk_sandbox_WHk3VWXx2OoC_xzCkpI8UCqg");
         // mode test ou live
         \FedaPay\FedaPay::setEnvironment('sandbox'); // ou setEnvironment('live');
         // Validation des données d'entrée
@@ -166,7 +175,7 @@ class PayementController extends Controller
             // Récupération de la transaction
             $transaction = \FedaPay\Transaction::retrieve($payement->transaction_id);
             // Vérification du statut de la transaction
-
+        
             if ($transaction && $transaction->status === "approved") {
                 $status = "Payer";
             }
@@ -178,6 +187,7 @@ class PayementController extends Controller
                 "success" => true,
                 "data" => [
                     "status" => $status,
+                   "st"=>$transaction->status
                 ]
             ], 200);
         }

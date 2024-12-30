@@ -10,7 +10,7 @@
 <p><span>Sujet : </span> <span>{{$commande->subject}} </span> </p>
 <p>Commande acceptée
     Votre demande de rédaction de mémoire ou thèse exprimée le .... Portant sur.......est acceptée.
-    CESIE vous remercie de l'avoir choisi et vous demande de payer les frais de prise de contact pour acter le démarrage de la rédaction de votre travail de recherche. Merci</p>
+   . Merci</p>
 <img src="https://syrram.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
 </body>
 </html>

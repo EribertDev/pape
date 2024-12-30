@@ -55,7 +55,7 @@
         <h1>Votre commande a été traitée avec succès</h1>
         <p>Bonjour {{ $user->fist_name }} {{ $user->last_name }},</p>
 
-        <p>Nous sommes heureux de vous informer que le document relatif à votre  commande du {{ $commande->created_at->format('d/m/Y') }}</li>  portant sur le sujet " <strong>{{ $commande->subject }}/strong> "   est disponible sur la plateforme PAPE.</p>
+        <p>Nous sommes heureux de vous informer que le document relatif à votre  commande du {{ $commande->created_at->format('d/m/Y') }}</li>  portant sur le sujet " <strong>{{ $commande->subject }}</strong> "   est disponible sur la plateforme PAPE.</p>
 
         <div class="details">
 
@@ -75,7 +75,7 @@
 
         <div class="footer">
             <p>Cordialement, <br/> L'équipe SyRRaM</p>
-            <p>Veuillez prendre en charge cette commande dans les plus brefs délais.</p>
+          
         
             <p>Cordialement,</p>
             <p><em>L'équipe CESIE Benin</em></p>

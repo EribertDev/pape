@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let spinner = this.querySelector('.spinner');
             let pay_status = this.getAttribute('data-pay-status');/*?.toLowerCase() || null*/;
             let pay_id = this.getAttribute('data-pay-id');
-            let url ="";
+            let url ="/pay/commande/confirme";
             let data = {};
 
          //   console.log(uuid,pay_status);
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         pay.setAttribute('data-environment', 'sandbox');
                         FedaPay.init(pay, {
-                            public_key: 'pk_sandbox_YejKf1nZO1d3XEGd61VK1IOV',
+                            public_key: 'pk_sandbox_Q-ZxJWnqXssq9tICFld2FsDv',
                             customer:{
                                 lastname:response.data.client?.last_name,
                                 firstname:response.data.client?.fist_name,

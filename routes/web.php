@@ -77,6 +77,8 @@ Route::get('/a-propos',function (){
 
 //route Contact
 Route::get('contact',[ContactController::class,'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
 Route::middleware(['auth','role:Client'])->group(function (){
 
     //
@@ -122,6 +124,7 @@ require __DIR__.'/admin.php';
 */
 
 Route::post('/register/client',[AuthController::class,'registerClient'])->name('register');
+
 
 
 

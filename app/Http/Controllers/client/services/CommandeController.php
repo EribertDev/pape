@@ -100,6 +100,19 @@ class CommandeController extends Controller
                 $data["dicipline"]=Discipline::getNameAndIdByReference($data["dicipline"]);
                 $client = session()->get("clientInfo");
                 $affilier = (new Admin())->getByCode($data['codeAf']);
+                $availableCodesAf = DB::table('admins')->pluck('code_af')->toArray();
+                $codeAfInput=$codeAfInput = $data['codeAf']; // Code AF saisi par l'utilisateur
+
+
+                if (in_array($codeAfInput, $availableCodesAf)) {
+                    // Appliquer une réduction de 30% au montant
+                    $discountedAmount = $prix * 0.7;}
+                    else {
+                      $discountedAmount= $prix;
+                    }
+
+
+            
               
                
                 if($affilier){
@@ -117,7 +130,7 @@ class CommandeController extends Controller
                     'max_pages' => $data["nbrPage"],
                     'deadline' => $data["deadline"],
                     'theme_memoire_id' => $theme_id,
-                    'amount'=>  $prix,
+                    'amount'=>  $discountedAmount,
                     'redactor_id'=> $theme_redactor,
                     'admin_af_id'=> $affilier_id,
                     'status_id'=>Status::getIdByName($status),
