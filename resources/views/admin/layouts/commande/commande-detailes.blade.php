@@ -99,16 +99,15 @@
                         <div class="card-body">
                             <h5 class="card-title">Payement</h5>
                             <h6 class="card-title fs-6">Montant à payer: {{$commande["amount"]}} (XOF) F cfa</h6>
-                            <h6 class="card-title fs-6">Total payer: 
-                                @if (!empty($commande["payements"]))
-                                    @if ($commande["payements"][0]["status"]["name"]==="Payer")
-                                        {{$commande["payements"][0]["amount"]}} (XOF) F cfa
-                                    @else
-                                        0 (XOF) F cfa
-                                    @endif 
-                                @else
-                                0 (XOF) F cfa
-                            @endif </h6>
+                            <h6 class="card-title fs-6">
+                                @php
+                                  $amountPaid = collect($commande->payments)->where('status.id', '20')->sum('amount'); 
+                               @endphp
+                                Total payer:  {{ $amountPaid  }} (XOF) F cfa
+                              
+                            
+                           
+                          </h6>
                             <input type="text" value="{{$commande["uuid"]}}" name="cmdUuid" id="cmdUuid" hidden >
 
                            {{--  <form class="mt-" id="payementForm">
