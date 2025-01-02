@@ -49,11 +49,11 @@ class ClientDashController extends Controller
                
                     $protocoles = json_decode($tm->path, true);
                     $service_name=$commande->services_id;
-    
-                    switch ($service_name ) {
-                        case '5':
-                          
-                            $file =$protocoles['licence'];
+                    
+                    if($service_name =='5' )  {
+                      
+
+                        $file =$protocoles['licence'];
 
                             $pathInfo = pathinfo($file); // Récupère des informations sur le fichier
                           $extension = $pathInfo['extension']; // Récupère l'extension du fichier
@@ -79,9 +79,9 @@ class ClientDashController extends Controller
                          $cmdStatus="Traiter";
                         (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
                          }
-                           break;
-                        case '6':
-                           
+                        }
+                         elseif($service_name =='5')
+                           {
                             $file =$protocoles['doctorat'];
 
                             $pathInfo = pathinfo($file); // Récupère des informations sur le fichier
@@ -108,10 +108,10 @@ class ClientDashController extends Controller
                          $cmdStatus="Traiter";
                          (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
                         }          
-                        break;
+                    }
 
-                        case '4':
-                           
+                    elseif($service_name =='4')
+                    {
                             $file =$protocoles['master'];
 
                             $pathInfo = pathinfo($file); // Récupère des informations sur le fichier
@@ -138,19 +138,11 @@ class ClientDashController extends Controller
                          $cmdStatus="Traiter";
                          (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
                         }          
-                        break;
-
-                        
-                        default:
-                            # code...
-                            break;
                     }
     
 
                 }   
-                else{
-                    
-                }              
+                           
                 
                
 
