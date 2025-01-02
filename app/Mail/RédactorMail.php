@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 
 class RédactorMail extends Mailable
 {
@@ -41,6 +42,8 @@ class RédactorMail extends Mailable
      */
     public function build()
     {  
+        $originalFileName = pathinfo($this->filePath, PATHINFO_BASENAME); 
+        $mimeType = mime_content_type($this->filePath);
 
 
         return $this->view('emails.RedactorEmail')
@@ -48,8 +51,8 @@ class RédactorMail extends Mailable
                         
                         'clientInfo' => $this->clientInfo,])
                         ->attach($this->filePath, [
-                            'as' => 'commande.pdf', // Nom personnalisé
-                            'mime' => 'application/pdf',
+                            'as' => $originalFileName, // Nom personnalisé
+                            'mime' => $mimeType,
                         ])
                 ->subject('Nouvelle commande de rédaction assignée à votre compte');
                 

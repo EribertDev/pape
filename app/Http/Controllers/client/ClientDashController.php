@@ -43,13 +43,22 @@ class ClientDashController extends Controller
 
                 $theme_id =$commande->theme_memoire_id;
                 $files = FilePatchOfCommande::where('commande_id', $commande->id)->get();
-                if(  $theme_id && $files->isEmpty() )  {
 
-                    $tm = ThemeMemoire::where('id',$theme_id)->first();     
+                 $tm = ThemeMemoire::where('id',$theme_id)->first();     
                
                     $protocoles = json_decode($tm->path, true);
                     $service_name=$commande->services_id;
                     
+                if(  $theme_id && $files->isEmpty() &&
+                
+                (
+                    !empty($protocoles['licence']) || 
+                    !empty($protocoles['master']) || 
+                    !empty($protocoles['doctorat'])
+                )
+                )  {
+
+                   
                     if($service_name =='5' )  {
                       
 
