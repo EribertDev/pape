@@ -30,7 +30,7 @@
                 <div class="col-lg-12 col-sm-12 col-xs-12 text-center mt-5 pt-5">
                     <div class="error_page">
                         <img src="{{asset("clients/assets/images/icon/valide.png")}}" class="img-fluid" alt="404 error" style="height: 120px;height: 120px">
-                        <h4 class="title fw-bold">Votre commande à été envoyer avec success</h4>
+                        <h4 class="title fw-bold">Votre commande a été envoyer avec succèss</h4>
                         <p>Vous allez recevoir un email de confirmation à l'adresse :<br><span class="text-primary"> {{ Auth::user()->email }}</span> </p>   
                         <div class="home_btn">
                             <a href="{{route("home")}}" class="btn_one">Accueil</a>

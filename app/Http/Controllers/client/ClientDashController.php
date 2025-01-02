@@ -4,6 +4,10 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Commande;
+use App\Models\FilePatchOfCommande;
+use App\Models\Payement;
+use App\Models\ThemeMemoire;
+use Illuminate\Support\Facades\Storage;
 
 class ClientDashController extends Controller
 {
@@ -20,8 +24,151 @@ class ClientDashController extends Controller
         $commande = (new Commande())->_getCommandeByUuid($uuid);
         //dd($commande->payments);
         if ($commande){
-                return view('clients.layouts.dash.commande-detail')->with('commande', $commande);
+
+            $totalPaid = $commande->payments->where('status_id', '20')->sum('amount');
+
+            // Vérifier si le montant total attendu est atteint
+            if ($totalPaid >= $commande->amount) {
+        
+               
+                $pendingOrders = Payement::where('commande_id', $commande->id)
+                                ->whereIn('status_id', [3, 21])
+                                ->get();
+        
+                // Supprimer les commandes en attente
+                foreach ($pendingOrders as $pendingOrder) {
+                    $pendingOrder->delete();
+                }
+            }
+
+                $theme_id =$commande->theme_memoire_id;
+                $files = FilePatchOfCommande::where('commande_id', $commande->id)->get();
+                if(  $theme_id && $files->isEmpty() )  {
+
+                    $tm = ThemeMemoire::where('id',$theme_id)->first();     
+               
+                    $protocoles = json_decode($tm->path, true);
+                    $service_name=$commande->services_id;
+    
+                    switch ($service_name ) {
+                        case '5':
+                          
+                            $file =$protocoles['licence'];
+
+                            $pathInfo = pathinfo($file); // Récupère des informations sur le fichier
+                          $extension = $pathInfo['extension']; // Récupère l'extension du fichier
+
+                          $uniqueFileName = 'fncmd_' . time() . '.' . $extension; // Conserve l'extension d'origine
+
+                          $destinationPath = 'files/commande';
+                          $newPath = $destinationPath . '/' . $uniqueFileName;
+                          
+                          // Copier le fichier source vers le nouvel emplacement
+                          if (Storage::exists('public/' . $file)) {
+                              Storage::copy('public/' . $file, 'public/' . $newPath);
+                           
+                          
+                            $type = "protocole_repertoire";
+                            // Ajoute un nouvel enregistrement
+                            (new FilePatchOfCommande())->addNew([
+                                'path' => $newPath,
+                                "type" => 1,
+                                "commande_id" => $commande->id,
+                                "description" => $type
+                            ]);
+                         $cmdStatus="Traiter";
+                        (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
+                         }
+                           break;
+                        case '6':
+                           
+                            $file =$protocoles['doctorat'];
+
+                            $pathInfo = pathinfo($file); // Récupère des informations sur le fichier
+                            $extension = $pathInfo['extension']; // Récupère l'extension du fichier
+
+                            $uniqueFileName = 'fncmd_' . time() . '.' . $extension; // Conserve l'extension d'origine
+
+                            $destinationPath = 'files/commande';
+                            $newPath = $destinationPath . '/' . $uniqueFileName;
+                            
+                            // Copier le fichier source vers le nouvel emplacement
+                            if (Storage::exists('public/' . $file)) {
+                                Storage::copy('public/' . $file, 'public/' . $newPath);
+                            
+                            
+                            $type = "protocole_repertoire";
+                            // Ajoute un nouvel enregistrement
+                            (new FilePatchOfCommande())->addNew([
+                                'path' => $newPath,
+                                "type" => 1,
+                                "commande_id" => $commande->id,
+                                "description" => $type
+                            ]);
+                         $cmdStatus="Traiter";
+                         (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
+                        }          
+                        break;
+
+                        case '4':
+                           
+                            $file =$protocoles['master'];
+
+                            $pathInfo = pathinfo($file); // Récupère des informations sur le fichier
+                            $extension = $pathInfo['extension']; // Récupère l'extension du fichier
+
+                            $uniqueFileName = 'fncmd_' . time() . '.' . $extension; // Conserve l'extension d'origine
+
+                            $destinationPath = 'files/commande';
+                            $newPath = $destinationPath . '/' . $uniqueFileName;
+                            
+                            // Copier le fichier source vers le nouvel emplacement
+                            if (Storage::exists('public/' . $file)) {
+                                Storage::copy('public/' . $file, 'public/' . $newPath);
+                            
+                            
+                            $type = "protocole_repertoire";
+                            // Ajoute un nouvel enregistrement
+                            (new FilePatchOfCommande())->addNew([
+                                'path' => $newPath,
+                                "type" => 1,
+                                "commande_id" => $commande->id,
+                                "description" => $type
+                            ]);
+                         $cmdStatus="Traiter";
+                         (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
+                        }          
+                        break;
+
+                        
+                        default:
+                            # code...
+                            break;
+                    }
+    
+
+                }   
+                else{
+                    
+                }              
+                
+               
+
+
+
+
+
+
+
+
+ 
+
+
+
+            return view('clients.layouts.dash.commande-detail')->with('commande', $commande);
             }
         return redirect()->route('dash.client');
     }
 }
+
+

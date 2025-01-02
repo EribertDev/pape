@@ -83,6 +83,7 @@
                                             $totalAmount = $commande->amount; // Montant total
                                                $amountPaid = collect($commande->payments)->where('status.id', '20')->sum('amount');
                                                 $lastPayment = $commande->payments->last();
+                                                $lastPaidPayment = $commande->payments->where('status.id', '20')->last();
 
                                             $amountRemaining = $totalAmount - $amountPaid; // Reste à payer
 
@@ -96,33 +97,34 @@
 
                                             @if (!empty($commande->payments)  && $fileDescription === "protocole" )
                                                 <p>Le document disponible est un protocole. </p>
-                                                @if (  $amountPaid >= $totalAmount / 2 && strtolower($commande->payments[0]->status->name)=="payer" )
+                                                @if (  $amountPaid >= $totalAmount / 2 )
                                                     <p>Vous avez payé la première tranche. Vous pouvez télécharger le document.</p>
                                                     <button class="btn_one border-0 download" type="button"
                                                         data-uuid="{{ $commande->uuid }}"
-                                                        data-pay-id="{{ $payments[0]->id ?? '' }}"
+                                                        data-pay-id="{{  $lastPaidPayment->id ?? '' }}"
                                                         data-pay-status="payer">
                                                         <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span>
                                                         <span role="status">Télécharger</span>
                                                     </button>
+                                                    
                                                 @else
-                                                <p> Vous paierez seulement la moitié ({{ $totalAmount / 2 }}) pour pouvoir télécharger.</p>                                                    
-                                                <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
-                                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
-                                                </button>
+                                                    <p> Vous paierez seulement la moitié ({{ $totalAmount / 2 }}) pour pouvoir télécharger.</p>                                                    
+                                                    <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
+                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
+                                                    </button>
                                                                                                         
-                                                @if(!empty($commande->payments))
-                                                <button class="btn_two border-0 payer_confirme ms-2 " type="button"   data-pay-id="{{ $lastPayment->id ?? '' }}"
-                                                    data-pay-status="{{ strtolower($lastPayment->status->name ?? '') }}"
-                                                    >
-                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
-                                                    </button> 
-                                                                                                        
-                                               @endif  
+                                                    @if(!empty($commande->payments))
+                                                    <button class="btn_two border-0 payer_confirme ms-2 " type="button"   data-pay-id="{{ $lastPayment->id ?? '' }}"
+                                                        data-pay-status="{{ strtolower($lastPayment->status->name ?? '') }}"
+                                                        >
+                                                            <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
+                                                        </button> 
+                                                                                                            
+                                                    @endif  
                                                 @endif                                              
                                             @elseif (!empty($commande->payments) && count($commande->payments) > 0 && $fileDescription === "complete" )
-                                            <p>Le document disponible est la rédaction complete. </p>
-                                                @if ($allPaymentsPaid && $amountPaid === $totalAmount )
+                                                <p>Le document disponible est la rédaction complete. </p>
+                                                @if ($amountPaid === $totalAmount )
                                                     <p>Vous avez entièrement payé {{ $totalAmount }}. Vous pouvez télécharger le document.</p>
                                                     <button class="btn_one border-0 download" type="button"
                                                         data-uuid="{{ $commande->uuid }}"
@@ -131,7 +133,7 @@
                                                         <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span>
                                                         <span role="status">Télécharger</span>
                                                     </button>
-                                                @elseif ($amountPaid > 0  && strtolower($commande->payments[0]->status->name)=="payer" )
+                                                @elseif ($amountPaid > 0  )
                                                     <p>Vous avez déjà payé {{ $amountPaid }}. Il vous reste {{ $amountRemaining }} à régler.</p>
                                                 
                                                     <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount="{{ $amountRemaining }}" data-amount-type ="PP" data-uuid ="{{$commande->uuid}}">
@@ -139,27 +141,55 @@
                                                     </button>
                                                     
                                                     @if(!empty($commande->payments))
-                                                <button class="btn_two border-0 payer_confirme ms-2 " type="button"   data-pay-id="{{ $lastPayment->id ?? '' }}"
-                                                    data-pay-status="{{ strtolower($lastPayment->status->name ?? '') }}"
-                                                    >
-                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
-                                                    </button> 
-                                                                                                        
-                                               @endif 
+                                                    <button class="btn_two border-0 payer_confirme ms-2 " type="button"   data-pay-id="{{ $lastPayment->id ?? '' }}"
+                                                        data-pay-status="{{ strtolower($lastPayment->status->name ?? '') }}"
+                                                        >
+                                                            <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
+                                                        </button> 
+                                                                                                            
+                                                    @endif 
                                                 @else
                                                                                             
-                                                <button class="btn_two border-0 payer_confirme ms-2 " type="button" data-pay-id = "{{$commande->payments[0]->id}}"
-                                                    data-pay-status = "{{$commande->payments[0]->status->name}}"
-                                                    >
-                                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
-                                                </button>
+                                                    <button class="btn_two border-0 payer_confirme ms-2 " type="button" data-pay-id = "{{$commande->payments[0]->id}}"
+                                                        data-pay-status = "{{$lastPayment->status->name}}"
+                                                        >
+                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
+                                                    </button>
                                           
                                                 @endif
+
+
+                                            
+                                            @elseif ( $fileDescription === "protocole_repertoire" )
+                                                @if ($amountPaid === $totalAmount  )
+                                                    <p>Vous avez déjà payé {{ $amountPaid }}. Vous pouvez télécharger votre protocole</p>
+                                                    <button class="btn_one border-0 download" type="button"
+                                                            data-uuid="{{ $commande->uuid }}"
+                                                            data-pay-id="{{ $lastPaidPayment->id ?? '' }}"
+                                                            data-pay-status="payer">
+                                                            <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span>
+                                                            <span role="status">Télécharger</span>
+                                                        </button>
+                                                @elseif ($amountPaid < $totalAmount)
+                                                    <p>Le protocole du thème que vous avez choisi est disponible. Vous pouvez procéder au paiement pour y accéder dès maintenant.</p>
+                                                    <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
+                                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
+                                                    </button>
+                                                    @if(!empty($commande->payments))
+                                                    <button class="btn_two border-0 payer_confirme ms-2 " type="button"   data-pay-id="{{ $lastPayment->id ?? '' }}"
+                                                        data-pay-status="{{ strtolower($lastPayment->status->name ?? '') }}"
+                                                        >
+                                                            <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
+                                                        </button> 
+                                                                                                            
+                                                    @endif 
+                                                @endif
+
                                             @else
-                                            <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
-                                                <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
-                                            </button>         
-                                        @endif
+                                                <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount-type ="PS" data-uuid ="{{$commande->uuid}}">
+                                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
+                                                </button>         
+                                            @endif
                                     @endif
                                     </div>
                                 </div>

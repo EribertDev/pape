@@ -72,7 +72,12 @@ class PayementController extends Controller
                     $amount = $commande->amount;
                     // Garder le montant total si la description est "complete"
                     $description = "Payement complet";
-                } else {
+                } elseif(strtolower($description) === 'protocole_repertoire')
+                {
+                    $amount = $commande->amount;
+                    $description = "Payement unique pour le protocole";
+                }
+                 else {
                     throw new \Exception("Description inconnue : {$description}");
                 }
                 

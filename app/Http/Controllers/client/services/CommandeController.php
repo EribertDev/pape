@@ -17,6 +17,7 @@ use App\Models\ThemeMemoire;
 use App\Models\TypeOfService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -106,7 +107,10 @@ class CommandeController extends Controller
 
                 if (in_array($codeAfInput, $availableCodesAf)) {
                     // Appliquer une réduction de 30% au montant
-                    $discountedAmount = $prix * 0.7;}
+                    $discountedAmount = $prix * 0.7;
+                    $discountedAmount = round($discountedAmount / 100) * 100;
+                
+                }   
                     else {
                       $discountedAmount= $prix;
                     }
@@ -394,12 +398,12 @@ class CommandeController extends Controller
     public function downloadFinalFile(Request $request) {
         $uuid = $request->input('uuid');
         $cmd = (new Commande())->getCommandeByUuid($uuid);
-
+        $lastPayment = $cmd->payments->last();
         if (!$cmd || !$cmd->payments) {
             return response()->json(['error' => 'Commande or payment not found.'], 404);
         }
 
-        if ($cmd->payments[0]->status_id !== Status::getIdByName('Payer')) {
+        if ($lastPayment->status_id !== Status::getIdByName('Payer')) {
             return response()->json(['error' => 'Payment status not valid for download.'], 403);
         }
 
@@ -416,10 +420,15 @@ class CommandeController extends Controller
         $fileContent = file_get_contents($path);
         $base64 = base64_encode($fileContent);
 
+       
+        // Identifier le type MIME pour le fichier
+        $mimeType = mime_content_type($path);
+    
+
         return response()->json([
             'msg' => 'File downloaded',
             'filename' => time(),
-            'data' => 'data:application/pdf;base64,' . $base64,
+            'data' => 'data:' . $mimeType . ';base64,' . $base64,
             'success' => true,
         ], 200);
 
