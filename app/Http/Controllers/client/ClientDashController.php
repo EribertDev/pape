@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ProtocolReadyMail;
 use App\Models\Commande;
 use App\Models\FilePatchOfCommande;
 use App\Models\Payement;
 use App\Models\ThemeMemoire;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ClientDashController extends Controller
@@ -81,15 +85,21 @@ class ClientDashController extends Controller
                             // Ajoute un nouvel enregistrement
                             (new FilePatchOfCommande())->addNew([
                                 'path' => $newPath,
-                                "type" => 1,
+                                "type" => 1,        
                                 "commande_id" => $commande->id,
                                 "description" => $type
                             ]);
                          $cmdStatus="Traiter";
                         (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
+                        $clientEmail = Auth::user()->email;
+                         $theme = $commande->subject;  // Exemple pour inclure des détails du thème
+                         $service = 'Protocole Licence';
+                         $client = $commande->client->fist_name;
+                         
+                         Mail::to($clientEmail)->send(new ProtocolReadyMail($client,$theme,$service));
                          }
                         }
-                         elseif($service_name =='5')
+                         elseif($service_name =='6')
                            {
                             $file =$protocoles['doctorat'];
 
@@ -116,6 +126,13 @@ class ClientDashController extends Controller
                             ]);
                          $cmdStatus="Traiter";
                          (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
+                         $clientEmail = Auth::user()->email;
+                         $theme = $commande->subject;  // Exemple pour inclure des détails du thème
+                         $service = 'Protocole Doctorat';
+                         $client = $commande->client->fist_name;
+                         
+                         Mail::to($clientEmail)->send(new ProtocolReadyMail($client,$theme,$service));
+                         
                         }          
                     }
 
@@ -146,6 +163,12 @@ class ClientDashController extends Controller
                             ]);
                          $cmdStatus="Traiter";
                          (new Commande())->updateCommandeStatusByUuid($commande->uuid,$cmdStatus);
+                         $clientEmail = Auth::user()->email;
+                         $theme = $commande->subject;  // Exemple pour inclure des détails du thème
+                         $service = 'Protocole Master';
+                         $client = $commande->client->fist_name;
+                         
+                         Mail::to($clientEmail)->send(new ProtocolReadyMail($client,$theme,$service));
                         }          
                     }
     

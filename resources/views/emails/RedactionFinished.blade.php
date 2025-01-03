@@ -74,9 +74,7 @@
         <p>Si vous avez des questions ou des préoccupations concernant votre commande, n'hésitez pas à nous contacter. Merci pour votre confiance en notre service !</p>
 
         <div class="footer">
-            <p>Cordialement, <br/> L'équipe SyRRaM</p>
-          
-        
+           
             <p>Cordialement,</p>
             <p><em>L'équipe CESIE Benin</em></p>
             <img src="https://syrram.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
