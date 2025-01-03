@@ -32,6 +32,10 @@ class ThemeMemoireController extends Controller
                     'licence' => 'nullable|file|mimes:pdf', // Optionnel
                     'master' => 'nullable|file|mimes:pdf', // Optionnel
                     'doctorat' => 'nullable|file|mimes:pdf', // Optionnel
+                    'specifique' => 'nullable|string',
+                    'generale' => 'nullable|string',
+                    'lieu_collect' => 'nullable|string|max:255',
+                    'annee_collect' => 'nullable|integer|min:1900|max:' . date('Y'),
                    // 'categories' => 'required|exists:disciplines,id', // Assurez-vous que la catégorie existe
                 ]);
                 // Stockage du fichier sur le serveur
@@ -45,15 +49,17 @@ class ThemeMemoireController extends Controller
                         $path[$type] = $file->storeAs('protocoles', $uniqueFileName, 'public');
                     }
                 }
-                if (session()->has('adminInfo')) {
-                    $redactor_id = session()->get('adminInfo')->id;
-                }
+               
                 // Ajout du nouvel enregistrement
                 $response = (new ThemeMemoire())->addNew([
                     "title" => $vald["theme"],
                     'description' => $vald["description"],
                     'path' => json_encode($path),
-                    'redactor_id'=>$redactor_id
+                    'redactor_id'=>$redactor_id,
+                    'generale' => $vald["generale"],
+                    'specifique' => $vald["specifique"],
+                    'lieu_collect' => $vald["lieu_collect"],
+                    'annee_collect' => $vald["annee_collect"],
                 ]);
         
                 if ($response) {
@@ -80,7 +86,12 @@ class ThemeMemoireController extends Controller
             'description' => 'required|string',
             'licence' => 'nullable|file|mimes:pdf', // Optionnel
             'master' => 'nullable|file|mimes:pdf', // Optionnel
-            'doctorat' => 'nullable|file|mimes:pdf', // Optionnel
+            'doctorat' => 'nullable|file|mimes:pdf', 
+            'specifique' => 'nullable|string',
+            'generale' => 'nullable|string',
+            'lieu_collect' => 'nullable|string|max:255',
+            'annee_collect' => 'nullable|integer|min:1900|max:' . date('Y'),
+            // Optionnel
            // 'categories' => 'required|exists:disciplines,id', // Assurez-vous que la catégorie existe
         ]);
 
@@ -105,7 +116,7 @@ class ThemeMemoireController extends Controller
             }
         }
 
-        $response = (new ThemeMemoire())->updateByUuid($request->input('uuid'),["title"=>$vald["theme"],'description'=>$vald["description"],'path'=>json_encode($path),'redactor_id'=>$redactor_id]);
+        $response = (new ThemeMemoire())->updateByUuid($request->input('uuid'),["title"=>$vald["theme"],'description'=>$vald["description"],'path'=>json_encode($path),'redactor_id'=>$redactor_id,'generale' => $vald["generale"],'specifique' => $vald["specifique"],'lieu_collect' => $vald["lieu_collect"],'annee_collect' => $vald["annee_collect"]]);
         if ($response){
             return response()->json(["message"=>"success"]);
         }

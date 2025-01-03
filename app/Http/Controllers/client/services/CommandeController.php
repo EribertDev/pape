@@ -158,6 +158,7 @@ class CommandeController extends Controller
                     $filCmd->addNew(['commande_id'=>$idCommande,'path'=>  $protocole ,'type'=>true,'description'=>'fichier finale de la commande']);
                  }
                 
+                 
                 Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully());
                 
                 session()->put('idCmd',$idCommande);

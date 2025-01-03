@@ -24,6 +24,9 @@
                                 <a class="nav-link" href="{{route('home')}}">Accueil</a>
                             </li>
                             <li>
+                                <a class="nav-link" href="{{route('biblios')}}">Bibliothèque</a>
+                            </li>
+                            <li>
                                 <a class="nav-link" href="{{route('a-propos')}}">A propos</a>
                             </li>
                             <li>

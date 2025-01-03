@@ -135,6 +135,7 @@ class CommandeController extends Controller
        $commande["client"]["email"]= $userEmail;
        $redactors = (new Admin())->getAllByRole("Editeur");
        $data = ["commande"=>$commande,"redactors"=>$redactors];
+
        //dd($data);
 
      return view('admin.layouts.commande.commande-detailes')->with('data',$data);
@@ -160,6 +161,7 @@ class CommandeController extends Controller
                   
                 }
                
+   
                 // Génére un nom de fichier unique
                 $uniqueFileName = 'fncmd_' . time() . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('files/commande', $uniqueFileName, 'public');

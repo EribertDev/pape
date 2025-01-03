@@ -122,10 +122,48 @@ document.addEventListener('DOMContentLoaded',()=>{
                         maxLength: 1024,
                     },
                 },
-            }
+            },
+
+            generale:{
+                name:'generale',
+                typeField:{
+                    textField:{
+                        minLength:1,
+                        maxLength: 1024,
+                    },
+                },
+            },
+            specifique:{
+                name:'specifique',
+                typeField:{
+                    textField:{
+                        minLength:1,
+                        maxLength: 1024,
+                    },
+                },
+            },
+            lieu_collect:{
+                name:'lieu_collect',
+                typeField:{
+                    textField:{
+                        minLength:1,
+                        maxLength: 255,
+                    },
+                },
+            },
+            annee_collect:{
+                name: 'annee_collect',
+                typeField: {
+                    dropdownField: { // Change to a dropdown for selecting years
+                        options: [], // Placeholder for dynamic generation
+                        defaultValue: new Date().getFullYear(), // Current year by default
+                    },
+                },
+            },
+
         }
         isValideInput= stdevForm.validateFields(
-            ['theme','description'],fieldsConfig,
+            ['theme','description','generale','specifique','lieu_collect','annee_collect'],fieldsConfig,
             "form-control is-invalid",
             "form-control is-valid");
         if (isValideInput){
@@ -154,13 +192,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                         if (action==="add"){
                             swalWithBootstrapButtons.fire({
                                 title: "Ajouté",
-                                text: "Thème de mémoire ajoutée avec sucè.😊",
+                                text: "Thème de mémoire ajoutée avec succès.😊",
                                 icon: "success"
                             });
                         }else{
                             swalWithBootstrapButtons.fire({
                                 title: "Enregitrer",
-                                text: "Thème de mémoire modifiée avec sucè.😊",
+                                text: "Thème de mémoire modifiée avec succès.😊",
                                 icon: "success"
                             });
                         }
@@ -208,6 +246,10 @@ document.addEventListener('DOMContentLoaded',()=>{
                 document.getElementById('TMFormSubmit').dataset.action = "edit";
                 document.getElementById("theme").value = response.title;
                 document.getElementById("description").value = response.description;
+                document.getElementById("specifique").value = response.specifique;
+                document.getElementById("generale").value = response.generale;
+                document.getElementById("annee_collect").value = response.annee_collect;
+                document.getElementById("lieu_collect").value = response.lieu_collect;
                 document.getElementById("uuid").value = response.uuid;
                 TMModal.modal('show');
             },
