@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded",function (){
                 success: function (response) {
                    // console.log(response);
                     document.getElementById('registerForm').reset();
-                    $('#loginModal').modal('show');
+                    window.location.href = '/email/verify/sent';
                     $('#registerModal').modal('hide');
                 },
                 error: function (xhr, status, error) {

@@ -32,11 +32,17 @@ use GuzzleHttp\Psr7\Request;
 |
 |
 */
+Route::get('email/verify/sent', function () {
+    return view('clients.layouts.email-verify.email-verify-sent');; // Créez cette vue pour informer l'utilisateur
+})->name('email.verify.sent');
 
 Route::get('/', LandingPageController::class)->name('home');
 /**===============================
  * client
 =================================*/
+
+Route::get('/search/themes', [BiblioController::class, 'search'])->name('themes.search');
+
 
 /**
  * Route service offre

@@ -154,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                
             };
-
             //verification des champs
            // console.log(stdevForm.getDataFormData())
            
@@ -179,6 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
             $('#loginModal').modal('show');
         }
     });
+
     //
     document.querySelector("#acceptedConditionBtn").addEventListener("click",function (event){
 
@@ -226,23 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     //
-    document.getElementById('check_choose').addEventListener('change', function() {
-        if (this.checked) {
-            document.getElementById('div_theme').hidden = false;
-            document.getElementById('div_subject').hidden = true;
-        } else {
-            document.getElementById('div_theme').hidden = true;
-            document.getElementById('div_subject').hidden = false;
-        }
-    });
-
-    if(document.getElementById('check_choose').checked){
-        document.getElementById('div_theme').hidden = false;
-        document.getElementById('div_subject').hidden = true;
-    }else{
-        document.getElementById('div_theme').hidden = true;
-        document.getElementById('div_subject').hidden = false;
-    }
+    
 
     // Écouter le changement de sélection pour le thème
     // $('#theme').on('change', function() {

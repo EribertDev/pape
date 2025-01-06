@@ -96,121 +96,110 @@
                                                     
                                             </div>
                                             <h4 class="text-center mb-4" >Informations de la commande  </h4>
-                                            <div class="form-group my-3">
-                                                <label for="cars" class="fw-bold">Type de service</label>
-                                                <select  name="typeService" id="typeService">
-                                                    <option value="" selected disabled>Quels type de service souhaitez vous ?</option>
-
-                                                    @if (!empty($options['typeService']))
-                                                        @php
-                                                            foreach ($options['typeService'] as $datas){
-                                                                echo '<option value='.$datas->reference.' data-montant = "'.$datas->prix.'">'.$datas->name.'</option>';
-                                                            }
-                                                        @endphp
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            {{--
+                                            <div id="step1" class="step">
                                                 <div class="form-group my-3">
-                                                    <label for="cars">Type de document</label>
-                                                    <select  name="typeDocument" id="typeDocument">
-                                                        @php
-                                                            foreach ($options['typeDocument'] as $datas){
+                                                    <label for="cars" class="fw-bold">Type de service</label>
+                                                    <select  name="typeService" id="typeService">
+                                                        <option value="" selected disabled>Quels type de service souhaitez vous ?</option>
+
+                                                        @if (!empty($options['typeService']))
+                                                            @php
+                                                                foreach ($options['typeService'] as $datas){
+                                                                    echo '<option value='.$datas->reference.' data-montant = "'.$datas->prix.'">'.$datas->name.'</option>';
+                                                                }
+                                                            @endphp
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                                {{--
+                                                    <div class="form-group my-3">
+                                                        <label for="cars">Type de document</label>
+                                                        <select  name="typeDocument" id="typeDocument">
+                                                            @php
+                                                                foreach ($options['typeDocument'] as $datas){
+                                                                    echo '<option value="'.$datas->reference.'">'.$datas->name.'</option>';
+                                                                }
+                                                            @endphp
+                                                        </select>
+                                                    </div>
+                                                --}}
+                                                <div class="form-group my-3">
+                                                    <label for="cars" class="fw-bold">Discipline</label>
+                                                    
+                                                    <select  name="dicipline" id="dicipline">
+                                                    
+
+                                                    @if (!empty($options['discipline']))
+                                                    @php
+                                                            foreach ($options['discipline'] as $datas){
                                                                 echo '<option value="'.$datas->reference.'">'.$datas->name.'</option>';
                                                             }
                                                         @endphp
+                                                    @endif
+                                                    <option value="autre" >Autre</option>
                                                     </select>
                                                 </div>
-                                            --}}
-                                            <div class="form-group my-3">
-                                                <label for="cars" class="fw-bold">Discipline</label>
-                                                
-                                                <select  name="dicipline" id="dicipline">
-                                                   
-
-                                                   @if (!empty($options['discipline']))
-                                                   @php
-                                                        foreach ($options['discipline'] as $datas){
-                                                             echo '<option value="'.$datas->reference.'">'.$datas->name.'</option>';
-                                                         }
-                                                    @endphp
-                                                   @endif
-                                                   <option value="autre" >Autre</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                           
-                                                <div class="form-group ">
-                                                    <label for="country" class="fw-bold">Pays </label>
-                                                    <select name="pays" id="pays" class="form-control">
-                                                    <option value="" selected disabled>-- Sélectionnez un pays --</option>
-                                                      @foreach ($countries as $country )
-                                                          <option  value="{{$country['name']}}"> {{$country['name']}}</option>
-                                                      @endforeach
-                                                    </select>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group ">
-                                                    <label class="fieldlabels fw-bold" for="universite">Université</label>
-                                                    <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" />
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group ">
-                                                    <label class="fieldlabels  fw-bold" for="specialite">Spécialité</label>
-                                                <input  class="px-2 py-2" type="text" name="specialite" id="specialite" placeholder="Votre Spécialité" />
-                                                </div>
-                                            </div>
-
-                                           
-                                        
-                                            <div class="row">
-                                                <div class="form-group ">
-                                                    <label for="niveau" class="fw-bold">Niveau d'étude </label>
-                                                    <select name="niveau" id="niveau" class="form-control">
-                                                     
-                                                        <option value="bac"> BACALAUREAT</option>
-                                                        <option value="bts">BTS </option>
-                                                        <option value="licence"> LICENCE</option>
-                                                        <option value="master">MASTER </option>
-                                                        <option value="doctorat"> DOCTORAT</option>
-                                                     
-                                                    </select>
-                                                </div>  
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group ">
-                                                  
-                                                    <label class="fieldlabels fw-bold " for="annee_academique">Année academique</label>
-                                                    <input  class="px-2 py-2" type="text" name="annee_academique" id="annee_academique" placeholder="L'année academique" />
-                                                </div>  
-                                            </div>
-
+                                                <div class="col-12">
+                                            
+                                                    <div class="form-group ">
+                                                        <label for="country" class="fw-bold">Pays </label>
+                                                        <select name="pays" id="pays" class="form-control">
+                                                        <option value="" selected disabled>-- Sélectionnez un pays --</option>
+                                                        @foreach ($countries as $country )
+                                                            <option  value="{{$country['name']}}"> {{$country['name']}}</option>
+                                                        @endforeach
+                                                        </select>
                                                     
-                                            
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group ">
+                                                        <label class="fieldlabels fw-bold" for="universite">Université</label>
+                                                        <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" />
+                                                    </div>
+                                                </div>
 
-                                            
-                                        </div>
-                                       
-                                        
-                                        <div class="col-12">
-                                            <div class="col-12">
-                                            <div class="form-group create-account">
-                                                <input  type="checkbox" id="check_choose" value="1" name="choose_theme" checked>
-                                                <label for="check_choose"  class="fw-bold">Chosir un theme du répertoire CESIE</label>
+                                                <div class="row">
+                                                    <div class="form-group ">
+                                                        <label class="fieldlabels  fw-bold" for="specialite">Type d'université</label>
+                                                        <select name="specialite" id="specialite" class="form-control">
+                                                            <option value="" selected disabled>---</option>
+                                                            
+                                                                <option  value="Publique">Publique</option>
+                                                                <option  value="Privé"> Privé</option>
+                                                           
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                           
+    <button type="button"   class="btn btn-primary mt-3 next-btn">Suivant</button>
                                             </div>
-                                        </div>
 
+                                            
+                                      
+                                        <div id="step2" class="step d-none">
+                                            <div class="form-group">
+                                                <label class="fw-bold">Voulez-vous choisir un thème du répertoire CESIE ?</label>
+                                                <div class="mt-2 d-flex align-items-center">
+                                                    <!-- Option Oui -->
+                                                    <div class="form-check me-3">
+                                                        <input type="radio" class="form-check-input" id="chooseYes" name="chooseTheme" value="yes">
+                                                        <label class="form-check-label" for="chooseYes">Oui</label>
+                                                    </div>
+                                                    <!-- Option Non -->
+                                                    <div class="form-check">
+                                                        <input type="radio" class="form-check-input" id="chooseNo" name="chooseTheme" value="no">
+                                                        <label class="form-check-label" for="chooseNo">Non</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- <div class="form-check form-check-inline mt-lg-5" >
                                                 <input class="form-check-input" type="checkbox" id="check_choose" value="1" name="choose_theme" checked>
                                                 <label class="form-check-label" for="check_choose">Chosire un theme</label>
                                             </div> -->
 
-                                            <div class="form-group mt-2" id="div_subject">
+                                            <div class="form-group mt-2" id="div_subject"   style="display: none;">
                                                 <label class="fieldlabels fw-bold" for="subject">Inscrivez votre thème</label>
                                                 <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme" />
                                             </div>
@@ -220,7 +209,7 @@
                                               
                                             </div>
 
-                                            <div class="form-group mt-2" id="div_theme">
+                                            <div class="form-group mt-2" id="div_theme"  style="display: none;">
                                                 <label for="cars"  class="fw-bold">Thème de Recherche </label>
                                                 <select name="theme" id="theme" hidden>
                                                     <option value="">Veuillez entrer votre theme</option>
@@ -233,12 +222,15 @@
                                                     @endif
                                                 </select>
                                             </div>
+                                           
+                                            <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
+                                            <button type="button" class="btn btn-primary next-btn">Suivant</button>
+                                        </div>
+                                    </div>
+                                        <div id="step3" class="step d-none">
                                             <div class="row">
-                                                <div class="form-group col-6">
-                                                    <label class="fieldlabels fw-bold" for="nbrPage" >Nombre de pages</label>
-                                                    <input type="number" name="nbrPage" id="nbrPage" class="no-spinner">
-                                                </div>
-                                                <div class="form-group col-6">
+                                               
+                                                <div class="form-group col-12">
                                                 @php
                                                    // echo $dateLimit = $options['date'];
                                                 @endphp
@@ -246,31 +238,31 @@
                                                     <input  class="px-2 py-2" type="date" name="deadline" id="deadline" placeholder="" value="" />
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                    <div class="form-group ">
-                                        <label for="descrip_file"  class="fw-bold">Ajouter un fichier (.pdf, .doc, .docx)</label>
-                                        <input
-                                        type="file"
-                                        id="descrip_file"
-                                        name="descrip_file"
-                                        accept=".pdf, .doc, .docx"
-                                        multiple />
-                                    </div>
-                                        <div class="form-group">
-                                            <label class="fieldlabels fw-bold" for="description">Quel problème principal désirez vous résoudre à travers cette thématique ?</label>
-                                            <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
-                                        </div>
+                                            <div class="row">
+                                            <div class="form-group ">
+                                                <label for="descrip_file"  class="fw-bold">Ajouter un fichier (.pdf, .doc, .docx)</label>
+                                                <input
+                                                type="file"
+                                                id="descrip_file"
+                                                name="descrip_file"
+                                                accept=".pdf, .doc, .docx"
+                                                multiple />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="fieldlabels fw-bold" for="description">Quel problème principal désirez vous résoudre à travers cette thématique ?</label>
+                                                <textarea placeholder="Message" name="description" id="description" class="form-control mb-3" style="height: 150px;"></textarea>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="fieldlabels fw-bold" for="codeAf" >Code point focal (Si vous n'avez pas de code mettez 1000)</label>
+                                                <input type="number" name="codeAf" id="codeAf" class="no-spinner">
+                                                <li><span id="promo-message"></span></li> 
+                                            </div>
+                                            <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
+                                           
                                         
-                                        <div class="form-group">
-                                            <label class="fieldlabels fw-bold" for="codeAf" >Code point focal (Entrez 1000 si aucun)</label>
-                                            <input type="number" name="codeAf" id="codeAf" class="no-spinner">
-                                            <li><span id="promo-message"></span></li> 
                                         </div>
-                                        
-                                    </div>
-                                </div>
+                             
                                 <!-- Button Widget -->
 
                                 <!--/ End Button Widget -->
@@ -279,34 +271,35 @@
                         <!--/ End Form -->
                     </div>
                 </div>
-                <div class="col-lg-4 col-12">
-						<div class="order-details">
-							<!-- Order Widget -->
-							<div class="single-widget">
-								<h2>Coût de la prestation </h2>
-								<div class="content">
-									<ul>
-                                        <li>Montant normal<span id="montant">-----</span></li>
-                                        <li>Réduction<span id="montantReduit">-----</span></li>
-                                        <li>Montant à payer: <span id="montantFinal"> </span></li>
+                </div>
+                <div class="col-lg-4 col-12 >
+                    <div class="order-details">
+                        <!-- Order Widget -->
+                        <div class="single-widget">
+                            <h2>Coût de la prestation </h2>
+                            <div class="content">
+                                <ul>
+                                    <li>Montant normal<span id="montant">-----</span></li>
+                                    <li>Réduction<span id="montantReduit">-----</span></li>
+                                    <li>Montant à payer: <span id="montantFinal"> </span></li>
 
-										
-									</ul>
-                                        
-								</div>
-							</div>
-							<!--/ End Payment Method Widget -->
-							<!-- Button Widget -->
-							<div class="single-widget get-button">
-								<div class="content">
-									<div class="button">
-										<a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
-									</div>
-								</div>
-							</div>
-							<!--/ End Button Widget -->
-						</div>
-					</div>
+                                    
+                                </ul>
+                                    
+                            </div>
+                        </div>
+                        <!--/ End Payment Method Widget -->
+                        <!-- Button Widget -->
+                        <div class="single-widget get-button">
+                            <div class="content">
+                                <div class="button">
+                                    <a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Button Widget -->
+                    </div>
+				</div>
             </div>
         </div>
     </section>
@@ -528,9 +521,68 @@
     </script>
 
     <script >
+
+
+const chooseYes = document.getElementById('chooseYes');
+const chooseNo = document.getElementById('chooseNo');
+const divTheme = document.getElementById('div_theme');
+const divSubject = document.getElementById('div_subject');
+
+// Fonction pour afficher ou masquer les champs
+function handleThemeSelection() {
+    if (chooseYes.checked) {
+        // Affiche la liste déroulante si "Oui" est sélectionné
+        divTheme.style.display = 'block';
+        divSubject.style.display = 'none';
+    } else if (chooseNo.checked) {
+        // Affiche le champ texte si "Non" est sélectionné
+        divTheme.style.display = 'none';
+        divSubject.style.display = 'block';
+    }
+}
+
+// Ajouter des écouteurs d'événements sur les boutons radio
+chooseYes.addEventListener('change', handleThemeSelection);
+chooseNo.addEventListener('change', handleThemeSelection);
     // Intégration des codes promo valides dans une variable JavaScript
     const codesPromoValides = @json($codesPromoValides);
-   // Vérifie si 'montant' est défini et correct
+  
+  document.addEventListener("DOMContentLoaded", () => {
+  const steps = document.querySelectorAll(".step");
+  let currentStep = 0;
+
+  // Afficher l'étape actuelle
+  const showStep = (index) => {
+    steps.forEach((step, idx) => {
+      step.classList.toggle("d-none", idx !== index);
+    });
+  };
+
+  // Boutons "Suivant"
+  document.querySelectorAll(".next-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+  });
+
+  // Boutons "Précédent"
+  document.querySelectorAll(".prev-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+  });
+
+  // Afficher la première étape au début
+  showStep(currentStep);
+});
+
+
     </script>
 
 @endsection

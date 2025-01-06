@@ -22,7 +22,7 @@ class CheckAuthClient
             return redirect('/home');
         }
         if (session()->has('role') && session()->get('role') !== $roles) {
-            if (session()->get('role') === "Administrateur" || session()->get('role') === "Rédacteur" || session()->get('role') === "Affilier" || session()->get('role') === "Super Admin") {
+            if (session()->get('role') === "Administrateur" || session()->get('role') === "Editeur" || session()->get('role') === "Affilier" || session()->get('role') === "Super Admin") {
                 return redirect('/admin/dash');
             }
             return redirect('/home');
