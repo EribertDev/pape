@@ -92,15 +92,15 @@
                         <h6 class="fs-6">Protocoles</h6>
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Licences</label>
-                            <input type="file" class="form-control" id="licence" name="licence" accept=".pdf">
+                            <input type="file" class="form-control" id="licence" name="licence" >
                         </div>
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Master</label>
-                            <input type="file" class="form-control" id="master" name="master" accept=".pdf">
+                            <input type="file" class="form-control" id="master" name="master" >
                         </div>
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Doctorat</label>
-                            <input type="file" class="form-control" id="doctorat" name="doctorat" accept=".pdf">
+                            <input type="file" class="form-control" id="doctorat" name="doctorat" >
                         </div>
                         <input type="text" value="" name="uuid" id="uuid" hidden/>
                         <div class="modal-footer">

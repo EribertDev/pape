@@ -29,9 +29,9 @@ class ThemeMemoireController extends Controller
                 $vald = $request->validate([
                     'theme' => 'required|string|max:255',
                     'description' => 'required|string',
-                    'licence' => 'nullable|file|mimes:pdf', // Optionnel
-                    'master' => 'nullable|file|mimes:pdf', // Optionnel
-                    'doctorat' => 'nullable|file|mimes:pdf', // Optionnel
+                    'licence' => 'nullable|file|mimes:pdf,doc,docx',
+                    'master' => 'nullable|file|mimes:pdf,doc,docx', // Optionnel
+                    'doctorat' => 'nullable|file|mimes:pdf,doc,docx', // Optionnel
                     'specifique' => 'nullable|string',
                     'generale' => 'nullable|string',
                     'lieu_collect' => 'nullable|string|max:255',
@@ -84,9 +84,9 @@ class ThemeMemoireController extends Controller
         $vald = $request->validate([
             'theme' => 'required|string|max:255',
             'description' => 'required|string',
-            'licence' => 'nullable|file|mimes:pdf', // Optionnel
-            'master' => 'nullable|file|mimes:pdf', // Optionnel
-            'doctorat' => 'nullable|file|mimes:pdf', 
+            'licence' => 'nullable|file|mimes:pdf,doc,docx', // Optionnel
+            'master' => 'nullable|file|mimes:pdf,doc,docx', // Optionnel
+            'doctorat' => 'nullable|file|mimes:pdf,doc,docx', 
             'specifique' => 'nullable|string',
             'generale' => 'nullable|string',
             'lieu_collect' => 'nullable|string|max:255',

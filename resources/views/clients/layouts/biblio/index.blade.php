@@ -29,7 +29,7 @@
                     </ul>
                 </div><!-- //.HERO-TEXT -->
             </div><!--- END COL -->
-        </div><!--- END CONTAINER -->
+        </div><!--- END CONTAINER -->   
     </section>
     <!-- END SECTION TOP -->
 
