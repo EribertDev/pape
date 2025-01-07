@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('commune_stage')->nullable();
             $table->text('fiche_technique')->nullable();
            
-            $table->dropColumn(['max_pages', 'niveau']);
+            $table->dropColumn(['max_pages', 'annee_academique']);
            
         });
     }
