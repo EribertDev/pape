@@ -23,6 +23,9 @@
         .no-spinner {
             -moz-appearance: textfield; /* Masquer le bouton dans Firefox */
         }
+
+ /* Supprimer tout focus/hover inattendu */
+ 
     </style>
 @endsection
 
@@ -31,6 +34,8 @@
     <!-- START SECTION TOP -->
     <section class="section-top">
     <style>
+
+      
         @media (max-width: 768px) {
             .section-top {
                 margin-top: 70px; /* Adapte l'espace pour les mobiles */
@@ -144,10 +149,10 @@
                                                     <div class="form-group ">
                                                         <label for="country" class="fw-bold">Pays </label>
                                                         <select name="pays" id="pays" class="form-control">
-                                                        <option value="" selected disabled>-- Sélectionnez un pays --</option>
-                                                        @foreach ($countries as $country )
-                                                            <option  value="{{$country['name']}}"> {{$country['name']}}</option>
-                                                        @endforeach
+                                                            <option value="" selected disabled>-- Sélectionnez un pays --</option>
+                                                            @foreach ($countries as $country )
+                                                                <option  value="{{$country['name']}}"> {{$country['name']}}</option>
+                                                            @endforeach
                                                         </select>
                                                     
                                                     </div>
@@ -161,8 +166,8 @@
 
                                                 <div class="row">
                                                     <div class="form-group ">
-                                                        <label class="fieldlabels  fw-bold" for="specialite">Type d'université</label>
-                                                        <select name="specialite" id="specialite" class="form-control">
+                                                        <label class="fieldlabels  fw-bold" for="type_universite">Type d'université</label>
+                                                        <select name="type_universite" id="type_universite" class="form-control">
                                                             <option value="" selected disabled>---</option>
                                                             
                                                                 <option  value="Publique">Publique</option>
@@ -172,8 +177,86 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="row">
+                                                    <div class="form-group mt-4">
+                                                        <label class="fw-bold">Avez-vous besoin d'un stage ?</label>
+                                                        <div class="mt-2 d-flex gap-3">
+                                                            <!-- Bouton Oui -->
+                                                            <input type="radio" id="needStageYes" name="needStage" value="yes" class="btn-check">
+                                                            <label for="needStageYes" class="btn btn-outline-primary btn-sm rounded-pill">Oui</label>
+                                                    
+                                                            <!-- Bouton Non -->
+                                                            <input type="radio" id="needStageNo" name="needStage" value="no" class="btn-check">
+                                                            <label for="needStageNo" class="btn btn-outline-danger btn-sm rounded-pill">Non</label>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Champs conditionnels -->
+                                                    <div id="stageDetails" class="mt-4" style="display: none;">
+                                                        <div class="form-group">
+                                                            <label class="fieldlabels  fw-bold" for="structure">Stucture</label>
+                                                            <select name="structure_stage" id="structure_stage" class="form-control">
+                                                                <option value="" selected disabled>Quelles structure désirez vous</option>
+                                                                
+                                                                    <option  value="administration_publique">Administration Publique</option>
+                                                                    <option  value="adlinistration_privee"> Administration Privée</option>
+                                                                    <option  value="formation_sanitaire"> Formation Sanitaire</option>
+                                                                    <option  value="institution_microfinance"> Institution de Microfinance</option>
+                                                                    <option  value="anyway"> N'importe quelle structure</option>
+                                                            
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group mt-3">
+                                                            <label for="country" class="fw-bold">Pays </label>
+                                                                                                                    
+                                                            <select name="commune_stage" id="commune_stage" class="form-control">
+                                                                <option value="" disabled selected>-- Sélectionner une Commune --</option>
+                                                            
+                                                                <!-- Département de Alibori, le libellé -->
+                                                                <optgroup label="Alibori">
+                                                                    <option value="Banikoara">Banikoara</option>
+                                                                    <option value="Gogounou">Gogounou</option>
+                                                                    <option value="Kandi">Kandi</option>
+                                                                    <option value="Karimama">Karimama</option>
+                                                                    <option value="Malanville">Malanville</option>
+                                                                    <option value="Ségbana">Ségbana</option>
+                                                                </optgroup>
+                                                            
+                                                                <!-- Département de Atacora -->
+                                                                <optgroup label="Atacora">
+                                                                    <option value="Boukoumbé">Boukoumbé</option>
+                                                                    <option value="Cobly">Cobly</option>
+                                                                    <option value="Kérou">Kérou</option>
+                                                                    <option value="Kouandé">Kouandé</option>
+                                                                    <option value="Matéri">Matéri</option>
+                                                                    <option value="Natitingou">Natitingou</option>
+                                                                    <option value="Péhunco">Péhunco</option>
+                                                                    <option value="Tanguiéta">Tanguiéta</option>
+                                                                    <option value="Toucountouna">Toucountouna</option>
+                                                                </optgroup>
+                                                            
+                                                                <!-- Département de Atlantique -->
+                                                                <optgroup label="Atlantique">
+                                                                    <option value="Abomey-Calavi">Abomey-Calavi</option>
+                                                                    <option value="Allada">Allada</option>
+                                                                    <option value="Kpomassè">Kpomassè</option>
+                                                                    <option value="Ouidah">Ouidah</option>
+                                                                    <option value="Sô-Ava">Sô-Ava</option>
+                                                                    <option value="Toffo">Toffo</option>
+                                                                    <option value="Tori-Bossito">Tori-Bossito</option>
+                                                                    <option value="Zè">Zè</option>
+                                                                </optgroup>
+                                                                <!-- Ajoutez ici les autres départements et leurs communes -->
+                                                            </select>
+                                                            
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
                                            
-    <button type="button"   class="btn btn-primary mt-3 next-btn">Suivant</button>
+                                            <button type="button"   class="btn btn-primary mt-3 next-btn">Suivant</button>
                                             </div>
 
                                             
@@ -262,7 +345,7 @@
                                            
                                         
                                         </div>
-                             
+                                    </div>
                                 <!-- Button Widget -->
 
                                 <!--/ End Button Widget -->
@@ -271,8 +354,8 @@
                         <!--/ End Form -->
                     </div>
                 </div>
-                </div>
-                <div class="col-lg-4 col-12 >
+                
+                <div class="col-lg-8 col-12 >
                     <div class="order-details">
                         <!-- Order Widget -->
                         <div class="single-widget">
@@ -548,6 +631,30 @@ chooseNo.addEventListener('change', handleThemeSelection);
     const codesPromoValides = @json($codesPromoValides);
   
   document.addEventListener("DOMContentLoaded", () => {
+
+    const needStageYes = document.getElementById('needStageYes');
+        const needStageNo = document.getElementById('needStageNo');
+        const stageDetails = document.getElementById('stageDetails');
+
+        // Écoute les changements
+        needStageYes.addEventListener('change', function () {
+            if (needStageYes.checked) {
+                stageDetails.style.display = 'block';
+            }
+        });
+
+        needStageNo.addEventListener('change', function () {
+            if (needStageNo.checked) {
+                stageDetails.style.display = 'none';
+            }
+        });
+
+
+
+
+
+
+
   const steps = document.querySelectorAll(".step");
   let currentStep = 0;
 
@@ -583,6 +690,6 @@ chooseNo.addEventListener('change', handleThemeSelection);
 });
 
 
-    </script>
+</script>
 
 @endsection

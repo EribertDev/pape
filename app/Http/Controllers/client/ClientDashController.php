@@ -50,9 +50,7 @@ class ClientDashController extends Controller
 
                  $tm = ThemeMemoire::where('id',$theme_id)->first();     
                
-                    $protocoles = json_decode($tm->path, true);
-                    $service_name=$commande->services_id;
-                    
+                   
                 if(  $theme_id && $files->isEmpty() &&
                 
                 (
@@ -61,7 +59,9 @@ class ClientDashController extends Controller
                     !empty($protocoles['doctorat'])
                 )
                 )  {
-
+                    $protocoles = json_decode($tm->path, true);
+                    $service_name=$commande->services_id;
+                    
                    
                     if($service_name =='5' )  {
                       

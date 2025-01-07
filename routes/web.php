@@ -32,6 +32,12 @@ use GuzzleHttp\Psr7\Request;
 |
 |
 */
+
+
+
+
+
+
 Route::get('email/verify/sent', function () {
     return view('clients.layouts.email-verify.email-verify-sent');; // Créez cette vue pour informer l'utilisateur
 })->name('email.verify.sent');

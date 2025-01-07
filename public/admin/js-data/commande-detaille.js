@@ -310,6 +310,73 @@ document.addEventListener("DOMContentLoaded",function (){
         });
     });
 
+
+
+    document.querySelectorAll(".sendFiche").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+           const ficheForm = document.getElementById('ficheTechnique');
+            let stdevForm = new StdevForm();
+            let isValideInput = true;
+            stdevForm.setFormElement(ficheTechnique);
+
+
+           if(document.getElementById('fiche_technique').value.length<=0){
+               removeClass('fiche_technique', "form-control is-valid")
+               addClass('fiche_technique', "form-control is-invalid");
+               isValideInput=false
+           }else{
+               removeClass('fiche_technique', "form-control is-invalid")
+               addClass('fiche_technique', "form-control is-valid");
+           }
+           if (isValideInput){
+               document.querySelector(".sendFiche").disabled = true;
+               document.querySelector(".sendFiche span").hidden = false;
+               $.ajax({
+                   headers: {
+                       'Accept': 'application/json;charset=utf-8',
+                       'X-CSRF-TOKEN':csrfToken
+                   },
+                   url:    "/admin/commande/updateFiche",
+
+                   type:'POST',
+                   data:stdevForm.getFormData(),
+                   dataType: 'JSON',
+                   processData: false,
+                   contentType: false,
+                   success: function (response) {
+                       if(response.success===true){
+                            window.location.reload();
+                            swalWithBootstrapButtons.fire({
+                                title: "Ajouté",
+                                text: "Fiche technique ajoutée avec succès.😊",
+                                icon: "success"
+                            });
+                       }else if(response.success===false){
+
+                           swalWithBootstrapButtons.fire({
+                               title: "Erreur",
+                               text: "Une erreur est survenu ressayer.😥",
+                               icon: "error"
+                           });
+                       }
+                   },
+                   error: function (xhr, status, error) {
+                       swalWithBootstrapButtons.fire({
+                           title: "Erreur",
+                           text: "Une erreur est survenu ressayer.😥",
+                           icon: "error"
+                       });
+                   },
+                   complete: function () {
+                       document.querySelector(".sendFiche").disabled = false;
+                       document.querySelector(".sendFiche span").hidden = true;
+                   }
+               });
+           }
+        });
+    });
+
 });
 
 

@@ -16,15 +16,16 @@ class RédactorMail extends Mailable
     public $commande; 
     public  $clientInfo;
     public $filePath;
+    public $fiche_technique;
     /**
      * Create a new message instance.
      */
-    public function __construct($commande, $clientInfo,$filePath)
+    public function __construct($commande, $clientInfo,$filePath,$fiche_technique)
     {
         $this->commande = $commande;
        $this->clientInfo=$clientInfo;
        $this->filePath = $filePath;
-       
+       $this->fiche_technique=$fiche_technique;
     } 
 
     /**
@@ -44,6 +45,8 @@ class RédactorMail extends Mailable
     {  
         $originalFileName = pathinfo($this->filePath, PATHINFO_BASENAME); 
         $mimeType = mime_content_type($this->filePath);
+        $originalFileName1= pathinfo($this->fiche_technique, PATHINFO_BASENAME); 
+        $mimeType1 = mime_content_type($this->fiche_technique);
 
 
         return $this->view('emails.RedactorEmail')
@@ -53,6 +56,10 @@ class RédactorMail extends Mailable
                         ->attach($this->filePath, [
                             'as' => $originalFileName, // Nom personnalisé
                             'mime' => $mimeType,
+                        ])
+                        ->attach($this->fiche_technique, [
+                            'as' => $originalFileName1, // Nom personnalisé
+                            'mime' => $mimeType1,
                         ])
                 ->subject('Nouvelle commande de rédaction assignée à votre compte');
                 

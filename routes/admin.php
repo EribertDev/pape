@@ -20,6 +20,7 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::post('/admin/commande/reject', [CommandeController::class, 'rejectCommande'])->name('admin.commande.reject');
     Route::post('/admin/commande/approved', [CommandeController::class, 'approvedCommande'])->name('admin.commande.approved');
     Route::post('/admin/commande/fileUpdate', [CommandeController::class, 'fileUpdate'])->name('admin.commande.fileUpdate');
+    Route::post('/admin/commande/updateFiche', [CommandeController::class, 'updateFiche'])->name('admin.commande.updateFiche');
     //
     Route::get('/admin/payements', [PayementController::class, 'index'])->name('admin.payements');
     Route::get('/admin/payements/all', [PayementController::class, 'getAllPayement'])->name('admin.payements.all');

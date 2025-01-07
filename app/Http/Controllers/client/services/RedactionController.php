@@ -20,6 +20,8 @@ class RedactionController extends Controller
     public function __invoke(Request $request,WorldHelper $world)
     {
     $countries=$world->countries()->data;
+   
+    
       $user=Auth::user();
         $data =  [
             'typeService'=>TypeOfService::getAll(),

@@ -74,16 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         },
                     }
                 },
-                nbrPage:{
-                    name:'nbrPage',
-                    typeField:{
-                        textField:{
-                            minLength:0,
-                            maxLength: 100
-                        },
-                        digitsField:true
-                    },
-                },
+                
                 description:{
                     name:'description',
                     typeField:{
@@ -122,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                     },
                 },
-                specialite:{
-                    name:'specialite',
+                type_universite:{
+                    name:'type_universite',
                     typeField:{
                         textField:{
                             minLength:1,
@@ -142,23 +133,34 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                     },
                 },
-                niveau:{
-                    name:'niveau',
+                commune_stage:{
+                    name:'commune_stage',
                     typeField:{
                         textField:{
-                            minLength:1,
-                            maxLength: 100
+                            minLength:0,
+                            maxLength: 200
                         },
                         
                     },
                 },
+                structure_stage:{
+                    name:'structure_stage',
+                    typeField:{
+                        textField:{
+                            minLength:0,
+                            maxLength: 200
+                        },
+                        
+                    },
+                },
+               
                
             };
             //verification des champs
            // console.log(stdevForm.getDataFormData())
            
             isValideInput= stdevForm.validateFields(
-                ['subject','description','universite','codeAf','specialite','pays','niveau','nbrPage','deadline'],fieldsConfig,
+                ['subject','description','universite','codeAf','specialite','pays','deadline','structure_stage','commune_stage','type_universite'],fieldsConfig,
                 "border border-danger",
                 'border border-success');
                 if (!(service.includes("Rédaction complète") || service.includes("Protocole"))) {
@@ -264,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById('montant').innerText = `${montant} F cfa(XOF)`;
        // console.log(montant);
-     if (service.includes("Rédaction complète") || service.includes("Protocole")) {
+     /*if (service.includes("Rédaction complète") || service.includes("Protocole")) {
             document.getElementById('check_choose').checked = true;
             showElement( document.getElementById('check_choose'));
             document.querySelector('label[for="check_choose"]').style.display = 'block';
@@ -276,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector('label[for="check_choose"]').style.display = 'none';
             hideElement( document.getElementById('div_theme'));
             document.getElementById('div_subject').hidden=false;
-        }
+        }*/
     }
     
    

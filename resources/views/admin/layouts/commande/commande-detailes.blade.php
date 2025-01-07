@@ -229,6 +229,27 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Fiche Technique: 
+                               
+                               
+                        
+                            </h5>
+                            <div class="form-group">
+                                <form id="ficheTechnique">
+                                    @csrf
+                                    <input type="text" value="{{$commande["uuid"]}}" name="uuid" hidden >
+                                    <label class="form-label" for="fiche_technique">Ajouter la fiche technique(.pdf,.docx)</label>
+                                    <input type="file" class="form-control" id="fiche_technique" name="fiche_technique" accept=".docx,.xlsx,.pdf" />
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                                        <button data-mdb-ripple-init="" type="submit" class="btn btn-primary sendFiche" id="sendFiche" ><span class="spinner-border spinner-border-sm"  role="status" aria-hidden="true" hidden></span> Envoyer</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

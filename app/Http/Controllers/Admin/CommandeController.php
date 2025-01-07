@@ -110,6 +110,8 @@ class CommandeController extends Controller
         $cmdUuid = $request ->input('cmdUuid');
         $commande = Commande::where('uuid', $cmdUuid)->first(); 
         $clientInfo = $commande->client;
+        $fiche_technique=$commande->fiche_technique;
+
 
         $cmd= (new Commande())->updateCommande($cmdUuid,["redactor_id"=>$redactorId,"status"=>"En traitement"]);
         if ($cmd){
@@ -118,7 +120,7 @@ class CommandeController extends Controller
   $filePath = $filePatch ? storage_path('app/public/' . $filePatch->path) : null;
 
 
-            Mail::to($redactorEmail)->send(new RédactorMail($commande,$clientInfo,$filePath));
+            Mail::to($redactorEmail)->send(new RédactorMail($commande,$clientInfo,$filePath,$fiche_technique));
 
             return response()->json(["message"=>"success"]);
          
@@ -228,5 +230,83 @@ class CommandeController extends Controller
           
 
         }
+    }
+    public function updateFiche(Request $request){
+
+        $idCmd = (new Commande())->getIdByUuid($request -> input('uuid'));
+        $commande=(new Commande())->getCommandeByUuid($request -> input('uuid'));
+        $fiche_existant = $commande->fiche_technique; // Le chemin actuel du fichier
+        if($fiche_existant){
+            if ($request->hasFile('fiche_technique')) {
+                
+                // Enregistrer le fichier dans le dossier public (ou un autre dossier si nécessaire)
+                $fiche_technique = $request->file('fiche_technique');
+                $uniqueFileName = 'fncmd_' . time() . '.' . $fiche_technique->getClientOriginalExtension();
+
+                $path = $fiche_technique->storeAs('files/commande', $uniqueFileName, 'public');
+               
+                if ($commande->fiche_technique) {
+                    // Vérifier si le fichier existe avant de le supprimer
+                    if (Storage::exists("public/" . $commande->fiche_technique)) {
+                        // Supprimer le fichier existant
+                        Storage::delete("public/" . $commande->fiche_technique);
+                    }
+                }
+                // Vous pouvez mettre à jour le chemin du fichier dans la commande ou un autre champ de modèle
+    
+                $commande->fiche_technique = $path;
+                $commande->save();
+                return response()->json([
+                    "msg" => "File uploaded",
+                    "success" => true,
+                    "data" =>[
+                        "path" => $path,
+                       
+                       
+                           ]
+                ], 200);
+    
+            }
+            return response()->json([
+                "msg" => "Error: file request",
+                "success" => false
+            ], 500);
+        }
+       
+      
+       else{
+
+        if ($request->hasFile('fiche_technique')) {
+            // Enregistrer le fichier dans le dossier public (ou un autre dossier si nécessaire)
+           
+            $fiche_technique = $request->file('fiche_technique');
+            $uniqueFileName = 'fncmd_' . time() . '.' . $fiche_technique->getClientOriginalExtension();
+
+            $path = $fiche_technique->storeAs('files/commande', $uniqueFileName, 'public');
+
+           
+            // Vous pouvez mettre à jour le chemin du fichier dans la commande ou un autre champ de modèle
+
+            $commande->fiche_technique = $path;
+            $commande->save();
+
+            return response()->json([
+                "msg" => "File uploaded",
+                "success" => true,
+                "data" =>[
+                    "path" => $path,
+                   
+                   
+                       ]
+            ], 200);
+
+        }
+        return response()->json([
+            "msg" => "Error: file request ",
+            "success" => false
+        ], 500);
+
+
+       }
     }
 }

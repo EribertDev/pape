@@ -35,14 +35,13 @@ class CommandeController extends Controller
 
         $validated = $request->validate([
             'subject' => 'required|string',
-            'nbrPage' => 'nullable|Integer',
             'deadline' => 'nullable|date',
-            'codeAf'=>  'nullable|Integer',
+            'codeAf'=>  'required|Integer',
             'universite'=>'nullable|string',
             'pays' => 'required|string',
-            'specialite' => 'required|string',
-            'annee_academique' => 'nullable|string',
-            'niveau' => 'nullable|string',
+            'type_universite' => 'required|string',
+           'structure_stage' => 'nullable|string',
+            'commune_stage' => 'nullable|string',
 
         ]);
 
@@ -131,7 +130,7 @@ class CommandeController extends Controller
                     'discipline_id' => $data["dicipline"]->id,
                     'subject' => $data["subject"],
                     'description' => $data["description"],
-                    'max_pages' => $data["nbrPage"],
+                    
                     'deadline' => $data["deadline"],
                     'theme_memoire_id' => $theme_id,
                     'amount'=>  $discountedAmount,
@@ -140,9 +139,9 @@ class CommandeController extends Controller
                     'status_id'=>Status::getIdByName($status),
                     'universite'=>  $data["universite"],
                     'pays' => $data["pays"],
-                    'specialite' => $data["specialite"],
-                    'annee_academique' =>  $data["annee_academique"],
-                    'niveau' =>  $data["niveau"],
+                    'type_universite' => $data["type_universite"],
+                    'structure_stage' =>  $data["structure_stage"],
+                    'commune_stage' =>  $data["commune_stage"],
                 ]);
 
                 if ($request->hasFile('descrip_file')) {
@@ -189,15 +188,15 @@ class CommandeController extends Controller
    //  try {
     
             $request->validate([
-            'subject' => 'nullable|string',
-            'nbrPage' => 'nullable|Integer',
+        
+            'subject' => 'required|string',
             'deadline' => 'nullable|date',
-           'codeAf'=>  'nullable|Integer',
+            'codeAf'=>  'required|Integer',
             'universite'=>'nullable|string',
             'pays' => 'required|string',
-            'specialite' => 'required|string',
-            'annee_academique' =>'nullable|string',
-            'niveau' => 'nullable|string',
+            'type_universite' => 'required|string',
+           'structure_stage' => 'nullable|string',
+            'commune_stage' => 'nullable|string',
            ]);
             
            if ($request->has('choose_theme')) {
@@ -239,9 +238,9 @@ class CommandeController extends Controller
              'deadline' => $data["deadline"],
              'universite'=>  $data["universite"],
              'pays' => $data["pays"],
-             'specialite' => $data["specialite"],
-             'annee_academique' =>  $data["annee_academique"],
-             'niveau' =>  $data["niveau"],
+             'type_universite' => $data["type_universite"],
+             'structure_stage' =>  $data["structure_stage"],
+            'commune_stage'=>$data["commune_stage"],
              'theme_memoire_id' => $theme_id,
              'amount'=> $data["montantFinalInput"],
              'redactor_id'=> $theme_redactor,
@@ -312,13 +311,12 @@ class CommandeController extends Controller
                     'discipline_id' => $data["dicipline"]->id,
                     'subject' => $data["subject"],
                     'description' => $data["description"],
-                    'max_pages' => $data["nbrPage"],
+                   
                     'deadline' => $data["deadline"],
-                    'universite'=>  $data["universite"],
                     'pays' => $data["pays"],
-                    'specialite' => $data["specialite"],
-                    'annee_academique' =>  $data["annee_academique"],
-                    'niveau' =>  $data["niveau"],
+                    'type_universite' => $data["type_universite"],
+                    'structure_stage' =>  $data["structure_stage"],
+                   'commune_stage'=>$data["commune_stage"],
                     
                 ]);
                 $payemment = new Payement();
