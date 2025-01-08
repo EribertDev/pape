@@ -24,7 +24,33 @@
             -moz-appearance: textfield; /* Masquer le bouton dans Firefox */
         }
 
- /* Supprimer tout focus/hover inattendu */
+        .btn-check + .btn {
+        background-color: white;
+        border: 1px solid #ced4da;
+        color: #000;
+    }
+
+    .btn-check + .btn:hover {
+        background-color: #f8f9fa;
+        color: #000;
+    }
+
+    .btn-check:checked + .btn {
+        background-color: #007bff; /* Couleur de fond lorsque le bouton est sélectionné */
+        border-color: #007bff;
+        color: white;
+    }
+
+    .btn-check:checked + .btn.btn-outline-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        color: white;
+    }
+
+    .btn-check + .btn.btn-sm {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+    }
  
     </style>
 @endsection
@@ -207,45 +233,19 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group mt-3">
-                                                            <label for="country" class="fw-bold">Pays </label>
+                                                            <label for="country" class="fw-bold">Commune </label>
                                                                                                                     
                                                             <select name="commune_stage" id="commune_stage" class="form-control">
-                                                                <option value="" disabled selected>-- Sélectionner une Commune --</option>
+                                                                <option value="" disabled selected>-- Sélectionnez une Commune --</option>
+                                                                @foreach ($departements as $departement => $communes)
+                                                                    <optgroup label="{{ $departement }}">
+                                                                        @foreach ($communes as $commune)
+                                                                            <option value="{{ $commune }}">{{ $commune }}</option>
+                                                                        @endforeach
+                                                                    </optgroup>
+                                                                @endforeach
                                                             
-                                                                <!-- Département de Alibori, le libellé -->
-                                                                <optgroup label="Alibori">
-                                                                    <option value="Banikoara">Banikoara</option>
-                                                                    <option value="Gogounou">Gogounou</option>
-                                                                    <option value="Kandi">Kandi</option>
-                                                                    <option value="Karimama">Karimama</option>
-                                                                    <option value="Malanville">Malanville</option>
-                                                                    <option value="Ségbana">Ségbana</option>
-                                                                </optgroup>
-                                                            
-                                                                <!-- Département de Atacora -->
-                                                                <optgroup label="Atacora">
-                                                                    <option value="Boukoumbé">Boukoumbé</option>
-                                                                    <option value="Cobly">Cobly</option>
-                                                                    <option value="Kérou">Kérou</option>
-                                                                    <option value="Kouandé">Kouandé</option>
-                                                                    <option value="Matéri">Matéri</option>
-                                                                    <option value="Natitingou">Natitingou</option>
-                                                                    <option value="Péhunco">Péhunco</option>
-                                                                    <option value="Tanguiéta">Tanguiéta</option>
-                                                                    <option value="Toucountouna">Toucountouna</option>
-                                                                </optgroup>
-                                                            
-                                                                <!-- Département de Atlantique -->
-                                                                <optgroup label="Atlantique">
-                                                                    <option value="Abomey-Calavi">Abomey-Calavi</option>
-                                                                    <option value="Allada">Allada</option>
-                                                                    <option value="Kpomassè">Kpomassè</option>
-                                                                    <option value="Ouidah">Ouidah</option>
-                                                                    <option value="Sô-Ava">Sô-Ava</option>
-                                                                    <option value="Toffo">Toffo</option>
-                                                                    <option value="Tori-Bossito">Tori-Bossito</option>
-                                                                    <option value="Zè">Zè</option>
-                                                                </optgroup>
+                                                               
                                                                 <!-- Ajoutez ici les autres départements et leurs communes -->
                                                             </select>
                                                             
