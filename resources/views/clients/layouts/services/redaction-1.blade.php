@@ -341,21 +341,14 @@
                                                 <input type="number" name="codeAf" id="codeAf" class="no-spinner" >
                                                 <li><span id="promo-message"></span></li> 
                                             </div>
+
+
+
+
+
                                             <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
                                            
-                                        
-                                        </div>
-                                    </div>
-                                <!-- Button Widget -->
-
-                                <!--/ End Button Widget -->
-                            </div>
-                        </form>
-                        <!--/ End Form -->
-                    </div>
-                </div>
-                
-                <div class="col-lg-8 col-12 >
+                                             <div class="col-lg-8 col-12 >
                     <div class="order-details">
                         <!-- Order Widget -->
                         <div class="single-widget">
@@ -383,6 +376,18 @@
                         <!--/ End Button Widget -->
                     </div>
 				</div>
+                                        </div>
+                                    </div>
+                                <!-- Button Widget -->
+
+                                <!--/ End Button Widget -->
+                            </div>
+                        </form>
+                        <!--/ End Form -->
+                    </div>
+                </div>
+                
+           
             </div>
         </div>
     </section>

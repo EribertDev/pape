@@ -69,13 +69,19 @@ class RedactionController extends Controller
                 'Zou' => [
                     'Abomey', 'Agbangnizoun', 'Bohicon', 'Covè', 'Djidja', 'Ouinhi', 'Zagnanado', 'Za-Kpota', 'Zogbodomey'
                 ],
-                    ] ;
+  ] ;
 
       
      //  dd(TypeOfService::getAll());
         $options =$data;
 
         // Retourner la vue avec les données
-       return view('clients.layouts.services.redaction-1')->with('options',$options,)->with('countries',$countries)->with('user',$user)->with('codesPromoValides',$codesPromoValides)->with('departements',$departements);;
+       return view('clients.layouts.services.redaction-1')->with('options',$options,)->with('countries',$countries)->with('user',$user)->with('codesPromoValides',$codesPromoValides)->with('departements',$departements);
     }
+
+
+
+   
+  
+    
 }

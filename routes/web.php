@@ -20,6 +20,7 @@ use App\Http\Controllers\client\services\ServiceController;
 use App\Http\Controllers\client\services\CommandeController;
 use App\Models\Affiler;
 use GuzzleHttp\Psr7\Request;
+use App\Http\Controllers\client\services\RedactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,14 @@ Route::get('/service-offre/redaction',\App\Http\Controllers\client\services\Reda
 Route::get('/service-offre/tarif',function (){
     return view('clients.layouts.services.tarifs');
 })->name('service.tarif');
+
+//route de favoris 
+// Ajouter ou retirer un favori
+Route::post('/favorites/toggle', [BiblioController::class, 'toggleFavorite'])->name('favorites.toggle');
+
+// Afficher les favoris
+Route::get('/favorites', [BiblioController::class, 'getFavorites'])->name('favorites.get');
+
 
 
 

@@ -63,6 +63,13 @@
                         <button class="btn btn-primary" type="button">
                             <i class="bi bi-search"></i> <!-- Icône de recherche -->
                         </button>
+                                            <button 
+                        class="btn btn-primary mt-4" 
+                        type="button" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#favoritesModal">
+                        Mes Favoris
+                    </button>
                     </div>
                 </div>
             </div>
@@ -79,13 +86,20 @@
                             <div class="card shadow-sm h-100">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title fw-bold text-primary">{{ $theme->title }}</h5>
-                                    <p class="card-text"><strong>Description :</strong> {{ Str::limit($theme->description, 100) }}</p>
+                                    <p class="card-text"><strong>Description :</strong> {{ Str::limit($theme->description, 25) }}</p>
         
                                     <div class="mt-auto">
                                         <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal{{ $theme->id }}">
                                             Voir Plus
                                         </button>
+                                        <button 
+                                    class="btn btn-sm btn-outline-danger favorite-btn" 
+                                    data-theme-id="{{ $theme->id }}">
+                                    <i class="fa-heart fa {{ in_array($theme->id, session('favorites', [])) ? 'fas text-danger' : 'far' }}"></i>
+                                </button>
                                     </div>
+                                     <!-- Bouton Favoris -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -116,6 +130,24 @@
                 </div>
             @endif
         </div>
+
+
+        <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="favoritesModalLabel">Mes Favoris</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="favoritesList" class="list-group">
+                            <!-- Favoris chargés dynamiquement ici -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     <!--END COURSE -->
 
 @endsection
@@ -123,6 +155,40 @@
 @section('extra-scripts')
 
 <script>
+
+
+document.addEventListener("DOMContentLoaded", () => {
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
+
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const themeId = this.getAttribute('data-theme-id');
+
+                fetch("{{ route('favorites.toggle') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                    body: JSON.stringify({ theme_id: themeId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const icon = this.querySelector('.fa-heart');
+                        if (data.favorites.includes(parseInt(themeId))) {
+                            icon.classList.remove('far');
+                            icon.classList.add('fas', 'text-danger');
+                        } else {
+                            icon.classList.remove('fas', 'text-danger');
+                            icon.classList.add('far');
+                        }
+                    }
+                })
+                .catch(error => console.error(error));
+            });
+        });
+    });
     function searchThemes() {
         const query = document.getElementById('searchBar').value;
 
@@ -192,6 +258,29 @@
         })
         .catch(error => console.error('Erreur:', error));
     }
+
+    document.getElementById('favoritesModal').addEventListener('show.bs.modal', function () {
+        fetch("{{ route('favorites.get') }}")
+            .then(response => response.json())
+            .then(data => {
+                const favoritesList = document.getElementById('favoritesList');
+                favoritesList.innerHTML = ''; // Effacer les anciens favoris
+
+                if (data.success && data.favorites.length > 0) {
+                    data.favorites.forEach(id => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+                        listItem.innerText = `Thème ID : ${id}`;
+                        favoritesList.appendChild(listItem);
+                    });
+                } else {
+                    favoritesList.innerHTML = '<li class="list-group-item">Aucun favori trouvé.</li>';
+                }
+            })
+            .catch(error => console.error(error));
+    });
 </script>
+
+
 
 @endsection
