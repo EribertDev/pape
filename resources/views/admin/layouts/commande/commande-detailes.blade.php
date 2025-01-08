@@ -232,7 +232,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Fiche Technique: 
-                               
+                                @if(!empty($commande["filesPath"]))
+                                @foreach($commande["filesPath"] as $filePath)
+                                @if ($filePath["type"]==2)
+                                    <span>{{$filePath["reference"]}} 
+                                        <a class="btn-sm text-white mx-1 download-bd" data-mdb-ripple-init style="background-color: #2eca7f;"  href="{{ asset('storage/' . $filePath->path) }}" download="{{ basename($filePath->path) }}">
+                                            <i class="fa-solid fa-download"></i>
+                                        </a>
+                                    </span>
+                                @endif
+                                @endforeach 
+                            @endif
                                
                         
                             </h5>

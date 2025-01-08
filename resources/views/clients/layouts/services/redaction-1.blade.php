@@ -103,8 +103,8 @@
                                             <h4 class="text-center mb-4" >Informations de la commande  </h4>
                                             <div id="step1" class="step">
                                                 <div class="form-group my-3">
-                                                    <label for="cars" class="fw-bold">Type de service</label>
-                                                    <select  name="typeService" id="typeService">
+                                                    <label for="cars" class="fw-bold">Type de service***</label>
+                                                    <select  name="typeService" id="typeService" required>
                                                         <option value="" selected disabled>Quels type de service souhaitez vous ?</option>
 
                                                         @if (!empty($options['typeService']))
@@ -129,9 +129,9 @@
                                                     </div>
                                                 --}}
                                                 <div class="form-group my-3">
-                                                    <label for="cars" class="fw-bold">Discipline</label>
+                                                    <label for="cars" class="fw-bold">Discipline***</label>
                                                     
-                                                    <select  name="dicipline" id="dicipline">
+                                                    <select  name="dicipline" id="dicipline" required>
                                                     
 
                                                     @if (!empty($options['discipline']))
@@ -147,8 +147,8 @@
                                                 <div class="col-12">
                                             
                                                     <div class="form-group ">
-                                                        <label for="country" class="fw-bold">Pays </label>
-                                                        <select name="pays" id="pays" class="form-control">
+                                                        <label for="country" class="fw-bold">Pays*** </label>
+                                                        <select name="pays" id="pays" class="form-control" required>
                                                             <option value="" selected disabled>-- Sélectionnez un pays --</option>
                                                             @foreach ($countries as $country )
                                                                 <option  value="{{$country['name']}}"> {{$country['name']}}</option>
@@ -159,15 +159,15 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group ">
-                                                        <label class="fieldlabels fw-bold" for="universite">Université</label>
-                                                        <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" />
+                                                        <label class="fieldlabels fw-bold" for="universite">Université***</label>
+                                                        <input  class="px-2 py-2" type="text" name="universite" id="universite" placeholder="Veuillez entrez votre université" required/>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="form-group ">
-                                                        <label class="fieldlabels  fw-bold" for="type_universite">Type d'université</label>
-                                                        <select name="type_universite" id="type_universite" class="form-control">
+                                                        <label class="fieldlabels  fw-bold" for="type_universite">Type d'université***</label>
+                                                        <select name="type_universite" id="type_universite" class="form-control" required>
                                                             <option value="" selected disabled>---</option>
                                                             
                                                                 <option  value="Publique">Publique</option>
@@ -256,7 +256,7 @@
                                                 </div>
 
                                            
-                                            <button type="button"   class="btn btn-primary mt-3 next-btn">Suivant</button>
+                                            <button type="button"   class="btn btn-primary mt-3 next-btn" disabled>Suivant</button>
                                             </div>
 
                                             
@@ -284,7 +284,7 @@
 
                                             <div class="form-group mt-2" id="div_subject"   style="display: none;">
                                                 <label class="fieldlabels fw-bold" for="subject">Inscrivez votre thème</label>
-                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme" />
+                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme" required />
                                             </div>
 
                                             <div class="form-group mt-2">
@@ -294,7 +294,7 @@
 
                                             <div class="form-group mt-2" id="div_theme"  style="display: none;">
                                                 <label for="cars"  class="fw-bold">Thème de Recherche </label>
-                                                <select name="theme" id="theme" hidden>
+                                                <select name="theme" id="theme" hidden required>
                                                     <option value="">Veuillez entrer votre theme</option>
                                                     @if (!empty($options['TMs']))
                                                         @php
@@ -307,7 +307,7 @@
                                             </div>
                                            
                                             <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
-                                            <button type="button" class="btn btn-primary next-btn">Suivant</button>
+                                            <button type="button" class="btn btn-primary next-btn " disabled >Suivant</button>
                                         </div>
                                     </div>
                                         <div id="step3" class="step d-none">
@@ -338,7 +338,7 @@
                                             
                                             <div class="form-group">
                                                 <label class="fieldlabels fw-bold" for="codeAf" >Code point focal (Si vous n'avez pas de code mettez 1000)</label>
-                                                <input type="number" name="codeAf" id="codeAf" class="no-spinner">
+                                                <input type="number" name="codeAf" id="codeAf" class="no-spinner" >
                                                 <li><span id="promo-message"></span></li> 
                                             </div>
                                             <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
@@ -689,6 +689,74 @@ chooseNo.addEventListener('change', handleThemeSelection);
   showStep(currentStep);
 });
 
+window.onload = function () {
+    // Fonction pour vérifier l'état des champs requis dans un step donné
+    function checkFields(step) {
+        var isValid = true;
+        var requiredFields = step.querySelectorAll('input[required], select[required]'); // Sélectionner tous les champs requis
+
+        // Vérifier tous les champs requis dans l'étape
+        requiredFields.forEach(function (field) {
+            if (field.type === 'radio' || field.type === 'checkbox') {
+                // Vérifier si au moins une option radio ou case à cocher est sélectionnée
+              
+            } else if (field.type === 'text' || field.tagName === 'SELECT') {
+                // Vérifier les champs texte et select
+                if (field.value.trim() === '') {
+                    isValid = false;
+                }
+            }
+        });
+
+        // Activer ou désactiver le bouton "Suivant"
+        var nextBtn = step.querySelector('.next-btn');
+        if (isValid) {
+            nextBtn.disabled = false; // Si tous les champs sont remplis, activer le bouton
+        } else {
+            nextBtn.disabled = true; // Sinon, désactiver
+        }
+    }
+
+    // Écouter les événements de changement sur tous les champs (inputs, selects, radio, etc.)
+    document.querySelectorAll('input, select').forEach(function (input) {
+        input.addEventListener('input', function () {
+            // Vérifier l'étape actuelle à chaque changement
+            var currentStep = input.closest('.step');
+            checkFields(currentStep); // Vérifier l'étape courante
+        });
+    });
+
+    // Cette fonction va vérifier le champ "thème" dans le step 2, à chaque fois qu'un champ change
+    function checkThemeStep() {
+        var themeFieldText = document.querySelector('#subject'); // Champ texte pour le thème
+        var themeFieldSelect = document.querySelector('#theme'); // Champ select pour le thème
+        var nextBtn = document.querySelector('.next-btn'); // Bouton suivant générique
+
+        // Activer ou désactiver le bouton en fonction de la sélection du thème
+        if ((themeFieldText && themeFieldText.value.trim() === '') && (themeFieldSelect && themeFieldSelect.value === '')) {
+            nextBtn.disabled = true; // Désactiver si aucun thème n'est choisi
+        } else {
+            nextBtn.disabled = false; // Activer si un thème est choisi
+        }
+    }
+
+    // Appeler cette fonction à chaque fois qu'un champ change dans le step 2
+    document.querySelector('#subject').addEventListener('input', function () {
+        checkThemeStep();
+    });
+
+    document.querySelector('#theme').addEventListener('change', function () {
+        checkThemeStep();
+    });
+
+    // Vérifier les champs au chargement de la page (important pour initialiser les validations)
+    document.querySelectorAll('.step').forEach(function (step) {
+        checkFields(step); // Vérification de chaque étape
+    });
+
+    // Vérification des champs "thème" au chargement
+    checkThemeStep(); // Vérifier si le thème est sélectionné dans le step 2 au départ
+};
 
 </script>
 

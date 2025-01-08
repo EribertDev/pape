@@ -110,14 +110,15 @@ class CommandeController extends Controller
         $cmdUuid = $request ->input('cmdUuid');
         $commande = Commande::where('uuid', $cmdUuid)->first(); 
         $clientInfo = $commande->client;
-        $fiche_technique=$commande->fiche_technique;
-
+       
 
         $cmd= (new Commande())->updateCommande($cmdUuid,["redactor_id"=>$redactorId,"status"=>"En traitement"]);
         if ($cmd){
   // Récupérer le fichier attaché à la commande
   $filePatch = FilePatchOfCommande::where('commande_id', $commande->id)->first();
   $filePath = $filePatch ? storage_path('app/public/' . $filePatch->path) : null;
+  $fiche_techniqu= FilePatchOfCommande::where('commande_id', $commande->id)->where('type', 2)->first();
+  $fiche_technique = $fiche_techniqu ? storage_path('app/public/' . $fiche_techniqu->path) : null;
 
 
             Mail::to($redactorEmail)->send(new RédactorMail($commande,$clientInfo,$filePath,$fiche_technique));
@@ -235,35 +236,38 @@ class CommandeController extends Controller
 
         $idCmd = (new Commande())->getIdByUuid($request -> input('uuid'));
         $commande=(new Commande())->getCommandeByUuid($request -> input('uuid'));
-        $fiche_existant = $commande->fiche_technique; // Le chemin actuel du fichier
-        if($fiche_existant){
+        $ff = (new FilePatchOfCommande())->getFinalByIdCommande($idCmd);
+
+      
+        if($ff){
             if ($request->hasFile('fiche_technique')) {
                 
-                // Enregistrer le fichier dans le dossier public (ou un autre dossier si nécessaire)
-                $fiche_technique = $request->file('fiche_technique');
-                $uniqueFileName = 'fncmd_' . time() . '.' . $fiche_technique->getClientOriginalExtension();
-
-                $path = $fiche_technique->storeAs('files/commande', $uniqueFileName, 'public');
-               
-                if ($commande->fiche_technique) {
-                    // Vérifier si le fichier existe avant de le supprimer
-                    if (Storage::exists("public/" . $commande->fiche_technique)) {
-                        // Supprimer le fichier existant
-                        Storage::delete("public/" . $commande->fiche_technique);
-                    }
+                $file = $request->file('fiche_technique');
+                $type = $request->input('type');
+                // Si le fichier précédent existe, le supprimer
+                if (Storage::exists("public/" . $ff->path)) {
+                    Storage::delete("public/" . $ff->path);
+                  
                 }
-                // Vous pouvez mettre à jour le chemin du fichier dans la commande ou un autre champ de modèle
-    
-                $commande->fiche_technique = $path;
-                $commande->save();
+               
+   
+                // Génére un nom de fichier unique
+                $uniqueFileName = 'fncmd_' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('files/commande', $uniqueFileName, 'public');
+                // Met à jour le chemin dans la base de données
+                (new FilePatchOfCommande())->updateFile($ff->id, ['path' => $path,'description' => $type]);
+               
+                
+            
                 return response()->json([
                     "msg" => "File uploaded",
                     "success" => true,
                     "data" =>[
                         "path" => $path,
+                      
                        
                        
-                           ]
+                    ]
                 ], 200);
     
             }
@@ -278,17 +282,19 @@ class CommandeController extends Controller
 
         if ($request->hasFile('fiche_technique')) {
             // Enregistrer le fichier dans le dossier public (ou un autre dossier si nécessaire)
-           
-            $fiche_technique = $request->file('fiche_technique');
-            $uniqueFileName = 'fncmd_' . time() . '.' . $fiche_technique->getClientOriginalExtension();
+            $file = $request->file('fiche_technique');
+            $uniqueFileName = 'fncmd_' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('files/commande', $uniqueFileName, 'public');
+            $type = $request->input('type');
+            // Ajoute un nouvel enregistrement
+            (new FilePatchOfCommande())->addNew([
+                'path' => $path,
+                "type" => 2,
+                "commande_id" => $idCmd,
+                "description" => $type
+            ]);
 
-            $path = $fiche_technique->storeAs('files/commande', $uniqueFileName, 'public');
-
-           
-            // Vous pouvez mettre à jour le chemin du fichier dans la commande ou un autre champ de modèle
-
-            $commande->fiche_technique = $path;
-            $commande->save();
+          
 
             return response()->json([
                 "msg" => "File uploaded",
@@ -296,8 +302,7 @@ class CommandeController extends Controller
                 "data" =>[
                     "path" => $path,
                    
-                   
-                       ]
+                ]
             ], 200);
 
         }
