@@ -21,6 +21,7 @@ use App\Http\Controllers\client\services\CommandeController;
 use App\Models\Affiler;
 use GuzzleHttp\Psr7\Request;
 use App\Http\Controllers\client\services\RedactionController;
+use App\Models\ThemeMemoire;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,10 +62,6 @@ Route::get('/service-offre/tarif',function (){
 })->name('service.tarif');
 
 //route de favoris 
-// Ajouter ou retirer un favori
-Route::post('/favorites/toggle', [BiblioController::class, 'toggleFavorite'])->name('favorites.toggle');
-
-// Afficher les favoris
 Route::get('/favorites', [BiblioController::class, 'getFavorites'])->name('favorites.get');
 
 
@@ -76,7 +73,9 @@ Route::post('files/delete/temp',[FileController::class,'deleteFileTemp'])->name(
 
 //route de bibliothèque de theme de memoire
 Route::get('/biblio',[BiblioController::class,'index'])->name('biblios');
-
+Route::get('/themes', function () {
+    return response()->json(ThemeMemoire::all());
+});
 //route de base de données
 Route::get('/bd-all',[BaseDonneController::class,'index'])->name('bds.all');
 Route::get('/bd/detail/{uuid}/{fakeUuid}',[BaseDonneController::class,'getBdDetail'])->name('bd.detail');

@@ -30,4 +30,14 @@ class BiblioController extends Controller
     return response()->json($themes); // Renvoie les thèmes au format JSON
 }
 
+      
+public function getFavorites(Request $request)
+{
+    // Récupérer les favoris à partir de la session
+    $favorites = $request->session()->get('favorites', []);
+
+    // Répondre avec les favoris en format JSON
+    return response()->json($favorites);
+}
+
 }
