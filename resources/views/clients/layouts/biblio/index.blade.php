@@ -4,6 +4,10 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> <!-- Font Awesome -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
+
+<!-- Script JS pour AOS -->
+
+
 <style>
        .input-group input {
     border-top-left-radius: 25px;
@@ -59,6 +63,7 @@
                             class="form-control border-end-0" 
                             placeholder="Recherchez un thème..." 
                             onkeyup="searchThemes()" 
+                           
                         />
                         <button class="btn btn-primary" type="button">
                             <i class="bi bi-search"></i> <!-- Icône de recherche -->
@@ -83,7 +88,7 @@
                             <div class="card shadow-sm h-100">
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title fw-bold text-primary">{{ $theme->title }}</h5>
-                                    <p class="card-text"><strong>Description :</strong> {{ Str::limit($theme->description, 25) }}</p>
+                                    <p class="card-text"><strong>Description :</strong> {{ Str::limit($theme->description, 30) }}</p>
         
                                     <div class="mt-auto">
                                         <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal{{ $theme->id }}">
@@ -131,9 +136,7 @@
         </div>
 
 
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
-            Mes Favoris
-        </button>
+     
         
         <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -156,6 +159,75 @@
 @section('extra-scripts')
 
 <script>
+function loadAllThemes() {
+    // Effectuer une requête AJAX pour charger tous les thèmes ou utiliser vos données statiques
+    $.ajax({
+        url: '/themes',  // Un URL de votre côté qui récupère tous les thèmes
+        method: 'GET',
+        success: function(data) {
+            displayThemes(data);
+        },
+        error: function(error) {
+            console.error("Erreur de récupération des thèmes:", error);
+        }
+    });
+}
+function searchThemes() {
+    let query = document.getElementById('searchBar').value; // Obtenez la valeur de la barre de recherche
+    if (query.trim() === "") {
+        // Si la recherche est vide, charger tous les thèmes
+        loadAllThemes();
+    } 
+
+    fetch(`/search-themes?query=${query}`, {
+        method: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let themesContainer = document.getElementById('themesContainer');
+        themesContainer.innerHTML = ''; // Vider le conteneur avant d'insérer les nouveaux résultats
+ 
+        if (data.length > 0) {
+            data.forEach(theme => {
+                let themeCard = `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 theme-card">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold text-primary">${theme.title}</h5>
+                                <p class="card-text"><strong>Description :</strong> ${theme.description.substring(0, 30)}...</p>
+                                <div class="mt-auto">
+                                  <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal${theme.id}">
+                                            Voir Plus
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                themesContainer.innerHTML += themeCard;
+            });
+        } else {
+            themesContainer.innerHTML =  `<div class="d-flex flex-column align-items-center justify-content-center text-center mt-5">
+            <!-- Icône Font Awesome Triste -->
+            <div class="mb-3">
+                <i class="fas fa-sad-tear" style="font-size: 6rem; color: #f06c64;"></i>
+            </div>
+            
+            <!-- Message d'erreur -->
+            <h4 class="fw-bold text-danger">
+                Aucun thème trouvé
+            </h4>
+            
+            <!-- Description additionnelle -->
+            <p class="text-muted mb-4">
+                Désolé, nous n'avons trouvé aucun thème correspondant à votre recherche.<br>
+                Veuillez essayer avec d'autres mots-clés ou vérifier l'orthographe.
+            </p>
+        </div> `;
+        }
+    })
+    .catch(error => console.error('Erreur :', error));
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -247,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
        
   
 
-});   
+}); 
 
 
 

@@ -49,7 +49,8 @@ Route::get('/', LandingPageController::class)->name('home');
  * client
 =================================*/
 
-Route::get('/search/themes', [BiblioController::class, 'search'])->name('themes.search');
+Route::get('/search-themes', [BiblioController::class, 'searchThemes']);
+
 
 
 /**

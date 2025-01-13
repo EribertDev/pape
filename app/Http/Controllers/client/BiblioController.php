@@ -17,7 +17,7 @@ class BiblioController extends Controller
         return view('clients.layouts.biblio.index', compact('themes'));
     }
 
-    public function search(Request $request)
+    public function searchThemes(Request $request)
 {
     $query = $request->get('query'); // Récupère le mot-clé de recherche
     $themes = ThemeMemoire::where('status_id', 1) // Condition pour les thèmes actifs
