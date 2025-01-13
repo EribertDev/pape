@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var selectedOption = $('#theme').find('option:selected');
         var text = selectedOption.text();
         // Mettre à jour le champ #subject avec le texte de l'option sélectionnée
-        $('#subject').val(text);
+      
     }
     // Écouter le changement de sélection pour le thème
     $('#theme').on('change', updateSubject);

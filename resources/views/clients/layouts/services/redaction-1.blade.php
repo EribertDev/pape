@@ -267,12 +267,12 @@
                                                 <div class="mt-2 d-flex align-items-center">
                                                     <!-- Option Oui -->
                                                     <div class="form-check me-3">
-                                                        <input type="radio" class="form-check-input" id="chooseYes" name="chooseTheme" value="yes">
+                                                        <input type="radio" class="form-check-input" id="chooseYes" name="chooseTheme" value="yes" required>
                                                         <label class="form-check-label" for="chooseYes">Oui</label>
                                                     </div>
                                                     <!-- Option Non -->
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="chooseNo" name="chooseTheme" value="no">
+                                                        <input type="radio" class="form-check-input" id="chooseNo" name="chooseTheme" value="no" required>
                                                         <label class="form-check-label" for="chooseNo">Non</label>
                                                     </div>
                                                 </div>
@@ -284,17 +284,17 @@
 
                                             <div class="form-group mt-2" id="div_subject"   style="display: none;">
                                                 <label class="fieldlabels fw-bold" for="subject">Inscrivez votre thème</label>
-                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme" required />
+                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme"  />
                                             </div>
 
                                             <div class="form-group mt-2">
-                                                <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="" hidden/>
+                                                <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="Veuillez entrez votre theme" hidden/>
                                               
                                             </div>
 
                                             <div class="form-group mt-2" id="div_theme"  style="display: none;">
                                                 <label for="cars"  class="fw-bold">Thème de Recherche </label>
-                                                <select name="theme" id="theme" hidden required>
+                                                <select name="theme" id="theme" hidden >
                                                     <option value="">Veuillez entrer votre theme</option>
                                                     @if (!empty($options['TMs']))
                                                         @php
