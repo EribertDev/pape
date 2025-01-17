@@ -62,4 +62,14 @@ class Payement extends Model
     {
         return $this->belongsTo(Status::class,'status_id');
     }
+    public function baseDonnee()
+    {
+    return $this->belongsTo(BaseDonnee::class, 'base_id');
+    }
+
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

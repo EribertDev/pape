@@ -23,8 +23,19 @@ class BaseDonne extends Model
         $bd['status_id'] =Status::getIdByName('Actif');
         $bd['created_at'] = date_create();
         $bd['updated_at'] = date_create();
+      
         return DB::table($this->table)->insertGetId($bd);
+       
     }
+
+    //Definition de classe etrangere
+
+    public function payements()
+    {
+        return $this->hasMany(Payement::class, 'base_id');
+    }
+
+ 
     //
     public function getAll(): \Illuminate\Database\Eloquent\Collection|array
     {

@@ -131,14 +131,14 @@
                         </a>
                     </li>
                 @endif
-                {{-- @if (Route::has('admin.base-donne'))
+                 @if (Route::has('admin.base-donne'))
                 <li class="{{ Request::is(['admin/base-donne']) ? 'nav-item active' : 'nav-item' }}">
                     <a href="{{route('admin.base-donne')}}">
                         <i class="la la-dashboard"></i>
                         <p>Base de données</p>
                     </a>
                 </li>
-            @endif --}}
+            @endif 
 
                 {{-- @if (Route::has('admin.staff'))
                 <li class="{{ Request::is(['admin/staff']) ? 'nav-item active' : 'nav-item' }}">

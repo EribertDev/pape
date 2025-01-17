@@ -27,6 +27,9 @@
                                 <a class="nav-link" href="{{route('biblios')}}">Bibliothèque</a>
                             </li>
                             <li>
+                                <a class="nav-link" href="{{route('bds.all')}}"> Statista</a>
+                            </li>
+                            <li>
                                 <a class="nav-link" href="{{route('a-propos')}}">A propos</a>
                             </li>
                             <li>

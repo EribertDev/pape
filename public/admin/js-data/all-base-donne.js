@@ -200,13 +200,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                         if (action==="add"){
                             swalWithBootstrapButtons.fire({
                                 title: "Ajouté",
-                                text: "Base de données ajoutée avec sucè.😊",
+                                text: "Base de données ajoutée avec succès.😊",
                                 icon: "success"
                             });
                         }else{
                             swalWithBootstrapButtons.fire({
                                 title: "Enregitrer",
-                                text: "Base de données modifiée avec sucè.😊",
+                                text: "Base de données modifiée avec succès.😊",
                                 icon: "success"
                             });
                         }
@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     success: function(response) {
                         swalWithBootstrapButtons.fire({
                             title: "Supprimée",
-                            text: "Base de données supprimée avec sucè.😊",
+                            text: "Base de données supprimée avec succès.😊",
                             icon: "success"
                         });
                         dataTable.ajax.reload();

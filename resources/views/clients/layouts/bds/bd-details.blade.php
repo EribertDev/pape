@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{asset(('clients/assets/css/shop.css'))}}" />
     <link rel="stylesheet" href="{{asset(('clients/assets/css/styles_perso.css'))}}" />
     <link rel="stylesheet" href="{{asset('clients/js-simple-loader-main/loader.css')}}" />
+    <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     <script  src="{{asset('clients/js-simple-loader-main/loader.js')}}"  ></script>
 @endsection
 
@@ -70,10 +71,64 @@
                         --}}
 
                         </div>
-                        <!-- Product Action -->
-                        <div class="pd_btn fix">
-                            <a class="btn btn-default acc_btn">Acheter</a>
-                        </div>
+                     
+                        @php
+                            $user_id = Auth::user()->id;
+                            $bd_uuid =  $bd->uuid;
+                            $bd_id = \App\Models\BaseDonne::where('uuid', $bd_uuid)->value('id');
+                            $Paidpayment =  \App\Models\Payement::where('base_id' , $bd_id)
+                            ->where('user_id', $user_id)
+                            ->where('status_id', 20)
+                            ->first();
+                                                   
+                                
+                            // Récupération des paiements correspondant aux conditions
+                            $payments = \App\Models\Payement::where('base_id', $bd_id)
+                                ->where('user_id', $user_id)
+                                ->get(); // Utilisez `get()` pour obtenir tous les résultats
+                            $PendingPayments = $payments->where('status_id', 3)->last();                  
+                            
+                            // Récupération des paiements correspondant aux conditions
+                            $payments = \App\Models\Payement::where('base_id', $bd_id)
+                                ->where('user_id', $user_id)
+                                ->get(); // Utilisez `get()` pour obtenir tous les résultats
+                                                    
+                       @endphp
+                        @if( $Paidpayment)
+                           
+                            <button class="btn_one border-0 download" type="button"
+                                data-uuid="{{ $bd->uuid }}"
+                                data-pay-id="{{  $payment->id ?? '' }}"
+                                data-pay-status="payer">
+                                <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span>
+                                <span role="status">Télécharger</span>
+                            </button>
+                          
+                       
+                           
+                           
+                        @elseif(!empty($PendingPayments))
+
+                            <div class="pd_btn fix">
+                                <button class="btn_one border-0 payer" type="button"   data-amount-type ="BD" data-uuid ="{{$bd->uuid}}"  data-pay-id="{{ $payment->id ?? '' }}">
+                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Acheter</span>
+                                </button>
+                            
+                            
+                                <button class="btn_two border-0 payer_confirme ms-2 " type="button"   data-pay-id="{{$PendingPayments->id ?? '' }}"
+                                    data-pay-status="{{ strtolower($PendingPayments->status->name ?? '') }}"
+                                    >
+                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> J'ai payé</span>
+                                    </button> 
+                                
+                            </div>
+                        @else
+                            <div class="pd_btn fix">
+                                <button class="btn_one border-0 payer" type="button"   data-amount-type ="BD" data-uuid ="{{$bd->uuid}}"  data-pay-id="{{ $payment->id ?? '' }}">
+                                    <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Acheter</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="pd_share_area fix">
                             <h4>Partager :</h4>
                             <div class="pd_social_icon">
@@ -160,5 +215,55 @@
 @endsection
 
 @section('extra-scripts')
+<div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="payModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div id="embed" style="width: 500px; height: 420px;position:absolute;" ></div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4 class="modal-title text-center fw-bold" id="exampleModalLabel">Succès</h4>
+                    <div>
+                        <img class="mt-3" src="{{asset('clients/assets/images/icon/valide.png')}}" alt="" style="width: 70px;height: 70px">
+                    </div>
+                    <div>
+                        <h5 class="mt-3" id="s_title_msg">Paiement éffectue avec succès</h5>
+                        <p class="text-muted" id="s_msg" >Merci pour votre confiance</p>
+                    </div>
+                    <button type="button" class="btn_two mt-3 cancel__pay" data-bs-dismiss="modal">ok</button>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="payErrorModal" tabindex="-1" aria-labelledby="payErrorModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div id="embed" style="width: 500px; height: 420px;position:absolute;" ></div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4 class="modal-title text-center fw-bold" id="exampleModalLabel">Erreur</h4>
+                    <div>
+                        <img class="mt-2" src="{{asset('clients/assets/images/icon/caution.png')}}" alt="" style="width: 70px;height: 70px">
+                    </div>
+                    <div>
+                        <h5 class="mt-2" id="e_title_msg">Paiement échoué ou annulé</h5>
+                        <p class="text-muted" id="e_msg">Si votre compte a été débité, veuillez cliquer sur le bouton "J'ai Payer" pour vérifier votre paiement ou contactez-nous.</p>
+                    </div>
+                    {{-- <div class="text-start">
+                        <p class="text-muted ms-4">Référence commande : <span id="ref__cmd"></span></p>
+                        <p class="text-muted ms-4">Id payement : <span id="id__pay"></span></p>
+                    </div> --}}
+                    <div class="d-flex justify-content-center mt-2 gap-3">
+                        <button type="button" class="btn_two mt-3 cancel__pay" data-bs-dismiss="modal" id="cancel__pay">OK</button>
+                        {{-- <button type="button" class="btn_one mt-3 border-0" >Réclamation</button> --}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="module" src="{{asset('clients/js-data/bd.js?'.Str::uuid())}}"></script>
 @endsection

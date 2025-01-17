@@ -159,26 +159,11 @@
 @section('extra-scripts')
 
 <script>
-function loadAllThemes() {
-    // Effectuer une requête AJAX pour charger tous les thèmes ou utiliser vos données statiques
-    $.ajax({
-        url: '/themes',  // Un URL de votre côté qui récupère tous les thèmes
-        method: 'GET',
-        success: function(data) {
-            displayThemes(data);
-        },
-        error: function(error) {
-            console.error("Erreur de récupération des thèmes:", error);
-        }
-    });
-}
+
+
 function searchThemes() {
     let query = document.getElementById('searchBar').value; // Obtenez la valeur de la barre de recherche
-    if (query.trim() === "") {
-        // Si la recherche est vide, charger tous les thèmes
-        loadAllThemes();
-    } 
-
+  
     fetch(`/search-themes?query=${query}`, {
         method: 'GET',
         headers: { 'X-Requested-With': 'XMLHttpRequest' }

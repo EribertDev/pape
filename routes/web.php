@@ -49,8 +49,7 @@ Route::get('/', LandingPageController::class)->name('home');
  * client
 =================================*/
 
-Route::get('/search-themes', [BiblioController::class, 'searchThemes']);
-
+Route::get('/search/themes', [BiblioController::class, 'search'])->name('themes.search');
 
 
 /**
@@ -80,6 +79,19 @@ Route::get('/themes', function () {
 //route de base de données
 Route::get('/bd-all',[BaseDonneController::class,'index'])->name('bds.all');
 Route::get('/bd/detail/{uuid}/{fakeUuid}',[BaseDonneController::class,'getBdDetail'])->name('bd.detail');
+
+//route payement Base de données
+Route::post('/pay/bd',[BaseDonneController::class,'newPayement'])->name('pay.bd');
+Route::post('/pay/bd/verify',[BaseDonneController::class,'verifyPayement'])->name('paybd.verify');
+Route::post('/pay/bd/confirme',[BaseDonneController::class,'confirmePayement'])->name('paybd.confirme');
+Route::post('/pay/bd/finish',[BaseDonneController::class,'finishPayement'])->name('paybd.finish');
+Route::post('/download/bd/file', [BaseDonneController::class,'downloadFinalFile'])->name('download.bd.file');
+
+
+
+
+
+
 
 //route theme mémoire
 Route::get('/theme-memoire-all',[ThemeMemoireController::class,'index'])->name('tm.all');
