@@ -73,7 +73,7 @@
                         </div>
                      
                         @php
-                            $user_id = Auth::user()->id;
+                            $user_id = Auth::user()->id ?? '';
                             $bd_uuid =  $bd->uuid;
                             $bd_id = \App\Models\BaseDonne::where('uuid', $bd_uuid)->value('id');
                             $Paidpayment =  \App\Models\Payement::where('base_id' , $bd_id)
@@ -85,7 +85,7 @@
                             // Récupération des paiements correspondant aux conditions
                             $payments = \App\Models\Payement::where('base_id', $bd_id)
                                 ->where('user_id', $user_id)
-                                ->get(); // Utilisez `get()` pour obtenir tous les résultats
+                                ->get()  ; // Utilisez `get()` pour obtenir tous les résultats
                             $PendingPayments = $payments->where('status_id', 3)->last();                  
                             
                             // Récupération des paiements correspondant aux conditions
