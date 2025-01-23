@@ -267,12 +267,12 @@
                                                 <div class="mt-2 d-flex align-items-center">
                                                     <!-- Option Oui -->
                                                     <div class="form-check me-3">
-                                                        <input type="radio" class="form-check-input" id="chooseYes" name="chooseTheme" value="yes" required>
+                                                        <input type="radio" class="form-check-input" id="chooseYes" name="chooseTheme" value="yes" >
                                                         <label class="form-check-label" for="chooseYes">Oui</label>
                                                     </div>
                                                     <!-- Option Non -->
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="chooseNo" name="chooseTheme" value="no" required>
+                                                        <input type="radio" class="form-check-input" id="chooseNo" name="chooseTheme" value="no" >
                                                         <label class="form-check-label" for="chooseNo">Non</label>
                                                     </div>
                                                 </div>
@@ -341,49 +341,41 @@
                                                 <input type="number" name="codeAf" id="codeAf" class="no-spinner" >
                                                 <li><span id="promo-message"></span></li> 
                                             </div>
-
-
-
-
-
+                        
                                             <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
-                                           
-                                             <div class="col-lg-8 col-12 >
-                    <div class="order-details">
-                        <!-- Order Widget -->
-                        <div class="single-widget">
-                            <h2>Coût de la prestation </h2>
-                            <div class="content">
-                                <ul>
-                                    <li>Montant normal<span id="montant">-----</span></li>
-                                    <li>Réduction<span id="montantReduit">-----</span></li>
-                                    <li>Montant à payer: <span id="montantFinal"> </span></li>
-
-                                    
-                                </ul>
-                                    
-                            </div>
-                        </div>
-                        <!--/ End Payment Method Widget -->
-                        <!-- Button Widget -->
-                        <div class="single-widget get-button">
-                            <div class="content">
-                                <div class="button">
-                                    <a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End Button Widget -->
-                    </div>
-				</div>
-                                        </div>
-                                    </div>
-                                <!-- Button Widget -->
-
-                                <!--/ End Button Widget -->
-                            </div>
+                                        </div> 
+                                    </div>    
                         </form>
                         <!--/ End Form -->
+                       
+                            <div class="col-lg-8 col-12" >      
+                                <div class="order-details">
+                                    <!-- Order Widget -->
+                                    <div class="single-widget">
+                                        <h2>Coût de la prestation </h2>
+                                        <div class="content">
+                                            <ul>
+                                                <li>Montant normal<span id="montant">-----</span></li>
+                                                <li>Réduction<span id="montantReduit">-----</span></li>
+                                                <li>Montant à payer: <span id="montantFinal"> </span></li>
+            
+                                                
+                                            </ul>
+                                                
+                                        </div>
+                                    </div>
+                                    <!--/ End Payment Method Widget -->
+                                    <!-- Button Widget -->
+                                    <div class="single-widget get-button">
+                                        <div class="content">
+                                            <div class="button">
+                                                <a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/ End Button Widget -->
+                                </div>
+                            </div>  
                     </div>
                 </div>
                 
@@ -653,11 +645,6 @@ chooseNo.addEventListener('change', handleThemeSelection);
                 stageDetails.style.display = 'none';
             }
         });
-
-
-
-
-
 
 
   const steps = document.querySelectorAll(".step");

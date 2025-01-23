@@ -83,7 +83,7 @@ Route::get('/bd/detail/{uuid}/{fakeUuid}',[BaseDonneController::class,'getBdDeta
 //route payement Base de données
 Route::post('/pay/bd',[BaseDonneController::class,'newPayement'])->name('pay.bd');
 Route::post('/pay/bd/verify',[BaseDonneController::class,'verifyPayement'])->name('paybd.verify');
-Route::post('/pay/bd/confirme',[BaseDonneController::class,'confirmePayement'])->name('paybd.confirme');
+Route::post('/pay/bd/confirme',[PayementController::class,'confirmePayement'])->name('paybd.confirme');
 Route::post('/pay/bd/finish',[BaseDonneController::class,'finishPayement'])->name('paybd.finish');
 Route::post('/download/bd/file', [BaseDonneController::class,'downloadFinalFile'])->name('download.bd.file');
 

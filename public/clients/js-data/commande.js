@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     name: 'subject',
                     typeField:{
                         textField:{
-                            minLength:5,
+                            minLength:0,
                             maxLength: 255,
                         },
                     }
@@ -133,26 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                     },
                 },
-                commune_stage:{
-                    name:'commune_stage',
-                    typeField:{
-                        textField:{
-                            minLength:0,
-                            maxLength: 200
-                        },
-                        
-                    },
-                },
-                structure_stage:{
-                    name:'structure_stage',
-                    typeField:{
-                        textField:{
-                            minLength:0,
-                            maxLength: 200
-                        },
-                        
-                    },
-                },
+               
                
                
             };
@@ -160,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
            // console.log(stdevForm.getDataFormData())
            
             isValideInput= stdevForm.validateFields(
-                ['subject','description','universite','codeAf','specialite','pays','deadline','structure_stage','commune_stage','type_universite'],fieldsConfig,
+                ['subject','description','universite','codeAf','pays','deadline','type_universite'],fieldsConfig,
                 "border border-danger",
                 'border border-success');
                 if (!(service.includes("Rédaction complète") || service.includes("Protocole"))) {
@@ -174,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         }
                 }
             if (isValideInput){
+                
                 $('#conditionOfUseModale').modal('show');
             }
         }else {
@@ -231,14 +213,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
 
     // Écouter le changement de sélection pour le thème
-    // $('#theme').on('change', function() {
+     $('#theme').on('change', function() {
     //     // Récupérer l'option sélectionnée
-    //     var selectedOption = $(this).find('option:selected');
-    //     var value = $(this).val();
-    //     var discipline = selectedOption.data('discipline');
-    //     var text = selectedOption.text();
-    //     $('#subject').val(text);
-    // });
+         var selectedOption = $(this).find('option:selected');
+         var value = $(this).val();
+         var discipline = selectedOption.data('discipline');
+         var text = selectedOption.text();
+         $('#subject').val(text);
+     });
     //
     // Fonction pour mettre à jour le sujet en fonction de la sélection du thème
     function updateSubject() {
@@ -341,20 +323,22 @@ document.addEventListener("DOMContentLoaded", function() {
        
     }
    
- // Événement 'input' sur le champ #codeAf
- $('#codeAf').on('input', function() {
-    let codeSaisi = $(this).val(); // Code promo saisi
-    updateMontant();
-     // Mise à jour du montant final basé sur le code promo
-});
-    //Écouter l'événement change
-    $('#typeService').on('change', function() {
-        updateElements();
-     
-    updateMontant();
-    });
-   
-    //download file final
+        // Événement 'input' sur le champ #codeAf
+            $('#codeAf').on('input', function() {
+                let codeSaisi = $(this).val(); // Code promo saisi
+                updateMontant();
+                // Mise à jour du montant final basé sur le code promo
+            });
+                //Écouter l'événement change
+                $('#typeService').on('change', function() {
+                    updateElements();
+                
+                updateMontant();
+                });
+        
+            //download file final
+
+
 
 
 

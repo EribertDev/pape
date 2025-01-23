@@ -51,7 +51,7 @@ class CommandeController extends Controller
         $prix =  $data["typeService"]->prix;
 
         //si un theme de la bibliothèque est choisir
-        if ($request->has('choose_theme')) {
+        if ($request->has('chooseTheme') && $request->input('chooseTheme') === 'yes') {
             $request->validate([
                 'theme' => 'required',
             ], [
@@ -140,8 +140,8 @@ class CommandeController extends Controller
                     'universite'=>  $data["universite"],
                     'pays' => $data["pays"],
                     'type_universite' => $data["type_universite"],
-                    'structure_stage' =>  $data["structure_stage"],
-                    'commune_stage' =>  $data["commune_stage"],
+                    'structure_stage' =>  $data["structure_stage"] ?? null,
+                    'commune_stage' =>  $data["commune_stage"] ?? null,
                 ]);
 
                 if ($request->hasFile('descrip_file')) {
@@ -240,7 +240,7 @@ class CommandeController extends Controller
              'pays' => $data["pays"],
              'type_universite' => $data["type_universite"],
              'structure_stage' =>  $data["structure_stage"],
-            'commune_stage'=>$data["commune_stage"],
+            'commune_stage'=>$data["commune_stage"] ,
              'theme_memoire_id' => $theme_id,
              'amount'=> $data["montantFinalInput"],
              'redactor_id'=> $theme_redactor,
