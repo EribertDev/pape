@@ -76,6 +76,8 @@ Route::get('/biblio',[BiblioController::class,'index'])->name('biblios');
 Route::get('/themes', function () {
     return response()->json(ThemeMemoire::all());
 });
+
+Route::get('/search-themes',[BiblioController::class,'searchThemes'])->name('themes.search');
 //route de base de données
 Route::get('/bd-all',[BaseDonneController::class,'index'])->name('bds.all');
 Route::get('/bd/detail/{uuid}/{fakeUuid}',[BaseDonneController::class,'getBdDetail'])->name('bd.detail');

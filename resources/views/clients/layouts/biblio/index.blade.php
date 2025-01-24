@@ -5,6 +5,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
+
 <!-- Script JS pour AOS -->
 
 
@@ -62,7 +63,7 @@
                             id="searchBar" 
                             class="form-control border-end-0" 
                             placeholder="Recherchez un thème..." 
-                            onkeyup="searchThemes()" 
+                          
                            
                         />
                         <button class="btn btn-primary" type="button">
@@ -94,7 +95,7 @@
                                         <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal{{ $theme->id }}">
                                             Voir Plus
                                         </button>
-                                         <button 
+                                        <button 
                                             class="favorite-btn" 
                                             data-id="{{ $theme->id }}" 
                                             data-title="{{ $theme->title }}"
@@ -159,152 +160,228 @@
 @section('extra-scripts')
 
 <script>
-
-
-function searchThemes() {
-    let query = document.getElementById('searchBar').value; // Obtenez la valeur de la barre de recherche
-  
-    fetch(`/search-themes?query=${query}`, {
-        method: 'GET',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
-    })
-    .then(response => response.json())
-    .then(data => {
-        let themesContainer = document.getElementById('themesContainer');
-        themesContainer.innerHTML = ''; // Vider le conteneur avant d'insérer les nouveaux résultats
- 
-        if (data.length > 0) {
-            data.forEach(theme => {
-                let themeCard = `
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 theme-card">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold text-primary">${theme.title}</h5>
-                                <p class="card-text"><strong>Description :</strong> ${theme.description.substring(0, 30)}...</p>
-                                <div class="mt-auto">
-                                  <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal${theme.id}">
-                                            Voir Plus
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-                themesContainer.innerHTML += themeCard;
-            });
-        } else {
-            themesContainer.innerHTML =  `<div class="d-flex flex-column align-items-center justify-content-center text-center mt-5">
-            <!-- Icône Font Awesome Triste -->
-            <div class="mb-3">
-                <i class="fas fa-sad-tear" style="font-size: 6rem; color: #f06c64;"></i>
-            </div>
-            
-            <!-- Message d'erreur -->
-            <h4 class="fw-bold text-danger">
-                Aucun thème trouvé
-            </h4>
-            
-            <!-- Description additionnelle -->
-            <p class="text-muted mb-4">
-                Désolé, nous n'avons trouvé aucun thème correspondant à votre recherche.<br>
-                Veuillez essayer avec d'autres mots-clés ou vérifier l'orthographe.
-            </p>
-        </div> `;
-        }
-    })
-    .catch(error => console.error('Erreur :', error));
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-       
-
+    function updateFavoriteButtons() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
     // Initialiser le localStorage pour les favoris
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    // Mettre à jour l'affichage des boutons au chargement
     favoriteButtons.forEach(button => {
         const themeId = button.getAttribute('data-id');
-       
+
+        // Vérifiez si le thème est dans les favoris et mettez à jour l'icône
         if (favorites.includes(themeId)) {
-            button.innerHTML = '<i class="bi bi-heart-fill text-danger"></i>'; // Icône remplie
+            button.innerHTML = '<i class="bi bi-heart-fill text-danger"></i>';
+        } else {
+            button.innerHTML = '<i class="bi bi-heart"></i>';
         }
 
         // Ajouter ou retirer des favoris
         button.addEventListener('click', () => {
             if (favorites.includes(themeId)) {
-                favorites = favorites.filter(fav => fav !== themeId);
+                favorites = favorites.filter(fav => fav !== themeId); // Retirer des favoris
+                button.innerHTML = '<i class="bi bi-heart"></i>';
+            } else {
+                favorites.push(themeId); // Ajouter aux favoris
+                button.innerHTML = '<i class="bi bi-heart-fill text-danger"></i>';
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites)); // Sauvegarder les favoris dans le LocalStorage
+        });
+    });
+}
+
+function searchThemes() {
+    const query = document.getElementById('searchBar').value; // Valeur de recherche
+    const themesContainer = document.getElementById('themesContainer');
+
+    // Ajouter un indicateur de chargement avant de lancer la requête
+    themesContainer.innerHTML = `
+        <div class="text-center my-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+            <p class="text-muted">Recherche en cours...</p>
+        </div>
+    `;
+
+    fetch(`/search-themes?query=${encodeURIComponent(query)}`, {
+        method: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    })
+    .then((response) => {
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+    })
+    .then((data) => {
+        themesContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter des résultats
+
+        if (data.length > 0) {
+            // Insérer chaque thème dans le conteneur
+            data.forEach((theme) => {
+                let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                let heartIcon = favorites.includes(theme.id.toString()) ?
+                    '<i class="bi bi-heart-fill text-danger"></i>' : 
+                    '<i class="bi bi-heart"></i>';
+                let themeCard = `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 theme-card">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold text-primary">${theme.title}</h5>
+                                <p class="card-text"><strong>Description :</strong> 
+                                    ${theme.description ? theme.description.substring(0, 30) + '...' : 'Aucune description disponible.'}
+                                </p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal${theme.id}">
+                                        Voir Plus
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger favorite-btn" data-id="${theme.id}">
+                                        ${heartIcon}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <!-- Modal Dynamique -->
+                        <div class="modal fade" id="themeModal${theme.id}" tabindex="-1" aria-labelledby="themeModalLabel${theme.id}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold" id="themeModalLabel${theme.id}">${theme.title}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Description :</strong> ${theme.description || "Pas de description disponible."}</p>
+                                        <hr>
+                                        <p><strong>Objectifs Générales :</strong> ${theme.generale || "Non spécifié."}</p>
+                                        <hr>
+                                        <p><strong>Objectifs Spécifiques :</strong> ${theme.specifique || "Non spécifié."}</p>
+                                        <hr>
+                                        <p><strong>Lieu de collecte :</strong> ${theme.lieu_collect || "Non spécifié."}</p>
+                                        <hr>
+                                        <p><strong>Années de Collecte :</strong> ${theme.annee_collect || "Non spécifié."}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                themesContainer.innerHTML += themeCard;
+               
+            }); 
+
+        } else {
+            themesContainer.innerHTML = `
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mt-5">
+                    <div class="mb-3">
+                        <i class="fas fa-sad-tear" style="font-size: 6rem; color: #f06c64;"></i>
+                    </div>
+                    <h4 class="fw-bold text-danger">Aucun thème trouvé</h4>
+                    <p class="text-muted mb-4">
+                        Désolé, aucun thème correspondant n'a été trouvé.<br>
+                        Essayez avec d'autres mots-clés ou vérifiez l'orthographe.
+                    </p>
+                </div>`;
+        }
+        updateFavoriteButtons(); 
+    })
+    .catch((error) => {
+        themesContainer.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+                Une erreur s'est produite lors de la recherche. Veuillez réessayer plus tard.
+            </div>`;
+        console.error('Erreur lors du fetch :', error);
+    });
+}
+
+
+ document.getElementById('searchBar').addEventListener('input', searchThemes);
+
+ document.addEventListener("DOMContentLoaded", () => {
+
+    const favoriteButtons = document.querySelectorAll('.favorite-btn');
+
+    // Initialiser les favoris dans le LocalStorage
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Afficher les favoris au chargement
+    favoriteButtons.forEach(button => {
+        const themeId = button.getAttribute('data-id');
+
+        if (favorites.includes(themeId)) {
+            button.innerHTML = '<i class="bi bi-heart-fill text-danger"></i>'; // Icône remplie si favori
+        }
+       
+
+        // Ajouter ou retirer un thème des favoris
+        button.addEventListener('click', () => {
+            if (favorites.includes(themeId)) {
+                favorites = favorites.filter(fav => fav !== themeId); // Supprimer des favoris
                 button.innerHTML = '<i class="bi bi-heart"></i>'; // Icône vide
             } else {
-                favorites.push(themeId);
+                favorites.push(themeId); // Ajouter aux favoris
                 button.innerHTML = '<i class="bi bi-heart-fill text-danger"></i>'; // Icône remplie
             }
-            localStorage.setItem('favorites', JSON.stringify(favorites)); // Mise à jour dans LocalStorage
+            localStorage.setItem('favorites', JSON.stringify(favorites)); // Sauvegarde
         });
     });
 
     const modalList = document.getElementById('favoritesList');
+    const favoritesModal = document.getElementById('favoritesModal');
 
-    document.getElementById('favoritesModal').addEventListener('show.bs.modal', () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-      
-        modalList.innerHTML = ''; // Réinitialiser
-        fetch('/themes')
-    .then(response => response.json())
-    .then(data => {
-        const themes = data;
-    })
-    .catch(error => {
-        console.error('Erreur lors de la récupération des thèmes :', error);
+    // Afficher la liste des favoris dans la modale
+    favoritesModal.addEventListener('show.bs.modal', () => {
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        modalList.innerHTML = ''; // Réinitialiser le contenu de la liste
+
+        if (storedFavorites.length === 0) {
+            modalList.innerHTML = `
+                <li class="list-group-item text-center">
+                    <p class="text-muted">Aucun favori pour le moment.</p>
+                </li>`;
+            return;
+        }
+
+        fetch('/themes') // Charger tous les thèmes disponibles
+            .then(response => response.json())
+            .then(themes => {
+                storedFavorites.forEach(id => {
+                    const theme = themes.find(theme => theme.id === Number(id)); // Trouver le thème correspondant
+
+                    if (theme) {
+                        const listItem = `
+                            <li class="list-group-item">
+                                <div class="card shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold text-primary">${theme.title}</h5>
+                                        <p class="card-text">Description: ${theme.description || 'Aucune description disponible.'}</p>
+                                        <div class="d-flex justify-content-between mt-3">
+                                            <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal${theme.id}">
+                                                Voir Plus
+                                            </button>
+                                            <button class="btn btn-sm btn-danger remove-favorite" data-id="${theme.id}">
+                                                Retirer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>`;
+                        modalList.innerHTML += listItem;
+                    }
+                });
+
+                // Ajouter la fonctionnalité pour retirer les favoris
+                const removeButtons = modalList.querySelectorAll('.remove-favorite');
+                removeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const idToRemove = button.getAttribute('data-id');
+                        favorites = favorites.filter(fav => fav !== idToRemove); // Retirer du tableau des favoris
+                        localStorage.setItem('favorites', JSON.stringify(favorites)); // Mise à jour du stockage
+                        button.closest('li').remove(); // Supprimer du DOM
+                    });
+                });
+            })
+            .catch(error => console.error('Erreur lors de la récupération des thèmes :', error));
     });
-        favorites.forEach(id => {
-            fetch('/themes')
-    .then(response => response.json())
-    .then(data => {
-        const themes = data;
-   
-            const theme = themes.find(theme => theme.id === Number(id));
+});
 
-            // Remplir avec des informations des favoris
-            const listItem = `<li class="list-group-item">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title fw-bold text-primary">Thème ${theme.title}</h5>
-                    <p class="card-text">Description ${theme.description}</p>
-                    <div class="d-flex justify-content-between mt-3">
-                       <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal${theme.id}">
-                                            Voir Plus
-                                        </button>
-                        <button class="btn btn-sm btn-danger remove-favorite" data-id="${id}">Retirer</button>
-                    </div>
-                </div>
-            </div>
-        </li>`;
-                    modalList.innerHTML += listItem;
-        });
- })
-    .catch(error => {
-        console.error('Erreur lors de la récupération des thèmes :', error);
-    });
-        // Ajouter la fonctionnalité pour retirer des favoris
-       
-    });
-
-
-    const removeButtons = modalList.querySelectorAll('.remove-favorite');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const idToRemove = button.getAttribute('data-id');
-                favorites.splice(favorites.indexOf(idToRemove), 1);
-                localStorage.setItem('favorites', JSON.stringify(favorites));
-                button.closest('li').remove();
-            });
-        });
-       
-  
-
-}); 
 
 
 
