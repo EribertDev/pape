@@ -47,8 +47,7 @@ class RédactorMail extends Mailable
         $mimeType = mime_content_type($this->filePath);
         $originalFileName1= pathinfo($this->fiche_technique, PATHINFO_BASENAME); 
         $mimeType1 = mime_content_type($this->fiche_technique);
-        dd($this->filePath, $this->fiche_technique); // Vérifiez les deux fichiers
-
+       
 
         return $this->view('emails.RedactorEmail')
                 ->with(['commande' => $this->commande,
