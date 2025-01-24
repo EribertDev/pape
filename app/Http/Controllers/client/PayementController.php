@@ -165,7 +165,7 @@ class PayementController extends Controller
 
     public function confirmePayement(Request $request) {
         //Api key 
-        \FedaPay\FedaPay::setApiKey("sk_sandbox_WHk3VWXx2OoC_xzCkpI8UCqg");
+        \FedaPay\FedaPay::setApiKey("sk_live_JTay4TNNiNyZNWExXuO0Khks");
         // mode test ou live
         \FedaPay\FedaPay::setEnvironment('sandbox'); // ou setEnvironment('live');
         // Validation des données d'entrée

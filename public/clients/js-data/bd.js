@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded",function (){
 
                         pay.setAttribute('data-environment', 'sandbox');
                         FedaPay.init(pay, {
-                            public_key: 'pk_sandbox_Q-ZxJWnqXssq9tICFld2FsDv',
+                            public_key: 'pk_live_LGigNoUar3BScoocKua6YYxH',
                             customer:{
                                 lastname:response.data.client?.last_name,
                                 firstname:response.data.client?.fist_name,

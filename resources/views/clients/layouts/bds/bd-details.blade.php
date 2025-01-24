@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="{{asset('clients/js-simple-loader-main/loader.css')}}" />
     <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     <script  src="{{asset('clients/js-simple-loader-main/loader.js')}}"  ></script>
+    <style>
+        /* Effet de zoom au survol */
+        .hover-image:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Accentuation de l'ombre */
+        }
+                /* Fancy border style */
+        .fancy-border {
+            border-radius: 2rem; /* Coins encore plus arrondis */
+            background: linear-gradient(135deg, #ff6b6b, #ffd56b); /* Dégradé autour de l'image */
+            padding: 5px; /* Espace pour afficher le dégradé */
+        }
+
+        /* Animation au survol (facultatif) */
+        .fancy-border:hover {
+            background: linear-gradient(135deg, #ff6b6b, #6b9bff);
+        }
+        </style>
 @endsection
 
 @section('page-content')
@@ -25,8 +44,13 @@
                 <!-- Product Details Image -->
                 <div class="col-md-6 col-xs-12">
                     <div class="pd_img fix">
-                        <a class="venobox" href="assets/images/shop/3.jpg"><img src="{{asset('clients/assets/images/shop/3.jpg')}}" class="img-fluid" alt=""></a>
-                    </div>
+                        <a class="venobox">
+                            <img src="{{ asset('clients/assets/images/shop/11.jpg') }}" 
+                                 class="img-fluid rounded shadow-lg  hover-image fancy-border" 
+                                 alt=""
+                                 style="width: 550px; height: 450px; object-fit: cover  border: 4px solid #ff6b6b;">
+                        </a>
+                                            </div>
                 </div>
                 <!-- Product Details Content -->
                 <div class="col-md-6 col-xs-12">
