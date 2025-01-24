@@ -50,9 +50,9 @@
                                                     <div class="product-grid border border-0 rounded-3 shadow-lg" >
                                                         <div class="product-image">
                                                             <a href="#">
-                                                                <img class="pic-1" src="{{asset('clients/assets/images/shop/5.jpg')}}"
+                                                                <img class="pic-1" src="{{asset('clients/assets/images/shop/9.jpg')}}"
                                                                      alt="product image">
-                                                                <img class="pic-2" src="{{asset('clients/assets/images/shop/6.jpg')}}"
+                                                                <img class="pic-2" src="{{asset('clients/assets/images/shop/10.jpg')}}"
                                                                      alt="product image">
                                                             </a>
 
