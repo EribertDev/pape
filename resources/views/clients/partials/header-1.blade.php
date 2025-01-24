@@ -24,14 +24,15 @@
                                 <a class="nav-link" href="{{route('home')}}">Accueil</a>
                             </li>
                             <li>
+                                <a class="nav-link" href="{{route('a-propos')}}">A propos</a>
+                            </li>
+                            <li>
                                 <a class="nav-link" href="{{route('biblios')}}">Thèmes</a>
                             </li>
                             <li>
                                 <a class="nav-link" href="{{route('bds.all')}}"> Base de données </a>
                             </li>
-                            <li>
-                                <a class="nav-link" href="{{route('a-propos')}}">A propos</a>
-                            </li>
+                           
                             <li>
                                 <a class="nav-link" href="{{route('faqs')}}">FAQ's</a>
                             </li>
