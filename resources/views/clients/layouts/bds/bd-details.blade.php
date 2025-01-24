@@ -129,7 +129,7 @@
                                 </button>
                             </div>
                         @endif
-                        <div class="pd_share_area fix">
+                        <!--<div class="pd_share_area fix">
                             <h4>Partager :</h4>
                             <div class="pd_social_icon">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -137,6 +137,7 @@
                                 <a href="#"><i class="fa fa-vimeo"></i></a>
                                 <a href="#"><i class="fa fa-google-plus"></i></a>
                             </div>
+                        -->
                         </div>
                     </div>
                 </div>
@@ -149,9 +150,10 @@
                             <li>
                                 <a class="active" href="#description" role="tab" data-bs-toggle="tab" aria-selected="true">Description</a>
                             </li>
-                            <li>
+                           <!-- <li>
                                 <a href="#information" role="tab" data-bs-toggle="tab" aria-selected="false" class="" tabindex="-1">Commentaire</a>
                             </li>
+                            -->
                             <li>
                                 <a href="#reviews" role="tab" data-bs-toggle="tab" aria-selected="false" class="" tabindex="-1">Ajouter commentaire</a>
                             </li>
@@ -164,7 +166,7 @@
                                </p>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane fade" id="information">
+                           <!-- <div role="tabpanel" class="tab-pane fade" id="information">
                                 <div class="pda_rtng_area fix">
                                     <h4>4.5 <span>(Overall)</span></h4>
                                     <span>Based on 9 Comments</span>
@@ -189,7 +191,7 @@
 
                                 </div>
                             </div>
-
+                        -->
                             <div role="tabpanel" class="tab-pane fade" id="reviews">
 
                                 <div class="col-md-6 rcf_pdnglft">
@@ -200,7 +202,7 @@
                                                 <div class="input-area"><input type="text" placeholder="Nom & Prénom"></div>
                                                 <div class="input-area"><input type="text" placeholder="Email"></div>
                                                 <div class="input-area"><textarea name="message" placeholder="Commentaire"></textarea></div>
-                                                <input class="btn acc_btn" type="submit" value="Add Review">
+                                                <input class="btn acc_btn" type="submit" value="Envoyer">
                                             </form>
                                         </div>
                                     </div>

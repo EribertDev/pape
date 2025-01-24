@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{asset(('clients/assets/css/styles_perso.css'))}}" />
     <link rel="stylesheet" href="{{asset('clients/js-simple-loader-main/loader.css')}}" />
     <script  src="{{asset('clients/js-simple-loader-main/loader.js')}}"  ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 @endsection
 
 @section('page-content')
@@ -81,7 +83,14 @@
                                                             <div class="price">{{$db->amount}} F cfa
                                                             </div>
                                                             <div >
-                                                                <a class="payer-link fw-bold commande-bd" data-uuid-bd = "{{$db->uuid}}" style="">Commander</a>
+                                                                <a href="{{route('bd.detail',["uuid"=>$db->uuid,"fakeUuid"=>Str::uuid()])}}" 
+                                                                    class="btn btn-primary fw-bold mb-4 px-4 py-2 d-flex align-items-center justify-content-center payer-link fw-bold commande-bd"
+                                                                    style="border-radius: 25px; background: linear-gradient(to right, #6a11cb, #2575fc); color: #fff; transition: all 0.3s ease; text-decoration: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                                                    <i class="bi bi-cart-plus me-2"></i>
+                                                                    Commander
+                                                                 </a>
+                                                                 
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>
