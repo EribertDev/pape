@@ -343,39 +343,41 @@
                                             </div>
                         
                                             <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
-                                        </div> 
-                                    </div>    
+                                        </div>
+                                        <div class="col-lg-8 col-12" >      
+                                            <div class="order-details">
+                                                <!-- Order Widget -->
+                                                <div class="single-widget">
+                                                    <h2>Coût de la prestation </h2>
+                                                    <div class="content">
+                                                        <ul>
+                                                            <li>Montant normal<span id="montant">-----</span></li>
+                                                            <li>Réduction<span id="montantReduit">-----</span></li>
+                                                            <li>Montant à payer: <span id="montantFinal"> </span></li>
+                        
+                                                            
+                                                        </ul>
+                                                            
+                                                    </div>
+                                                </div>
+                                                <!--/ End Payment Method Widget -->
+                                                <!-- Button Widget -->
+                                                <div class="single-widget get-button">
+                                                    <div class="content">
+                                                        <div class="button">
+                                                            <a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--/ End Button Widget -->
+                                            </div>
+                                        </div>  
+                                    </div>
+                                        
                         </form>
                         <!--/ End Form -->
                        
-                            <div class="col-lg-8 col-12" >      
-                                <div class="order-details">
-                                    <!-- Order Widget -->
-                                    <div class="single-widget">
-                                        <h2>Coût de la prestation </h2>
-                                        <div class="content">
-                                            <ul>
-                                                <li>Montant normal<span id="montant">-----</span></li>
-                                                <li>Réduction<span id="montantReduit">-----</span></li>
-                                                <li>Montant à payer: <span id="montantFinal"> </span></li>
-            
-                                                
-                                            </ul>
-                                                
-                                        </div>
-                                    </div>
-                                    <!--/ End Payment Method Widget -->
-                                    <!-- Button Widget -->
-                                    <div class="single-widget get-button">
-                                        <div class="content">
-                                            <div class="button">
-                                                <a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ End Button Widget -->
-                                </div>
-                            </div>  
+                           
                     </div>
                 </div>
                 

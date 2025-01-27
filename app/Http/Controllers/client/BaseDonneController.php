@@ -193,7 +193,7 @@ class BaseDonneController extends Controller
         //Api key 
         \FedaPay\Fedapay::setApiKey("sk_live_JTay4TNNiNyZNWExXuO0Khks");
         // mode test ou live
-        \FedaPay\FedaPay::setEnvironment('sandbox'); // ou setEnvironment('live');
+        \FedaPay\FedaPay::setEnvironment('live'); // ou setEnvironment('live');
         // Validation des données d'entrée
         $data = $request->validate([
             'pay_id' => 'required'
