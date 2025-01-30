@@ -80,7 +80,7 @@
                                                          </ul>--}}
                                                         <div class="product-content">
                                                             <h3 class="title"><a href="#">{{$db->name}}</a></h3>
-                                                            <div class="price">{{$db->amount}} F cfa
+                                                            <div class="price">{{ number_format($db->amount, 0, ',', '.') . ' F CFA (XOF)' }}
                                                             </div>
                                                             <div >
                                                                 <a href="{{route('bd.detail',["uuid"=>$db->uuid,"fakeUuid"=>Str::uuid()])}}" 
