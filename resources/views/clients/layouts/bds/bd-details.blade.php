@@ -59,7 +59,8 @@
                         <div class="pd_price_dtls fix">
                             <!-- Product Price -->
                             <div class="pd_price">
-                                <span class="new">{{$bd->amount.' F cfa(XOF)'}} </span>
+                                <span class="new">{{ number_format($bd->amount, 0, ',', '.') . ' F CFA (XOF)' }}</span>
+
                             </div>
                             <!-- Product Ratting -->
                             <div class="pd_ratng">
