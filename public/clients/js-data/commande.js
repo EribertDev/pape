@@ -154,6 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             addClass('descrip_file', "border border-success");
                         }
                 }
+                if (typeof isAuthenticated === 'undefined' ){
+                    $('#loginModal').modal('show');
+                }
             if (isValideInput){
                 
                 $('#conditionOfUseModale').modal('show');

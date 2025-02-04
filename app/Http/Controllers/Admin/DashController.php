@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Cache\ArrayStore;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashController extends Controller
 {
@@ -39,6 +40,38 @@ class DashController extends Controller
             $paymentTotal = (new Payement())->where('status_id', Status::getIdByName('Payer'))->sum('amount');
             $commandeTotal = (new Commande())->count();
             $commandeTraiterTotal = (new Commande())->where('status_id', Status::getIdByName('Traiter'))->count();
+            $endDate = Carbon::now();
+            $startDate = Carbon::now()->subMonths(9);
+        
+            // Récupérer les commandes groupées par mois
+            $orders = Commande::whereBetween('created_at', [$startDate, $endDate])
+                ->selectRaw('COUNT(*) as count, YEAR(created_at) year, MONTH(created_at) month')
+                ->groupBy('year', 'month')
+                ->get();
+            
+                // Récupérer les revenus
+            $revenues = Payement::whereBetween('created_at', [$startDate, $endDate])
+            ->selectRaw('SUM(amount) as total, YEAR(created_at) year, MONTH(created_at) month')
+            ->groupBy('year', 'month')
+            ->where('status_id', Status::getIdByName('Payer'))
+            ->get();
+            $labels = [];
+            $orderData = [];
+            $revenueData = [];
+        
+            for ($i = 9; $i >= 0; $i--) {
+                $date = Carbon::now()->subMonths($i);
+                $monthKey = $date->format('Y-m');
+                
+                $labels[] = $date->translatedFormat('M Y');
+                
+                // Trouver les données correspondantes
+                $order = $orders->firstWhere('month', $date->month);
+                $orderData[] = $order ? $order->count : 0;
+        
+                $revenue = $revenues->firstWhere('month', $date->month);
+                $revenueData[] = $revenue ? $revenue->total : 0;
+            }
             $data = [
                 'clientsTotal'=> $clientsTotal,
                 'payementTotal'=> $paymentTotal,
@@ -48,7 +81,7 @@ class DashController extends Controller
         }
 
         // Retourner la vue avec les données
-        return view('admin.layouts.dash')->with("data",$data);
+        return view('admin.layouts.dash',  compact('labels', 'orderData', 'revenueData'))->with("data",$data);
     }
 
 }

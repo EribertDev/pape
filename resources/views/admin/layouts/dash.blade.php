@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('extra-style')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 @endsection
 
@@ -136,6 +137,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="chart-container" style="position: relative; height:60vh; width:80vw">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
                 @endif
 
 
@@ -225,5 +231,59 @@
 @endsection
 
 @section('extra-scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    
+    new Chart(ctx, {
+        type: 'line', // ou 'bar' selon votre préférence
+        data: {
+            labels: @json($labels),
+            datasets: [{
+                label: 'Nombre de commandes',
+                data: @json($orderData),
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.2,
+                fill: true
+            },
+            {
+                label: 'Revenus (F CFA)',
+                data: @json($revenueData),
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.2,
+                fill: true,
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Statistiques des 9 derniers mois'
+                }
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Commandes'
+                    }
+                },
+                y1: {
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Revenus (f CFA)'
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    }
+                }
+            }
+        }
+    });
+</script>
 @endsection
