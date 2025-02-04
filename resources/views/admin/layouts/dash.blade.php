@@ -1,7 +1,26 @@
 @extends('admin.master')
 @section('extra-style')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+<style>
+    .chart-container {
+    width: 100%;
+    height: 80vh; /* Hauteur plus grande sur mobile */
+    max-height: 600px;
+    overflow-x: auto; /* Défilement horizontal si nécessaire */
+}
 
+@media (max-width: 768px) {
+    .chart-container {
+        height: 70vh;
+        margin: 0 -15px; /* Utilise toute la largeur */
+    }
+    
+    canvas {
+        min-width: 120% !important; /* Agrandit le canvas */
+    }
+}
+</style>
 @endsection
 
 @section('page-content')
@@ -234,9 +253,16 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const ctx = document.getElementById('myChart').getContext('2d');
-    
+    let gradientOrders = ctx.createLinearGradient(0, 0, 0, 400);
+    gradientOrders.addColorStop(0, 'rgba(75, 192, 192, 0.4)');
+    gradientOrders.addColorStop(1, 'rgba(75, 192, 192, 0)');
+
+    let gradientRevenues = ctx.createLinearGradient(0, 0, 0, 400);
+    gradientRevenues.addColorStop(0, 'rgba(255, 99, 132, 0.4)');
+    gradientRevenues.addColorStop(1, 'rgba(255, 99, 132, 0)');
+
     new Chart(ctx, {
         type: 'line', // ou 'bar' selon votre préférence
         data: {
@@ -245,45 +271,110 @@
                 label: 'Nombre de commandes',
                 data: @json($orderData),
                 borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: gradientOrders,
+                borderWidth: 3,
+             
                 tension: 0.2,
                 fill: true
+                
+                
             },
+           
             {
                 label: 'Revenus (F CFA)',
                 data: @json($revenueData),
                 borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: gradientRevenues,
                 tension: 0.2,
                 fill: true,
-                yAxisID: 'y1'
+                yAxisID: 'y1',
+                pointStyle: 'rectRounded',
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Statistiques des 9 derniers mois'
+            maintainAspectRatio: false, // Essential pour le contrôle mobile
+            devicePixelRatio: isMobile ? 2 : 1, // Améliore la netteté sur mobile
+            layout: {
+            padding: isMobile ? 10 : 20
+        },
+            interaction: {
+                mode: 'nearest',
+                intersect: false,
+                axis: 'x'
+            }, onHover: (event, elements) => {
+                if (isMobile) {
+                    event.native.target.style.cursor = 'pointer';
                 }
             },
-            scales: {
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Commandes'
-                    }
+            plugins: {
+            title: {
+                font: { size: isMobile ? 16 : 18 }
+            },
+            zoom: {
+                zoom: {
+                    wheel: { enabled: false },
+                    pinch: { enabled: true },
+                    mode: 'x'
                 },
-                y1: {
-                    position: 'right',
-                    title: {
-                        display: true,
-                        text: 'Revenus (f CFA)'
+                pan: {
+                    enabled: true,
+                    mode: 'x'
+                }
+            },
+            legend: {
+                position: isMobile ? 'bottom' : 'top',
+                labels: {
+                    font: { 
+                        size: isMobile ? 12 : 14 
+                    }
+                }
+            },
+            tooltip: {
+                bodyFont: { size: isMobile ? 12 : 14 },
+                titleFont: { size: isMobile ? 14 : 16 },
+                padding: isMobile ? 8 : 12
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    font: {
+                        size: isMobile ? 10 : 12
                     },
-                    grid: {
-                        drawOnChartArea: false
+                    maxRotation: isMobile ? 45 : 0,
+                    minRotation: isMobile ? 45 : 0
+                }
+            },
+            y: {
+                ticks: {
+                    font: { size: isMobile ? 10 : 12 }
+                }
+            },
+            y1: {
+                position: 'right',
+                ticks: {
+                    font: { size: isMobile ? 10 : 12 },
+                    callback: function(value) {
+                        return isMobile ? `${value/1000}k` : `${Number(value).toLocaleString()} F CFA`;
                     }
                 }
             }
         }
-    });
+        
+        }
+            });
+            // Animation de fondu au chargement
+document.getElementById('myChart').style.opacity = 0;
+setTimeout(() => {
+    document.getElementById('myChart').style.transition = 'opacity 0.5s ease-in';
+    document.getElementById('myChart').style.opacity = 1;
+}, 500);
+
+
 </script>
 @endsection
+
+
+    

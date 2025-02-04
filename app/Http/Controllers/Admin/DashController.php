@@ -72,6 +72,7 @@ class DashController extends Controller
                 $revenue = $revenues->firstWhere('month', $date->month);
                 $revenueData[] = $revenue ? $revenue->total : 0;
             }
+           
             $data = [
                 'clientsTotal'=> $clientsTotal,
                 'payementTotal'=> $paymentTotal,
@@ -81,7 +82,7 @@ class DashController extends Controller
         }
 
         // Retourner la vue avec les données
-        return view('admin.layouts.dash',  compact('labels', 'orderData', 'revenueData'))->with("data",$data);
+        return view('admin.layouts.dash',  compact('labels', 'orderData', 'revenueData',))->with("data",$data);
     }
 
 }
