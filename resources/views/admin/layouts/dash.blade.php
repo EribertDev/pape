@@ -11,14 +11,39 @@
 }
 
 @media (max-width: 768px) {
-    .chart-container {
-        height: 70vh;
-        margin: 0 -15px; /* Utilise toute la largeur */
+   /* Version desktop par défaut */
+.chart-container-mobile {
+    height: 60vh;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+    .chart-container-mobile {
+        height: 80vh !important; /* Force la hauteur sur mobile */
+        width: 100vw !important; /* Prend toute la largeur */
+        margin: 0 -1rem; /* Compense le padding parent */
+        padding-right: 15px; /* Empêche le débordement */
     }
     
-    canvas {
-        min-width: 120% !important; /* Agrandit le canvas */
+    #myChart {
+        min-width: 120%; /* Agrandit le graphique */
+        transform: scale(1.1); /* Zoom supplémentaire */
+        transform-origin: left top;
     }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 480px) {
+    .chart-container-mobile {
+        height: 90vh !important;
+    }
+    
+    #myChart {
+        min-width: 150%;
+    }
+}
 }
 </style>
 @endsection
@@ -157,8 +182,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="chart-container" style="position: relative; height:60vh; width:80vw">
-                            <canvas id="myChart"></canvas>
+                        <div class="chart-container-mobile" style="position: relative; height:70vh; width:100%; margin:0 -15px; overflow-x: auto;">
+                            <canvas id="myChart" style="min-width: 600px;"></canvas>
                         </div>
                     </div>
                 @endif
