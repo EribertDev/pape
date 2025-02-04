@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded",function (){
                 typeField:{
                     textField:{
                         minLength:8,
-                        maxLength: 8,
+                        maxLength: 15,
                     },
                     digitsField:true
                 },
