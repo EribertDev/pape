@@ -73,9 +73,31 @@
                        
                     </div>
                 </div>
+                <div class="row mb-3 g-3 mt-3">
+       
+                    <div class="row mb-5 g-3 mt-2 justify-content-center">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="bg-light p-4 rounded-4 shadow-sm">
+                                <div class="text-center mb-3">
+                                    <label for="statusFilter" class="form-label fw-bold text-secondary">Choisir une discipline</label>
+                                </div>
+                                <select class="form-select form-select-lg border-2 border-primary rounded-3 shadow-sm py-3 fs-5" 
+                                        name="discipline" 
+                                        id="statusFilter"
+                                        style="cursor: pointer;">
+                                    @foreach($disciplines as $discipline)
+                                    <option value="{{ $discipline->id }}">{{ $discipline->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+               <!-- Filtres -->
+ 
             <h1 class="text-center my-5 fw-bold">Thèmes de Mémoire Disponibles</h1>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#favoritesModal">
                 Mes Favoris
             </button>
             @if ($themes->isEmpty())
@@ -158,7 +180,6 @@
 @endsection
 
 @section('extra-scripts')
-
 <script>
     function updateFavoriteButtons() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
@@ -381,6 +402,105 @@ function searchThemes() {
             .catch(error => console.error('Erreur lors de la récupération des thèmes :', error));
     });
 });
+
+document.getElementById('statusFilter').addEventListener('change', () => {
+    const selectedDiscipline = document.getElementById('statusFilter').value;
+    const themesContainer = document.getElementById('themesContainer');
+
+    themesContainer.innerHTML = `
+        <div class="text-center my-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+            <p class="text-muted">Chargement des thèmes...</p>
+        </div>
+    `;
+
+    fetch(`/themes-by-discipline?discipline_id=${selectedDiscipline}`, {
+        method: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`Erreur HTTP! Statut : ${response.status}`);
+        return response.json();
+    })
+    .then(data => {
+        themesContainer.innerHTML = '';
+
+        if (data.length > 0) {
+            data.forEach(theme => {
+                let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                let heartIcon = favorites.includes(theme.id.toString()) ?
+                    '<i class="bi bi-heart-fill text-danger"></i>' : 
+                    '<i class="bi bi-heart"></i>';
+                let themeCard = `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4 theme-card">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title>
+                                fw-bold text-primary">${theme.title}</h5>
+                                <p class="card-text"><strong>Description :</strong> 
+                                    ${theme.description ? theme.description.substring(0, 30) + '...' : 'Aucune description disponible.'}    
+                                </p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#themeModal${theme.id}">
+                                        Voir Plus
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger favorite-btn" data-id="${theme.id}">
+                                        ${heartIcon}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                              <!-- Modal Dynamique -->
+                        <div class="modal fade" id="themeModal${theme.id}" tabindex="-1" aria-labelledby="themeModalLabel${theme.id}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fw-bold" id="themeModalLabel${theme.id}">${theme.title}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Description :</strong> ${theme.description || "Pas de description disponible."}</p>
+                                        <hr>
+                                        <p><strong>Objectifs Générales :</strong> ${theme.generale || "Non spécifié."}</p>
+                                        <hr>
+                                        <p><strong>Objectifs Spécifiques :</strong> ${theme.specifique || "Non spécifié."}</p>
+                                        <hr>
+                                        <p><strong>Lieu de collecte :</strong> ${theme.lieu_collect || "Non spécifié."}</p>
+                                        <hr>
+                                        <p><strong>Années de Collecte :</strong> ${theme.annee_collect || "Non spécifié."}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                themesContainer.innerHTML += themeCard;
+               
+            }); 
+        } else {
+            themesContainer.innerHTML = `
+                <div class="d-flex flex-column align-items-center justify-content-center text-center mt-5">
+                    <div class="mb-3">
+                        <i class="fas fa-sad-tear" style="font-size: 6rem; color: #f06c64;"></i>
+                    </div>
+                    <h4 class="fw-bold text-danger">Aucun thème trouvé</h4>
+                    <p class="text-muted mb-4">
+                        Désolé, aucun thème correspondant n'a été trouvé pour cette discipline .<br>
+                    </p>
+                </div>`;
+        }
+        updateFavoriteButtons(); 
+    })
+    .catch((error) => {
+        themesContainer.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+                Une erreur s'est produite lors de la recherche. Veuillez réessayer plus tard.
+            </div>`;
+        console.error('Erreur lors du fetch :', error);
+    });
+});
+
 
 
 

@@ -89,6 +89,14 @@
                                 </script>
                             </select>
                         </div>
+                        <div class="mb-1 col-12 ">
+                            <label for="discipline" class="col-form-label" > Discpline</label>
+                            <select id="discipline"class="form-control" name="discipline">
+                                @foreach ($categories as $discipline)
+                                    <option value="{{$discipline->id}}">{{$discipline->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <h6 class="fs-6">Protocoles</h6>
                         <div class="mb-3">
                             <label for="description" class="col-form-label">Licences</label>

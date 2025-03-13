@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\ThemeMemoire;
+use App\Models\Discipline;
 use Illuminate\Http\Request;
 
 class BiblioController extends Controller
@@ -12,9 +13,10 @@ class BiblioController extends Controller
     public function index(){
         
         $themes = ThemeMemoire::where('status_id', 1)->get();
+        $disciplines = Discipline::getAll();
 
     
-        return view('clients.layouts.biblio.index', compact('themes'));
+        return view('clients.layouts.biblio.index', compact('themes','disciplines'));
     }
 
     public function searchThemes(Request $request)
@@ -28,6 +30,12 @@ class BiblioController extends Controller
     ->get();
 
     return response()->json($themes); // Renvoie les thèmes au format JSON
+}
+
+public function getThemesByDiscipline(Request $request)
+{
+    $themes = ThemeMemoire::where('discipline_id', $request->discipline_id)->get();
+    return response()->json($themes);
 }
 
       

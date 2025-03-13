@@ -97,6 +97,8 @@ Route::post('/download/bd/file', [BaseDonneController::class,'downloadFinalFile'
 
 //route theme mémoire
 Route::get('/theme-memoire-all',[ThemeMemoireController::class,'index'])->name('tm.all');
+Route::get('/themes-by-discipline', [BiblioController::class, 'getThemesByDiscipline']);
+
 //Route::get('/theme-memoire/categories/{id}/{fakeUuid}/{fakeUuid}',[ThemeMemoireController::class,'getBdDetail'])->name('bd.detail');
 
 //route FAQ's

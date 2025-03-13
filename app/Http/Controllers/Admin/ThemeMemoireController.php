@@ -14,7 +14,7 @@ class ThemeMemoireController extends Controller
 {
     //
     public function index(){
-      //  $discipline = 
+      //  $discipline =
         $categories =Discipline::getAll();
         return view('admin.layouts.theme-memoire.theme-memoires')->with('categories',$categories);
     }
@@ -60,6 +60,7 @@ class ThemeMemoireController extends Controller
                     'specifique' => $vald["specifique"],
                     'lieu_collect' => $vald["lieu_collect"],
                     'annee_collect' => $vald["annee_collect"],
+                    'discipline_id' => $request->input('discipline')
                 ]);
         
                 if ($response) {
@@ -116,7 +117,7 @@ class ThemeMemoireController extends Controller
             }
         }
 
-        $response = (new ThemeMemoire())->updateByUuid($request->input('uuid'),["title"=>$vald["theme"],'description'=>$vald["description"],'path'=>json_encode($path),'redactor_id'=>$redactor_id,'generale' => $vald["generale"],'specifique' => $vald["specifique"],'lieu_collect' => $vald["lieu_collect"],'annee_collect' => $vald["annee_collect"]]);
+        $response = (new ThemeMemoire())->updateByUuid($request->input('uuid'),["title"=>$vald["theme"],'description'=>$vald["description"],'path'=>json_encode($path),'redactor_id'=>$redactor_id,'generale' => $vald["generale"],'specifique' => $vald["specifique"],'lieu_collect' => $vald["lieu_collect"],'annee_collect' => $vald["annee_collect"],'discipline_id' => $request->input('discipline') ]);
         if ($response){
             return response()->json(["message"=>"success"]);
         }
