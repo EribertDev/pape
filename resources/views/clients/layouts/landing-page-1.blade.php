@@ -21,8 +21,8 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
-                        <h2 class="fw-bold text-center"><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec PAPE</h2>
-                        <p class="mt-4  text-center">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles scientifiques, documents administratifs, et autres</p>
+                        <h2 class="fw-bold text-center"><span>Simplifiez la recherche de stage académique  de vos Mémoires ,Thèses et Rapports de stage grace au   </span>  PAPE</h2>
+                        <p class="mt-4  text-center">Un service dédié à la mise en stage académique des étudiants et à l'accouchement dans la rédaction rapide et éfficace des mémoires et thèses</p>
                        <div class="row">
                             @guest
                                 <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
@@ -30,14 +30,15 @@
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>
+                                 
                             @endguest
                             @auth
                                 <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
                                         <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Faire une commande </span></a>
                                     </div><!--- END SOCIAL PROFILE -->
-                                </div>
-                            @endauth
+                                </div>   
+                        @endauth
                        </div>
                     </div>
                    <div class="home_content  d-none d-lg-block">
@@ -51,6 +52,7 @@
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>
                             @endguest
+                            
                             <div class="col-lg-8 col-md-3 col-sm-8 mb-4">
                                 <div class="call_to_action">
                                     @auth
@@ -58,6 +60,7 @@
                                     @endauth
                                     @guest
                                         <a class="btn_two" type="button" href="{{route('service.redaction')}}"> <span>Faire une commande</span></a>
+
                                     @endguest
                                 </div><!--- END SOCIAL PROFILE -->
                             </div>

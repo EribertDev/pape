@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('commandes', function (Blueprint $table) {
             //
-            $table->dropColumn(['max_pages', 'annee_academique']);
+          //  $table->dropColumn(['max_pages', 'annee_academique']);
         });
     }
 

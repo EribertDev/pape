@@ -146,6 +146,12 @@ Route::middleware(['auth','role:Client'])->group(function (){
 });
 
 
+//Route Demande de Stage 
+
+Route::get('/stage', function () {
+    return view('clients.layouts.services.stage');
+})->name('stage');
+
 /*
 |--------------------------------------------------------------------------
 |Route Admin

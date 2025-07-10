@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="PAPE, un service du cabinet CESIE BENIN, est un programme innovant conçu pour accompagner les étudiants et chercheurs dans la rédaction de mémoires et thèses. Ce programme, offre un appui technique tout au long du processus de rédaction, garantissant une qualité optimale et le respect des normes universitaires.">
-        <meta name="keywords" content="PAPE,pape,éducation,thème,memoire,thèse,article scientique">
+        <meta name="keywords" content="PAPE,pape,éducation,thème,memoire,thèse,article scientifique">
         <meta name="author" content="CESIE BENIN">
         <link rel="icon" href="{{ asset('clients/assets/images/icon/favicon.ico') }}" type="image/x-icon">
         <link rel="shortcut icon" href="{{ asset('clients/assets/images/icon/favicon.ico') }}" type="image/x-icon">
