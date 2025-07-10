@@ -35,7 +35,7 @@
                             @auth
                                 <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
-                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Faire une commande </span></a>
+                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Faire une commsande </span></a>
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>   
                         @endauth
