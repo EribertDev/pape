@@ -27,10 +27,13 @@
                                 <a class="nav-link" href="{{route('a-propos')}}">A propos</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="{{route('biblios')}}">Thèmes</a>
+                                <a class="nav-link" href="{{route('biblios')}}">Thèmes disponibles</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="{{route('bds.all')}}"> Base de données </a>
+                                <a class="nav-link" href="{{route('bds.all')}}"> Données disponiples </a>
+                            </li>
+                            <li>
+                                <a class="nav-link"  href="{{route('stage')}}">Demande de Stage</a>
                             </li>
                            
                             <li>

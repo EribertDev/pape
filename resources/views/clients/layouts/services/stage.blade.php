@@ -395,9 +395,7 @@
                                 <i class="fas fa-paper-plane me-2"></i> Soumettre la demande
                             </button>
                             
-                            <p class="form-note">
-                                Vous avez des questions? <a href="#"><i class="fas fa-envelope me-1"></i>Contactez notre équipe</a>
-                            </p>
+                           
                         </form>
                     </div>
                 </div>

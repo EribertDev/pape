@@ -42,28 +42,31 @@
                        </div>
                     </div>
                    <div class="home_content  d-none d-lg-block">
-                        <h2 class="fw-bold "><span>Simplifiez la Rédaction de Vos Documents Académiques et Professionnels</span> avec PAPE</h2>
-                        <p class="mt-3">Un service dédié pour vous accompagner dans la rédaction de mémoires, thèses, articles scientifiques, documents administratifs, et autres</p>
+                        <h2 class="fw-bold "><span>Simplifiez la Recherche de stage Académique et la rédaction de vos mémoires,thèses et rapports de stage grace au </span>  PAPE</h2>
+                        <p class="mt-3">Un service dédié  à la mise en stage académique des étudiants et à l'accouchement dans la rédaction rapide et éfficace des mémoires et thèses </p>
                         <div class="row">
                             @guest
                                 <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
                                     <div class="call_to_action">
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
                                     </div><!--- END SOCIAL PROFILE -->
+                                    
                                 </div>
                             @endguest
                             
-                            <div class="col-lg-8 col-md-3 col-sm-8 mb-4">
+                            <div class="col-lg-8 col-md-3 col-sm-4 mb-4">
                                 <div class="call_to_action">
                                     @auth
                                         <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Faire une commande</span></a>
                                     @endauth
                                     @guest
-                                        <a class="btn_two" type="button" href="{{route('service.redaction')}}"> <span>Faire une commande</span></a>
-
+                                        <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#registerModal"> <span>Créer un compte</span></a>
                                     @endguest
                                 </div><!--- END SOCIAL PROFILE -->
                             </div>
+                        </div>
+                        <div class="row">
+
                         </div>
                     </div>
                 </div><!-- END COL-->
