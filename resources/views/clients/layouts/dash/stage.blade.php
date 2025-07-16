@@ -111,7 +111,7 @@
                                 <th>DÉTAILS</th>
                                 <th class="text-center">STATUT</th>
                                 <th class="text-center">CONTRAT</th>
-                                <th class="text-center">Contrat signé</th>
+                                <th class="text-center">EVOLUTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -159,6 +159,7 @@
                                                     @csrf
                                                     <input type="hidden" name="request_id" value="{{ $request->id }}">
                                                     <div class="input-group">
+                                                        <label for="signed_contract">Contrat signé</label>
                                                         <input type="file" name="signed_contract" class="form-control form-control-sm" accept="application/pdf" required>
                                                         <button type="submit" id="submitBtn" class="btn btn-sm btn-success">
                                                             <i class="ti-upload"></i>
@@ -166,8 +167,14 @@
                                                     </div>
                                                 </form>
 
-                                            @else
+                                            @elseif ($request->status == 'under_review')
                                                 <span class="badge badge-under_review">Contrat final envoyé</span>
+
+                                            @elseif ($request->status == 'approved')
+                                               
+                                                <a href="{{ route('internship.uploaded', $request->id) }}" class="btn btn-sm btn-outline-primary">
+                                                    <i class="ti-download"></i>Autorisation
+                                                </a>
                                            
                                             @endif
                                           

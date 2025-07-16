@@ -24,6 +24,8 @@ use App\Http\Controllers\client\services\RedactionController;
 use App\Models\ThemeMemoire;
 use App\Http\Controllers\StageController;
 use App\Models\Stage;
+use App\Http\Controllers\Admin\DemandeStageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -163,6 +165,8 @@ Route::post('/upload-signed', [StageController::class, 'uploadSigned'])->name('i
 Route::post('/stage/store', [StageController::class, 'store'])->name('stage.store');
 Route::post('/generate-contract', [StageController::class, 'generateContract'])->name('generate.contract');
 Route::post('/upload-signed', [StageController::class, 'uploadSignedContract'])->name('internship.upload-signed');
+Route::get('/internships/uploaded/{id}/uploaded', [DemandeStageController::class, 'downloadSignedContract'])
+    ->name('internship.uploaded'); 
 
 
 // Admin
