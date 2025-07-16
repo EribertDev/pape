@@ -209,7 +209,7 @@ class StageController extends Controller
     {
         $validated = $request->validate([
             'request_id' => 'required|exists:stages,id',
-            'signed_contract' => 'required|file|mimes:pdf|max:2048'
+            'signed_contract' => 'required|file|mimes:pdf'
         ]);
 
         try{
