@@ -22,6 +22,8 @@ use App\Models\Affiler;
 use GuzzleHttp\Psr7\Request;
 use App\Http\Controllers\client\services\RedactionController;
 use App\Models\ThemeMemoire;
+use App\Http\Controllers\StageController;
+use App\Models\Stage;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,9 +150,26 @@ Route::middleware(['auth','role:Client'])->group(function (){
 
 //Route Demande de Stage 
 
-Route::get('/stage', function () {
-    return view('clients.layouts.services.stage');
-})->name('stage');
+Route::get('/stage',[StageController::class,'index'])->name('stage');
+Route::get('/stage/dash', [StageController::class, 'dashClient'])->name('internships.dash');
+
+Route::get('/stage/finish', function () {
+    return view('clients.layouts.services.demande-finish');
+})->name('stage.finish');
+Route::get('/download/contract/{id}', [StageController::class, 'download'])->name('internship.download');
+Route::post('/upload-signed', [StageController::class, 'uploadSigned'])->name('internship.upload-signed');
+
+// 
+Route::post('/stage/store', [StageController::class, 'store'])->name('stage.store');
+Route::post('/generate-contract', [StageController::class, 'generateContract'])->name('generate.contract');
+Route::post('/upload-signed', [StageController::class, 'uploadSignedContract'])->name('internship.upload-signed');
+
+
+// Admin
+Route::get('/admin/internships', [AdminController::class, 'index'])->name('admin.internships');
+Route::get('/download-signed/{request}', [AdminController::class, 'downloadSignedContract'])->name('download.signed');
+Route::patch('/update-status/{request}', [AdminController::class, 'updateStatus'])->name('update.status');
+
 
 /*
 |--------------------------------------------------------------------------

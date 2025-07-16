@@ -152,4 +152,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Role::class, 'roles_id'); // Assurez-vous que 'role_id' est la clé étrangère correcte
     }
+    public function client(): HasOne
+    {
+        return $this->hasOne(Client::class, 'user_id', 'id'); // Assurez-vous que 'user_id' est la clé étrangère correcte
+    }
 }

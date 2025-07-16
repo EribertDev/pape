@@ -165,7 +165,7 @@
                                                             foreach ($options['discipline'] as $datas){
                                                                 echo '<option value="'.$datas->reference.'">'.$datas->name.'</option>';
                                                             }
-                                                        @endphp
+                                                    @endphp
                                                     @endif
                                                     <option value="autre" >Autre</option>
                                                     </select>
@@ -246,7 +246,6 @@
                                                                 @endforeach
                                                             
                                                                
-                                                                <!-- Ajoutez ici les autres départements et leurs communes -->
                                                             </select>
                                                             
                                                             

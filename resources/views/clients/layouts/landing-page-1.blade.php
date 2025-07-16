@@ -44,6 +44,7 @@
                    <div class="home_content  d-none d-lg-block">
                         <h2 class="fw-bold "><span>Simplifiez la Recherche de stage Académique et la rédaction de vos mémoires,thèses et rapports de stage grace au </span>  PAPE</h2>
                         <p class="mt-3">Un service dédié  à la mise en stage académique des étudiants et à l'accouchement dans la rédaction rapide et éfficace des mémoires et thèses </p>
+                    
                         <div class="row">
                             @guest
                                 <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">

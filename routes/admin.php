@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CommandeController;
 use App\Http\Controllers\Admin\PayementController;
 use App\Http\Controllers\Admin\BaseDonneController;
 use App\Http\Controllers\Admin\ThemeMemoireController;
+use App\Http\Controllers\Admin\DemandeStageController;
 
 Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     //
@@ -48,4 +49,19 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::post('/admin/theme-memoire/delete', [ThemeMemoireController::class, 'delete'])->name('admin.theme-memoire.delete');
     Route::post('/admin/theme-memoire/download', [ThemeMemoireController::class, 'download'])->name('admin.theme-memoire.download');
     //
+
+
+    //route demande de stage
+    Route::get('/internships/datatable', [DemandeStageController::class, 'datatable'])
+    ->name('internships.datatable');
+    // Route pour la vue principale
+Route::get('/mes-demandes', [DemandeStageController::class, 'index'])
+    ->name('internships.index');
+    Route::get('/internships/{id}/details', [DemandeStageController::class, 'details'])
+    ->name('internships.show');
+Route::get('/internships/download/{id}', [DemandeStageController::class, 'downloadSignedContract'])
+    ->name('internship.upload');  
+    Route::post('/internship/upload-authorization', [DemandeStageController::class, 'uploadAuthorization'])
+     ->name('internship.upload-authorization');
 });
+

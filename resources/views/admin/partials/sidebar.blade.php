@@ -138,7 +138,16 @@
                         <p>Base de données</p>
                     </a>
                 </li>
-            @endif 
+                @endif 
+                @if (Route::has('internships.datatable'))
+                    <li class="{{ Request::is(['admin/internships']) ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{ route('internships.index') }}">
+                            <i class="la la-dashboard"></i>
+                            <p>Stages</p>
+                            {{-- <span class="badge badge-count">5</span> --}}
+                        </a>
+                    </li>
+                @endif
 
                 {{-- @if (Route::has('admin.staff'))
                 <li class="{{ Request::is(['admin/staff']) ? 'nav-item active' : 'nav-item' }}">

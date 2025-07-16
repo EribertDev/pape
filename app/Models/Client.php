@@ -85,4 +85,5 @@ class Client extends Model
     {
         return $this->hasMany(Commande::class, 'client_id');
     }
+    
 }

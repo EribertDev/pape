@@ -46,6 +46,8 @@
                         {{-- <hr>
                         <a class="profil-link" href="#">Mes achats</a> --}}
                         <hr>
+                        <a class="profil-link" href="{{route('internships.dash')}}"> Mes stages</a>
+                        <hr>
                         <a class="profil-link" href="{{route('client.profile')}}">Profile</a>
                     </div><!-- END SOCIAL MEDIA POST -->
                 </div>
@@ -137,4 +139,5 @@
     <script type="text/javascript">
         $('select').niceSelect();
     </script>
+    
 @endsection

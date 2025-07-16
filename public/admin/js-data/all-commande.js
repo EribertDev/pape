@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded",function (){
                            newCommandeTable.ajax.reload();
                            swalWithBootstrapButtons.fire({
                                title: "Rejeté!",
-                               text: "la commande été rejeté avec success.😊",
+                               text: "la commande été rejeté avec succèss.😊",
                                icon: "success"
                            });
                        }else if(response.message==="success"){

@@ -30,7 +30,7 @@ class RedactionController extends Controller
            
         ];
 
-        $codesPromoValides= DB::table('admins')->pluck('code_Af'); // Récupérer les codes de la table affiliers
+        $codesPromoValides= DB::table('admins')->pluck('code_Af'); 
 
        $departements = [
                 'Alibori' => [

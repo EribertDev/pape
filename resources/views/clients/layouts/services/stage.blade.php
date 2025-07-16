@@ -219,21 +219,16 @@
                             <i class="fas fa-info-circle me-2"></i> Tous les champs marqués d'un astérisque (*) sont obligatoires.
                         </div>
                         
-                        <form id="internshipForm">
-                            <div class="progress-container">
-                                <p class="mb-2"><strong>Progression du formulaire:</strong></p>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            
+                        <form id="internshipForm" class="form border border-1 border-opacity-50 p-3" enctype="multipart/form-data">
+                        @csrf
+                        @if (Auth::check())
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label required-field">
                                             <i class="fas fa-user"></i> Nom
                                         </label>
-                                        <input type="text" class="form-control" placeholder="Votre nom" required>
+                                        <input type="text" class="form-control" value="{{session('clientInfo') ->fist_name }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -241,7 +236,7 @@
                                         <label class="form-label required-field">
                                             <i class="fas fa-user"></i> Prénom
                                         </label>
-                                        <input type="text" class="form-control" placeholder="Votre prénom" required>
+                                        <input type="text" class="form-control" value="{{session('clientInfo') ->last_name }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +247,7 @@
                                         <label class="form-label required-field">
                                             <i class="fas fa-envelope"></i> Email
                                         </label>
-                                        <input type="email" class="form-control" placeholder="exemple@email.com" required>
+                                        <input type="email" class="form-control" value="{{Auth::user()->email}}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -260,16 +255,38 @@
                                         <label class="form-label required-field">
                                             <i class="fas fa-phone"></i> Téléphone
                                         </label>
-                                        <input type="tel" class="form-control" placeholder="+33 6 12 34 56 78" required>
+                                        <input type="tel" class="form-control" value="{{session('clientInfo')->phone_number }}" disabled>
                                     </div>
                                 </div>
                             </div>
-                            
+                        @else 
+                        <h3 class="text-center ">Veuillez vous connecter pour voir vos informations personnelles  </h3>
+                        @endif
+                        <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="hasBinome">
+                                <label class="form-check-label" for="hasBinome">Je suis en binôme</label>
+                            </div>
+                        </div>
+                    </div>
+
+                            <!-- Champ Binôme (caché par défaut) -->
+                            <div id="binomeField" class="row mb-3" style="display: none;">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="binome" class="form-label">
+                                            <i class="fas fa-user-friends"></i> Nom complet du binôme
+                                        </label>
+                                        <input type="text" class="form-control" id="binome" name="binome" placeholder="Nom et prénom du binôme">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="form-label required-field">
-                                    <i class="fas fa-graduation-cap"></i> Établissement
+                                    <i class="fas fa-graduation-cap"></i>Université/Établissement
                                 </label>
-                                <input type="text" class="form-control" placeholder="Nom de votre école/université" required>
+                                <input type="text" class="form-control" id="university" name="university" placeholder="Nom de votre école/université" required>
                             </div>
                             
                             <div class="row">
@@ -278,7 +295,7 @@
                                         <label class="form-label required-field">
                                             <i class="fas fa-book"></i> Domaine d'études
                                         </label>
-                                        <select class="form-select" required>
+                                        <select class="form-select" id="domaine" name="domaine" required>
                                             <option value="" selected disabled>Choisissez votre domaine</option>
                                             <option>Informatique</option>
                                             <option>Marketing</option>
@@ -296,7 +313,7 @@
                                         <label class="form-label required-field">
                                             <i class="fas fa-layer-group"></i> Niveau d'études
                                         </label>
-                                        <select class="form-select" required>
+                                        <select class="form-select" id="level" name="level" required>
                                             <option value="" selected disabled>Sélectionnez votre niveau</option>
                                             <option>Bac</option>
                                             <option>Bac+2</option>
@@ -311,64 +328,67 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label required-field">
-                                            <i class="fas fa-calendar-alt"></i> Type de stage
-                                        </label>
-                                        <select class="form-select" required>
-                                            <option value="" selected disabled>Type de stage</option>
-                                            <option>Stage d'été</option>
-                                            <option>Stage de fin d'études</option>
-                                            <option>Stage alterné</option>
-                                            <option>Stage professionnel</option>
-                                            <option>Stage de recherche</option>
-                                        </select>
+                                     
+                                        <label for="specialite" class="form-label required-field">Filière/Spécialité</label>
+                                        <input type="text" class="form-control" id="specialite" name="specialite" placeholder="Spécialité ou filière" required>
+                                      
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label required-field">
-                                            <i class="fas fa-clock"></i> Durée (semaines)
+                                            <i class="fas fa-clock"></i> Durée (mois)
                                         </label>
-                                        <input type="number" class="form-control" placeholder="Durée en semaines" min="4" max="52" required>
+                                        <input type="number" class="form-control" id="duration" name="duration" placeholder="Durée en mois " min="1" max="6" required>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label class="form-label required-field">
-                                    <i class="fas fa-calendar-check"></i> Période souhaitée
-                                </label>
+                               
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="date" class="form-control" placeholder="Date de début" required>
+                                        <label for="country" class="fw-bold">Commune </label>
+                                                                                                                    
+                                        <select name="commune" id="commune"  class="form-control">
+                                                <option value="" disabled selected>-- Sélectionnez une Commune --</option>
+                                                @foreach ($departements as $departement => $communes)
+                                                    <optgroup label="{{ $departement }}">
+                                                        @foreach ($communes as $commune)
+                                                            <option value="{{ $commune }}">{{ $commune }}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                @endforeach
+                                            
+                                                
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="date" class="form-control" placeholder="Date de fin" required>
+                                        <label class="fieldlabels  fw-bold" for="structure">Stucture</label>
+                                        <select name="structure" id="structure"  class="form-control">
+                                            <option value="" selected disabled>Quelles structure désirez vous</option>
+                                            
+                                                <option  value="administration_publique">Administration Publique</option>
+                                                <option  value="adlinistration_privee"> Administration Privée</option>
+                                                <option  value="formation_sanitaire"> Formation Sanitaire</option>
+                                                <option  value="institution_microfinance"> Institution de Microfinance</option>
+                                                <option  value="anyway"> N'importe quelle structure</option>
+                                        
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label required-field">
-                                            <i class="fas fa-file-pdf"></i> CV (PDF)
-                                        </label>
-                                        <div class="file-upload btn btn-outline-primary w-100">
-                                            <i class="fas fa-cloud-upload-alt me-2"></i>Télécharger le fichier
-                                            <input type="file" class="form-control-file" accept=".pdf,.doc,.docx" required>
-                                        </div>
-                                        <span class="file-info">Taille max: 5MB (PDF, DOC, DOCX)</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                              
+                                <div class="">
+                                    <div class="form-group" id="fileInput">
                                         <label class="form-label">
-                                            <i class="fas fa-file-alt"></i> Lettre de motivation
+                                            <i class="fas fa-file-alt"></i> Lettre de recommandation
                                         </label>
-                                        <div class="file-upload btn btn-outline-primary w-100">
+                                        <div class="file-upload btn btn-outline-primary w-100" >
                                             <i class="fas fa-cloud-upload-alt me-2"></i>Télécharger le fichier
-                                            <input type="file" class="form-control-file" accept=".pdf,.doc,.docx">
+                                            <input type="file" id="recommendation_letter" name="recommendation_letter" class="form-control-file" accept=".pdf,.doc,.docx">
                                         </div>
                                         <span class="file-info">Optionnel (PDF, DOC, DOCX)</span>
                                     </div>
@@ -376,10 +396,10 @@
                             </div>
                             
                             <div class="form-group">
-                                <label class="form-label required-field">
+                                <label class="form-label ">
                                     <i class="fas fa-comment-alt"></i> Message
                                 </label>
-                                <textarea class="form-control" rows="5" placeholder="Présentez-vous et expliquez pourquoi vous souhaitez effectuer un stage dans notre entreprise..." required></textarea>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="..." ></textarea>
                             </div>
                             
                             <div class="form-group">
@@ -391,7 +411,7 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" class="btn-submit">
+                            <button type="submit" class="btn-submit" id ="submitBtn">
                                 <i class="fas fa-paper-plane me-2"></i> Soumettre la demande
                             </button>
                             
@@ -408,65 +428,63 @@
     <script>
         // Animation de progression
         document.addEventListener('DOMContentLoaded', function() {
+        
+
+        
+          
+            const csrfToken = document.querySelector('input[name="_token"]').value;
+
             const form = document.getElementById('internshipForm');
-            const progressBar = document.querySelector('.progress-bar');
-            const formGroups = form.querySelectorAll('.form-group');
-            const totalGroups = formGroups.length;
-            
-            // Mise à jour de la barre de progression
-            function updateProgress() {
-                let completed = 0;
-                
-                formGroups.forEach(group => {
-                    const inputs = group.querySelectorAll('input, select, textarea');
-                    let groupCompleted = false;
-                    
-                    inputs.forEach(input => {
-                        if (input.type !== 'file' && input.value.trim() !== '') {
-                            groupCompleted = true;
-                        }
-                        if (input.type === 'checkbox' && input.checked) {
-                            groupCompleted = true;
-                        }
-                    });
-                    
-                    if (groupCompleted) completed++;
-                });
-                
-                const progress = Math.min(100, Math.round((completed / totalGroups) * 100));
-                progressBar.style.width = `${progress}%`;
-                progressBar.setAttribute('aria-valuenow', progress);
-                progressBar.textContent = `${progress}%`;
-            }
-            
-            // Écouteurs d'événements pour les champs du formulaire
-            form.querySelectorAll('input, select, textarea').forEach(input => {
-                input.addEventListener('input', updateProgress);
-                input.addEventListener('change', updateProgress);
-            });
-            
-            // Initialisation de la progression
-            updateProgress();
-            
+            const submitBtn = document.getElementById('submitBtn');
             // Gestion de la soumission du formulaire
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Animation de soumission
-                const submitBtn = form.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                
                 submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Envoi en cours...';
                 submitBtn.disabled = true;
+             
+                    if (typeof isAuthenticated == 'undefined' ){
+                        $('#loginModal').modal('show');
+                    }
                 
-                // Simulation d'envoi
-                setTimeout(() => {
-                    alert('Votre demande de stage a été soumise avec succès ! Nous vous contacterons bientôt.');
-                    form.reset();
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    updateProgress();
-                }, 2000);
+                else{
+
+              
+                    console.log(form);
+                $.ajax({
+                headers: {
+                    'Accept': 'application/json;charset=utf-8',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                url: '{{ route('stage.store') }}',
+                type:'POST',
+                data: new FormData(form),
+                processData: false,
+                contentType: false,
+                dataType: 'JSON',
+
+                success: function (response) {
+                    submitBtn.innerHTML = '<i class="fas fa-check-circle me-2"></i> Demande envoyée';
+                    submitBtn.classList.add('btn-success');
+                    if(response.success===true){
+                        
+                        window.location.href = "/stage/finish";
+                    
+                    }
+                   
+                },
+                error: function (xhr, status, error) {
+                    document.getElementById('submitBtn').hidden = false;
+                    
+                },
+                complete: function () {
+                    Loader.close()
+                }
+            });
+              }
+         
+                
+               
             });
             
             // Animation pour les uploads de fichiers
@@ -481,8 +499,22 @@
                         fileInfo.innerHTML = `<i class="fas fa-check-circle text-success me-1"></i> ${fileName}`;
                     }
                     
-                    updateProgress();
+                  
                 });
+            });
+
+
+
+                        document.getElementById('hasBinome').addEventListener('change', function() {
+                const binomeField = document.getElementById('binomeField');
+                if (this.checked) {
+                    binomeField.style.display = 'block';
+                    document.getElementById('binome').setAttribute('required', 'required');
+                } else {
+                    binomeField.style.display = 'none';
+                    document.getElementById('binome').removeAttribute('required');
+                    document.getElementById('binome').value = '';
+                }
             });
         });
     </script>
