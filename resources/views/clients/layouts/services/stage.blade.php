@@ -315,11 +315,10 @@
                                         </label>
                                         <select class="form-select" id="level" name="level" required>
                                             <option value="" selected disabled>Sélectionnez votre niveau</option>
-                                            <option>Bac</option>
-                                            <option>Bac+2</option>
-                                            <option>Bac+3</option>
-                                            <option>Bac+4</option>
-                                            <option>Bac+5 et plus</option>
+                                            <option value="Licence">Licence</option>
+                                             <option value="Master">Master"></option>
+                                            <option value="Doctorat">Doctorat</option>
+                                            <option value="Autre">Autre</option>
                                         </select>
                                     </div>
                                 </div>
@@ -348,7 +347,7 @@
                                
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="country" class="fw-bold">Commune </label>
+                                        <label for="country" class="fw-bold">Commune souhaitée </label>
                                                                                                                     
                                         <select name="commune" id="commune"  class="form-control">
                                                 <option value="" disabled selected>-- Sélectionnez une Commune --</option>
@@ -364,12 +363,12 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="fieldlabels  fw-bold" for="structure">Stucture</label>
+                                        <label class="fieldlabels  fw-bold" for="structure">Stucture désirée</label>
                                         <select name="structure" id="structure"  class="form-control">
                                             <option value="" selected disabled>Quelles structure désirez vous</option>
                                             
                                                 <option  value="administration_publique">Administration Publique</option>
-                                                <option  value="adlinistration_privee"> Administration Privée</option>
+                                                <option  value="administration_privee"> Administration Privée</option>
                                                 <option  value="formation_sanitaire"> Formation Sanitaire</option>
                                                 <option  value="institution_microfinance"> Institution de Microfinance</option>
                                                 <option  value="anyway"> N'importe quelle structure</option>
@@ -381,14 +380,27 @@
                             
                             <div class="row">
                               
-                                <div class="">
-                                    <div class="form-group" id="fileInput">
+                                <div class="col-lg-6">
+                                    <div class="form-group lg-6" id="fileInput">
                                         <label class="form-label">
                                             <i class="fas fa-file-alt"></i> Lettre de recommandation
                                         </label>
                                         <div class="file-upload btn btn-outline-primary w-100" >
                                             <i class="fas fa-cloud-upload-alt me-2"></i>Télécharger le fichier
                                             <input type="file" id="recommendation_letter" name="recommendation_letter" class="form-control-file" accept=".pdf,.doc,.docx">
+                                        </div>
+                                        <span class="file-info">Optionnel (PDF, DOC, DOCX)</span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="form-group lg-6" id="cip">
+                                        <label class="form-label">
+                                            <i class="fas fa-file-alt"></i> CIP ou Carte Etudiants
+                                        </label>
+                                        <div class="file-upload btn btn-outline-primary w-100" >
+                                            <i class="fas fa-cloud-upload-alt me-2"></i>Télécharger le fichier
+                                            <input type="file" id="cip" name="cip" class="form-control-file" accept=".pdf,.doc,.docx,.image/*">
                                         </div>
                                         <span class="file-info">Optionnel (PDF, DOC, DOCX)</span>
                                     </div>

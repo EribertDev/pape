@@ -203,56 +203,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <div class="form-group mt-4">
-                                                        <label class="fw-bold">Avez-vous besoin d'un stage ?</label>
-                                                        <div class="mt-2 d-flex gap-3">
-                                                            <!-- Bouton Oui -->
-                                                            <input type="radio" id="needStageYes" name="needStage" value="yes" class="btn-check">
-                                                            <label for="needStageYes" class="btn btn-outline-primary btn-sm rounded-pill">Oui</label>
-                                                    
-                                                            <!-- Bouton Non -->
-                                                            <input type="radio" id="needStageNo" name="needStage" value="no" class="btn-check">
-                                                            <label for="needStageNo" class="btn btn-outline-danger btn-sm rounded-pill">Non</label>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <!-- Champs conditionnels -->
-                                                    <div id="stageDetails" class="mt-4" style="display: none;">
-                                                        <div class="form-group">
-                                                            <label class="fieldlabels  fw-bold" for="structure">Stucture</label>
-                                                            <select name="structure_stage" id="structure_stage" class="form-control">
-                                                                <option value="" selected disabled>Quelles structure désirez vous</option>
-                                                                
-                                                                    <option  value="administration_publique">Administration Publique</option>
-                                                                    <option  value="adlinistration_privee"> Administration Privée</option>
-                                                                    <option  value="formation_sanitaire"> Formation Sanitaire</option>
-                                                                    <option  value="institution_microfinance"> Institution de Microfinance</option>
-                                                                    <option  value="anyway"> N'importe quelle structure</option>
-                                                            
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group mt-3">
-                                                            <label for="country" class="fw-bold">Commune </label>
-                                                                                                                    
-                                                            <select name="commune_stage" id="commune_stage" class="form-control">
-                                                                <option value="" disabled selected>-- Sélectionnez une Commune --</option>
-                                                                @foreach ($departements as $departement => $communes)
-                                                                    <optgroup label="{{ $departement }}">
-                                                                        @foreach ($communes as $commune)
-                                                                            <option value="{{ $commune }}">{{ $commune }}</option>
-                                                                        @endforeach
-                                                                    </optgroup>
-                                                                @endforeach
-                                                            
-                                                               
-                                                            </select>
-                                                            
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
+                                               
 
                                            
                                             <button type="button"   class="btn btn-primary mt-3 next-btn" disabled>Suivant</button>
@@ -262,17 +213,11 @@
                                       
                                         <div id="step2" class="step d-none">
                                             <div class="form-group">
-                                                <label class="fw-bold">Voulez-vous choisir un thème du répertoire CESIE ?</label>
-                                                <div class="mt-2 d-flex align-items-center">
-                                                    <!-- Option Oui -->
-                                                    <div class="form-check me-3">
-                                                        <input type="radio" class="form-check-input" id="chooseYes" name="chooseTheme" value="yes" >
-                                                        <label class="form-check-label" for="chooseYes">Oui</label>
-                                                    </div>
-                                                    <!-- Option Non -->
-                                                    <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="chooseNo" name="chooseTheme" value="no" >
-                                                        <label class="form-check-label" for="chooseNo">Non</label>
+                                                <label class="fieldlabels fw-bold text-center" for="subject">Inscrivez votre thème</label>
+                                                <div class="mt-2">
+                                                  
+                                                    <div class="form-group mt-2" id="div_subject"  >
+                                                        <input  class="p-5" type="text" name="subject" id="subject" placeholder="Veuillez entrez vo00000tre theme"  />
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,20 +226,18 @@
                                                 <label class="form-check-label" for="check_choose">Chosire un theme</label>
                                             </div> -->
 
-                                            <div class="form-group mt-2" id="div_subject"   style="display: none;">
-                                                <label class="fieldlabels fw-bold" for="subject">Inscrivez votre thème</label>
-                                                <input  class="px-2 py-2" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme"  />
-                                            </div>
+                                            
 
                                             <div class="form-group mt-2">
-                                                <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="Veuillez entrez votre theme" hidden/>
+                                                <input  class="px-2 py-2" type="text" name="amount" id="amount" placeholder="" hidden/>
                                               
                                             </div>
 
+                                          {{--  
                                             <div class="form-group mt-2" id="div_theme"  style="display: none;">
                                                 <label for="cars"  class="fw-bold">Thème de Recherche </label>
                                                 <select name="theme" id="theme" hidden >
-                                                    <option value="">Veuillez entrer votre theme</option>
+                                                    <option value="">Veuillez choisir un theme</option>
                                                     @if (!empty($options['TMs']))
                                                         @php
                                                             foreach ($options['TMs'] as $datas){
@@ -303,19 +246,30 @@
                                                         @endphp
                                                     @endif
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                            
                                             <button type="button" class="btn btn-secondary prev-btn">Précédent</button>
                                             <button type="button" class="btn btn-primary next-btn " disabled >Suivant</button>
                                         </div>
                                     </div>
                                         <div id="step3" class="step d-none">
+                                            
                                             <div class="row">
-                                               
+                                                 <div class="form-group col-12 mb-3">
+                                                    <label class="fieldlabels fw-bold">Offre sélectionnée</label>
+                                                        <select id="serviceType"  name ="offre" class="form-control">
+                                                            <option value="standard" data-days="4" {{ old('offre', $type ?? '') == 'standard' ? 'selected' : '' }}>Standard (délai 4 jours)</option>
+                                                                <option value="vip"  data-days="2" 
+                                                                    {{ old('offre', $type ?? '') == 'vip' ? 'selected' : '' }}>
+                                                                VIP  (délai 2 jours, +50%)
+                                                            </option>
+                                                        </select>
+                                                </div>
                                                 <div class="form-group col-12">
                                                 @php
                                                    // echo $dateLimit = $options['date'];
                                                 @endphp
+
                                                     <label class="fieldlabels fw-bold">Date limite</label>
                                                     <input  class="px-2 py-2" type="date" name="deadline" id="deadline" placeholder="" value="" />
                                                 </div>
@@ -609,43 +563,13 @@ const chooseNo = document.getElementById('chooseNo');
 const divTheme = document.getElementById('div_theme');
 const divSubject = document.getElementById('div_subject');
 
-// Fonction pour afficher ou masquer les champs
-function handleThemeSelection() {
-    if (chooseYes.checked) {
-        // Affiche la liste déroulante si "Oui" est sélectionné
-        divTheme.style.display = 'block';
-        divSubject.style.display = 'none';
-    } else if (chooseNo.checked) {
-        // Affiche le champ texte si "Non" est sélectionné
-        divTheme.style.display = 'none';
-        divSubject.style.display = 'block';
-    }
-}
 
-// Ajouter des écouteurs d'événements sur les boutons radio
-chooseYes.addEventListener('change', handleThemeSelection);
-chooseNo.addEventListener('change', handleThemeSelection);
     // Intégration des codes promo valides dans une variable JavaScript
     const codesPromoValides = @json($codesPromoValides);
   
   document.addEventListener("DOMContentLoaded", () => {
 
-    const needStageYes = document.getElementById('needStageYes');
-        const needStageNo = document.getElementById('needStageNo');
-        const stageDetails = document.getElementById('stageDetails');
 
-        // Écoute les changements
-        needStageYes.addEventListener('change', function () {
-            if (needStageYes.checked) {
-                stageDetails.style.display = 'block';
-            }
-        });
-
-        needStageNo.addEventListener('change', function () {
-            if (needStageNo.checked) {
-                stageDetails.style.display = 'none';
-            }
-        });
 
 
   const steps = document.querySelectorAll(".step");
@@ -726,7 +650,7 @@ window.onload = function () {
         var nextBtn = document.querySelector('.next-btn'); // Bouton suivant générique
 
         // Activer ou désactiver le bouton en fonction de la sélection du thème
-        if ((themeFieldText && themeFieldText.value.trim() === '') && (themeFieldSelect && themeFieldSelect.value === '')) {
+        if (themeFieldText && themeFieldText.value.trim() === '')  {
             nextBtn.disabled = true; // Désactiver si aucun thème n'est choisi
         } else {
             nextBtn.disabled = false; // Activer si un thème est choisi
@@ -738,9 +662,7 @@ window.onload = function () {
         checkThemeStep();
     });
 
-    document.querySelector('#theme').addEventListener('change', function () {
-        checkThemeStep();
-    });
+   
 
     // Vérifier les champs au chargement de la page (important pour initialiser les validations)
     document.querySelectorAll('.step').forEach(function (step) {
@@ -752,5 +674,7 @@ window.onload = function () {
 };
 
 </script>
+
+
 
 @endsection

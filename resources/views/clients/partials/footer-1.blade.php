@@ -18,7 +18,7 @@
                 <div class="single_footer">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="{{route('service.redaction')}}">Demander un coaching</a></li>
+                        <li><a href="{{route('redaction.offers')}}">Demander un coaching</a></li>
                         {{-- <li><a href="#">Base de données</a></li> --}}
                         {{-- <li><a href="#">Bibliothèque de thèmes</a></li> --}}
                     </ul>

@@ -8,6 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Commande;
+
 
 class OrderReceivedSuccessfully extends Mailable
 {
@@ -18,18 +21,25 @@ class OrderReceivedSuccessfully extends Mailable
      */
     public $user;
     public $clientName;
+    public $idCommande;
     
 
-    public function __construct()
+    public function __construct($idCommande)
     {
         //$this->clientName = $client;
+        $this->idCommande = $idCommande;
     }
 
     public function build()
     {
+        $commande = Commande::find($this->idCommande);
+
         return $this->view('emails.OrderReceivedSuccessfully')
-            ->with(['client' => session('clientInfo') ->fist_name])
-           
+            ->with(['client' => session('clientInfo') ->fist_name. ' ' . session('clientInfo')->last_name ] )
+           ->with(['subject' => $commande->subject,
+                'deadline' => $commande->deadline,
+                'amount' => $commande->amount,
+            ])
             ->subject('Confirmation de votre commande de rédaction via SyRRaM');
     }
 

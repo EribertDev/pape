@@ -59,8 +59,16 @@ Route::get('/search/themes', [BiblioController::class, 'search'])->name('themes.
 /**
  * Route service offre
  */
+// Formulaire pré-rempli selon le type
+Route::get('/services/redaction/form/{type}', [ServiceController::class, 'showForm'])
+     ->name('redaction.form')
+     ->where('type', 'vip|standard');
+
+Route::get('/services/redaction', [ServiceController::class, 'showOffers'])
+     ->name('redaction.offers');
 Route::get('/service-offre',ServiceController::class)->name('service.offre');
-Route::get('/service-offre/redaction',\App\Http\Controllers\client\services\RedactionController::class)->name('service.redaction');
+Route::get('/service-offre/redaction/{type}',\App\Http\Controllers\client\services\RedactionController::class)->name('service.redaction')
+->where('type', 'vip|standard');
 Route::get('/service-offre/tarif',function (){
     return view('clients.layouts.services.tarifs');
 })->name('service.tarif');
@@ -160,6 +168,8 @@ Route::get('/stage/finish', function () {
 })->name('stage.finish');
 Route::get('/download/contract/{id}', [StageController::class, 'download'])->name('internship.download');
 Route::post('/upload-signed', [StageController::class, 'uploadSigned'])->name('internship.upload-signed');
+Route::get('/download/authorization/{id}', [DemandeStageController::class, 'downloadAuthorization'])->name('authorization.uploaded');
+
 
 // 
 Route::post('/stage/store', [StageController::class, 'store'])->name('stage.store');

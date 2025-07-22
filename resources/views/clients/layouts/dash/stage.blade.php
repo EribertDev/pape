@@ -159,7 +159,7 @@
                                                     @csrf
                                                     <input type="hidden" name="request_id" value="{{ $request->id }}">
                                                     <div class="input-group">
-                                                        <label for="signed_contract">Contrat signé</label>
+                                                      
                                                         <input type="file" name="signed_contract" class="form-control form-control-sm" accept="application/pdf" required>
                                                         <button type="submit" id="submitBtn" class="btn btn-sm btn-success">
                                                             <i class="ti-upload"></i>
@@ -172,7 +172,7 @@
 
                                             @elseif ($request->status == 'approved')
                                                
-                                                <a href="{{ route('internship.uploaded', $request->id) }}" class="btn btn-sm btn-outline-primary">
+                                                <a href="{{ route('authorization.uploaded', $request->id) }}" class="btn btn-sm btn-outline-primary">
                                                     <i class="ti-download"></i>Autorisation
                                                 </a>
                                            

@@ -57,6 +57,12 @@ class DemandeStageController extends Controller
         return Storage::download($stage->signed_contract_path);
     }
 
+    public function downloadAuthorization($id)
+    {
+        $stage = Stage::findOrFail($id);
+        return Storage::download($stage->authorization_path);
+    }
+
 
 
 

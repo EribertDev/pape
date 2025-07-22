@@ -17,11 +17,12 @@ class RedactionController extends Controller
      * @throws \JsonException
      */
     
-    public function __invoke(Request $request,WorldHelper $world)
+    public function __invoke(Request $request,WorldHelper $world,$type = 'standard')
     {
     $countries=$world->countries()->data;
    
-    
+     $validTypes = ['vip', 'standard'];
+    $type = in_array(strtolower($type), $validTypes) ? strtolower($type) : 'standard';
       $user=Auth::user();
         $data =  [
             'typeService'=>TypeOfService::getAll(),
@@ -76,7 +77,7 @@ class RedactionController extends Controller
         $options =$data;
 
         // Retourner la vue avec les données
-       return view('clients.layouts.services.redaction-1')->with('options',$options,)->with('countries',$countries)->with('user',$user)->with('codesPromoValides',$codesPromoValides)->with('departements',$departements);
+       return view('clients.layouts.services.redaction-1',['type' => $type])->with('options',$options,)->with('countries',$countries)->with('user',$user)->with('codesPromoValides',$codesPromoValides)->with('departements',$departements);
     }
 
 

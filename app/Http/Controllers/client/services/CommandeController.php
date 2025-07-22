@@ -49,6 +49,7 @@ class CommandeController extends Controller
         $data = $request->all();
         $data["typeService"]=TypeOfService::getByReference($data["typeService"]);
         $prix =  $data["typeService"]->prix;
+        $offre = $data["offre"];
 
         //si un theme de la bibliothèque est choisir
         if ($request->has('chooseTheme') && $request->input('chooseTheme') === 'yes') {
@@ -104,16 +105,24 @@ class CommandeController extends Controller
                 $codeAfInput=$codeAfInput = $data['codeAf']; // Code AF saisi par l'utilisateur
 
 
-                if (in_array($codeAfInput, $availableCodesAf)) {
+                if (in_array($codeAfInput, $availableCodesAf) && $offre === 'vip') {
                     // Appliquer une réduction de 30% au montant
-                    $discountedAmount = $prix * 0.7;
+                    $discountedAmount = $prix * 0.7*1.5; 
                     $discountedAmount = round($discountedAmount / 100) * 100;
                 
                 }   
-                    else {
-                      $discountedAmount= $prix;
-                    }
-
+                elseif(in_array($codeAfInput, $availableCodesAf) && $offre === 'standard'){
+                    
+                       $discountedAmount = $prix * 0.7; 
+                    $discountedAmount = round($discountedAmount / 100) * 100;
+                
+                }
+                elseif(!in_array($codeAfInput, $availableCodesAf) && $offre === 'vip'){
+                      $discountedAmount= $prix*1.5;
+                }
+                else{
+                    $discountedAmount = $prix;
+                }
 
             
               
@@ -140,7 +149,7 @@ class CommandeController extends Controller
                     'universite'=>  $data["universite"],
                     'pays' => $data["pays"],
                     'type_universite' => $data["type_universite"],
-                    'structure_stage' =>  $data["structure_stage"] ?? null,
+                    'structure_stage' =>  $data["offre"] ?? null,
                     'commune_stage' =>  $data["commune_stage"] ?? null,
                 ]);
 
@@ -158,7 +167,7 @@ class CommandeController extends Controller
                  }
                 
                  
-                Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully());
+                Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully($idCommande));
                 
                 session()->put('idCmd',$idCommande);
                 return response()->json([
@@ -264,7 +273,8 @@ class CommandeController extends Controller
              }
          }*/
         // Session::forget('tmp_files');
-         Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully());
+        
+         Mail::to(Auth::user()->email)->send(new OrderReceivedSuccessfully($idCommande));
        
         
         

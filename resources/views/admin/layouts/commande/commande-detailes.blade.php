@@ -54,16 +54,30 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row"><h5 class="col-7 card-title text-start">Detail</h5><div class="col-5 text-end" id="cmdStatus"></div>
+                             <div class="row">
+                                 @if (strtolower($commande->structure_stage)==="standard")
+                                    <div class="col-5 text-end">
+                                         <h4><span class="badge bg-secondary text-dark"><h4>Standard</span></h4>
+                                    </div>
+                                @elseif(strtolower($commande->structure_stage)==="vip")
+                                    <div class="col-5 text-end">
+                                        <h4><span class="badge bg-info text-white">Prenium</span></h4>
+                                    </div>
+                              
+                                @endif
+                             </div>
+                            <div class="row"><h5 class="col-7 card-title text-start">Detail</h5>
+                              
+                                <div class="col-5 text-end" id="cmdStatus"></div>
                             <p class="card-text"><span class="fw-bold">Service : </span><span>{{$commande["service"]["name"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Discipline : </span><span>{{$commande["discipline"]["name"]}}</span> </p>
-                            <p class="card-text"><span class="fw-bold">Nombre : </span><span>{{$commande["max_pages"]}}</span> </p>
-                            <p class="card-text"><span class="fw-bold">Date : </span><span>{{$commande["deadline"]}}</span> </p>
+                        {{--     <p class="card-text"><span class="fw-bold">Nombre : </span><span>{{$commande["max_pages"]}}</span> </p>--}}
+                            <p class="card-text"><span class="fw-bold">Date limite : </span><span>{{$commande["deadline"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Subject : </span><span>{{$commande["subject"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Université : </span><span>{{$commande["universite"]}}</span> </p>
-                            <p class="card-text"><span class="fw-bold">Pays </span><span>{{$commande["pays"]}}</span> </p>
+                            <p class="card-text"><span class="fw-bold">Pays:</span><span>{{$commande["pays"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Année académique : </span><span>{{$commande["annee_academique"]}}</span> </p>
-                            <p class="card-text"><span class="fw-bold">Problème principal à résoudre : </span><span>{{$commande["description"]}}</span> </p>
+{{--                            <p class="card-text"><span class="fw-bold">Problème principal à résoudre : </span><span>{{$commande["description"]}}</span> </p>--}}
 
                             <p class="card-text"><span class="fw-bold">Fichier joint :  
                                 @if(!empty($commande["filesPath"]))

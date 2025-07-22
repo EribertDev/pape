@@ -10,15 +10,19 @@
         M. ou madame {{ $client }}, CESIE vous remercie de l'avoir choisi pour la rédaction de votre mémoire ou thèse.
     </p>
      <ul>
-        <li>Thème du travail : </li>
+        <li>Thème du travail : {{$subject}} </li>
        
-        <li>Niveau :  </li>
+       <li> Deadline : {{$deadline}}</li>
+
+       <li> Montant de la commande : {{$amount}}</li>
+
+     
        
      </ul>
     <p>
         Dès que nos experts valideront votre demande vous recevrez un message de comfirmation via cette meme adresse mail
     </p>
-    <img src="https://syrram.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
+    <img src="https://pape.cesiebenin.com/clients/assets/images/icon/logo-syrram.png" style="width: 70px;height: 60px" alt="">
 </body>
 </html>
 

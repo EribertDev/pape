@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let stdevForm = new StdevForm();
     let service = "Rédaction complète";
     let montant =0;
+    let serviceType = document.getElementById('serviceType').value || "standard";
 
     const dateInput = document.getElementById('deadline');
     const today = new Date();
@@ -53,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const formattedDate = `${year}-${month}-${day}`;
     // Définir la date minimale pour l'input
     dateInput.setAttribute('min', formattedDate);
+
+    
 
    
     const csrfToken = document.querySelector('input[name="_token"]').value;
@@ -280,16 +283,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
        var codeAf = $('#codeAf').val();
 
-    // Si le code promo est valide
-
-           // par défaut, le montant final est le montant initial
+                    // 3. Calcul de la date minimale selon le type de service
+                const today = new Date();
+                const minDays = parseInt($('#serviceType').find('option:selected').data('days'));
+                const minDate = new Date(today);
+                minDate.setDate(today.getDate() + minDays);
+                
+                // 4. Formatage YYYY-MM-DD
+                const formattedDate = minDate.toISOString().split('T')[0];
+                
+                // 5. Application de la date minimale
+                const dateInput = document.getElementById('deadline');
+                dateInput.min = formattedDate;
+                
+                // 6. Réinitialisation si date actuelle invalide
+                if (!dateInput.value || new Date(dateInput.value) < minDate) {
+                    dateInput.value = formattedDate;
+                }
+                    
        let montantFinal=montant;
        let montantReduit=0;
+      
        $('#promo-message').removeClass('text-success text-danger text-warning');
-
-           if (codesPromoValides.includes(codeAf)) {
+            if(serviceType === "vip" ) { 
+                montant = montant*1.5; 
+                 }
+                 else{
+                montant = montant;
+                 }
+           if (codesPromoValides.includes(codeAf) ) {
            // Vérifie la valeur de 'montant'
-               
+           
                let reduction = 0.30;  // Par exemple, 30% de réduction
               montantFinal = montant*(1 - reduction);
                montantFinal = Math.round(montantFinal / 100) * 100;
@@ -298,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                $('#promo-message').text(`🎉 Code promo "${codeAf}" valide ! Réduction de 30% appliquée.`)
                .addClass('text-success');
+               $('#montant').text(` ${montant} F cfa(XOF)`);
                $('#montantReduit').text(` ${montantReduit} F cfa(XOF)`);
                $('#montantFinal').text(` ${montantFinal} F cfa(XOF)`);
 
@@ -306,6 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Aucun code promo saisi, applique une réduction de 1000
             montantFinal = montant;
             montantReduit = 0; // La réduction appliquée est fixe ici (1000)
+                $('#montant').text(` ${montant} F cfa(XOF)`);
             $('#montantFinal').text(` ${montant} F cfa(XOF)`);
             $('#promo-message').text("✅ Code promo 1000 valide ! Aucune réduction appliquée. Code standard utilisé.")
             .addClass('text-warning');}
@@ -315,6 +341,7 @@ document.addEventListener("DOMContentLoaded", function() {
                .addClass('text-danger');
                montantReduit =0 ;
                 montantFinal = montant;
+                $('#montant').text(` ${montant} F cfa(XOF)`);
                 $('#montantFinal').text(` ${montantFinal} F cfa(XOF)`);
                $('#montantReduit').text(`${montantReduit} F cfa(XOF)`);
            }
@@ -338,7 +365,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 updateMontant();
                 });
-        
+
+            $('#serviceType').change(function() {
+            serviceType = $(this).val();
+           updateMontant();
+        });
             //download file final
 
 

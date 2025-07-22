@@ -35,7 +35,7 @@
                             @auth
                                 <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
-                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Faire une commsande </span></a>
+                                        <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commsande </span></a>
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>   
                         @endauth
@@ -58,7 +58,7 @@
                             <div class="col-lg-8 col-md-3 col-sm-4 mb-4">
                                 <div class="call_to_action">
                                     @auth
-                                        <a class="btn_one" type="button" href="{{route('service.redaction')}}"> <span>Faire une commande</span></a>
+                                        <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commande</span></a>
                                     @endauth
                                     @guest
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#registerModal"> <span>Créer un compte</span></a>
