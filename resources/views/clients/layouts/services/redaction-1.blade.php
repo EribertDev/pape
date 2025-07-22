@@ -217,7 +217,7 @@
                                                 <div class="mt-2">
                                                   
                                                     <div class="form-group mt-2" id="div_subject"  >
-                                                        <input  class="p-5" type="text" name="subject" id="subject" placeholder="Veuillez entrez vo00000tre theme"  />
+                                                        <input  class="p-5" type="text" name="subject" id="subject" placeholder="Veuillez entrez votre theme"  />
                                                     </div>
                                                 </div>
                                             </div>
