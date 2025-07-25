@@ -85,7 +85,8 @@ class StageController extends Controller
         'commune' => 'required|string|max:255',
         'structure' => 'required|string|max:255',
         'recommendation_letter' => 'required|file|mimes:pdf|max:2048',
-        'binome' => 'nullable|string|max:255'
+        'binome' => 'nullable|string|max:255',
+        'message' => 'nullable|string|max:1000'
     ]);
 
     try {
@@ -105,7 +106,7 @@ class StageController extends Controller
             'recommendation_letter_path' => $letterPath,
             'binome' => $validated['binome'] ?? null,
             'status' => 'pending',
-            'message' => $request->input('message', '') // Message optionnel
+            'message' => $validated['message'] ?? 'Aucun message fourni'
         ]);
 
         // Génération du PDF

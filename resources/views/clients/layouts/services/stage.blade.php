@@ -4,200 +4,13 @@
     <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="{{asset('client/js-simple-loader-main/loader.css')}}" />
+    <link rel="stylesheet" href="{{asset('clients\assets\css\stage.css')}}" />
     <script  src="{{asset('client/js-simple-loader-main/loader.js')}}"  ></script>
     <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #2eca7f;;
-            --secondary: #3f37c9;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4ade80;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            min-height: 100vh;
-           
-            align-items: center;
-            padding: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .internship-form {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .internship-form:hover {
-            transform: translateY(-5px);
-        }
-        
-        .form-header {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        
-        .form-header h2 {
-            font-weight: 700;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-        
-        .form-header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-        
-        .form-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .form-content {
-            padding: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .form-label i {
-            margin-right: 10px;
-            color: var(--primary);
-            width: 20px;
-        }
-        
-        .form-control, .form-select, .form-control-file {
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 12px 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
-        
-        .form-control::placeholder {
-            color: #a0aec0;
-        }
-        
-        .btn-submit {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto 0;
-            width: 100%;
-            max-width: 250px;
-        }
-        
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
-        }
-        
-        .btn-submit:active {
-            transform: translateY(0);
-        }
-        
-        .file-upload {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .file-upload input[type="file"] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            cursor: pointer;
-            display: block;
-        }
-        
-        .file-info {
-            display: block;
-            margin-top: 8px;
-            font-size: 0.85rem;
-            color: #718096;
-        }
-        
-        .required-field::after {
-            content: " *";
-            color: #e53e3e;
-        }
-        
-        .progress-container {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #f8fafc;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .progress-bar {
-            background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
-        }
-        
-        .form-note {
-            text-align: center;
-            margin-top: 20px;
-            color: #718096;
-            font-size: 0.9rem;
-        }
-        
-        .form-note a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .form-note a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 768px) {
-            .form-content {
-                padding: 20px;
-            }
-            
-            .form-header {
-                padding: 20px 15px;
-            }
-        }
+      
     </style>
 @endsection
 
@@ -316,7 +129,7 @@
                                         <select class="form-select" id="level" name="level" required>
                                             <option value="" selected disabled>Sélectionnez votre niveau</option>
                                             <option value="Licence">Licence</option>
-                                             <option value="Master">Master"></option>
+                                             <option value="Master">Master</option>
                                             <option value="Doctorat">Doctorat</option>
                                             <option value="Autre">Autre</option>
                                         </select>
@@ -393,16 +206,22 @@
                                     </div>
                                     
                                 </div>
-                                <div class="col-lg-6">
-                                     <div class="form-group lg-6" id="cip">
-                                        <label class="form-label">
-                                            <i class="fas fa-file-alt"></i> CIP ou Carte Etudiants
+                               <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label fw-bold">
+                                            <i class="fas fa-id-card me-2"></i> CIP ou Carte Étudiante
                                         </label>
-                                        <div class="file-upload btn btn-outline-primary w-100" >
-                                            <i class="fas fa-cloud-upload-alt me-2"></i>Télécharger le fichier
-                                            <input type="file" id="cip" name="cip" class="form-control-file" accept=".pdf,.doc,.docx,.image/*">
+                                        <div class="file-upload-wrapper">
+                                            <div class="file-upload-input" id="cipUploadArea">
+                                                <i class="fas fa-cloud-upload-alt me-2"></i>
+                                                <span id="cipFileName">Téléverser le fichier</span>
+                                                <input type="file" id="cip" name="cip" class="d-none" 
+                                                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                            </div>
+                                            <div class="file-requirements text-muted mt-2">
+                                                Formats acceptés: PDF, JPG, PNG, DOC, DOCX (max 2MB)
+                                            </div>
                                         </div>
-                                        <span class="file-info">Optionnel (PDF, DOC, DOCX)</span>
                                     </div>
                                 </div>
                             </div>
@@ -438,6 +257,43 @@
 
 @section('extra-scripts')
     <script>
+
+
+
+
+                    document.getElementById('cip').addEventListener('change', function(e) {
+                if (this.files.length > 0) {
+                    document.getElementById('cipFileName').textContent = this.files[0].name;
+                    document.getElementById('cipUploadArea').classList.add('file-selected');
+                }
+            });
+
+            // Drag and drop
+            const cipArea = document.getElementById('cipUploadArea');
+            cipArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                cipArea.classList.add('dragover');
+            });
+
+            cipArea.addEventListener('dragleave', () => {
+                cipArea.classList.remove('dragover');
+            });
+
+            cipArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                cipArea.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    document.getElementById('cip').files = e.dataTransfer.files;
+                    document.getElementById('cipFileName').textContent = e.dataTransfer.files[0].name;
+                    cipArea.classList.add('file-selected');
+                }
+            });
+
+            // Clic sur la zone pour déclencher l'input
+            cipArea.addEventListener('click', () => {
+                document.getElementById('cip').click();
+            });
         // Animation de progression
         document.addEventListener('DOMContentLoaded', function() {
         

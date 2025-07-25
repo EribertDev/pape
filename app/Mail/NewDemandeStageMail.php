@@ -56,6 +56,15 @@ class NewDemandeStageMail extends Mailable
             ]);
         }
 
+
+        // Joindre le CIP si disponible
+       if ($this->internshipRequest->cip) {
+        $email->attachFromStorageDisk('cips', 
+              basename($this->internshipRequest->cip),
+              'CIP_Etudiant_'.basename($this->internshipRequest->cip).'.pdf');
+    }
+
+
         return $email;
     }
 
