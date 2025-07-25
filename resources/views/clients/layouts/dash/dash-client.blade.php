@@ -63,7 +63,7 @@
                     <div class="container">
                         <div class="text-end">
                             <div class="cp_btn mb-4">
-                                <a href="{{route('service.redaction')}}" class="cta"><span>Commander maintenant</span>
+                                <a href="{{route('redaction.offers')}}" class="cta"><span>Commander maintenant</span>
                                     <svg width="13px" height="10px" viewBox="0 0 13 10">
                                         <path d="M1,5 L11,5"></path>
                                         <polyline points="8 1 12 5 8 9"></polyline>
