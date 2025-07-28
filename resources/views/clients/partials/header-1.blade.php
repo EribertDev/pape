@@ -30,7 +30,7 @@
                                 <a class="nav-link" href="{{route('biblios')}}">Thèmes disponibles</a>
                             </li>
                             <li>
-                                <a class="nav-link" href="{{route('bds.all')}}"> Données disponiples </a>
+                                <a class="nav-link" href="{{route('bds.all')}}"> Données disponibles </a>
                             </li>
                             <li>
                                 <a class="nav-link"  href="{{route('stage')}}">Demande de Stage</a>

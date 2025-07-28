@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DemandeStageController;
 Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     //
     Route::get('/admin/dash', DashController::class)->name('admin.dash');
+     Route::post('/dashboard/export', [DashController::class, 'export'])->name('dashboard.export');
     //
     Route::get('/admin/commande', [CommandeController::class, 'index'])->name('admin.commande');
     Route::get('/admin/commande/all/processing', [CommandeController::class, 'getProcessingCommande'])->name('admin.commande.all');

@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded",function (){
                         '', // Colonne pour les checkboxes (remplie plus tard)
                         item.client.fist_name + " " + item.client.last_name,
                         item.service.name,
+                        item.structure_stage,
                         extractDateTime(item.deadline,"DD-MM-YYYY").date,
                         extractDateTime(item.created_at,"DD-MM-YYYY","HH:mm").date + " à " + extractDateTime(item.created_at,"DD-MM-YYYY","HH:mm").time,
                         item.status.name,
@@ -57,6 +58,20 @@ document.addEventListener("DOMContentLoaded",function (){
             },
             { title: "Clients" },
             { title: "Service" },
+            { title: 'Type',
+                render: function(data, type, row) {
+                   if (data=='vip') {
+                          return `<span class="badge bg-success">VIP</span>`;
+                     }
+                    else if (data=='standard') {
+                        return `<span class="badge bg-warning">Standard</span>`;
+                    }
+                    else {
+                        return `<span class="badge bg-secondary">Inconnu</span>`;
+                    }
+                }
+
+             },
             { title: "Délais" },
             { title: "Date" },
             {
@@ -135,6 +150,7 @@ document.addEventListener("DOMContentLoaded",function (){
                         item.reference,
                         item.client.fist_name +" "+ item.client.last_name,
                         item.service.name ,
+                        item.structure_stage,
                         item.status.name,
                         item.uuid,
                     ];
@@ -145,6 +161,20 @@ document.addEventListener("DOMContentLoaded",function (){
             { title: "Commandes" },
             { title: "Clients" },
             { title: "Service" },
+            { title: 'Type',
+                render: function(data, type, row) {
+                   if (data=='vip') {
+                          return `<span class="badge bg-success">VIP</span>`;
+                     }
+                    else if (data=='standard') {
+                        return `<span class="badge bg-warning">Standard</span>`;
+                    }
+                    else {
+                        return `<span class="badge bg-secondary">Inconnu</span>`;
+                    }
+                }
+
+             },
             {
                 title: 'Status',
                 render: function(data, type, row) {

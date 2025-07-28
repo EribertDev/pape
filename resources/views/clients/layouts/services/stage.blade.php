@@ -176,7 +176,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="fieldlabels  fw-bold" for="structure">Stucture désirée</label>
+                                        <label class="fieldlabels  fw-bold" for="structure">Structure désirée</label>
                                         <select name="structure" id="structure"  class="form-control">
                                             <option value="" selected disabled>Quelles structure désirez vous</option>
                                             

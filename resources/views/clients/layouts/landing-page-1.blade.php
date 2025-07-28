@@ -2,9 +2,84 @@
 @extends('clients.master-1')
 @section('extra-style')
     <link rel="stylesheet" href="{{asset('clients/assets/css/styles_perso.css')}}"/>
-    <style>
-        .text-justify{
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+     <style>
+        .text-justify {
             text-align: justify;
+        }
+        
+        /* Styles pour la nouvelle section d'accueil */
+        .home-feature-section {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-top: 4px solid #2eca7f;
+            text-align: center;
+            margin-right: 5px
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            color: #2eca7f;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-weight: 700;
+            color: #1a2d62;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .feature-description {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        
+        .feature-btn {
+            background: #1a2d62;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #1a2d62;
+        }
+        
+        .feature-btn:hover {
+            background: transparent;
+            color: #1a2d62;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .feature-card {
+                margin-bottom: 20px;
+            }
+            
+            .home_content h2 {
+                font-size: 1.8rem;
+                line-height: 2.2rem;
+            }
         }
     </style>
 @endsection
@@ -22,7 +97,7 @@
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
                         <h2 class="fw-bold text-center"><span>Simplifiez la recherche de stage académique  de vos Mémoires ,Thèses et Rapports de stage grace au   </span>  PAPE</h2>
-                        <p class="mt-4  text-center">Un service dédié à la mise en stage académique des étudiants et à l'accouchement dans la rédaction rapide et éfficace des mémoires et thèses</p>
+                        <p class="mt-4  text-center">Un service dédié à la mise en stage académique des étudiants et à l'accompagnement dans la rédaction rapide et éfficace des mémoires et thèses</p>
                        <div class="row">
                             @guest
                                 <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
@@ -35,7 +110,7 @@
                             @auth
                                 <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
-                                        <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commsande </span></a>
+                                        <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commande </span></a>
                                     </div><!--- END SOCIAL PROFILE -->
                                 </div>   
                         @endauth
@@ -43,7 +118,7 @@
                     </div>
                    <div class="home_content  d-none d-lg-block">
                         <h2 class="fw-bold "><span>Simplifiez la Recherche de stage Académique et la rédaction de vos mémoires,thèses et rapports de stage grace au </span>  PAPE</h2>
-                        <p class="mt-3">Un service dédié  à la mise en stage académique des étudiants et à l'accouchement dans la rédaction rapide et éfficace des mémoires et thèses </p>
+                        <p class="mt-3">Un service dédié  à la mise en stage académique des étudiants et à l'accompagnement dans la rédaction rapide et éfficace des mémoires et thèses </p>
                     
                         <div class="row">
                             @guest
@@ -54,6 +129,16 @@
                                     
                                 </div>
                             @endguest
+
+                             @auth
+                                <div class="col-lg-3 col-md-3 col-sm-4 ms-2 mb-4">
+                                    <div class="call_to_action">
+                                         <a class="btn_one" type="button" href="{{route('stage')}}"><span style="white-space: nowrap;">Demander Stage</span></a>
+                                    </div><!--- END SOCIAL PROFILE -->
+                                    
+                                </div>
+                            @endauth
+                            
                             
                             <div class="col-lg-8 col-md-3 col-sm-4 mb-4">
                                 <div class="call_to_action">
@@ -77,10 +162,63 @@
                 </div>
 
             </div><!-- END COL-->
+
+            
         </div>
     </section>
     <!-- END  HOME -->
-
+    <section class="container">
+         <div class="home-feature-section">
+                <!-- Bouton 1: Faire une demande de stage -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="feature-title">Demande de Stage</h3>
+                        <p class="feature-description">Trouvez le stage académique idéal adapté à votre domaine d'études et à vos aspirations professionnelles.</p>
+                        <a href="{{route('stage')}}" class="feature-btn">Faire une demande</a>
+                    </div>
+                </div>
+                
+                <!-- Bouton 2: Commander mémoire/thèse -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Commander un Mémoire/Thèse</h3>
+                        <p class="feature-description">Bénéficiez d'un accompagnement expert pour la rédaction de vos travaux académiques.</p>
+                        <a href="{{route('redaction.offers')}}" class="feature-btn">Commander</a>
+                    </div>
+                </div>
+                
+                <!-- Bouton 3: Bases de données -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="feature-title">Bases de Données</h3>
+                        <p class="feature-description">Accédez à notre vaste collection  de base de données (commercial) </p>
+                        <a href="{{route('bds.all')}}" class="feature-btn">Explorer</a>
+                    </div>
+                </div>
+                
+                <!-- Bouton 4: Thèmes -->
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="feature-title">Thèmes de Recherche</h3>
+                        <p class="feature-description">Découvrez des idées de sujets innovants pour vos travaux académiques.</p>
+                        <a href="{{route('biblios')}}" class="feature-btn">Voir les thèmes</a>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN DE LA NOUVELLE SECTION -->
+    </section>
     <!-- START TOP PROMO FEATURES -->
     <section class="tp_feature">
         <div class="container-fluid">
@@ -124,7 +262,7 @@
                             <span class="ti-book ss_one"></span>
                             <h2><a href="single-service.html" target="_blank">Expertise et Expériences</a></h2>
                         </div>
-                        <p>Plus de 500 étudiants et chercheurs ont déjà bénéficier de notre expertise et en sont satisfaits.</p>
+                        <p>Plus de 500 étudiants et chercheurs ont déjà bénéficié de notre expertise et en sont satisfaits.</p>
                     </div>
                 </div><!-- END COL -->
 
@@ -339,11 +477,11 @@
                                     Le PAPE offre au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
                                     <ul>
                                         <li>👉 Rédaction complète du mémoire ou de la thèse</li>
-                                        <li>👉 Protocole de recherche</li>
+                                        <li>👉 Rédaction Protocole de recherche</li>
                                         <li>👉 Analyse des données</li>
                                         <li>👉 Mise en forme du document</li>
                                         {{-- <li>👉 Commande et livraison rapide du mémoire ou de la thèse</li> --}}
-                                        <li>👉 Vente de bases de données issues des collectes de donnée</li>
+                                        <li>👉  Mise à disposition de base de données (commercial) </li>
                                     </ul>
                                 </div>
                             </div>

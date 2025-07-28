@@ -45,11 +45,11 @@ class RédactorMail extends Mailable
     {  
         $originalFileName = pathinfo($this->filePath, PATHINFO_BASENAME); 
         $mimeType = mime_content_type($this->filePath);
-        $originalFileName1= pathinfo($this->fiche_technique, PATHINFO_BASENAME); 
-        $mimeType1 = mime_content_type($this->fiche_technique);
        
 
-        return $this->view('emails.RedactorEmail')
+       
+        
+        $email = $this->view('emails.RedactorEmail')
                 ->with(['commande' => $this->commande,
                         
                         'clientInfo' => $this->clientInfo,])
@@ -57,11 +57,22 @@ class RédactorMail extends Mailable
                             'as' => $originalFileName, // Nom personnalisé
                             'mime' => $mimeType,
                         ])
-                        ->attach($this->fiche_technique, [
-                            'as' => $originalFileName1, // Nom personnalisé
-                            'mime' => $mimeType1,
-                        ])
+                    
                 ->subject('Nouvelle commande de rédaction assignée à votre compte');
+
+                if ($this->fiche_technique) {
+                    $ficheTechniqueName = pathinfo($this->fiche_technique, PATHINFO_BASENAME);
+                            $mimeType1 = mime_content_type($this->fiche_technique);
+
+                    $email->attach($this->fiche_technique, [
+                        'as' => $ficheTechniqueName,
+                        'mime' => $mimeType1,
+                    ]);
+                }
+
+
+
+        return $email;
                 
     }
 

@@ -76,7 +76,7 @@ font-awesome
   
     <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold">Nos Offres de Rédaction</h1>
+        <h1 class="display-4 fw-bold mt-4">Nos Offres de Rédaction</h1>
         <p class="lead text-muted">Choisissez la formule qui correspond le mieux à vos besoins</p>
     </div>
 
@@ -100,6 +100,14 @@ font-awesome
                        <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
                             Mise en forme professionnelle
+                        </li>
+                         <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                           Nombre de relectures: 2
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                           Qualité: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i>
                         </li>
                       
                         <li class="list-group-item d-flex align-items-center">
@@ -139,7 +147,14 @@ font-awesome
                             <i class="fas fa-check-circle text-success me-2"></i>
                             Mise en forme professionnelle
                         </li>
-                      
+                         <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                           Nombre de relectures: illimitées
+                        </li>
+                       <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                           Qualité: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i><i class="fas fa-star"></i></i><i class="fas fa-star"></i></i>
+                        </li>
                         <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
                             Délai express: 48h max
@@ -155,43 +170,53 @@ font-awesome
         </div>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-lg-10 mx-auto">
-            <div class="bg-light p-4 rounded-3">
-                <h3 class="mb-3"><i class="fas fa-question-circle text-primary me-2"></i>Comment ça marche ?</h3>
-                <div class="row text-center">
-                    <div class="col-md-3 mb-3">
-                        <div class="step-card p-3 rounded">
-                            <div class="step-number bg-primary text-white rounded-circle mx-auto">1</div>
-                            <h5 class="mt-3">Choisissez votre offre</h5>
-                            <p>Standard ou VIP selon vos besoins</p>
-                        </div>
+   <div class="row mt-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="bg-light p-4 rounded-3 position-relative">
+            <!-- Filigrane -->
+         
+            
+            <h3 class="mb-3 position-relative"><i class="fas fa-question-circle text-primary me-2"></i>Comment ça marche ?</h3>
+            <div class="row text-center position-relative">
+                <div class="col-md-3 mb-3">
+                    <div class="step-card p-3 rounded">
+                        <div class="step-number bg-primary text-white rounded-circle mx-auto">1</div>
+                        <h5 class="mt-3">Choisissez votre offre</h5>
+                        <p>Standard ou VIP selon vos besoins</p>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="step-card p-3 rounded">
-                            <div class="step-number bg-primary text-white rounded-circle mx-auto">2</div>
-                            <h5 class="mt-3">Remplissez le formulaire</h5>
-                            <p>Décrivez votre projet en détail</p>
-                        </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="step-card p-3 rounded">
+                        <div class="step-number bg-primary text-white rounded-circle mx-auto">2</div>
+                        <h5 class="mt-3">Remplissez le formulaire</h5>
+                        <p>Décrivez votre projet en détail</p>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="step-card p-3 rounded">
-                            <div class="step-number bg-primary text-white rounded-circle mx-auto">3</div>
-                            <h5 class="mt-3">Paiement sécurisé</h5>
-                            <p>Payez en ligne simplement</p>
-                        </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="step-card p-3 rounded">
+                        <div class="step-number bg-primary text-white rounded-circle mx-auto">3</div>
+                        <h5 class="mt-3">Appréciez le travail</h5>
+                        <p>À travers une séance en ligne ou présentiel</p>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="step-card p-3 rounded">
-                            <div class="step-number bg-primary text-white rounded-circle mx-auto">4</div>
-                            <h5 class="mt-3">Recevez votre document</h5>
-                            <p>Dans les délais convenus</p>
-                        </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="step-card p-3 rounded">
+                        <div class="step-number bg-primary text-white rounded-circle mx-auto">4</div>
+                        <h5 class="mt-3">Paiement sécurisé</h5>
+                        <p>Payez en ligne simplement</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="step-card p-3 rounded">
+                        <div class="step-number bg-primary text-white rounded-circle mx-auto">5</div>
+                        <h5 class="mt-3">Recevez votre document</h5>
+                        <p>Dans les délais convenus</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 @endsection

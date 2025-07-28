@@ -26,7 +26,7 @@
             </div><!--- END COL -->
             <div class="col-lg-3 col-sm-6 col-xs-12">
                 <div class="single_footer">
-                    <h4>Lien Rapides</h4>
+                    <h4>Liens Rapides</h4>
                     <ul>
                         <li><a href="{{ route('home') }}">Accueil</a></li>
                         <li><a href="{{ route('a-propos') }}">A propos</a></li>
