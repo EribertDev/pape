@@ -95,7 +95,7 @@ font-awesome
                     <ul class="list-group list-group-flush mb-4">
                          <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
-                            Rédaction  par un expert
+                           Assistance  par un expert
                         </li>
                        <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
@@ -141,7 +141,7 @@ font-awesome
                     <ul class="list-group list-group-flush mb-4">
                         <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
-                            Rédaction  par un expert
+                           Assistance par un expert
                         </li>
                         <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
