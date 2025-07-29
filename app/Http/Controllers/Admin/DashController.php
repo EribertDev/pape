@@ -154,7 +154,7 @@ class DashController extends Controller
     }
 
 
-     private function getMonthlyStats($startDate, $endDate)
+     public function getMonthlyStats($startDate, $endDate)
     {
         return Commande::selectRaw('
                 YEAR(created_at) as year, 

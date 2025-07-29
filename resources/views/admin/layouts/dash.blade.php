@@ -111,16 +111,38 @@
         <div class="year-selector">
             <div class="row align-items-center">
                
-        <div class="col-md-2 text-end">
-        <div class="text-center mb-4">
-        <form action="{{ route('dashboard.export') }}" method="POST" class="d-inline">
-            @csrf
-            <input type="hidden" name="start_date">
-            <input type="hidden" name="end_date" >
-            <button type="submit" class="btn btn-success">
-                <i class="fas fa-file-excel me-2"></i>Exporter vers Excel
-            </button>
-        </form>
+      <div class="col-md-4">
+    <div class="card border-0 shadow-sm ">
+        <div class="card-body">
+            <form action="{{ route('dashboard.export') }}" method="POST" class="row g-3 align-items-center">
+                @csrf
+                <div class="col-auto ">
+                    <label for="start_date" class="visually-hidden">Date début</label>
+                    <input type="date" 
+                           name="start_date" 
+                           id="start_date"
+                           class="form-control form-control-sm"
+                           value="{{ old('start_date', now()->subMonth()->format('Y-m-d')) }}">
+                </div>
+                
+                <div class="col-auto">
+                    <label for="end_date" class="visually-hidden">Date fin</label>
+                    <input type="date" 
+                           name="end_date" 
+                           id="end_date"
+                           class="form-control form-control-sm"
+                           value="{{ old('end_date', now()->format('Y-m-d')) }}">
+                </div>
+                
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <i class="fas fa-file-excel me-1"></i> Exporter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     </div>
                 </div>
             </div>
