@@ -96,23 +96,23 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
-                        <h2 class="fw-bold text-center"><span>Simplifiez la recherche de stage académique  de vos Mémoires ,Thèses et Rapports de stage grace au   </span>  PAPE</h2>
+                        <h2 class="fw-bold text-center"><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE. Défilez-la pour découvrir les offres de service de CESIE BENIN</h2>
                         <p class="mt-4  text-center">Un service dédié à la mise en stage académique des étudiants et à l'accompagnement dans la rédaction rapide et éfficace des mémoires et thèses</p>
                        <div class="row">
                             @guest
-                                <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
+                              <!---    <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
                                     <div class="">
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
-                                    </div><!--- END SOCIAL PROFILE -->
-                                </div>
+                                    </div>
+                                </div>-->
                                  
                             @endguest
                             @auth
-                                <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
+                                 <!---  <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
                                         <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commande </span></a>
-                                    </div><!--- END SOCIAL PROFILE -->
-                                </div>   
+                                    </div> 
+                                </div>   -->
                         @endauth
                        </div>
                     </div>
@@ -122,33 +122,33 @@
                     
                         <div class="row">
                             @guest
-                                <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
+                               <!--- <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
                                     <div class="call_to_action">
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
-                                    </div><!--- END SOCIAL PROFILE -->
+                                    </div>  
                                     
-                                </div>
+                                </div> -->
                             @endguest
 
                              @auth
-                                <div class="col-lg-3 col-md-3 col-sm-4 ms-2 mb-4">
+                                 <!--- <div class="col-lg-3 col-md-3 col-sm-4 ms-2 mb-4">
                                     <div class="call_to_action">
                                          <a class="btn_one" type="button" href="{{route('stage')}}"><span style="white-space: nowrap;">Demander Stage</span></a>
-                                    </div><!--- END SOCIAL PROFILE -->
+                                    </div> 
                                     
-                                </div>
+                                </div> -->
                             @endauth
                             
                             
                             <div class="col-lg-8 col-md-3 col-sm-4 mb-4">
-                                <div class="call_to_action">
+                               <!--- <div class="call_to_action">
                                     @auth
                                         <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commande</span></a>
                                     @endauth
                                     @guest
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#registerModal"> <span>Créer un compte</span></a>
                                     @endguest
-                                </div><!--- END SOCIAL PROFILE -->
+                                </div>  -->
                             </div>
                         </div>
                         <div class="row">
@@ -177,8 +177,16 @@
                         </div>
                         <h3 class="feature-title">Demande de Stage</h3>
                         <p class="feature-description">Trouvez le stage académique idéal adapté à votre domaine d'études et à vos aspirations professionnelles.</p>
-                        <a href="{{route('stage')}}" class="feature-btn">Faire une demande</a>
+                        <a 
+                        href="{{ auth()->check() ? route('stage') : '#' }}" 
+                        @if(!auth()->check()) 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#loginModal"
+                        @endif
+                        
+                        class="feature-btn">Faire une demande</a>
                     </div>
+                    
                 </div>
                 
                 <!-- Bouton 2: Commander mémoire/thèse -->
@@ -187,9 +195,15 @@
                         <div class="feature-icon">
                             <i class="fas fa-file-alt"></i>
                         </div>
-                        <h3 class="feature-title">Commander un Mémoire/Thèse</h3>
+                        <h3 class="feature-title">Demander Assistance pour la rédaction vos de mémoire/Thèse</h3>
                         <p class="feature-description">Bénéficiez d'un accompagnement expert pour la rédaction de vos travaux académiques.</p>
-                        <a href="{{route('redaction.offers')}}" class="feature-btn">Commander</a>
+                        <a href="{{ auth()->check() ? route('redaction.offers') : '#' }}" 
+                        @if(!auth()->check()) 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#loginModal"
+                        @endif
+                        
+                        class="feature-btn">Commander</a>
                     </div>
                 </div>
                 
@@ -217,17 +231,36 @@
                     </div>
                 </div>
             </div>
+
+             <!-- Nouvelle carte pour Demandes de Formation -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="feature-card h-100">
+            <div class="feature-icon bg-formation">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3 class="feature-title">Demande de Formation</h3>
+            <p class="feature-description">Soumettez votre demande pour une formation personnalisée</p>
+               <button type="button" class="feature-btn" data-bs-toggle="modal" data-bs-target="#formationModal">
+            <i class="fas fa-graduation-cap me-2"></i>Demander une formation
+        </button>
+              
+            </a>
+        </div>
+    </div>
             <!-- FIN DE LA NOUVELLE SECTION -->
     </section>
-    <!-- START TOP PROMO FEATURES -->
+   
+   {{-- 
+   
+     <!-- START TOP PROMO FEATURES -->
     <section class="tp_feature">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-12 no-padding wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
                     <div class="single_tp">
-                        <h3>Coaching dans la rédaction de vos mémoires et thèses</h3>
+                        <h3>Assistance dans la rédaction de vos mémoires et thèses</h3>
                         <p>
-                            Faîtes-vous coacher par le programme  PAPE pour rédiger vite, bien et sans plagiat vos mémoires de fin de formation
+                            Faîtes-vous assister par le programme  PAPE pour rédiger vite, bien et sans plagiat vos mémoires de fin de formation
                         </p>
                     </div>
                 </div><!-- END COL -->
@@ -246,7 +279,8 @@
             </div><!-- END ROW -->
         </div><!-- END CONTAINER -->
     </section>
-    <!-- END TOP PROMO FEATURES -->
+   
+   --}}
 
     <!-- START WHY CHOOSE US-->
     <section class="marketing_content_area section-padding">

@@ -369,6 +369,62 @@
         </div>
     </div>
 
+    
+            <!-- Deuxième ligne de cartes - Statistiques des Stages -->
+            <div class="row mb-4">
+                <!-- Stages en attente (pending) -->
+                <div class="col-md-4">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted mb-0">Stages en attente</h5>
+                                    <h2 class="mb-0">{{ $data['stages_pending'] }}</h2>
+                                </div>
+                                <div class="icon icon-shape bg-warning text-white rounded-circle">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stages approuvés (approved) -->
+                <div class="col-md-4">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted mb-0">Stages approuvés</h5>
+                                    <h2 class="mb-0">{{ $data['stages_approved'] }}</h2>
+                                </div>
+                                <div class="icon icon-shape bg-success text-white rounded-circle">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stages en revue (under_review) -->
+                <div class="col-md-4">
+                    <div class="card card-stats">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5 class="card-title text-muted mb-0">En attente d'autorisation</h5>
+                                    <h2 class="mb-0">{{ $data['stages_under_review'] }}</h2>
+                                </div>
+                                <div class="icon icon-shape bg-info text-white rounded-circle">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 </div>
 
          <!-- Graphiques -->
@@ -407,11 +463,12 @@
 
 
 
-                    <div class="row">
-                        <div class="chart-container-mobile" style="position: relative; height:70vh; width:100%; margin:0 -15px; overflow-x: auto;">
-                            <canvas id="myChart" style="min-width: 600px;"></canvas>
-                        </div>
-                    </div>
+
+            <div class="row">
+                <div class="chart-container-mobile" style="position: relative; height:70vh; width:100%; margin:0 -15px; overflow-x: auto;">
+                    <canvas id="myChart" style="min-width: 600px;"></canvas>
+                </div>
+            </div>
                 @endif
 
 

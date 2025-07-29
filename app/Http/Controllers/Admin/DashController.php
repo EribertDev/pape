@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use App\Exports\StatistiquesExport;
 use App\Exports\FastExcelStatistiquesExport;
 use Rap2hpoutre\FastExcel\FastExcel;
+use App\Models\Stage;
 
 
 class DashController extends Controller
@@ -58,7 +59,7 @@ class DashController extends Controller
 
 
 
-
+            
             $clientsTotal = (new Client())->count();
             $paymentTotal = (new Payement())->where('status_id', Status::getIdByName('Payer'))->sum('amount');
             $vip_attente = (new Commande())->where('structure_stage', 'vip')->where('status_id', Status::getIdByName('En attente'))->count();
@@ -100,6 +101,9 @@ class DashController extends Controller
             }
            
             $data = [
+                'stages_pending' => Stage::where('status', 'pending')->count(),
+                'stages_approved' => Stage::where('status', 'approved')->count(),
+                'stages_under_review' => Stage::where('status', 'under_review')->count(),
                 'clientsTotal'=> $clientsTotal,
                 'payementTotal'=> $paymentTotal,
                 'commandeTotal'=> $commandeTotal,

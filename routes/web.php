@@ -9,7 +9,6 @@ use App\Http\Controllers\client\FaqController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\client\BiblioController;
 use App\Http\Controllers\client\ContactController;
-
 use App\Http\Controllers\client\PayementController;
 use App\Http\Controllers\client\BaseDonneController;
 use App\Http\Controllers\client\ClientDashController;
@@ -19,12 +18,15 @@ use App\Http\Controllers\client\ClientProfileController;
 use App\Http\Controllers\client\services\ServiceController;
 use App\Http\Controllers\client\services\CommandeController;
 use App\Models\Affiler;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request; // Ajouter cette importation
+
 use App\Http\Controllers\client\services\RedactionController;
 use App\Models\ThemeMemoire;
 use App\Http\Controllers\StageController;
 use App\Models\Stage;
 use App\Http\Controllers\Admin\DemandeStageController;
+use App\Mail\FormationRequestMail;
+use Illuminate\Support\Facades\Mail;
 
 
 /*
@@ -183,6 +185,30 @@ Route::get('/internships/uploaded/{id}/uploaded', [DemandeStageController::class
 Route::get('/admin/internships', [AdminController::class, 'index'])->name('admin.internships');
 Route::get('/download-signed/{request}', [AdminController::class, 'downloadSignedContract'])->name('download.signed');
 Route::patch('/update-status/{request}', [AdminController::class, 'updateStatus'])->name('update.status');
+
+
+
+// Demande de Formation 
+Route::post('/send-formation-request', function (Request $request) {
+    $validated = $request->validate([
+        'firstName' => 'required|string|max:255',
+        'lastName' => 'required|string|max:255',
+        'email' => 'nullable|email',
+        'phone' => 'required|string|max:20',
+        'formationType' => 'required|string',
+        'formationTheme' => 'required|string|max:255',
+        'participants' => 'required|integer|min:1',
+        'duration' => 'required|integer|min:1',
+        'datePreference' => 'nullable|string',
+        'objectives' => 'required|string',
+        'additionalInfo' => 'nullable|string',
+    ]);
+    
+    // Envoyer directement l'email
+    Mail::to('serviceclient@cesiebenin.com')->send(new FormationRequestMail($validated));
+    
+    return response()->json(['success' => true]);
+})->name('formation.send');
 
 
 /*

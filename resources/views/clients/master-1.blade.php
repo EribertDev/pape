@@ -51,6 +51,7 @@
             @include('auth.login')
             @include('auth.register')
         @endguest
+        @include('clients.layouts.services.demande_formation')
 
         <!-- Latest jQuery -->
         <script src="{{asset('clients/assets/js/jquery-1.12.4.min.js')}}"></script>

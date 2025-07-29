@@ -41,7 +41,7 @@
                             </li>
                             <li><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
                             @auth
-                                <li  class="d-block d-lg-none"><a  href="{{route('dash.client')}}">Mon Espace</a></li>
+                                <li  class="d-none "><a  href="{{route('dash.client')}}">Mon Espace</a></li>
                                 <li  class="d-block d-lg-none"><form method="POST" action="{{ route('logout') }}" class="col-5"  >
                                     @csrf
                                     <a  href="{{route('logout')}}"  onclick="event.preventDefault();this.closest('form').submit();">
@@ -59,8 +59,8 @@
                    <div id="mobile_menu">
                         <!-- Vos autres éléments de menu ici -->
                         
-                        <div class="d-flex justify-content-center p-2 text-end" id="navtube">
-                            <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" href="{{route('dash.client')}}">
+                        <div class="d-flex justify-content-right text-end" id="navtube">
+                            <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" href="{{route('dash.client')}}" style="font-size: 0.85rem; padding: 6px 8px; width: auto;">
                                 <i class="fas fa-user-circle me-1"></i> Mon Espace
                             </a>
                             
@@ -71,7 +71,7 @@
             </div><!--- END Col -->
             @auth
                 
-                <div class="col-lg-4 col-md-3 col-sm-8 ms-auto d-none d-lg-block">
+                <div class="col-lg-4 col-md-3 col-sm-8 ms-auto d-sm-none d-lg-block">
                     <div class="call_to_action d-flex">
                         <a class="btn_one col-6  " href="{{route('dash.client')}}">Mon Espace</a>
                         <form method="POST" action="{{ route('logout') }}" class="col-5"  >
