@@ -60,7 +60,8 @@
                         <!-- Vos autres éléments de menu ici -->
                         
                         <div class="d-flex justify-content-right text-end" id="navtube">
-                            <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" href="{{route('dash.client')}}" style="font-size: 0.85rem; padding: 6px 8px; width: auto;">
+                            <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" href="{{route('dash.client')}}" style="font-size: 0.85rem; padding: 4px 8px;
+                            background-color: #2eca7f; color: white; border-radius: 4px;">
                                 <i class="fas fa-user-circle me-1"></i> Mon Espace
                             </a>
                             
