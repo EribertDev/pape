@@ -41,8 +41,8 @@
                             </li>
                             <li><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
                             @auth
-                               
-                                <li  class=""><form method="POST" action="{{ route('logout') }}" class="col-5"  >
+                                <li  class="d-none d-lg-block "><a  href="{{route('dash.client')}}">Mon Espace</a></li>
+                                <li  class="d-none d-lg-block"><form method="POST" action="{{ route('logout') }}" class="col-5"  >
                                     @csrf
                                     <a  href="{{route('logout')}}"  onclick="event.preventDefault();this.closest('form').submit();">
                                         Déconnexion
