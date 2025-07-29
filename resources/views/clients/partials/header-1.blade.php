@@ -41,8 +41,8 @@
                             </li>
                             <li><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
                             @auth
-                                <li  class="d-none d-lg-block "><a  href="{{route('dash.client')}}">Mon Espace</a></li>
-                                <li  class="d-none d-lg-block"><form method="POST" action="{{ route('logout') }}" class="col-5"  >
+                                <li  class="d-none "><a  href="{{route('dash.client')}}">Mon Espace</a></li>
+                                <li  class="d-block d-lg-none"><form method="POST" action="{{ route('logout') }}" class="col-5"  >
                                     @csrf
                                     <a  href="{{route('logout')}}"  onclick="event.preventDefault();this.closest('form').submit();">
                                         Déconnexion
@@ -74,10 +74,10 @@
                 
                 <div class="col-lg-4 col-md-3 col-sm-8 ms-auto d-sm-none d-lg-block">
                     <div class="call_to_action d-flex">
-                        <a class="btn_one col-6  " href="{{route('dash.client')}}">Mon Espace</a>
+                        <a class="btn_one col-6 d-none d-lg-block " href="{{route('dash.client')}}">Mon Espace</a>
                         <form method="POST" action="{{ route('logout') }}" class="col-5"  >
                             @csrf
-                            <a  href="{{route('logout')}}" class="btn_two"  onclick="event.preventDefault();this.closest('form').submit();">
+                            <a  href="{{route('logout')}}" class="btn_two d-none d-lg-block"  onclick="event.preventDefault();this.closest('form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> Déconnexion
                             </a>
                         </form>
