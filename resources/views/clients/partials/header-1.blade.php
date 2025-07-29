@@ -56,13 +56,24 @@
                             @endguest
                         </ul>
                     </nav>
-                    <div id="mobile_menu"></div>
+                   <div id="mobile_menu">
+                        <!-- Vos autres éléments de menu ici -->
+                        
+                        <div class="d-flex justify-content-center p-2 text-end" id="navtube">
+                            <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" href="{{route('dash.client')}}">
+                                <i class="fas fa-user-circle me-1"></i> Mon Espace
+                            </a>
+                            
+                           
+                        </div>
+                    </div>
                 </div>
             </div><!--- END Col -->
             @auth
+                
                 <div class="col-lg-4 col-md-3 col-sm-8 ms-auto d-none d-lg-block">
                     <div class="call_to_action d-flex">
-                        <a class="btn_one col-6" href="{{route('dash.client')}}">Mon Espace</a>
+                        <a class="btn_one col-6  " href="{{route('dash.client')}}">Mon Espace</a>
                         <form method="POST" action="{{ route('logout') }}" class="col-5"  >
                             @csrf
                             <a  href="{{route('logout')}}" class="btn_two"  onclick="event.preventDefault();this.closest('form').submit();">

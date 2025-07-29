@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded",function (){
                         item.client.fist_name +" "+ item.client.last_name,
                         item.service.name ,
                         item.structure_stage,
+                        extractDateTime(item.created_at,"DD-MM-YYYY","HH:mm").date + " à " + extractDateTime(item.created_at,"DD-MM-YYYY","HH:mm").time,
                         item.status.name,
                         item.uuid,
                     ];
@@ -175,6 +176,7 @@ document.addEventListener("DOMContentLoaded",function (){
                 }
 
              },
+            { title: "Date" },
             {
                 title: 'Status',
                 render: function(data, type, row) {

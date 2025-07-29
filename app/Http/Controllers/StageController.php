@@ -86,13 +86,14 @@ class StageController extends Controller
         'structure' => 'required|string|max:255',
         'recommendation_letter' => 'required|file|mimes:pdf|max:2048',
         'binome' => 'nullable|string|max:255',
-        'message' => 'nullable|string|max:1000'
+        'message' => 'nullable|string|max:1000',
+        'cip'   =>'required|file' // CIP n'est pas obligatoire
     ]);
 
     try {
         // Stockage de la lettre de recommandation
         $letterPath = $request->file('recommendation_letter')->store('recommendation_letters');
-
+        $cipPath = $request->file('cip')->store('cips');
         // Création de la demande
         $internshipRequest = Stage::create([
             'user_id' => auth()->id(),
@@ -106,7 +107,10 @@ class StageController extends Controller
             'recommendation_letter_path' => $letterPath,
             'binome' => $validated['binome'] ?? null,
             'status' => 'pending',
-            'message' => $validated['message'] ?? 'Aucun message fourni'
+            'cip' => $cipPath,
+            'message' => $validated['message'] ?? 'Aucun message fourni',
+        
+             
         ]);
 
         // Génération du PDF

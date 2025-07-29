@@ -1,6 +1,24 @@
 @extends('admin.master')
 @section('extra-style')
     <link rel="stylesheet" href="{{asset('stdev/css/badge-status.css')}}">
+    <style>
+    .download-btn {
+        position: relative;
+        transition: all 0.3s;
+    }
+    .download-status {
+        margin-left: 5px;
+        font-size: 0.8em;
+    }
+    .downloading::after {
+        content: " (en cours...)";
+        color: #fff;
+    }
+    .downloaded::after {
+        content: " ✓";
+        color: #fff;
+    }
+</style>
 @endsection
 
 @section('page-content')
@@ -61,26 +79,34 @@
                             <p class="card-text"><span class="fw-bold">Commune : </span><span>{{$request["commune"]}}</span> </p>
                             <p class="card-text"><span class="fw-bold">Statut : </span> @if($request->status==="pending") <span class="badge bg-warning">En attente</span> @elseif ($request->status==="approved")<span class="badge bg-success"> Accepté </span> @elseif ($request->status==="rejected") <span class="badge bg-danger">Rejeté </span> @elseif($request->status==="under_review") <span class="badge bg-info">En cours de traitement @endif</p>
                             <p class="card-text"><span class="fw-bold">Date : </span><span>{{$request["created_at"]}}</span> </p>
-                            <p class="card-text"><span class="fw-bold">Contrat signé : </span>
-                                @if(!empty($request["signed_contract_path"]))
-                                    <a class="btn-sm text-white mx-1 download-bd" data-mdb-ripple-init style="background-color: #2eca7f;" href="{{route('internship.upload', $request->id)}}" download="{{ basename($request->signed_contract_path) }}">
-                                        <i class="fa-solid fa-download"></i>
-                                    </a>
-                                @else
-                                    <span class="text-danger">Non signé</span>
-                                @endif
-                            </p>
+                         <p class="card-text"><span class="fw-bold">Contrat signé : </span>
+                            @if(!empty($request["signed_contract_path"]))
+                                <a class="btn-sm text-white mx-1 download-btn" 
+                                style="background-color: #2eca7f;" 
+                                href="{{route('internship.upload', $request->id)}}" 
+                                download="{{ basename($request->signed_contract_path) }}"
+                                onclick="handleDownload(event, this)">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span class="download-status"></span>
+                                </a>
+                            @else
+                                <span class="text-danger">Non signé</span>
+                            @endif
+                        </p>
 
-                            <p class="card-text"><span class="fw-bold">Lettre de recommandation : </span>
-                                @if(!empty($request["recommendation_letter_path"]))
-                                    <a class="btn-sm text-white mx-1 download-bd" data-mdb-ripple-init style="background-color: #2eca7f;" href="{{ asset('storage/' . $request->recommendation_letter_path) }}" download="{{ basename($request->recommendation_letter_path) }}">
-                                        <i class="fa-solid fa-download"></i>
-                                    </a>
-                                @else
-                                    <span class="text-danger">Non fournie</span>
-                                @endif
-                            </p>
-                           
+                        <p class="card-text"><span class="fw-bold">Lettre de recommandation : </span>
+                            @if(!empty($request["recommendation_letter_path"]))
+                                <a class="btn-sm text-white mx-1 download-btn" 
+                                style="background-color: #2eca7f;" 
+                                href="{{ route('internship.download-recommendation', $request->id) }}"
+                                onclick="handleDownload(event, this)">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span class="download-status"></span>
+                                </a>
+                            @else
+                                <span class="text-danger">Non fournie</span>
+                            @endif
+                        </p>
                           
                             
                         </div>
@@ -166,10 +192,13 @@
                     });
                     
                     // Fermer le modal après succès
-                    $('#authorizationModal').modal('hide');
+                    submitBtn.prop('disabled', false);
+
+                    $('#spinner').attr('hidden', true);
                     
                     // Rafraîchir la table DataTables
                     $('#internshipsTable').DataTable().ajax.reload();
+                     
                 }
             },
             error: function(xhr) {
@@ -182,6 +211,7 @@
             complete: function() {
                 submitBtn.prop('disabled', false);
                 spinner.attr('hidden', true);
+                
             }
         });
     });
@@ -189,4 +219,36 @@
 
        
     </script>
+
+
+<script>
+function handleDownload(event, element) {
+    // Empêche l'ouverture directe du lien
+    event.preventDefault();
+    
+    // Affiche le statut "en cours"
+    element.classList.add('downloading');
+    
+    // Crée un lien caché pour le téléchargement
+    const link = document.createElement('a');
+    link.href = element.href;
+    if (element.hasAttribute('download')) {
+        link.download = element.getAttribute('download');
+    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Simule un délai pour le feedback (remplacez par un vrai événement de fin si possible)
+    setTimeout(() => {
+        element.classList.remove('downloading');
+        element.classList.add('downloaded');
+        
+        // Réinitialise après 2 secondes
+        setTimeout(() => {
+            element.classList.remove('downloaded');
+        }, 2000);
+    }, 1000);
+}
+</script>
 @endsection

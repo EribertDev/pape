@@ -64,5 +64,7 @@ Route::get('/internships/download/{id}', [DemandeStageController::class, 'downlo
     ->name('internship.upload');  
     Route::post('/internship/upload-authorization', [DemandeStageController::class, 'uploadAuthorization'])
      ->name('internship.upload-authorization');
+
+     Route::get('/internships/recommendation/{id}', [DemandeStageController::class, 'downloadRecommendationLetter']) ->name('internship.download-recommendation');
 });
 

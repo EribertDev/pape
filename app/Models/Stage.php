@@ -24,7 +24,8 @@ class Stage extends Model
         'contract_path',
         'signed_contract_path',
         'message',
-        'authorization_path'
+        'authorization_path',
+        'cip',
     ];
 
     public function user()
