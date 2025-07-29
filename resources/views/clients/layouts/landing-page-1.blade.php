@@ -195,7 +195,7 @@
                         <div class="feature-icon">
                             <i class="fas fa-file-alt"></i>
                         </div>
-                        <h3 class="feature-title">Demander Assistance pour la rédaction vos de mémoire/Thèse</h3>
+                        <h3 class="feature-title">Demander Assistance pour la rédaction de vos mémoire/Thèse</h3>
                         <p class="feature-description">Bénéficiez d'un accompagnement expert pour la rédaction de vos travaux académiques.</p>
                         <a href="{{ auth()->check() ? route('redaction.offers') : '#' }}" 
                         @if(!auth()->check()) 

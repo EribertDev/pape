@@ -138,14 +138,23 @@
                         </h6>
                         <div class="mb-3">
                             <label for="formationType" class="form-label">Type de Formation <span class="required-star">*</span></label>
-                            <select class="form-select" id="formationType" required>
-                                <option value="" selected disabled>Sélectionnez un type</option>
-                                <option value="technique">Formation Technique</option>
-                                <option value="management">Formation en Management</option>
-                                <option value="langues">Formation en Langues</option>
-                                <option value="certification">Préparation à la Certification</option>
-                                <option value="autre">Autre</option>
-                            </select>
+                          <select class="form-select" id="formationType" required>
+                            <option value="" selected disabled>Sélectionnez un type</option>
+                            <option value="secretariat">Secrétariat bureautique</option>
+                            <option value="graphisme">Graphisme</option>
+                            <option value="dev_web">Développement web</option>
+                            <option value="programmation">Programmation</option>
+                            <option value="stat_info">Statistique et Informatique</option>
+                            <option value="epidemiologie">Épidémiologie</option>
+                            <option value="redaction_admin">Rédaction administrative</option>
+                            <option value="suivi_eval">Planification, Suivi-Evaluation</option>
+                            <option value="maintenance">Maintenance informatique</option>
+                            <option value="reparation_pc">Réparation d'ordinateur</option>
+                            <option value="logiciel_stats">Logiciel Statistiques (SPSS, Stata, R...)</option>
+                            <option value="dev_android">Développement d'application android</option>
+                            <option value="etats_financiers">Réalisation d'états financiers</option>
+                            <option value="systeme_info">Système d'Information</option>
+                        </select>
                         </div>
                         <div class="mb-3">
                             <label for="formationTheme" class="form-label">Thème de la Formation <span class="required-star">*</span></label>
@@ -279,6 +288,7 @@
                         confirmButtonColor: '#2eca7f',
                         confirmButtonText: 'Fermer'
                     });
+                    window.location.reload(); // Recharger la page pour mettre à jour le contenu
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -288,6 +298,7 @@
                         confirmButtonColor: '#2eca7f'
                     });
                 }
+               
             });
         });
         
