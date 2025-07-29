@@ -233,7 +233,7 @@
             </div>
 
              <!-- Nouvelle carte pour Demandes de Formation -->
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
         <div class="feature-card h-100">
             <div class="feature-icon bg-formation">
                 <i class="fas fa-chalkboard-teacher"></i>
@@ -242,10 +242,25 @@
             <p class="feature-description">Soumettez votre demande pour une formation personnalisée</p>
                <button type="button" class="feature-btn" data-bs-toggle="modal" data-bs-target="#formationModal">
             <i class="fas fa-graduation-cap me-2"></i>Demander une formation
-        </button>
+            </button>
               
             </a>
         </div>
+         <div class="feature-card h-100">
+                <div class="feature-icon bg-pape">
+                    <i class="fas fa-users"></i> <!-- Icône équipe -->
+                </div>
+                <h3 class="feature-title">Contactez l'équipe</h3>
+                <p class="feature-description">Une question ? Notre équipe PAPE vous répond</p>
+                
+                <a href='{{route('contact')}}' class="feature-btn contact-btn">
+                    <i class="fas fa-paper-plane me-2"></i>Contacter par email
+                </a>
+        </div>
+
+        
+
+        
     </div>
             <!-- FIN DE LA NOUVELLE SECTION -->
     </section>
