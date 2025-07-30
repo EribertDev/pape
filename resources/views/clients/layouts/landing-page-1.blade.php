@@ -525,8 +525,8 @@
                                 <div class="accordion-body">
                                     Le PAPE offre au-delà des formations et de l’opportunité gratuite de stage, un coaching en :
                                     <ul>
-                                        <li>👉 Rédaction complète du mémoire ou de la thèse</li>
-                                        <li>👉 Rédaction Protocole de recherche</li>
+                                        <li>👉Assistance dans la rédaction de mémoire ou de votre thèse</li>
+                                        <li>👉Assistance dans la rédaction de votre Protocole de recherche</li>
                                         <li>👉 Analyse des données</li>
                                         <li>👉 Mise en forme du document</li>
                                         {{-- <li>👉 Commande et livraison rapide du mémoire ou de la thèse</li> --}}
