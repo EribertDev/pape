@@ -93,7 +93,7 @@
     <section id="home" class="home_bg"
              style="background-image: url({{asset('clients/assets/images/banner/home.png')}});  background-size:cover; background-position: center center;">
         <div class="container">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
                         <h2 class="fw-bold text-center"><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services </h2>
