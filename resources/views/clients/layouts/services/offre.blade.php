@@ -74,14 +74,14 @@ font-awesome
 
 @section('page-content')
   
-    <div class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold mt-4">Nos Offres d'Assistance </h1>
+    <div class="container py-5 mt-5">
+    <div class="text-center mb-5 mt-5">
+        <h1 class="display-4 fw-bold mt-5" style="margin-top: 90px;">Nos Offres d'Assistance </h1>
         <p class="lead text-muted">Choisissez la formule qui correspond le mieux à vos besoins</p>
     </div>
 
     <div class="row g-4 justify-content-center">
-        <!-- Offre Standard -->
+        <!-- Offre Standard --> 
         <div class="col-lg-5">
             <div class="card border-0 shadow-lg h-100 hover-scale">
                 <div class="card-header bg-primary text-white py-4">
