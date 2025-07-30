@@ -36,7 +36,7 @@ class ThemeMemoireController extends Controller
                     'generale' => 'nullable|string',
                     'lieu_collect' => 'nullable|string|max:255',
                     'annee_collect' => 'nullable|integer|min:1900|max:' . date('Y'),
-                   // 'categories' => 'required|exists:disciplines,id', // Assurez-vous que la catégorie existe
+                   'categories' => 'required|exists:disciplines,id', // Assurez-vous que la catégorie existe
                 ]);
                 // Stockage du fichier sur le serveur
                 $path = ['licence' => '', 'master' => '', 'doctorat' => '']; // Initialiser le chemin
@@ -60,6 +60,7 @@ class ThemeMemoireController extends Controller
                     'specifique' => $vald["specifique"],
                     'lieu_collect' => $vald["lieu_collect"],
                     'annee_collect' => $vald["annee_collect"],
+                    'discipline_id' => $vald['categories'],
                 ]);
         
                 if ($response) {
@@ -91,10 +92,10 @@ class ThemeMemoireController extends Controller
             'generale' => 'nullable|string',
             'lieu_collect' => 'nullable|string|max:255',
             'annee_collect' => 'nullable|integer|min:1900|max:' . date('Y'),
-            // Optionnel
-           // 'categories' => 'required|exists:disciplines,id', // Assurez-vous que la catégorie existe
+          
+            'categories' => 'required|exists:disciplines,id', // Assurez-vous que la catégorie existe
         ]);
-
+        $discipline = Discipline::find($vald['categories']);
         $uuid = $request->input("uuid");
         $thm = (new ThemeMemoire())->getByUuid($uuid);
         $paths = $thm->path;
@@ -116,7 +117,14 @@ class ThemeMemoireController extends Controller
             }
         }
 
-        $response = (new ThemeMemoire())->updateByUuid($request->input('uuid'),["title"=>$vald["theme"],'description'=>$vald["description"],'path'=>json_encode($path),'redactor_id'=>$redactor_id,'generale' => $vald["generale"],'specifique' => $vald["specifique"],'lieu_collect' => $vald["lieu_collect"],'annee_collect' => $vald["annee_collect"]]);
+        $response = (new ThemeMemoire())->updateByUuid($request->input('uuid'),["title"=>$vald["theme"],'description'=>$vald["description"],
+        'path'=>json_encode($path),
+        'redactor_id'=>$redactor_id,
+        'generale' => $vald["generale"],
+        'discipline_id' => $discipline->id,
+        'specifique' => $vald["specifique"],
+        'lieu_collect' => $vald["lieu_collect"],
+        'annee_collect' => $vald["annee_collect"]]);
         if ($response){
             return response()->json(["message"=>"success"]);
         }

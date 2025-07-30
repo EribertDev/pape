@@ -171,9 +171,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.querySelector("#TMFormSubmit span").hidden = false;
             let url="";
             if (action==="add"){
+              
                 url = "/admin/theme-memoire/add/new";
             }
             if (action==="edit"){
+           
                 url = "/admin/theme-memoire/edit";
             }
             $.ajax({
@@ -251,6 +253,8 @@ document.addEventListener('DOMContentLoaded',()=>{
                 document.getElementById("annee_collect").value = response.annee_collect;
                 document.getElementById("lieu_collect").value = response.lieu_collect;
                 document.getElementById("uuid").value = response.uuid;
+                document.getElementById("categories").value = response.discipline_id;
+              
                 TMModal.modal('show');
             },
             error: function(xhr, status, error) {

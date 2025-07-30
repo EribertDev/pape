@@ -46,14 +46,14 @@
                 <div class="modal-body">
                     <form id="bdForm" enctype="multipart/form-data">
                         @csrf
-                        {{-- <label for="squareSelect">Categories</label>
+                       <label for="squareSelect">Categories</label>
                         <select class="form-control input-square" id="categories" name="categories" >
                            @if(!empty($categories))
                                 @foreach($categories as $categorie)
                                     <option value="{{$categorie->id}}">{{$categorie->name}}</option>
                                 @endforeach
                             @endif
-                        </select> --}}
+                        </select> 
                         <div class="row">
                             <div class="mb-1 col-12 ">
                                 <label for="theme" class="col-form-label" >Thème</label>
@@ -81,7 +81,7 @@
                             <select id="annee_collect"class="form-control" name="annee_collect">
                                 <script>
                                     // Génère dynamiquement les options pour les années
-                                    const startYear = 1900; // Année de début
+                                    const startYear =1999; // Année de début
                                     const endYear = new Date().getFullYear(); // Année actuelle
                                     for (let year = endYear; year >= startYear; year--) {
                                         document.write(`<option  value="${year}">${year}</option>`);

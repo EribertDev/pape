@@ -96,8 +96,8 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
-                        <h2 class="fw-bold text-center"><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE. Défilez-la pour découvrir les offres de service de CESIE BENIN</h2>
-                        <p class="mt-4  text-center">Un service dédié à la mise en stage académique des étudiants et à l'accompagnement dans la rédaction rapide et éfficace des mémoires et thèses</p>
+                        <h2 class="fw-bold text-center"><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services </h2>
+                        <p class="mt-4  text-center"></p>
                        <div class="row">
                             @guest
                               <!---    <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
@@ -117,8 +117,8 @@
                        </div>
                     </div>
                    <div class="home_content  d-none d-lg-block">
-                        <h2 class="fw-bold "><span>Simplifiez la Recherche de stage Académique et la rédaction de vos mémoires,thèses et rapports de stage grace au </span>  PAPE</h2>
-                        <p class="mt-3">Un service dédié  à la mise en stage académique des étudiants et à l'accompagnement dans la rédaction rapide et éfficace des mémoires et thèses </p>
+                        <h2 class="fw-bold "><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services  </span></h2>
+                        <p class="mt-3"></p>
                     
                         <div class="row">
                             @guest
@@ -239,7 +239,7 @@
                 <i class="fas fa-chalkboard-teacher"></i>
             </div>
             <h3 class="feature-title">Demande de Formation</h3>
-            <p class="feature-description">Soumettez votre demande pour une formation personnalisée</p>
+            <p class="feature-description">Des formations de qualités qui facilitent votre insertion professionnelle</p>
                <button type="button" class="feature-btn" data-bs-toggle="modal" data-bs-target="#formationModal">
             <i class="fas fa-graduation-cap me-2"></i>Demander une formation
             </button>

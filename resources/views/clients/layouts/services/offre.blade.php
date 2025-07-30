@@ -76,7 +76,7 @@ font-awesome
   
     <div class="container py-5">
     <div class="text-center mb-5">
-        <h1 class="display-4 fw-bold mt-4">Nos Offres de Rédaction</h1>
+        <h1 class="display-4 fw-bold mt-4">Nos Offres d'Assistance </h1>
         <p class="lead text-muted">Choisissez la formule qui correspond le mieux à vos besoins</p>
     </div>
 

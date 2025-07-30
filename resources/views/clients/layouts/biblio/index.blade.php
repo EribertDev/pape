@@ -32,6 +32,38 @@
         transform: scale(1.05);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
+
+    /* New specialty filter styles */
+    .specialty-filter {
+        border-radius: 25px;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid #ced4da;
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+    
+    .specialty-filter:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        background-color: white;
+    }
+    
+    .filter-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+    }
+    
+    .filter-header {
+        font-weight: 600;
+        color: #495057;
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+    }
+
+
 </style>
 @endsection
 
@@ -52,25 +84,41 @@
     </section>
     <!-- END SECTION TOP -->
 
-    <!--START COURSE -->
+      <!--START COURSE -->
     <div class="best-cpurse section-padding">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="input-group">
-                        <input 
-                            type="text" 
-                            id="searchBar" 
-                            class="form-control border-end-0" 
-                            placeholder="Recherchez un thème..." 
-                          
-                           
-                        />
-                        <button class="btn btn-primary" type="button">
-                            <i class="bi bi-search"></i> <!-- Icône de recherche -->
-                        </button>
-                                         
-                       
+            <!-- Specialty Filter Section -->
+            <div class="filter-section mb-4">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <p class="filter-header"><i class="bi bi-filter me-2"></i>Filtrer par Spécialité</p>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <select id="specialtyFilter" class="form-select specialty-filter">
+                                    <option value="all">Toutes les spécialités</option>
+                                    @foreach($disciplines as $discipline)
+                                        <option value="{{ $discipline->id }}">{{ $discipline->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input 
+                                        type="text" 
+                                        id="searchBar" 
+                                        class="form-control border-end-0" 
+                                        placeholder="Recherchez un thème..." 
+                                    />
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -160,9 +208,13 @@
 @section('extra-scripts')
 
 <script>
+    let currentSpecialty = 'all';
+    let currentSearch = '';
+
     function updateFavoriteButtons() {
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
+   
     // Initialiser le localStorage pour les favoris
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -190,10 +242,17 @@
     });
 }
 
-function searchThemes() {
-    const query = document.getElementById('searchBar').value; // Valeur de recherche
-    const themesContainer = document.getElementById('themesContainer');
 
+
+function searchThemes() {
+      // Prepare request parameters
+        const query = document.getElementById('searchBar').value; // Valeur de recherche
+        const params = new URLSearchParams();
+        if (query) params.append('query', query);
+        if (currentSpecialty && currentSpecialty !== 'all') params.append('specialty', currentSpecialty);
+    const themesContainer = document.getElementById('themesContainer');
+  
+   
     // Ajouter un indicateur de chargement avant de lancer la requête
     themesContainer.innerHTML = `
         <div class="text-center my-4">
@@ -204,7 +263,7 @@ function searchThemes() {
         </div>
     `;
 
-    fetch(`/search-themes?query=${encodeURIComponent(query)}`, {
+    fetch(`/search-themes?${params.toString()}`, {
         method: 'GET',
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
     })
@@ -295,6 +354,12 @@ function searchThemes() {
  document.getElementById('searchBar').addEventListener('input', searchThemes);
 
  document.addEventListener("DOMContentLoaded", () => {
+      // Initialisation du filtre par spécialité
+    document.getElementById('specialtyFilter').addEventListener('change', function() {
+        currentSpecialty = this.value;
+       searchThemes(); // Rechercher les thèmes avec le nouveau filtre
+    });
+
 
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
