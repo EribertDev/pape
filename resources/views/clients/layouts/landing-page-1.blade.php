@@ -168,7 +168,7 @@
     </section>
     <!-- END  HOME -->
     <section class="container">
-         <div class="home-feature-section">
+            <div class="home-feature-section">
                 <!-- Bouton 1: Faire une demande de stage -->
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="feature-card">
@@ -230,33 +230,53 @@
                         <a href="{{route('biblios')}}" class="feature-btn">Voir les thèmes</a>
                     </div>
                 </div>
-            </div>
 
-             <!-- Nouvelle carte pour Demandes de Formation -->
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-        <div class="feature-card h-100">
-            <div class="feature-icon bg-formation">
-                <i class="fas fa-chalkboard-teacher"></i>
-            </div>
-            <h3 class="feature-title">Demande de Formation</h3>
-            <p class="feature-description">Des formations de qualités qui facilitent votre insertion professionnelle</p>
-               <button type="button" class="feature-btn" data-bs-toggle="modal" data-bs-target="#formationModal">
-            <i class="fas fa-graduation-cap me-2"></i>Demander une formation
-            </button>
-              
-            </a>
-        </div>
-         <div class="feature-card h-100">
-                <div class="feature-icon bg-pape">
-                    <i class="fas fa-users"></i> <!-- Icône équipe -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <div class="feature-card h-100">
+                            <div class="feature-icon bg-formation">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3 class="feature-title">Demande de Formation</h3>
+                            <p class="feature-description">Des formations de qualités qui facilitent votre insertion professionnelle</p>
+                            <button type="button" class="feature-btn" data-bs-toggle="modal" data-bs-target="#formationModal">
+                            <i class="fas fa-graduation-cap me-2"></i>Demander une formation
+                            </button>
+                        </div>
                 </div>
-                <h3 class="feature-title">Contactez l'équipe</h3>
-                <p class="feature-description">Une question ? Notre équipe PAPE vous répond</p>
-                
-                <a href='{{route('contact')}}' class="feature-btn contact-btn">
-                    <i class="fas fa-paper-plane me-2"></i>Contacter par email
-                </a>
-        </div>
+
+
+                    <!-- Nouvelle carte pour Demandes de Formation -->
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <div class="feature-card h-100">
+                            <div class="feature-icon bg-pape">
+                                <i class="fas fa-users"></i> <!-- Icône équipe -->
+                            </div>
+                            <h3 class="feature-title">Contactez l'équipe</h3>
+                            <p class="feature-description">Une question ? Notre équipe PAPE vous répond</p>
+                            
+                            <a href='{{route('contact')}}' class="feature-btn contact-btn">
+                                <i class="fas fa-paper-plane me-2"></i>Contacter par email
+                            </a>
+                        </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon bg-pape">
+                            <i class="fas fa-file-alt"></i> <!-- Icône document -->
+                        </div>
+                        <h3 class="feature-title">Assistance Projet/Business Plan</h3>
+                        <p class="feature-description">Besoin d'aide pour rédiger votre projet ou business plan ?</p>
+                        
+                        <a href="{{route('project_request.create')}}" class="feature-btn contact-btn">
+                            <i class="fas fa-pen-alt me-2"></i>Faire une demande
+                        </a>
+                    </div>
+                </div>
+            
+            </div>
+        
+
+         
 
         
 

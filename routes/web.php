@@ -27,6 +27,7 @@ use App\Models\Stage;
 use App\Http\Controllers\Admin\DemandeStageController;
 use App\Mail\FormationRequestMail;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\client\ProjectRequestController;
 
 
 /*
@@ -211,6 +212,14 @@ Route::post('/send-formation-request', function (Request $request) {
     return response()->json(['success' => true]);
 })->name('formation.send');
 
+
+
+//Route demande d'assistance Projet 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/project-request/create', [ProjectRequestController::class, 'create'])->name('project_request.create');
+    Route::post('/project-request', [ProjectRequestController::class, 'store'])->name('project_request.store');
+    Route::get('/project-request/confirmation/{projectRequest}', [ProjectRequestController::class, 'confirmation'])->name('project_request.confirmation');
+});
 
 /*
 |--------------------------------------------------------------------------
