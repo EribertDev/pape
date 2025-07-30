@@ -102,6 +102,7 @@ Route::post('/pay/bd/verify',[BaseDonneController::class,'verifyPayement'])->nam
 Route::post('/pay/bd/confirme',[PayementController::class,'confirmePayement'])->name('paybd.confirme');
 Route::post('/pay/bd/finish',[BaseDonneController::class,'finishPayement'])->name('paybd.finish');
 Route::post('/download/bd/file', [BaseDonneController::class,'downloadFinalFile'])->name('download.bd.file');
+Route::get('/filter-bds', [BaseDonneController::class, 'filterBds'])->name('bds.filter');
 
 
 

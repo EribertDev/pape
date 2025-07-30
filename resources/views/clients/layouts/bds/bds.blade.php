@@ -23,12 +23,26 @@
     <section id="product_area" class="section-padding">
         <div class="container">
             <div class="text-center">
-                <div class="home_sb mb-5">
-                    <form action="#" class="banner_subs">
-                        <input type="text" class="form-control home_si" placeholder="Recherche..." required="required">
-                       {{-- <button type="button" class="subscribe__btn">Search <i class="fa fa-paper-plane-o"></i></button>--}}
-                    </form>
+                <div class=" mb-5">
+            <form id="priceFilterForm" class="banner_subs">
+                <div class="row align-items-center">
+                    <div class="col-md-4 mb-2 mb-md-0">
+                        <input type="number" name="min_price" class="form-control home_si" placeholder="Prix min (F CFA)" min="0">
+                    </div>
+                    <div class="col-md-4 mb-2 mb-md-0">
+                        <input type="number" name="max_price" class="form-control home_si" placeholder="Prix max (F CFA)" min="0">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-funnel me-1"></i> Filtrer
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary reset-price-filter">
+    <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+</button>
+                    </div>
                 </div>
+            </form>
+        </div>
                {{-- <div class="product_filter">
                     <ul>
                         <li class="filter active" data-filter="all">All</li>
@@ -43,7 +57,7 @@
                         <section id="product_area" class="section-padding">
                             <div class="container">
                                 <div class="text-center">
-                                    <div class="product_item" id="MixItUp9ABD8C">
+                                    <div class="product_item" id="product_item">
                                         <div class="row">
                                             @foreach($bds as $db)
                                                 <div class="col-lg-3 col-md-4 col-sm-6 mix" style="display: inline-block;" data-bound="" >
@@ -113,5 +127,61 @@
 
 @section('extra-scripts')
     <script type="module" src="{{asset('clients/js-data/bd.js')}}" ></script>
-    <script></script>
+   <script>
+$(document).ready(function() {
+    // Gestion de la soumission du formulaire
+    $('#priceFilterForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = $(this).serialize();
+        
+        // Afficher un indicateur de chargement
+        $('#product_item').html(`
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Chargement...</span>
+                </div>
+                <p class="mt-2">Filtrage en cours...</p>
+            </div>
+        `);
+        
+        // Requête AJAX
+        $.ajax({
+            url: '{{ route("bds.filter") }}',
+            type: 'GET',
+            data: formData,
+            success: function(response) {
+                $('#product_item').html(response.html);
+                
+                // Mettre à jour la pagination si nécessaire
+                if(response.pagination) {
+                    $('.pagination-container').html(response.pagination);
+                }
+            },
+            error: function(xhr) {
+                $('#product_item').html(`
+                    <div class="alert alert-danger">
+                        Une erreur est survenue lors du filtrage. Veuillez réessayer.
+                    </div>
+                `);
+                console.error(xhr.responseText);
+            }
+        });
+    });
+    
+  
+      // Script pour gérer la réinitialisation des filtres
+    document.querySelectorAll('.reset-price-filter').forEach(button => {
+        button.addEventListener('click', function() {
+            // Réinitialiser les champs de formulaire
+            document.querySelectorAll('#priceFilterForm input').forEach(input => {
+                input.value = '';
+            });
+            
+            // Soumettre le formulaire pour rafraîchir les résultats
+            document.getElementById('priceFilterForm').dispatchEvent(new Event('submit'));
+        });
+    });
+});
+</script>
 @endsection

@@ -14,9 +14,45 @@ class BaseDonneController extends Controller
 {
     //
     public function index(){
+        
         $bds = (new BaseDonne())->getAllAndPaginate(10);
         return view('clients.layouts.bds.bds')->with('bds', $bds);
     }
+
+public function filterBds(Request $request)
+{
+    $query = BaseDonne::query();
+    
+    // Filtrage par prix
+    if ($request->min_price) {
+        $query->where('amount', '>=', $request->min_price)
+        ->where('status_id', 1);
+    }
+    
+    if ($request->max_price) {
+        $query->where('amount', '<=', $request->max_price)
+        ->where('status_id', 1);
+    }
+    
+    $bds = $query->paginate(12); 
+    
+    if($query->count() == 0){
+        return response()->json([
+            'html' => view('clients.layouts.bds.bds_empty')->render()
+        ]);
+    }else{
+        return response()->json([
+        'html' => view('clients.layouts.bds.bds_list', compact('bds'))->render(),
+        'pagination' => $bds->links('pagination::bootstrap-5')->toHtml()
+    ]);
+    }
+    
+    
+}
+
+
+
+
     public function getBdDetail($uuid){
         $bd = (new BaseDonne())->getByUuidOfClient($uuid);
 

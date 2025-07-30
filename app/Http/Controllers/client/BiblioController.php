@@ -64,4 +64,6 @@ public function getFavorites(Request $request)
     return response()->json($favorites);
 }
 
+
+
 }
