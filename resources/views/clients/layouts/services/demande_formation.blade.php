@@ -85,14 +85,7 @@
 </head>
 <body>
 
-<!-- Bouton pour ouvrir le modal -->
-<div class="container my-5">
-    <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#formationModal">
-            <i class="fas fa-graduation-cap me-2"></i>Demander une formation
-        </button>
-    </div>
-</div>
+
 
 <!-- Modal de demande de formation -->
 <div class="modal fade" id="formationModal" tabindex="-1" aria-labelledby="formationModalLabel" aria-hidden="true">
