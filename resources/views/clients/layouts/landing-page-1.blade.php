@@ -96,7 +96,7 @@
             <div class="row mt-5">
                 <div class="col-lg-6 col-sm-6 col-xs-12 ">
                     <div class="home_content d-block d-lg-none mt-3 pb-5 text-center">
-                        <h2 class="fw-bold text-center"><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services </h2>
+                        <h2 class="fw-bold text-center mt-5"><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services </h2>
                         <p class="mt-4  text-center"></p>
                        <div class="row">
                             @guest
@@ -117,7 +117,7 @@
                        </div>
                     </div>
                    <div class="home_content  d-none d-lg-block">
-                        <h2 class="fw-bold "><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services  </span></h2>
+                        <h2 class="fw-bold mt-5 "><span>Etudiant et Chercheur, bienvenue sur votre plateforme PAPE.  Faites défiler vers le bas pour découvrir nos services  </span></h2>
                         <p class="mt-3"></p>
                     
                         <div class="row">
