@@ -244,7 +244,19 @@
                         </div>
                 </div>
 
-
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon bg-pape">
+                            <i class="fas fa-file-alt"></i> <!-- Icône document -->
+                        </div>
+                        <h3 class="feature-title">Assistance Projet/Business Plan</h3>
+                        <p class="feature-description">Besoin d'aide pour rédiger votre projet ou business plan ?</p>
+                        
+                        <a href="{{route('project_request.create')}}" class="feature-btn contact-btn">
+                            <i class="fas fa-pen-alt me-2"></i>Faire une demande
+                        </a>
+                    </div>
+                </div>
                     <!-- Nouvelle carte pour Demandes de Formation -->
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                         <div class="feature-card h-100">
@@ -259,19 +271,7 @@
                             </a>
                         </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                    <div class="feature-card h-100">
-                        <div class="feature-icon bg-pape">
-                            <i class="fas fa-file-alt"></i> <!-- Icône document -->
-                        </div>
-                        <h3 class="feature-title">Assistance Projet/Business Plan</h3>
-                        <p class="feature-description">Besoin d'aide pour rédiger votre projet ou business plan ?</p>
-                        
-                        <a href="{{route('project_request.create')}}" class="feature-btn contact-btn">
-                            <i class="fas fa-pen-alt me-2"></i>Faire une demande
-                        </a>
-                    </div>
-                </div>
+               
             
             </div>
         
