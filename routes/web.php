@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\DemandeStageController;
 use App\Mail\FormationRequestMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\client\ProjectRequestController;
+use App\Http\Controllers\Admin\AdminProjectController;
 
 
 /*
@@ -222,6 +223,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/project-request/payment/', [ProjectRequestController::class, 'show'])->name('projects.payment');
     Route::get('/project-request/show/{projectRequest}', [ProjectRequestController::class, 'show'])->name('projects.show');
     Route::get('/project/dash', [ProjectRequestController::class, 'dashClient'])->name('projects.dash');
+    Route::get('client/projects/download/{id}', [AdminProjectController::class, 'download'])->name('document.download');
+
 });
 
 

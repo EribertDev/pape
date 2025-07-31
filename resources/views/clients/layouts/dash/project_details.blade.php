@@ -297,7 +297,7 @@
                                         <i class="fas fa-file-pdf text-danger me-3" style="font-size: 3rem;"></i>
                                         <div>
                                             <p class="mb-1">Document téléchargé</p>
-                                            <a href="{{ Storage::url($project->document_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            <a href="{{route('document.download', ['id' => $project->id])}}" target="_blank" class="btn btn-sm btn-outline-primary">
                                                 <i class="fas fa-download me-1"></i> Télécharger
                                             </a>
                                         </div>
