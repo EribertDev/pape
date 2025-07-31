@@ -165,7 +165,7 @@
                    {{--    {{ $requests->links('pagination::bootstrap-5') }} --}}
                     </div>
                 @else
-                    <div class="alert alert-info">Aucune demande de stage trouvée</div>
+                    <div class="alert alert-info">Aucun Projet trouvé</div>
                 @endif
             </div>
         </div>
