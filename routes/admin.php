@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PayementController;
 use App\Http\Controllers\Admin\BaseDonneController;
 use App\Http\Controllers\Admin\ThemeMemoireController;
 use App\Http\Controllers\Admin\DemandeStageController;
+use App\Http\Controllers\Admin\AdminProjectController;
 
 Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     //
@@ -56,15 +57,30 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::get('/internships/datatable', [DemandeStageController::class, 'datatable'])
     ->name('internships.datatable');
     // Route pour la vue principale
-Route::get('/mes-demandes', [DemandeStageController::class, 'index'])
+    Route::get('/mes-demandes', [DemandeStageController::class, 'index'])
     ->name('internships.index');
     Route::get('/internships/{id}/details', [DemandeStageController::class, 'details'])
     ->name('internships.show');
-Route::get('/internships/download/{id}', [DemandeStageController::class, 'downloadSignedContract'])
+    Route::get('/internships/download/{id}', [DemandeStageController::class, 'downloadSignedContract'])
     ->name('internship.upload');  
     Route::post('/internship/upload-authorization', [DemandeStageController::class, 'uploadAuthorization'])
      ->name('internship.upload-authorization');
 
      Route::get('/internships/recommendation/{id}', [DemandeStageController::class, 'downloadRecommendationLetter']) ->name('internship.download-recommendation');
+
+
+
+// Route gestion de Projet 
+
+    Route::get('admin/projects', [AdminProjectController::class, 'index'])->name('projects.index');
+    Route::get('admin/projects/details/{id}', [AdminProjectController::class, 'details'])->name('projects.details');
+    Route::get('projects/datatable', [AdminProjectController::class, 'datatable'])->name('projects.datatable');
+    Route::get('admin/projects/download/{id}', [AdminProjectController::class, 'download'])->name('admin.project-document.download');
+
+
+
 });
+
+
+
 

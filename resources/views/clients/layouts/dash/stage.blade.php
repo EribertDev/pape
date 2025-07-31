@@ -70,8 +70,15 @@
                   <button type="button" class="active"><a href="{{route('dash.client')}}" style="color: #FFF">Demandes de Stage</a></button>
                   {{-- <button type="button"> <a href="{{route('dash.client')}}"
                                             style="color: #1a2d62">Mes achats</a></button> --}}
+                                             <button type="button">
+                                        <a class="profil-link" href="{{route('internships.dash')}}">Mes Stages</a>
+                                </button>
+                                             <button type="button">
+                                        <a class="profil-link" href="{{route('projects.dash')}}">Projets</a>
+                                </button>
                   <button type="button"> <a href="{{route('client.profile')}}"
-                                            style="color: #1a2d62">Profile</a></button>
+                                            style="color: #1a2d62">Profile</a>
+                    </button>
                 </span>
                 <div class="sidebar-post d-none d-lg-block">
                     <div class="sidebar_title"><h4>Tableau de Bord</h4></div>

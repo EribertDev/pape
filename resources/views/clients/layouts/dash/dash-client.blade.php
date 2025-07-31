@@ -36,12 +36,15 @@
                   <button type="button" class="active"><a href="{{route('dash.client')}}" style="color: #FFF">Mes commandes</a></button>
                   {{-- <button type="button"> <a href="{{route('dash.client')}}"
                                             style="color: #1a2d62">Mes achats</a></button> --}}
-                  <button type="button"> <a href="{{route('client.profile')}}"
-                                            style="color: #1a2d62">Profile</a></button>
-                                            <button type="button">
-                                                    <a class="profil-link" href="{{route('internships.dash')}}"> Mes stages</a>
-
-                                            </button>
+                                    <button type="button"> <a href="{{route('client.profile')}}"
+                                            style="color: #1a2d62">Profile</a>
+                                    </button>
+                                <button type="button">
+                                        <a class="profil-link" href="{{route('internships.dash')}}"> Mes stages</a>
+                                </button>
+                                 <button type="button">
+                                        <a class="profil-link" href="{{route('projects.dash')}}">Projets</a>
+                                </button>
                 </span>
                 <div class="sidebar-post d-none d-lg-block">
                     <div class="sidebar_title"><h4>Tableau de Bord</h4></div>
@@ -52,6 +55,9 @@
                         <hr>
                         <a class="profil-link" href="{{route('internships.dash')}}"> Mes stages</a>
                         <hr>
+                        <a class="profil-link" href="{{route('projects.dash')}}">Projets</a>
+                        <hr>
+                       
                         <a class="profil-link" href="{{route('client.profile')}}">Profile</a>
                     </div><!-- END SOCIAL MEDIA POST -->
                 </div>
@@ -77,10 +83,10 @@
                                 <table class="table shopping-summery" id="dataTable">
                                     <thead>
                                     <tr class="main-hading">
-                                        <th>COMMANDE</th>
-                                        <th>DESCRIPTION</th>
-                                        <th class="text-center">STATUS</th>
-                                        <th class="text-center">ACTION</th>
+                                        <th class="text-center text-primary">COMMANDE</th>
+                                        <th class="text-center text-primary">DESCRIPTION</th>
+                                        <th class="text-center text-primary">STATUS</th>
+                                        <th class="text-center text-primary">ACTION</th>
                                     </tr>
                                     </thead>
                                     <tbody>

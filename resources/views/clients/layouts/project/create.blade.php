@@ -122,7 +122,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="document" class="form-label fw-bold">Document du projet (PDF, Word)</label>
+                            <label for="document" class="form-label fw-bold">Document utile (PDF, Word)</label>
                             <input class="form-control @error('document') is-invalid @enderror" type="file" id="document" name="document" accept=".pdf,.doc,.docx" required>
                             @error('document')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -134,8 +134,10 @@
                             <h5 class="mb-2"><i class="bi bi-info-circle"></i> Informations importantes</h5>
                             <ul class="mb-0">
                                 <li>Le montant standard pour chaque projet est de <strong>100 000 F CFA</strong></li>
+                                <li> Celà n'inclut pas les éventuels frais de collecte de données lorsque la rédaction du projet va nécessiter des investigations</li>
                                 <li>Nous traiterons votre demande dans les 48 heures</li>
                                 <li>Un expert vous contactera pour discuter des détails</li>
+                               .
                             </ul>
                         </div>
 

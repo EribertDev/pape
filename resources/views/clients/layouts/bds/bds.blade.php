@@ -25,7 +25,9 @@
             <div class="text-center">
                 <div class=" mb-5">
             <form id="priceFilterForm" class="banner_subs">
+                <h2 class="text-center">Trier par Prix</h2>
                 <div class="row align-items-center">
+              
                     <div class="col-md-4 mb-2 mb-md-0">
                         <input type="number" name="min_price" class="form-control home_si" placeholder="Prix min (F CFA)" min="0">
                     </div>
@@ -36,9 +38,9 @@
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="bi bi-funnel me-1"></i> Filtrer
                         </button>
-                        <button type="button" class="btn btn-outline-secondary reset-price-filter">
-    <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
-</button>
+                            <button type="button" class="btn btn-outline-secondary reset-price-filter">
+                            <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+                        </button>
                     </div>
                 </div>
             </form>

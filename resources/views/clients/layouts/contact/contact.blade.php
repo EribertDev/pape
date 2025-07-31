@@ -33,7 +33,7 @@
                     <div class="single_address sabr">
                         <i class="ti-mobile"></i>
                         <h4>Téléphone</h4>
-                        <p>+229 62 43 59 29</p>
+                        <p>+229 01 62 43 59 29</p>
                     </div>
                 </div><!-- END COL -->
                 <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">

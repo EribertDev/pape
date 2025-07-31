@@ -214,12 +214,18 @@ Route::post('/send-formation-request', function (Request $request) {
 
 
 
-//Route demande d'assistance Projet 
+//Route demande d'assistance Projet  
 Route::middleware(['auth'])->group(function () {
     Route::get('/project-request/create', [ProjectRequestController::class, 'create'])->name('project_request.create');
     Route::post('/project-request', [ProjectRequestController::class, 'store'])->name('project_request.store');
     Route::get('/project-request/confirmation/{projectRequest}', [ProjectRequestController::class, 'confirmation'])->name('project_request.confirmation');
+    Route::get('/project-request/payment/', [ProjectRequestController::class, 'show'])->name('projects.payment');
+    Route::get('/project-request/show/{projectRequest}', [ProjectRequestController::class, 'show'])->name('projects.show');
+    Route::get('/project/dash', [ProjectRequestController::class, 'dashClient'])->name('projects.dash');
 });
+
+
+
 
 /*
 |--------------------------------------------------------------------------

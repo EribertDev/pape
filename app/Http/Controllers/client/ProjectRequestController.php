@@ -7,12 +7,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ProjectReceived;
+use App\Mail\NewProject;
 
 class ProjectRequestController extends Controller
 {
     public function create()
     {
         return view('clients.layouts.project.create');
+    }
+
+    public function dashClient()
+    {
+
+        $requests = ProjectRequest::where('user_id', Auth::id())->get();
+        return view('clients.layouts.dash.project')->with('requests', $requests);
+    }
+
+    public function show(ProjectRequest $projectRequest)
+    {
+        $project = ProjectRequest::with('user.client')->findOrFail($projectRequest->id);
+        return view('clients.layouts.dash.project_details', compact('project'));
     }
 
     public function store(Request $request)
@@ -30,8 +46,8 @@ class ProjectRequestController extends Controller
 
         // Gestion du fichier
         $file = $request->file('document');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('public/project_documents', $filename);
+       
+        $path = $file->store('project_documents');
 
         $projectRequest = ProjectRequest::create([
             'user_id' => Auth::id(),
@@ -44,6 +60,12 @@ class ProjectRequestController extends Controller
             'budget' => $validated['budget'],
             'document_path' => $path,
         ]);
+
+                // Mail à l'administrateur
+            Mail::to('serviceclient@cesiebenin.com')->send(new NewProject($projectRequest));
+            
+            // Mail à l'utilisateur
+            Mail::to($projectRequest->user->email)->send(new ProjectReceived($projectRequest));
 
         return redirect()->route('project_request.confirmation', $projectRequest);
     }
