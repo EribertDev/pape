@@ -86,7 +86,7 @@
     <!-- Start Checkout -->
     <section class="shop checkout section">
         <div class="container">
-            <h2 class="fw-bold text-center">Inscrivez-vous au programme PAPE pour rédiger rapidement, facillement et bien vos mémoires et thèses</h2>
+            <h2 class="fw-bold text-center">Inscrivez-vous au programme PAPE pour rédiger rapidement, facilement et bien vos mémoires et thèses</h2>
            <div class="container ml-2">
                <p class="text-center">Renseigner l'information de votre document</p>
            </div>
