@@ -112,9 +112,14 @@ class StageController extends Controller
         
              
         ]);
-
+// 1. Chemin de l'image
+    $imageSrc = 'https://pape.cesiebenin.com/clients/assets/images/all-img/image.png';
+    
+ 
         // Génération du PDF
         $pdfData = [
+            'imageSrc' => $imageSrc,
+            'contract_id' => $internshipRequest->id,
             'student' => $clientName = session('clientInfo')->fist_name . ' ' . session('clientInfo')->last_name,
             'binome' => $internshipRequest->binome,
             'university' => $internshipRequest->university,

@@ -172,7 +172,7 @@
       
         <div class="header">
         <div class="logo-container">
-            <div class="logo"><img src="https://pape.cesiebenin.com/clients/assets/images/all-img/image.png" alt="logo"></div>
+            <div class="logo"><img src="{{ $imageSrc }}" alt="logo"></div>
         </div>
             <h1>RÉPUBLIQUE DU BÉNIN</h1>
             <h1>CABINET D'EXPERTISES STATISTIQUE INFORMATIQUE ET ÉPIDÉMIOLOGIQUE</h1>
@@ -182,14 +182,14 @@
                 <a href="http://www.cesiebenin.com">www.cesiebenin.com</a>
             </div>
              <div class="logo-container">
-            <div class="logo"><img src="https://pape.cesiebenin.com/clients/assets/images/all-img/image.png" alt="logo"></div>
+            <div class="logo"><img src="{{ $imageSrc }}" alt="logo"></div>
         </div>
         </div>
         
         <div class="divider"></div>
         
         <div class="contract-number">
-            N° <span id="contractId"></span>/CESIE/SG/DERP/SERF/SA du {{ now()->format('d/m/Y') }}
+            N° <span id="contractId">  {{ $contract_id }} </span>/CESIE/SG/DERP/SERF/SA du {{ now()->format('d/m/Y') }}
         </div>
         
         <div class="parties">

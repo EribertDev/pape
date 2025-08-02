@@ -32,11 +32,13 @@ class StageContractMail extends Mailable
     {
         $pdfPath = Storage::path($this->internshipRequest->contract_path);
         $fileName = 'Contrat_Stage_'.$this->internshipRequest->id.'.pdf';
+         $imageSrc = 'https://pape.cesiebenin.com/clients/assets/images/all-img/image.png';
 
         return $this->subject('Votre Contrat de Stage - ' . config('app.name'))
             ->markdown('emails.internship_contract')
             ->with([
-                'id' => $this->internshipRequest->id,
+                'contract_id' => $this->internshipRequest->id,
+                 'imageSrc' => $imageSrc,
                 'student' =>  session('clientInfo') ->fist_name. ' ' . session('clientInfo') ->last_name,
                 'university' => $this->internshipRequest->university,
                 'level' => $this->internshipRequest->level,
