@@ -25,7 +25,7 @@
                 <div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
                     <div class="single_address">
                         <i class="ti-map"></i>
-                        <h4>Location</h4>
+                        <h4>Siège</h4>
                         <p>Bénin, Calavi</p>
                     </div>
                 </div><!-- END COL -->

@@ -89,26 +89,26 @@
                    
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Autorisation de stage: 
+                            <h5 class="card-title">Fichier Final
                                
                              
                             </h5>
                             <div class="form-group">
                             <form id="authorizationForm" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="stage_id" value="{{ $request->id }}">
+                                <input type="hidden" name="project_id" value="{{ $request->id }}">
                                 
                                 <div class="mb-3">
-                                    <label for="authorizationFile" class="form-label">Autorisation de Stage (PDF)</label>
-                                    <input type="file" class="form-control" id="authorizationFile" 
-                                        name="authorization_file" accept=".pdf" required>
+                                    <label for="final_file" class="form-label"> Fichier <span class="required-star">*</span></label>
+                                    <input type="file" class="form-control" id="final_file" 
+                                        name="final_file" accept=".pdf,.docx,.xlsx" required>
                                     <small class="form-text text-muted">Format PDF uniquement, max 2MB</small>
                                 </div>
                                 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
                                     <button type="submit" class="btn btn-primary" id="submitBtn">
                                         <span class="spinner-border spinner-border-sm" id="spinner" role="status" hidden></span>
-                                        Envoyer l'autorisation
+                                       Soumettre
                                     </button>
                                 </div>
                             </form>
@@ -127,6 +127,63 @@
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    
+        <script>
+       
+        $(document).ready(function() {
+    $('#authorizationForm').submit(function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const submitBtn = $('#submitBtn');
+        const spinner = $('#spinner');
+        
+        // Afficher le spinner
+        submitBtn.prop('disabled', true);
+        spinner.removeAttr('hidden');
+
+        $.ajax({
+            url: "{{ route('final-file.upload') }}",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Succès',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    });
+                    
+                    // Fermer le modal après succès
+                    submitBtn.prop('disabled', false);
+
+                    $('#spinner').attr('hidden', true);
+                    
+                    // Rafraîchir la table DataTables
+                    $('#internshipsTable').DataTable().ajax.reload();
+                     
+                }
+            },
+            error: function(xhr) {
+                let errorMessage = "Erreur lors de l'envoi";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                Swal.fire('Erreur', errorMessage, 'error');
+            },
+            complete: function() {
+                submitBtn.prop('disabled', false);
+                spinner.attr('hidden', true);
+                
+            }
+        });
+    });
+});
+
+       
+    </script>
 
 
 @endsection

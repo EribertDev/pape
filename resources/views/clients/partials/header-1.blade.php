@@ -42,7 +42,7 @@
                             <li><a class="nav-link" href="{{route('contact')}}">Contact</a></li>
                             @auth
                                 <li  class="d-none "><a  href="{{route('dash.client')}}">Mon Espace</a></li>
-                                <li  class="d-block d-lg-none"><form method="POST" action="{{ route('logout') }}" class="col-5"  >
+                                <li  class="d-block d-lg-none"><form method="POST" id="logout-form" action="{{ route('logout') }}" class="col-5"  >
                                     @csrf
                                     <a  href="{{route('logout')}}"  onclick="event.preventDefault();this.closest('form').submit();">
                                         Déconnexion
@@ -64,9 +64,18 @@
                             background-color: #2eca7f; color: white; border-radius: 4px;">
                                 <i class="fas fa-user-circle me-1"></i> Mon Espace
                             </a>
-                            
+                            @auth
                            
+                                <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="font-size: 0.85rem; padding: 4px 8px;
+                                background-color: #2eca7f; color: white; border-radius: 4px;">
+                                <i class="fas fa-user-circle me-1"></i>Déconnexion
+                                </a>
+                         
+                            
+                            @endauth
+                         
                         </div>
+                        
                     </div>
                 </div>
             </div><!--- END Col -->

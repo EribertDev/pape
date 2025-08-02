@@ -76,6 +76,7 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::get('admin/projects/details/{id}', [AdminProjectController::class, 'details'])->name('projects.details');
     Route::get('projects/datatable', [AdminProjectController::class, 'datatable'])->name('projects.datatable');
     Route::get('admin/projects/download/{id}', [AdminProjectController::class, 'download'])->name('admin.project-document.download');
+    Route::post('admin/projects/upload-final-file', [AdminProjectController::class, 'uploadFinalFile'])->name('final-file.upload');
 
 
 

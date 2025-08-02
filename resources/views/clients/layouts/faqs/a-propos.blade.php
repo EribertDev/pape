@@ -35,12 +35,13 @@
                     <div class="ab_content">
                         <h2 class="mb-2 fs-2">A propos de <u><span>PAPE  </span></u></h2>
                         <p class="text-justify">
-                            PAPE, un service du cabinet CESIE BENIN, est un programme innovant conçu pour accompagner les étudiants et chercheurs dans la rédaction de mémoires et thèses. Ce programme, offre un appui technique tout au long du processus de rédaction, garantissant une qualité optimale et le respect des normes universitaires.
+                            PAPE, un service du cabinet CESIE BENIN,
+                            est un programme innovant conçu pour faciliter la mise en stage académique des étudiants et chercheurs,
+                            les assister  dans la rédaction de leurs mémoires et thèses. Ce programme, offre une insertion dans le milieu professionnel,
+                            un appui technique tout au long du processus de rédaction de mémoire ou thèse,
+                                garantissant une qualité optimale et le respect des normes universitaires.                       
                         </p>
-                        <p class="text-justify">
-                            Notre mission est de rendre la rédaction académique plus rapide, efficace, et accessible à tous, en proposant un encadrement personnalisé à chaque étape, depuis la revue documentaire jusqu’à l’analyse des données.
-                        </p>
-
+                     
                         <p class="text-justify">
                             Que vous soyez étudiant, chercheur débutant ou confirmé, PAPE vous guide pour produire un travail rigoureux et conforme aux exigences académiques.
                         </p>
@@ -133,7 +134,7 @@
                 </div><!-- END COL  -->
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="pt_faq">
-                        <img src="{{asset('clients/assets/images/all-img/faq.png')}}" class="img-fluid" alt="image">
+                        <img src="{{asset('clients/assets/images/all-img/syrram_hero.jpg')}}" class="img-fluid img-responsive " alt="image" style="">
                     </div>
                 </div><!-- END COL  -->
             </div><!--END  ROW  -->

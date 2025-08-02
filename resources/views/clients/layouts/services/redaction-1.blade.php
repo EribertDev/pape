@@ -318,7 +318,7 @@
                                                 <div class="single-widget get-button">
                                                     <div class="content">
                                                         <div class="button">
-                                                            <a  id="commanderBtn" type="button" class="btn">  Envoyer</a>
+                                                            <a  id="commanderBtn" type="button" class="btn btn-primary btn-one">  Envoyer</a>
                                                         </div>
                                                     </div>
                                                 </div>

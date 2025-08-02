@@ -100,19 +100,19 @@
                         <p class="mt-4  text-center">Une plateforme qui facilite la vie aux étudiants et chercheurs</p>
                        <div class="row">
                             @guest
-                              <!---    <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
+                                 <div class="col-lg-4 col-md-7 col-sm-8  justify-content-center">
                                     <div class="">
-                                        <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
+                                         <a class="btn_one" type="button" href="{{route('a-propos')}}"><span style="white-space: nowrap;">Comprendre le PAPE</span></a>
                                     </div>
-                                </div>-->
+                                </div>
                                  
                             @endguest
                             @auth
-                                 <!---  <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
+                                  <div class="col-lg-7 col-md-3 col-sm-8 mb-7 d-flex justify-content-center">
                                     <div class="call_to_action">
-                                        <a class="btn_one" type="button" href="{{route('redaction.offers')}}"> <span>Faire une commande </span></a>
+                                         <a class="btn_one" type="button" href="{{route('a-propos')}}"><span style="white-space: nowrap;">Comprendre le PAPE</span></a>
                                     </div> 
-                                </div>   -->
+                                </div>  
                         @endauth
                        </div>
                     </div>
@@ -122,21 +122,21 @@
                     
                         <div class="row">
                             @guest
-                               <!--- <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
+                              <div class="col-lg-3 col-md-3 col-sm-8 ms-2 mb-4">
                                     <div class="call_to_action">
                                         <a class="btn_one" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
                                     </div>  
                                     
-                                </div> -->
+                                </div> 
                             @endguest
 
                              @auth
-                                 <!--- <div class="col-lg-3 col-md-3 col-sm-4 ms-2 mb-4">
+                                 <div class="col-lg-3 col-md-3 col-sm-4 ms-2 mb-4">
                                     <div class="call_to_action">
-                                         <a class="btn_one" type="button" href="{{route('stage')}}"><span style="white-space: nowrap;">Demander Stage</span></a>
+                                         <a class="btn_one" type="button" href="{{route('a-propos')}}"><span style="white-space: nowrap;">Comprendre le PAPE</span></a>
                                     </div> 
                                     
-                                </div> -->
+                                </div> 
                             @endauth
                             
                             

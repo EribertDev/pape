@@ -18,6 +18,7 @@ class ProjectRequest extends Model
         'partners',
         'budget',
         'document_path',
+        'final_path',
         'status'
     ];
 

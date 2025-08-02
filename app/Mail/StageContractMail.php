@@ -36,6 +36,7 @@ class StageContractMail extends Mailable
         return $this->subject('Votre Contrat de Stage - ' . config('app.name'))
             ->markdown('emails.internship_contract')
             ->with([
+                'id' => $this->internshipRequest->id,
                 'student' =>  session('clientInfo') ->fist_name. ' ' . session('clientInfo') ->last_name,
                 'university' => $this->internshipRequest->university,
                 'level' => $this->internshipRequest->level,
