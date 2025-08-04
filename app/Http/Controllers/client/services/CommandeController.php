@@ -443,4 +443,19 @@ class CommandeController extends Controller
 
     }
 
+        public function downloadfile($id)
+    {
+       $commande=Commande::FindorFail($id);
+        return Storage::download($commande->attachments);
+    }
+
+    public function viewFile($id)
+{
+    $commande = Commande::findOrFail($id);
+
+    $path = storage_path('app/' . $commande->attachments);
+
+    return response()->file($path); // ceci va afficher dans le navigateur
+}
+
 }

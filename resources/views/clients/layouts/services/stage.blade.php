@@ -110,13 +110,13 @@
                                         </label>
                                         <select class="form-select" id="domaine" name="domaine" required>
                                             <option value="" selected disabled>Choisissez votre domaine</option>
-                                            <option>Informatique</option>
-                                            <option>Marketing</option>
-                                            <option>Finance</option>
-                                            <option>Ressources Humaines</option>
-                                            <option>Ingénierie</option>
-                                            <option>Design</option>
-                                            <option>Santé</option>
+                                            <option>Économie </option>
+                                            <option>Gestion</option>
+                                            <option>Santé Publique</option>
+                                            <option>Soins Infirmiers et assimilés</option>
+                                            <option>Gestion de Projets</option>
+                                            <option>Entrepreneuriat</option>
+                                            <option>Communication</option>
                                             <option>Autre</option>
                                         </select>
                                     </div>

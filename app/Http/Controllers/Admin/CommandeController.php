@@ -314,4 +314,28 @@ class CommandeController extends Controller
 
        }
     }
+
+     public function addFile(Request $request, Commande $commande)
+    {
+        $validated = $request->validate([
+        'commande_id' => 'required|exists:commandes,id',
+        'file' => 'required|file'
+    ]);
+
+    $commande = Commande::find($validated['commande_id']);
+    
+    // Stocker le fichier
+    $path = $request->file('file')->store('attachments');
+    
+    // Mettre à jour la demande
+    $commande->update(['attachments' => $path,
+           ]);
+    
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Fichier ajouté avec successe'
+    ]);
+    } 
+  
 }

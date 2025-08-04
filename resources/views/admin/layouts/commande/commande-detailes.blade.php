@@ -274,6 +274,36 @@
                             </div>
                         </div>
                     </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5>Documents Partagés</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="" id="shareForm" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="text" value="{{ $commande->id }}" name="commande_id" hidden >
+                            <div class="form-group">
+                                <label>Fichier de partage</label>
+                                <input type="file" name="file" class="form-control-file">
+
+                            </div>
+                            <button type="submit" id="shareBtn" class="btn btn-primary mt-3">Partager
+                                <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true" hidden></span>
+                            </button>
+                        </form>
+
+                        <hr>
+
+                    </div>
+                </div>
+
+           
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -285,5 +315,62 @@
     <script type="text/javascript">const _statusCmd = '{{$commande["status"]["name"]}}'</script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="{{asset('admin/js-data/commande-detaille.js')}}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+        <script>
+       
+        $(document).ready(function() {
+    $('#shareForm').submit(function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const submitBtn = $('#shareBtn');
+        const spinner = $('#spinner');
+        
+        // Afficher le spinner
+        submitBtn.prop('disabled', true);
+        spinner.removeAttr('hidden');
+
+        $.ajax({
+            url: "{{ route('admin.commande.addFile') }}",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Succès',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    });
+                    
+                    // Fermer le modal après succès
+                    submitBtn.prop('disabled', false);
+
+                    $('#spinner').attr('hidden', true);
+                  
+                     
+                }
+            },
+            error: function(xhr) {
+                let errorMessage = "Erreur lors de l'envoi";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+                Swal.fire('Erreur', errorMessage, 'error');
+            },
+            complete: function() {
+                submitBtn.prop('disabled', false);
+                spinner.attr('hidden', true);
+                
+            }
+        });
+    });
+});
+
+       
+    </script>
     
 @endsection

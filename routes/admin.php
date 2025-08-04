@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BaseDonneController;
 use App\Http\Controllers\Admin\ThemeMemoireController;
 use App\Http\Controllers\Admin\DemandeStageController;
 use App\Http\Controllers\Admin\AdminProjectController;
+use App\Http\Controllers\Admin\MessageController;
 
 Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     //
@@ -24,6 +25,7 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::post('/admin/commande/approved', [CommandeController::class, 'approvedCommande'])->name('admin.commande.approved');
     Route::post('/admin/commande/fileUpdate', [CommandeController::class, 'fileUpdate'])->name('admin.commande.fileUpdate');
     Route::post('/admin/commande/updateFiche', [CommandeController::class, 'updateFiche'])->name('admin.commande.updateFiche');
+    Route::post('/admin/commande/addFile', [CommandeController::class, 'addFile'])->name('admin.commande.addFile');
     //
     Route::get('/admin/payements', [PayementController::class, 'index'])->name('admin.payements');
     Route::get('/admin/payements/all', [PayementController::class, 'getAllPayement'])->name('admin.payements.all');
@@ -78,7 +80,13 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::get('admin/projects/download/{id}', [AdminProjectController::class, 'download'])->name('admin.project-document.download');
     Route::post('admin/projects/upload-final-file', [AdminProjectController::class, 'uploadFinalFile'])->name('final-file.upload');
 
+// Route boite Message 
 
+    Route::get('admin/messages', [MessageController::class, 'index'])->name('boite.message');
+    Route::post('admin/messages/store', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('messages/datatable', [MessageController::class, 'datatable'])->name('messages.datatable');
+    Route::get('admin/messages/download/{id}', [MessageController::class, 'download'])->name('messages.download');
+    Route::get('/admin/users/search', [MessageController::class, 'searchUsers'])->name('admin.users.search');
 
 });
 

@@ -159,6 +159,17 @@
                     </li>
                 @endif
 
+                 @if (Route::has('projects.datatable'))
+                    <li
+                        class="{{ Request::is(['boite/message']) ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{ route('boite.message') }}">
+                           <i class="la la-dashboard"></i>
+                            <p>Boite à Message</p>
+                            {{-- <span class="badge badge-count">5</span> --}}
+                        </a>
+                    </li>
+                @endif
+
                 {{-- @if (Route::has('admin.staff'))
                 <li class="{{ Request::is(['admin/staff']) ? 'nav-item active' : 'nav-item' }}">
                     <a href="{{route('admin.staff')}}">

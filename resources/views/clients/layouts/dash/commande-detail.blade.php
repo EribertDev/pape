@@ -203,7 +203,22 @@
                                     <p> {{$commande['description']}} </p>
                                 </div>
                             </div>
+                            <div class="col-xs-12 bg-white mt-3">
+                                <div role="tabpanel" class="tab-pane fade show active" id="description">
+                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier disponible</p>
+                                    @if ($commande->attachments )
+                                       <span>
+                                                            <a href="{{route('download.file', $commande->id)}}"  class="btn btn-sm btn-success"> Télécharger <i class="ti-download  mx-2"></i>
+<a href="{{ route('view.file', $commande->id) }}" target="_blank" class="btn btn-sm btn-info ms-2">
+    Voir  <i class="ti-eye mx-2"></i>
+</a>                                            </a>
+                                       </span>
 
+                                    @else
+                                        <p>Aucun fichier joint disponible.</p>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="col-xs-12 bg-white mt-3">
                                 <div role="tabpanel" class="tab-pane fade show active" id="description">
                                     <p class="fw-bold fs-6 mt-2 text-black">Fichier joint</p>

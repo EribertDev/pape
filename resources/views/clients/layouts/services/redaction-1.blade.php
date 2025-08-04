@@ -571,7 +571,6 @@ const divSubject = document.getElementById('div_subject');
 
 
 
-
   const steps = document.querySelectorAll(".step");
   let currentStep = 0;
 
@@ -581,6 +580,7 @@ const divSubject = document.getElementById('div_subject');
       step.classList.toggle("d-none", idx !== index);
     });
   };
+   
 
   // Boutons "Suivant"
   document.querySelectorAll(".next-btn").forEach((btn) => {
@@ -602,11 +602,19 @@ const divSubject = document.getElementById('div_subject');
     });
   });
 
+
   // Afficher la première étape au début
   showStep(currentStep);
 });
 
 window.onload = function () {
+
+       //Écouter l'événement change
+                $('#typeService').on('change', function() {
+                  
+                    checkFields(document.querySelector('.step'));
+            
+                });
     // Fonction pour vérifier l'état des champs requis dans un step donné
     function checkFields(step) {
         var isValid = true;
@@ -622,6 +630,7 @@ window.onload = function () {
                 if (field.value.trim() === '') {
                     isValid = false;
                 }
+                
             }
         });
 

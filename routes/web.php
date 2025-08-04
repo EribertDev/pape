@@ -29,6 +29,7 @@ use App\Mail\FormationRequestMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\client\ProjectRequestController;
 use App\Http\Controllers\Admin\AdminProjectController;
+use App\Http\Controllers\Client\MessageController;
 
 
 /*
@@ -143,6 +144,9 @@ Route::middleware(['auth','role:Client'])->group(function (){
     Route::get('/service-offre/commandeFinish/{idCmd}',[CommandeController::class,'commandeFinish'])->name("commande.finish");
     Route::get('/service-offre/commandeStatus',[CommandeController::class,'commandeStatus'])->name("commande.status");
     Route::post('/download/commmande/finale/file', [CommandeController::class,'downloadFinalFile'])->name('download.commmande.finale.file');
+    Route::get('/download/file/cmd/{id}',[CommandeController::class,'downloadfile'])->name('download.file');
+    Route::get('/view/file/cmd/{id}',[CommandeController::class,'viewFile'])->name('view.file');
+
 
     //route commande pay
     Route::post('/pay/commande',[PayementController::class,'newPayCommande'])->name('pay.commande');
@@ -224,6 +228,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/project-request/show/{projectRequest}', [ProjectRequestController::class, 'show'])->name('projects.show');
     Route::get('/project/dash', [ProjectRequestController::class, 'dashClient'])->name('projects.dash');
     Route::get('client/projects/download/{id}', [AdminProjectController::class, 'download'])->name('document.download');
+
+});
+
+
+//Route Message 
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/message/client', [MessageController::class, 'index'])->name('message.client');
 
 });
 

@@ -57,7 +57,8 @@
                         <hr>
                         <a class="profil-link" href="{{route('projects.dash')}}">Projets</a>
                         <hr>
-                       
+                       <a class="profil-link" href="{{route('message.client')}}">Messages</a>
+                        <hr>
                         <a class="profil-link" href="{{route('client.profile')}}">Profile</a>
                     </div><!-- END SOCIAL MEDIA POST -->
                 </div>
@@ -83,7 +84,6 @@
                                 <table class="table shopping-summery" id="dataTable">
                                     <thead>
                                     <tr class="main-hading">
-                                        <th class="text-center text-primary">COMMANDE</th>
                                         <th class="text-center text-primary">DESCRIPTION</th>
                                         <th class="text-center text-primary">STATUS</th>
                                         <th class="text-center text-primary">ACTION</th>
@@ -97,12 +97,10 @@
                                             $badge = str_replace(array(' ', 'é'), array('-', 'e'), $badge);
                                         @endphp
                                         <tr>
-                                            <td class="image" data-title="No"><img
-                                                    src="{{asset('clients/assets/images/shop/cart1.jpg')}}" alt="#">
-                                            </td>
-                                            <td class="product-des" data-title="Description">
-                                                <p class="product-name"><a
-                                                        href="#">{{ Str::limit($commande->subject,60)}}</a></p>
+                                            
+                                            <td class="product-des text-center" data-title="Description">
+                                                <p class="product-name "><a
+                                                        href="#">{{ Str::limit($commande->subject,20)}}</a></p>
                                                 <p class="product-des">{{ Str::limit($commande->description , 60)}}</p>
                                             </td>
                                             <td class="price" data-title="Price"><span

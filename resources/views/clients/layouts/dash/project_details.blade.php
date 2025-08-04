@@ -349,6 +349,9 @@
                                     <a href="" class="btn btn-success btn-lg w-100 py-3 fw-bold">
                                         <i class="fas fa-lock me-2"></i> Payer maintenant (100 000 F CFA)
                                     </a>
+                                     <button class="btn_one border-0 payer" type="button"  id="editBtn" data-amount="100000" data-amount-type ="PP" data-id ="{{$project->id}}">
+                                            <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
+                                    </button>
                                     <p class="text-center text-muted mt-2 mb-0">Paiement sécurisé</p>
                                     @break
 
@@ -470,4 +473,9 @@
         </div>
     </div>
 </div>
+
+<script type="module" src="{{asset('clients/js-data/project-details.js')}}">
+    
+</script>
 @endsection
+

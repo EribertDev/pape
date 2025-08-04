@@ -73,6 +73,12 @@
                          
                             
                             @endauth
+                            @guest
+                            <a class="btn btn-sm btn-outline-primary col-5 btn_one col-6" type="button" data-bs-toggle="modal" data-bs-target="#loginModal" style="font-size: 0.85rem; padding: 4px 8px;
+                            background-color: #2eca7f; color: white; border-radius: 4px;">
+                                <i class="fas fa-user-circle me-1"></i>Connexion
+                            </a>
+                            @endguest
                          
                         </div>
                         

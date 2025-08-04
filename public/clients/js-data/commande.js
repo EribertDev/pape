@@ -362,6 +362,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 //Écouter l'événement change
                 $('#typeService').on('change', function() {
                     updateElements();
+
                 
                 updateMontant();
                 });

@@ -20,12 +20,16 @@ class Commande extends Model
     use HasFactory;
 
     protected $table ='commandes';
+    protected $fillable = [
+        'attachments',
+    ];
     /**
      * @param array $commande
      * @return int
      * methode d'ajout d'une nouvelle commande
      * @throws \Exception
      */
+    
     public  function addNew(array $commande): int
     {
         $commande['reference'] = generateUniqueReference('CM_',15,$this->table,'reference',true);

@@ -51,6 +51,29 @@
                         </p>
 
                         <p class="text-justify">
+                            A tout cela s'ajoute la possibilité pour l'étudiant de consulter des thématiques innovantes déjà formulées mais non encore utilisées qu'il peut choisir ou dont il peut s'inspirer pour formuler son sujet de recherche.
+                        </p>
+
+                        <p class="text-justify">
+                            Le PAPE offre aussi un service d'assistance à la rédaction de projet et business plan pour accompagner toutes personnes (étudiant ou non) ou entités désireuses de s'engager dans l'entrepreneuriat.
+                        </p>
+
+                        <p class="text-justify">
+                            Par-dessus tout, le PAPE offre aussi un service professionnel de reprographie avec livraison à l'appui pour reproduire et livrer en toute confidentialité des documents de toutes personnes désireuses.   
+                         </p>
+
+                         <p class="text-justify">
+                            Un tarif spécial étudiant est directement appliqué par la plateforme pour permettre à aux étudiants d'imprimer à moindre coût leurs mémoires de fin de formation.
+                         </p>
+
+                         <p class="text-justify">
+                            Enfin les particuliers, administrations et autres qui désirent bénéficier des mêmes services peuvent exprimer aussi leurs requêtes via cette même plateforme.                        
+                         </p>
+                         <p class="text-justify">
+                            Chacune des offres de service est accessible sur la plateforme grâce à un bouton dédié.
+                         </p>
+
+                        <p class="text-justify">
                             Notre équipe, réactive et disponible, est dédiée à vous fournir un soutien complet pour vos projets académiques.
 
                         </p>
@@ -134,7 +157,13 @@
                 </div><!-- END COL  -->
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="pt_faq">
-                        <img src="{{asset('clients/assets/images/all-img/syrram_hero.jpg')}}" class="img-fluid img-responsive " alt="image" style="">
+                        <img src="{{asset('clients/assets/images/all-img/dg-cesie.jpg')}}" class="img-fluid img-responsive col-lg-6 col-sm-6 col-xs-12 mt-2" alt="image" style="">
+                        <img src="{{asset('clients/assets/images/all-img/syrram_hero.jpg')}}" class="img-fluid img-responsive col-lg-6 col-sm-6 col-xs-12 mt-2" alt="image" style="">
+                        <img src="{{asset('clients/assets/images/all-img/equipe-cesie1.jpg')}}" class="img-fluid img-responsive col-lg-6 col-sm-6 col-xs-12 mt-2" alt="image" style="">
+                        <img src="{{asset('clients/assets/images/all-img/equipe-cesie2.jpg')}}" class="img-fluid img-responsive col-lg-6 col-sm-6 col-xs-12 mt-2" alt="image" style="">
+                        <img src="{{asset('clients/assets/images/all-img/equipe-cesie3.jpg')}}" class="img-fluid img-responsive col-lg-6 col-sm-6 col-xs-12 mt-2" alt="image" style="">
+
+
                     </div>
                 </div><!-- END COL  -->
             </div><!--END  ROW  -->
