@@ -277,15 +277,17 @@
                                                 <i class="ti-download  mx-2"></i>
                                             </a>
                                        </span>
-                                       @foreach (json_decode($commande->commune_stage, true) as $index => $file)
-                                    <div class="file-item">
-                                        <i class="far fa-file-alt me-2"></i>
-                                        <span>{{ $file['n'] }}</span> <!-- 'n' pour original_name -->
-                                        <a href="{{ asset('storage/' . $file['p']) }}" download="{{ $file['n'] }}">
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                    </div>
+                                       @if($commande->commune_stage)
+                                          @foreach (json_decode($commande->commune_stage, true) as $index => $file)
+                                        <div class="file-item">
+                                            <i class="far fa-file-alt me-2"></i>
+                                            <span>{{ $file['n'] }}</span> <!-- 'n' pour original_name -->
+                                            <a href="{{ asset('storage/' . $file['p']) }}" download="{{ $file['n'] }}">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                        </div>
                                 @endforeach
+                                       @endif
                                     @else
                                         <p>Aucun fichier joint disponible.</p>
                                     @endif
