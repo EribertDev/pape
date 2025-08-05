@@ -19,7 +19,7 @@ use App\Http\Controllers\client\services\ServiceController;
 use App\Http\Controllers\client\services\CommandeController;
 use App\Models\Affiler;
 use Illuminate\Http\Request; // Ajouter cette importation
-
+use App\Http\Controllers\client\ReprographyOrderController;
 use App\Http\Controllers\client\services\RedactionController;
 use App\Models\ThemeMemoire;
 use App\Http\Controllers\StageController;
@@ -239,6 +239,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/message/client', [MessageController::class, 'index'])->name('message.client');
 
 });
+
+
+//Route Reprograpy
+Route::get('/reprography/commander', [ReprographyOrderController::class, 'create'])->name('reprography');
+Route::post('/reprography/store', [ReprographyOrderController::class, 'store'])->name('reprography.store');
 
 
 
