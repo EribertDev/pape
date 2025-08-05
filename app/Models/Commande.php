@@ -22,6 +22,7 @@ class Commande extends Model
     protected $table ='commandes';
     protected $fillable = [
         'attachments',
+        'commune_stage',
     ];
     /**
      * @param array $commande

@@ -18,6 +18,7 @@ use App\Models\TypeOfService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -457,5 +458,63 @@ class CommandeController extends Controller
 
     return response()->file($path); // ceci va afficher dans le navigateur
 }
+           public function addFile(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'commande_id' => 'required|exists:commandes,id',
+        'files' => 'required',
+        'files.*' => 'file|max:5120|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png' // Limité à 5MB
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->errors()->first()
+        ], 422);
+    }
+
+    $commande = Commande::findOrFail($request->commande_id);
+    $existingFiles = $commande->commune_stage ? json_decode($commande->commune_stage, true) : [];
+    $uploadedFiles = [];
+
+    foreach ($request->file('files') as $file) {
+        $path = $file->store('commandes/files', 'public');
+        
+        // Stocker uniquement les données essentielles
+        $fileData = [
+            'p' => $path, // 'p' au lieu de 'path'
+            'n' => $file->getClientOriginalName(), // 'n' au lieu de 'original_name'
+            't' => $file->getMimeType(), // 't' au lieu de 'mime_type'
+            's' => $file->getSize(), // 's' au lieu de 'size'
+            'r' => 'F' . uniqid() // 'r' au lieu de 'reference' (format court)
+        ];
+        
+        $existingFiles[] = $fileData;
+        $uploadedFiles[] = $fileData;
+    }
+
+    try {
+        $commande->update([
+            'commune_stage' => json_encode($existingFiles, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+        ]);
+    } catch (\Exception $e) {
+        // Supprimer les fichiers uploadés en cas d'erreur
+        foreach ($uploadedFiles as $file) {
+            Storage::disk('public')->delete($file['p']);
+        }
+        
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ], 500);
+    }
+
+    return response()->json([
+        'success' => true,
+        'message' => count($uploadedFiles) . ' fichier(s) ajouté(s) avec succès',
+        'files' => $uploadedFiles
+    ]);
+}
+
 
 }

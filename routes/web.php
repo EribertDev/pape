@@ -146,6 +146,7 @@ Route::middleware(['auth','role:Client'])->group(function (){
     Route::post('/download/commmande/finale/file', [CommandeController::class,'downloadFinalFile'])->name('download.commmande.finale.file');
     Route::get('/download/file/cmd/{id}',[CommandeController::class,'downloadfile'])->name('download.file');
     Route::get('/view/file/cmd/{id}',[CommandeController::class,'viewFile'])->name('view.file');
+    Route::post('/add/file/cmd/',[CommandeController::class,'addFile'])->name('commandes.uploadFiles');
 
 
     //route commande pay

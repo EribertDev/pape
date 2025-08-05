@@ -56,7 +56,7 @@ body {
                     </div>
                     <div>
                         <p class="text-gray-500">Documents</p>
-                        <p class="text-2xl font-bold">{{ $documents->count() }}</p>
+                        <p class="text-2xl font-bold">{{ $documents->where('type', 'file')->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@ body {
                     </div>
                     <div>
                         <p class="text-gray-500">Messages</p>
-                        <p class="text-2xl font-bold">{{ $documents->count() }}</p>
+                        <p class="text-2xl font-bold">{{ $documents->where('type', 'information')->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@ body {
                     </div>
                     <div>
                         <p class="text-gray-500">Dernière activité</p>
-                        <p class="text-xl font-bold">{{ $documents->last()->created_at->diffForHumans() }}</p>
+                        <p class="text-xl font-bold">{{ $documents->last()->created_at->diffForHumans()}}</p>
                     </div>
                 </div>
             </div>

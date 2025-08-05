@@ -7,148 +7,189 @@
     <link rel="stylesheet" href="{{asset('clients/js-simple-loader-main/loader.css')}}" />
     <script  src="{{asset('clients/js-simple-loader-main/loader.js')}}"  ></script>
     <style>
-      
-        :root {
-            --primary: #4f46e5;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
+        .text-justify{
+            text-align: justify;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: #f9fafb;
-            margin: 0;
+            color: #333;
+            background-color: #f8f9fa;
             padding: 0;
+            margin: 0;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 20px;
         }
         
-        h1, h2, h3 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-top: 0;
+        header {
+background: linear-gradient(135deg, #2c9e6a 0%, #1f5d4b 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
         }
         
         h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
             position: relative;
-            display: inline-block;
+            z-index: 1;
         }
         
-        h1:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
+        .header-subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ab_content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin: -40px auto 40px;
+            position: relative;
+            z-index: 10;
+            max-width: 1000px;
         }
         
         h2 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin: 2.5rem 0 1rem;
+            color: #0d4a9e;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #1a6dcc;
+            position: relative;
         }
         
-        h3 {
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin: 1.5rem 0 0.5rem;
+        h2 u {
+            text-decoration: none;
+            position: relative;
+        }
+        
+        h2 u span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h2 u::after {
+            content: "";
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(26, 109, 204, 0.2);
+            z-index: 0;
         }
         
         p {
+            margin-bottom: 20px;
             font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 1.5rem;
+            text-align: justify;
         }
         
         .highlight {
-            background-color: rgba(79, 70, 229, 0.1);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background-color: rgba(26, 109, 204, 0.05);
+            border-left: 4px solid #1a6dcc;
+            padding: 20px;
+            margin: 30px 0;
             border-radius: 0 8px 8px 0;
         }
         
-        ul.features {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
+        .features-list {
+            margin: 25px 0 30px;
+            padding-left: 20px;
         }
         
-        ul.features li {
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2310b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>') no-repeat left center;
-            padding-left: 32px;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            color: var(--dark);
+        .features-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 30px;
         }
         
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+        .features-list li:before {
+            content: "•";
+            color: #1a6dcc;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: -5px;
         }
         
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .features-list strong {
+            color: #0d4a9e;
+            display: block;
+            margin-bottom: 5px;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .conclusion {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #1a6dcc;
         }
         
-        .card h3 {
-            color: var(--primary);
-        }
-        
-        .card-icon {
-            background-color: rgba(79, 70, 229, 0.1);
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .card-icon svg {
-            width: 30px;
-            height: 30px;
-            color: var(--primary);
+        footer {
+            background: #0d4a9e;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
         }
         
         @media (max-width: 768px) {
+            header {
+                padding: 40px 15px;
+            }
+            
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .ab_content {
+                padding: 25px 20px;
+                margin: -30px auto 30px;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
 @endsection
 
 @section('page-content')
@@ -165,113 +206,95 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp mt-5 mb-5" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
-                    <div class="ab_img text-center">
-                        <img src="{{"clients/assets/images/icon/logo-syrram.png"}}" class="img-fluid" alt="image" style="height: 250px;width: 250px">
+                    <div class="ab_img">
+                        <img src="{{"clients/assets/images/icon/logo-syrram.png"}}" class="img-fluid" alt="image">
                     </div>
                 </div><!--- END COL -->
+                <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
+
+             </div>
+            <div class="ab_content">
+              <header class="mb-4">
                 <div class="container">
-        <h1>La plateforme PAPE</h1>
-        <p class="highlight">
-            <strong>La première plateforme tout-en-un</strong> pour réussir vos travaux académiques et projets professionnels
-        </p>
-        
-        <p>
-            La plateforme innovante PAPE est un espace numérique complet dédié à l'accompagnement académique et professionnel des étudiants, chercheurs et porteurs de projets. Elle réunit en un seul outil tous les services essentiels pour votre réussite.
-        </p>
-        
-        <h2>Nos services intégrés</h2>
-        
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                   
+                   <h1>La première plateforme tout-en-un pour réussir vos travaux académiques et projets professionnels</h1>
                 </div>
-                <h3>Stages académiques</h3>
-                <p>Trouvez directement votre stage depuis chez vous sans vous déplacer dans une administration.</p>
-            </div>
+            </header>
             
-            <div class="card">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                </div>
-                <h3>Rédaction collaborative</h3>
-                <p>Éditeur en ligne pour mémoires, thèses et rapports avec travail simultané.</p>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <h3>Visioconférence</h3>
-                <p>Séances interactives intégrées avec partage d'écran et chat en direct.</p>
-            </div>
-        </div>
-        
-        <h2>Éditeur collaboratif</h2>
-        
-        <p>
-            Grâce à l'éditeur intégré à la plateforme, plusieurs utilisateurs peuvent travailler simultanément sur un même document avec des fonctionnalités avancées :
-        </p>
-        
-        <ul class="features">
-            <li><strong>Édition en temps réel :</strong> chaque modification est visible instantanément par tous les participants</li>
-            <li><strong>Annotations et commentaires :</strong> pour un suivi précis et ciblé des corrections</li>
-            <li><strong>Historique des versions :</strong> pour revenir facilement à un état précédent du document</li>
-            <li><strong>Exportation multiple :</strong> générez vos documents aux formats PDF ou Word en un clic</li>
-        </ul>
-        
-        <h2>Visioconférence intégrée</h2>
-        
-        <p>
-            Organisez des séances en ligne interactives directement au sein de la plateforme :
-        </p>
-        
-        <div class="grid">
-            <div class="card">
-                <h3>Partage d'écran et vidéo</h3>
-                <p>Travaillez côte à côte avec votre encadrant sans quitter l'éditeur.</p>
-            </div>
-            
-            <div class="card">
-                <h3>Chat en direct</h3>
-                <p>Échangez rapidement des liens, données ou instructions pendant vos sessions.</p>
-            </div>
-            
-            <div class="card">
-                <h3>Planification intelligente</h3>
-                <p>Organisez vos rendez-vous avec rappels automatiques.</p>
-            </div>
-        </div>
-        
-        <h2>Services complémentaires</h2>
-        
-        <p>
-            PAPE offre également des services professionnels pour compléter votre expérience :
-        </p>
-        
-        <ul class="features">
-            <li><strong>Reprographie en ligne :</strong> reproduction et livraison confidentielle de vos documents avec tarif spécial étudiant</li>
-            <li><strong>Formation continue :</strong> modules pratiques pour acquérir des compétences professionnelles</li>
-            <li><strong>Bases de données :</strong> accès à des ressources documentaires spécialisées</li>
-            <li><strong>Gestion centralisée :</strong> tous vos documents académiques sécurisés en un seul endroit</li>
-        </ul>
-        
-        <div class="highlight">
-            <h3>Accessibilité et sécurité</h3>
             <p>
-                Notre solution est accessible depuis ordinateur ou smartphone, avec un espace de travail sécurisé hébergé sur des serveurs fiables, garantissant la confidentialité et l'intégrité de vos données.
+                La plateforme innovante PAPE est un espace numérique complet dédié à l'accompagnement académique et professionnel des étudiants, chercheurs et porteurs de projets. Elle réunit en un seul outil : la recherche de stage académique, la rédaction collaborative en ligne des mémoires, thèses et projets, la visioconférence interactive, la gestion centralisée des documents, l'acquisition de base de données, la formation continue post universitaire et un service de reprographie en ligne avec livraison à domicile.
             </p>
+            
+            <div class="highlight">
+                <p>
+                    Le module de stage académique de la plateforme permet à l'étudiant de trouver directement son stage académique depuis sa position sans se déplacer dans une administration.
+                </p>
+            </div>
+            
+            <h3>Éditeur collaboratif</h3>
+            
             <p>
-                <strong>PAPE devient votre bureau virtuel</strong> pour la rédaction, la correction et l'accompagnement en direct, supprimant les barrières géographiques et accélérant votre processus de production académique et professionnelle.
+                Grâce à l'éditeur collaboratif intégré à la plateforme, plusieurs utilisateurs peuvent travailler simultanément sur un même document de mémoire, thèse, rapport de stage ou projet professionnel avec :
             </p>
+            
+            <ul class="features-list">
+                <li>
+                    <strong>Édition en temps réel :</strong> chaque modification est visible instantanément par tous les participants
+                </li>
+                <li>
+                    <strong>Annotations et commentaires :</strong> pour un suivi précis et ciblé des corrections
+                </li>
+                <li>
+                    <strong>Historique des versions :</strong> pour revenir facilement à un état précédent du document
+                </li>
+                <li>
+                    <strong>Exportation au format PDF ou Word</strong>
+                </li>
+            </ul>
+            
+            <h3>Visioconférence intégrée</h3>
+            
+            <p>
+                L'intégration du module de visioconférence permet d'organiser des séances en ligne interactives directement au sein de la plateforme avec :
+            </p>
+            
+            <ul class="features-list">
+                <li>
+                    <strong>Partage d'écran et vidéo :</strong> l'étudiant et l'assistant travaillent côte à côte, sans quitter l'éditeur.
+                </li>
+                <li>
+                    <strong>Chat en direct :</strong> pour échanger rapidement des liens, données ou instructions.
+                </li>
+                <li>
+                    <strong>Planification et notifications :</strong> organisation des rendez-vous et rappels automatiques.
+                </li>
+            </ul>
+            
+            <p>
+                La plateforme offre aussi un service professionnel de reprographie avec livraison à l'appui pour reproduire et livrer en toute confidentialité les documents de mémoires, thèses, rapports de stage ou tout autre document avec un tarif spécial étudiant.
+            </p>
+            
+            <p>
+                Un service de formation vient couronner tous les services et permet aux étudiants d'avoir les outils pratiques indispensables à l'exécution de leurs professions.
+            </p>
+            
+            <p>
+                Chacune des offres de service est accessible sur la plateforme grâce à un bouton dédié.
+            </p>
+            
+            <div class="conclusion">
+                <p>
+                    Notre solution est accessible depuis un ordinateur ou un smartphone, avec un espace de travail sécurisé, hébergé sur des serveurs fiables, garantissant la confidentialité et l'intégrité des données.
+                </p>
+                
+                <p>
+                    En résumé, notre plateforme devient un véritable bureau virtuel pour la rédaction, la correction et l'accompagnement en direct, supprimant la barrière entre l'étudiant et son encadrant, et accélérant le processus de production de documents académiques et professionnels.
+                </p>
+            </div>
         </div>
-    </div>
+                </div><!--- END COL -->
+            </div><!--- END ROW -->
+        </div><!--- END CONTAINER -->
     </section>
     <section class="faq_area section-padding">
         <div class="container">
@@ -362,6 +385,5 @@
 @endsection
 
 @section('extra-scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @endsection

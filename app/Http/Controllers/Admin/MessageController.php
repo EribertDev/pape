@@ -38,10 +38,10 @@ class MessageController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'type' => 'required|in:file,link,information',
+            'type' => 'required|in:file,link,info',
             'file' => 'required_if:type,file|file|max:10240',
             'link' => 'required_if:type,link',
-            'content' => 'required_if:type,information',
+            'content' => 'required_if:type,info',
             'visibility' => 'required|in:global,specific',
             'user_id' => 'required_if:visibility,specific|exists:users,id'
         ]);
@@ -67,10 +67,12 @@ class MessageController extends Controller
                         
                     case 'link':
                         $data['path'] = $request->link;
+                       
                         break;
                         
-                    case 'information':
+                    case 'info':
                         $data['content'] = $request->content;
+                         $data['type'] = 'information';
                         break;
                 }
 

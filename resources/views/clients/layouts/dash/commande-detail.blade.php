@@ -7,7 +7,78 @@
     <link rel="stylesheet" href="{{asset(('clients/assets/css/profile.css'))}}"/>
     <link rel="stylesheet" href="{{asset(('stdev/css/badge-status.css'))}}" />
     <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
-
+    <style>
+        .hidden {
+            display: none;
+        }
+         .upload-section {
+            background: #f1f5f9;
+            border-radius: 15px;
+            padding: 5px;
+            height: auto;
+            width: 50%;
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+        
+        .upload-section:hover {
+            border-color: #93c5fd;
+            background: #e0f2fe;
+        }
+        
+        .upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .upload-icon {
+            width: 70px;
+            height: 70px;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d4ed8;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text h3 {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .upload-text p {
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            background: #1d4ed8;
+            color: white;
+            padding: 5px 5px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .upload-btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.2);
+        }
+    </style>
 @endsection
 
 @section('page-content')
@@ -190,36 +261,13 @@
                                                     <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><span role="status"> Payer</span>
                                                 </button>         
                                             @endif
-                                    @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-
-                            <div class="col-xs-12 bg-white mt-3">
-                                <div role="tabpanel" class="tab-pane fade show active" id="description">
-                                    <p class="fw-bold fs-6 mt-2 text-black">Description</p>
-                                    <p> {{$commande['description']}} </p>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 bg-white mt-3">
-                                <div role="tabpanel" class="tab-pane fade show active" id="description">
-                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier disponible</p>
-                                    @if ($commande->attachments )
-                                       <span>
-                                                            <a href="{{route('download.file', $commande->id)}}"  class="btn btn-sm btn-success"> Télécharger <i class="ti-download  mx-2"></i>
-<a href="{{ route('view.file', $commande->id) }}" target="_blank" class="btn btn-sm btn-info ms-2">
-    Voir  <i class="ti-eye mx-2"></i>
-</a>                                            </a>
-                                       </span>
-
-                                    @else
-                                        <p>Aucun fichier joint disponible.</p>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-xs-12 bg-white mt-3">
+                               <div class="col-xs-12 bg-white mt-3">
                                 <div role="tabpanel" class="tab-pane fade show active" id="description">
                                     <p class="fw-bold fs-6 mt-2 text-black">Fichier joint</p>
                                     @if ($commande->filesPath && count($commande->filesPath) > 0)
@@ -229,12 +277,62 @@
                                                 <i class="ti-download  mx-2"></i>
                                             </a>
                                        </span>
+                                       @foreach (json_decode($commande->commune_stage, true) as $index => $file)
+                                    <div class="file-item">
+                                        <i class="far fa-file-alt me-2"></i>
+                                        <span>{{ $file['n'] }}</span> <!-- 'n' pour original_name -->
+                                        <a href="{{ asset('storage/' . $file['p']) }}" download="{{ $file['n'] }}">
+                                            <i class="fas fa-download"></i>
+                                        </a>
+                                    </div>
+                                @endforeach
+                                    @else
+                                        <p>Aucun fichier joint disponible.</p>
+                                    @endif
+                                </div>
+                                   <!-- Section d'ajout de fichier -->
+                                         <!-- Formulaire d'ajout de fichiers -->
+                                    <div class="mt-4">
+                                        <form id="uploadFileForm" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="commande_id" value="{{ $commande->id }}">
+                                            
+                                            <div class="mb-3">
+                                                <label for="newFiles" class="form-label">Ajouter des fichiers</label>
+                                                <input class="form-control" type="file" id="newFiles" name="files[]" multiple>
+                                                <div class="form-text">Formats acceptés: PDF, DOCX, XLSX, JPG, PNG. Max 10MB par fichier.</div>
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-upload me-2"></i> Envoyer les fichiers
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="col-xs-12 bg-white mt-3">
+                                <div role="tabpanel" class="tab-pane fade show active" id="description">
+                                    <p class="fw-bold fs-6 mt-2 text-black">Description</p>
+                                    <p> {{$commande['description']}} </p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bg-white mt-3">
+                                <div role="tabpanel" class="tab-pane fade show active" id="description">
+                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier de l'equipe PAPE</p>
+                                    @if ($commande->attachments )
+                                       <span>
+                                            <a href="{{route('download.file', $commande->id)}}"  class="btn btn-sm btn-success"> Télécharger <i class="ti-download  mx-2"></i></a>
+                                            <a href="{{ route('view.file', $commande->id) }}" target="_blank" class="btn btn-sm btn-info ms-2">
+                                                Voir  <i class="ti-eye mx-2"></i>
+                                            </a>
+                                       </span>
 
                                     @else
                                         <p>Aucun fichier joint disponible.</p>
                                     @endif
                                 </div>
                             </div>
+                         
                         </div>
                     </div>
                 </div>
@@ -299,4 +397,105 @@
         $('select').niceSelect();
     </script>
     <script type="module" src="{{asset('clients/js-data/dash.js?'.Str::uuid())}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Gestion de l'upload de fichiers
+            $('#uploadFileForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                let formData = new FormData(this);
+                
+                $.ajax({
+                    url: "{{ route('commandes.uploadFiles') }}",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        // Afficher un loader
+                        Swal.fire({
+                            title: 'Envoi en cours',
+                            html: 'Traitement de vos fichiers...',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Fichiers ajoutés !',
+                            text: response.message,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        
+                        // Recharger la page ou mettre à jour dynamiquement
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    },
+                    error: function(xhr) {
+                        let errorMessage = 'Une erreur est survenue';
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        }
+                        
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erreur',
+                            text: errorMessage,
+                        });
+                    }
+                });
+            });
+            
+            // Gestion de la suppression de fichiers
+            $('.delete-file').on('click', function() {
+                let fileId = $(this).data('file-id');
+                
+                Swal.fire({
+                    title: 'Confirmer la suppression',
+                    text: "Êtes-vous sûr de vouloir supprimer ce fichier ?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Oui, supprimer',
+                    cancelButtonText: 'Annuler'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "",
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                file_id: fileId
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    'Supprimé !',
+                                    response.message,
+                                    'success'
+                                ).then(() => {
+                                    window.location.reload();
+                                });
+                            },
+                            error: function(xhr) {
+                                Swal.fire(
+                                    'Erreur !',
+                                    'La suppression a échoué',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection
