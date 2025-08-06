@@ -105,9 +105,14 @@ font-awesome
                             <i class="fas fa-check-circle text-success me-2"></i>
                            Nombre de relectures: 2
                         </li>
+                        
                         <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
                            Qualité: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-times-circle t me-2"></i>
+                          Initiation de séance en ligne : Non
                         </li>
                       
                         <li class="list-group-item d-flex align-items-center">
@@ -154,6 +159,10 @@ font-awesome
                        <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>
                            Qualité: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i><i class="fas fa-star"></i></i><i class="fas fa-star"></i></i>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Initiation de séance en ligne: Oui
                         </li>
                         <li class="list-group-item d-flex align-items-center">
                             <i class="fas fa-check-circle text-success me-2"></i>

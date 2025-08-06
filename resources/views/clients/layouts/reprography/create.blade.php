@@ -27,7 +27,7 @@
                     <!-- Step indicator -->
                     <div class="step-indicator">
                         <div class="step active">
-                            <span class="step-label">Informations</span>
+                            <span class="step-label">Commande</span>
                         </div>
                         <div class="step">
                             <span class="step-label">Livraison</span>
