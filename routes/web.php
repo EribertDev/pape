@@ -242,7 +242,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //Route Reprograpy
-Route::get('/reprography/commander', [ReprographyOrderController::class, 'create'])->name('reprography');
+Route::get('/reprography/commander', [ReprographyOrderController::class, 'create'])->name('reprography.client');
 Route::post('/reprography/store', [ReprographyOrderController::class, 'store'])->name('reprography.store');
 
 

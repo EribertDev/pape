@@ -264,7 +264,7 @@
                         </div>
                         <h3 class="feature-title">Reprographie</h3>
                         <p class="feature-description">Commander et recevoir en toute confidentialité les impressions, photocopies, saisies, scannages et reliure de vos documents.</p>
-                        <a href="{{route('reprography')}}" class="feature-btn">Accéder au service</a>
+                        <a href="{{route('reprography.client')}}" class="feature-btn">Accéder au service</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
