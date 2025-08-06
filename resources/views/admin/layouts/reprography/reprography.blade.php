@@ -12,7 +12,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <h4 class="page-title col-9" >Projets</h4>
+                <h4 class="page-title col-9" >Reprographie</h4>
                 <div class="col-3">
                    
                 </div>
@@ -20,18 +20,18 @@
            
            
             <div class="col-12 table-responsive">
-                <table id="projectTable" class="table table-striped table-bordered" style="width:100%">
+                <table id="reprographyTable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Client</th>
-                            <th>Titre</th>
-                            <th>Problematique</th>
-                            <th>Budjet</th>
-                            <th>Statut</th>
-                            <th>Date</th>
-                            <th>Actions</th>
-                        </tr>
+                     <tr>
+                        <th>ID</th>
+                        <th>Client</th>
+                        <th>Services</th>
+                        <th>Quantité</th>
+                        <th>Montant</th>
+                        <th>Statut</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
                         <!-- Les données seront chargées via AJAX -->
@@ -54,7 +54,7 @@
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="{{asset('admin/js-data/all-project.js')}}"></script>
+    <script type="module" src="{{asset('admin/js-data/all-reprography.js')}}"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 @endsection

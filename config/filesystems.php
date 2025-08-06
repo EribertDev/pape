@@ -61,6 +61,7 @@ return [
         'url' => env('APP_URL').'/cip',
         'visibility' => 'public', // Sécurité pour fichiers sensibles
     ],
+   
 
     ],
 

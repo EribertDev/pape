@@ -159,6 +159,17 @@
                     </li>
                 @endif
 
+                @if (Route::has('reprography'))
+                    <li
+                        class="{{ Request::is(['admin/reprography/index', 'admin/reprography/details/{id}']) ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{ route('reprography') }}">
+                            <i class="la la-dashboard"></i>
+                            <p>Reprographie</p>
+                            {{-- <span class="badge badge-count">5</span> --}}
+                        </a>
+                    </li>
+                @endif
+
                  @if (Route::has('projects.datatable'))
                     <li
                         class="{{ Request::is(['boite/message']) ? 'nav-item active' : 'nav-item' }}">

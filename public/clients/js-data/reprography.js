@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    
-    // Fonction pour calculer les coûts
-    function calculateCosts() {
+      function calculateCosts() {
         const pageCount = parseInt($('input[name="page_count"]').val()) || 0;
         const copyCount = parseInt($('input[name="copy_count"]').val()) || 0;
         const isStudent = $('input[name="student_tariff"]').is(':checked');
@@ -10,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const color = $('select[name="color"]').val();
         const binding = $('input[name="binding"]').is(':checked');
         const lamination = $('input[name="lamination"]').is(':checked');
-        const fileUploadContainer= document.getElementById('fileUploadContainer');
+        const commune = $('#communeSelect').val();
         
         // Calcul du coût
         let costPerPage = isStudent ? 50 : 100; // FCFA
@@ -22,7 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if (binding) orderCost += 1000;
         if (lamination) orderCost += 500;
         
-        const deliveryCost = deliveryMode === 'Domicile' ? 1000 : 500; // FCFA
+        // Coût de livraison basé sur la commune
+        let deliveryCost = 1000; // FCFA par défaut
+        if (commune === 'Cotonou' || commune === 'Calavi') {
+            deliveryCost = 500;
+        }
+        
         const totalCost = orderCost + deliveryCost;
         
         // Mise à jour de l'UI
@@ -54,9 +57,10 @@ document.addEventListener("DOMContentLoaded", function() {
         calculateCosts();
     });
     
-    $('#fileUploadContainer').on('click', function(e) {
-        e.stopPropagation();
-        $('#fileInput').click();
+    // Gestion de l'upload de fichier
+   $('#fileUploadContainer').on('click', function(e) {
+    e.stopPropagation();
+    $('#fileInput').click();
     });
 
     $('#fileInput').on('click', function(e) {
@@ -65,8 +69,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     $('#fileInput').on('change', function(e) {
         if (this.files && this.files[0]) {
-            const fileName = this.files[0].name;
-            const fileSize = (this.files[0].size / 1024 / 1024).toFixed(2); // en Mo
+            const file = this.files[0];
+            const fileName = file.name;
+            const fileSize = (file.size / 1024 / 1024).toFixed(2); // en Mo
             $('#fileInfo').html(`
                 <strong>${fileName}</strong><br>
                 Taille: ${fileSize} MB
@@ -75,46 +80,97 @@ document.addEventListener("DOMContentLoaded", function() {
                 'border-color': '#2eca7f',
                 'background-color': '#e6f9f2'
             });
+            
+            // Réinitialiser le bouton de détection
+            $('#autoDetectBtn').prop('disabled', false);
+            $('#pageCountInfo').text('Cliquez sur "Détecter" pour compter les pages');
         }
     });
     
-    // Permettre le drag and drop
-    $('#fileUploadContainer').on('dragover', function(e) {
-        e.preventDefault();
-        $(this).css({
-            'border-color': '#2eca7f',
-            'background-color': '#e6f9f2'
-        });
-    });
-    
-    $('#fileUploadContainer').on('dragleave', function(e) {
-        e.preventDefault();
-        $(this).css({
-            'border-color': '#dee2e6',
-            'background-color': '#f8f9fa'
-        });
-    });
-    
-    $('#fileUploadContainer').on('drop', function(e) {
-        e.preventDefault();
-        const files = e.originalEvent.dataTransfer.files;
-        if (files.length) {
-            $('#fileInput').prop('files', files);
-            const fileName = files[0].name;
-            const fileSize = (files[0].size / 1024 / 1024).toFixed(2); // en Mo
-            $('#fileInfo').html(`
-                <strong>${fileName}</strong><br>
-                Taille: ${fileSize} MB
-            `);
-            $(this).css({
-                'border-color': '#2eca7f',
-                'background-color': '#e6f9f2'
+    // Détection du nombre de pages pour les fichiers PDF
+    $('#autoDetectBtn').on('click', function() {
+        const fileInput = document.getElementById('fileInput');
+        if (!fileInput.files || !fileInput.files[0]) {
+            Swal.fire('Erreur', 'Veuillez d\'abord sélectionner un fichier', 'error');
+            return;
+        }
+        
+        const file = fileInput.files[0];
+        if (file.type !== 'application/pdf') {
+            Swal.fire('Format non supporté', 'La détection automatique ne fonctionne que pour les fichiers PDF', 'warning');
+            return;
+        }
+        
+        const fileReader = new FileReader();
+        fileReader.onload = function() {
+             // Initialisation de PDF.js worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+            
+            const typedarray = new Uint8Array(this.result);
+            
+            // Charger le document PDF avec pdf.js
+            pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+                // Obtenir le nombre de pages
+                const numPages = pdf.numPages;
+                $('#pageCount').val(numPages).trigger('input');
+                $('#pageCountInfo').html(`
+                    <span class="text-success">
+                        <i class="fas fa-check-circle"></i> ${numPages} pages détectées
+                    </span>
+                `);
+                $('#autoDetectBtn').prop('disabled', true);
+                calculateCosts();
+            }).catch(function(error) {
+                console.error('Erreur PDF.js:', error);
+                Swal.fire('Erreur', 'Impossible de lire le fichier PDF', 'error');
             });
+        };
+        
+        fileReader.readAsArrayBuffer(file);
+    });
+    
+    // Obtenir la localisation GPS
+    $('#getLocationBtn').on('click', function() {
+        if (!navigator.geolocation) {
+            Swal.fire('Non supporté', 'La géolocalisation n\'est pas supportée par votre navigateur', 'warning');
+            return;
         }
+        
+        $(this).html('<i class="fas fa-spinner fa-spin me-1"></i> Localisation...').prop('disabled', true);
+        
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                $('#gpsLocation').val(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+                
+                // Afficher un aperçu de la carte
+                const mapImg = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=15&size=600x200&markers=color:red%7C${lat},${lng}&key=YOUR_API_KEY`;
+                $('#mapPreview').html(`<img src="${mapImg}" alt="Votre position">`);
+                
+                $('#getLocationBtn').html('<i class="fas fa-location-crosshairs me-1"></i> Ma position').prop('disabled', false);
+            },
+            function(error) {
+                let errorMessage = "Impossible d'obtenir votre position";
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        errorMessage = "Permission refusée. Veuillez activer la géolocalisation dans vos paramètres.";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errorMessage = "Les informations de localisation ne sont pas disponibles.";
+                        break;
+                    case error.TIMEOUT:
+                        errorMessage = "La demande de localisation a expiré.";
+                        break;
+                }
+                Swal.fire('Erreur', errorMessage, 'error');
+                $('#getLocationBtn').html('<i class="fas fa-location-crosshairs me-1"></i> Ma position').prop('disabled', false);
+            }
+        );
     });
     
     // Écouteurs pour les champs affectant les coûts
-    $('input[name="page_count"], input[name="copy_count"], input[name="student_tariff"], select[name="color"]').on('input change', calculateCosts);
+    $('input[name="page_count"], input[name="copy_count"], input[name="student_tariff"], select[name="color"], #communeSelect').on('input change', calculateCosts);
     
     // Soumission du formulaire
     $('#reprographyForm').on('submit', function(e) {
@@ -167,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         'border-color': '#dee2e6',
                         'background-color': '#f8f9fa'
                     });
+                    $('#mapPreview').html('<i class="fas fa-map-marked-alt text-muted" style="font-size: 3rem;"></i>');
                     calculateCosts();
                 });
             },

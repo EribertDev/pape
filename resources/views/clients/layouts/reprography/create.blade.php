@@ -9,12 +9,12 @@
 
   <div class="container py-5 mt-5 ">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card"  style="margin-top: 150px;">
-                <div class="card-header">
+      <div class="col-lg-10">
+            <div class="card" style="margin-top: 150px;">
+                <div class="card-header ">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
-                            <h2 class="mb-1 text-white text-center">Commander un service de reprographie</h2>
+                            <h2 class="mb-1 text-white">Commander un service de reprographie</h2>
                             <p class="mb-0 text-white opacity-75">Commander et recevoir en toute confidentialité les impressions, photocopies, saisies, scannages et reliure de vos documents.</p>
                         </div>
                         <div class="feature-icon">
@@ -45,7 +45,23 @@
                             <h4 class="border-bottom pb-2">
                                 <i class="fas fa-info-circle me-2"></i>Informations de la commande
                             </h4>
-                            
+                            <div class="row">
+                                   <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fas fa-tasks"></i>Type de service
+                                    </label>
+                                    <select name="service_types[]" class="form-select" multiple required style="height: 150px;">
+                                        <option value="impression">Impression</option>
+                                        <option value="photocopie">Photocopie</option>
+                                        <option value="saisie_texte">Saisie de texte</option>
+                                        <option value="tirage_photo">Tirage photo</option>
+                                        <option value="carte_visite">Tirage carte de visite</option>
+                                        <option value="affiche">Tirage affiche</option>
+                                        <option value="flyers">Tirage flyers</option>
+                                    </select>
+                                    <div class="form-text">Maintenez Ctrl (Windows) ou Cmd (Mac) pour sélectionner plusieurs options</div>
+                                </div>
+                            </div>
                             <div class="row mb-4">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
@@ -69,21 +85,7 @@
                             </div>
                             
                             <div class="row mb-4">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">
-                                        <i class="fas fa-tasks"></i>Type de service
-                                    </label>
-                                    <select name="service_types[]" class="form-select" multiple required style="height: 150px;">
-                                        <option value="impression">Impression</option>
-                                        <option value="photocopie">Photocopie</option>
-                                        <option value="saisie_texte">Saisie de texte</option>
-                                        <option value="tirage_photo">Tirage photo</option>
-                                        <option value="carte_visite">Tirage carte de visite</option>
-                                        <option value="affiche">Tirage affiche</option>
-                                        <option value="flyers">Tirage flyers</option>
-                                    </select>
-                                    <div class="form-text">Maintenez Ctrl (Windows) ou Cmd (Mac) pour sélectionner plusieurs options</div>
-                                </div>
+                             
                                 <div class="col-md-3 mb-3">
                                     <label class="form-label">
                                         <i class="fas fa-palette"></i>Couleur
@@ -122,7 +124,8 @@
                                     <div class="d-flex align-items-center">
                                         <div class="form-check form-switch me-3">
                                             <input class="form-check-input" type="checkbox" name="binding" id="bindingCheck" role="switch" value="1">
-                                            <input type="hidden" name="binding" value="0">                                        </div>
+                                            <input type="hidden" name="binding" value="0">
+                                        </div>
                                         <label class="form-check-label" for="bindingCheck">Activer la reliure</label>
                                     </div>
                                 </div>
@@ -132,8 +135,8 @@
                                     </label>
                                     <div class="d-flex align-items-center">
                                         <div class="form-check form-switch me-3">
-                                           <input class="form-check-input" type="checkbox" name="lamination" id="laminationCheck" role="switch" value="1">
-                                                <input type="hidden" name="lamination" value="0">
+                                            <input class="form-check-input" type="checkbox" name="lamination" id="laminationCheck" role="switch" value="1">
+                                            <input type="hidden" name="lamination" value="0">
                                         </div>
                                         <label class="form-check-label" for="laminationCheck">Activer la plastification</label>
                                     </div>
@@ -158,7 +161,13 @@
                                     <label class="form-label">
                                         <i class="fas fa-file"></i>Nombre de pages
                                     </label>
-                                    <input type="number" name="page_count" class="form-control" min="1" placeholder="Ex: 10" required>
+                                    <div class="input-group">
+                                        <input type="number" name="page_count" class="form-control" min="1" placeholder="Ex: 10" required id="pageCount">
+                                        <button type="button" class="btn btn-outline-secondary" id="autoDetectBtn">
+                                            <i class="fas fa-magic me-1"></i> Détecter
+                                        </button>
+                                    </div>
+                                    <div class="form-text" id="pageCountInfo">La détection fonctionne pour les fichiers PDF</div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
@@ -191,11 +200,21 @@
                                     </label>
                                     <div class="d-flex align-items-center">
                                         <div class="form-check form-switch me-3">
-                                            <input class="form-check-input" type="checkbox" name="student_tariff" id="studentTariff" role="switch" checked value="1">
-                                            <input type="hidden" name="student_tariff" value="0">
+                                            @if($hasPreviousOrder)
+                                                <input class="form-check-input" type="checkbox" name="student_tariff" id="studentTariff" role="switch" checked value="1" disabled>
+                                                <input type="hidden" name="student_tariff" value="1">
+                                            @else
+                                                <input class="form-check-input" type="checkbox" name="student_tariff" id="studentTariff" role="switch" checked value="1" disabled   >
+                                                <input type="hidden" name="student_tariff" value="0">
+                                            @endif
                                         </div>
                                         <label class="form-check-label" for="studentTariff">Tarif étudiant</label>
                                     </div>
+                                    @if($hasPreviousOrder)
+                                    <div class="form-text text-success">
+                                        <i class="fas fa-info-circle me-1"></i> Tarif étudiant activé automatiquement pour les clients fidèles
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             
@@ -208,19 +227,26 @@
                                         <label class="form-label">
                                             <i class="fas fa-city"></i>Commune de résidence
                                         </label>
-                                        <input type="text" name="commune" class="form-control" placeholder="Ex: Cocody">
+                                        <select name="commune" class="form-select" id="communeSelect" required>
+                                            <option value="">Sélectionnez votre commune</option>
+                                            <option value="Cotonou">Cotonou</option>
+                                            <option value="Calavi">Calavi</option>
+                                            <option value="Porto-Novo">Porto-Novo</option>
+                                            <option value="Godomey">Godomey</option>
+                                            <option value="Sèmè-Podji">Sèmè-Podji</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">
                                             <i class="fas fa-map-marker-alt"></i>Quartier de résidence
                                         </label>
-                                        <input type="text" name="neighborhood" class="form-control" placeholder="Ex: Angré">
+                                        <input type="text" name="neighborhood" class="form-control" placeholder="Ex:  Quartier Fifadji">
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">
                                             <i class="fas fa-location-dot"></i>Indication du domicile
                                         </label>
-                                        <input type="text" name="address_details" class="form-control" placeholder="Ex: Rue des Jardins">
+                                        <input type="text" name="address_details" class="form-control" placeholder="Ex:  Rue de l'Amazone">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -228,8 +254,15 @@
                                         <label class="form-label">
                                             <i class="fas fa-map-location-dot"></i>Localisation GPS
                                         </label>
-                                        <input type="text" name="gps_location" class="form-control" placeholder="Coordonnées GPS (optionnel)">
-                                        <div class="form-text">Ex: 5.3599517, -4.0082563</div>
+                                        <div class="location-container">
+                                            <input type="text" name="gps_location" class="form-control" id="gpsLocation" placeholder="Coordonnées GPS (optionnel)">
+                                            <button type="button" class="get-location-btn" id="getLocationBtn">
+                                                <i class="fas fa-location-crosshairs me-1"></i> Ma position
+                                            </button>
+                                        </div>
+                                        <div class="map-preview" id="mapPreview">
+                                            <i class="fas fa-map-marked-alt text-muted" style="font-size: 3rem;"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -308,6 +341,8 @@
 
 @section('extra-scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
 <script src="{{asset('clients/js-data/reprography.js')}}"></script>
 <script src="{{asset('clients/assets/js/nicesellect.js?')}}"></script>
 @endsection

@@ -257,7 +257,16 @@
                         </a>
                     </div>
                 </div>
-                   
+                   <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-copy"></i>
+                        </div>
+                        <h3 class="feature-title">Reprographie</h3>
+                        <p class="feature-description">Commander et recevoir en toute confidentialité les impressions, photocopies, saisies, scannages et reliure de vos documents.</p>
+                        <a href="{{route('reprography')}}" class="feature-btn">Accéder au service</a>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="feature-card h-100">
                         <div class="feature-icon bg-pape">
@@ -271,16 +280,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-copy"></i>
-                        </div>
-                        <h3 class="feature-title">Reprographie</h3>
-                        <p class="feature-description">Commander et recevoir en toute confidentialité les impressions, photocopies, saisies, scannages et reliure de vos documents.</p>
-                        <a href="{{route('reprography')}}" class="feature-btn">Accéder au service</a>
-                    </div>
-                </div>
+                
                             
             
             </div>

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\ReprographyOrder;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Commande;
+use App\Models\Client;
 
 class ReprographyOrderController extends Controller
 {
@@ -14,7 +16,8 @@ class ReprographyOrderController extends Controller
 
      public function create()
     {
-        return view('clients.layouts.reprography.create');
+        $hasPreviousOrder = Commande::where('client_id',session('client_id'));
+        return view('clients.layouts.reprography.create',compact('hasPreviousOrder'));
     }
 
     public function store(Request $request)

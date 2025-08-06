@@ -15,7 +15,7 @@ class ReprographyOrder extends Model
         'user_id', 'contact', 'file_path', 'service_types', 'color', 'option',
         'format', 'binding', 'binding_type', 'lamination', 'page_count', 'copy_count',
         'delivery_mode', 'commune', 'neighborhood', 'address_details', 'gps_location',
-        'relay_point', 'student_tariff', 'order_cost', 'delivery_cost', 'total_cost'
+        'relay_point', 'student_tariff', 'order_cost', 'delivery_cost', 'total_cost','status'
     ];
 
     protected $casts = [
@@ -23,5 +23,13 @@ class ReprographyOrder extends Model
         'binding' => 'boolean',
         'lamination' => 'boolean',
         'student_tariff' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

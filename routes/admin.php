@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ThemeMemoireController;
 use App\Http\Controllers\Admin\DemandeStageController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ReprographyOrderController;
 
 Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     //
@@ -87,6 +88,20 @@ Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
     Route::get('messages/datatable', [MessageController::class, 'datatable'])->name('messages.datatable');
     Route::get('admin/messages/download/{id}', [MessageController::class, 'download'])->name('messages.download');
     Route::get('/admin/users/search', [MessageController::class, 'searchUsers'])->name('admin.users.search');
+
+
+
+    // Route Reprographie 
+
+    Route::get('admin/reprography/index', [ReprographyOrderController::class, 'index'])->name('reprography');
+    Route::get('reprography/datatable', [ReprographyOrderController::class, 'datatable'])->name('reprography.datatable');
+    Route::get('admin/reprography/details/{id}', [ReprographyOrderController::class, 'details'])->name('reprography.details');
+    Route::get('admin/reprography/download/{id}', [ReprographyOrderController::class, 'download'])->name('download.reprography_file');
+    Route::post('/admin/reprography/{id}/accept', [ReprographyOrderController::class, 'acceptOrder'])->name('reprography.accept');
+    Route::post('/admin/reprography/{id}/reject', [ReprographyOrderController::class, 'rejectOrder'])->name('reprography.refuse');
+    Route::post('/admin/reprography/{id}/complete', [ReprographyOrderController::class, 'completeOrder'])->name('reprography.complete');
+    Route::post('/admin/reprography/{id}/cancel', [ReprographyOrderController::class, 'cancelOrder'])->name('reprography.cancel');
+
 
 });
 
