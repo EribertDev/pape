@@ -1,5 +1,7 @@
 @extends('clients.master-1')
 @section('extra-style')
+     <script src="https://cdn.tailwindcss.com"></script>
+
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -16,6 +18,34 @@ body {
 
 
 @section('page-content')
+ <div class="mobile-nav fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50 md:hidden">
+        <div class="flex justify-around py-3">
+            <a href="{{route('dash.client')}}" class="text-primary flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-home text-lg mb-1"></i>
+                <span class="text-xs">Accueil</span>
+            </a>
+            <a href="{{route('dash.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-file-alt text-lg mb-1"></i>
+                <span class="text-xs">Commandes</span>
+            </a>
+            <a href="{{route('internships.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-graduation-cap text-lg mb-1"></i>
+                <span class="text-xs">Stages</span>
+            </a>
+            <a href="{{route('projects.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-project-diagram text-lg mb-1"></i>
+                <span class="text-xs">Projets</span>
+            </a>
+            <a href="{{route('message.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-comments text-lg mb-1"></i>
+                <span class="text-xs">Messages</span>
+            </a>
+            <a href="{{route('client.profile')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-user text-lg mb-1"></i>
+                <span class="text-xs">Profil</span>
+            </a>
+        </div>
+    </div>
     <section class="section-top">
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">
@@ -181,20 +211,7 @@ body {
 
             <!-- Messages & Info -->
             <div class="space-y-8">
-                <!-- Messages -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-                    <div class="bg-indigo-700 px-6 py-4">
-                        <h2 class="text-xl font-bold text-white flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
-                            </svg>
-                            Derniers Messages
-                        </h2>
-                    </div>
-                    
-                   
-                </div>
-                
+             
               
             </div>
         </div>

@@ -136,6 +136,7 @@ Route::middleware(['auth','role:Client'])->group(function (){
 
     //
     Route::get('/mon-espace',[ClientDashController::class,'index'])->name('dash.client');
+    Route::get('/mon-espace/commande',[ClientDashController::class,'commandes'])->name('dash.commande');
     Route::get('/mon-espace/commande/detail/{uuid}',[ClientDashController::class,'commandeDetaile'])->name('dash.client.commande.detail');
 
     //route commande clients

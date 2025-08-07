@@ -129,7 +129,7 @@
         } else {
             data.forEach(user => {
                 // Correction du typo: fist_name → first_name
-                const option = new Option(`${user.fist_name} ${user.last_name}`, user.id);
+                const option = new Option(`${user.fist_name} ${user.last_name}`, user.user.id);
                 select.add(option);
             });
         }

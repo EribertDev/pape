@@ -33,18 +33,9 @@
                 <div class="container"><h2 class="fw-bold">Salut👋</h2>
                     <h2 class="fw-bold mb-2"> {{ session('clientInfo') ->fist_name}}</h2></div>
                 <span class="button-groups-1 d-flex justify-content-center d-block d-lg-none ">
-                  <button type="button" class="active"><a href="{{route('dash.client')}}" style="color: #FFF">Mes commandes</a></button>
-                  {{-- <button type="button"> <a href="{{route('dash.client')}}"
-                                            style="color: #1a2d62">Mes achats</a></button> --}}
-                                    <button type="button"> <a href="{{route('client.profile')}}"
-                                            style="color: #1a2d62">Profile</a>
-                                    </button>
-                                <button type="button">
-                                        <a class="profil-link" href="{{route('internships.dash')}}"> Mes stages</a>
-                                </button>
-                                 <button type="button">
-                                        <a class="profil-link" href="{{route('projects.dash')}}">Projets</a>
-                                </button>
+                <a href="{{route('dash.client')}}" class="btn-secondary mr-3">
+                            <i class="fas fa-arrow-left mr-2"></i> Retour
+                        </a>                
                 </span>
                 <div class="sidebar-post d-none d-lg-block">
                     <div class="sidebar_title"><h4>Tableau de Bord</h4></div>

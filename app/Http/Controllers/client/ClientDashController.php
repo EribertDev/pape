@@ -8,6 +8,11 @@ use App\Models\Commande;
 use App\Models\FilePatchOfCommande;
 use App\Models\Payement;
 use App\Models\ThemeMemoire;
+use App\Models\UserDocument;
+use App\Models\ProjectRequest;
+use App\Models\Stage;
+use App\Models\User;
+
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -17,11 +22,22 @@ class ClientDashController extends Controller
 {
     //
     public function index(){
+        $client = session()->get("clientInfo");
         $commandes = (new Commande())->getAllCommandeByClientId(session()->get("clientInfo")->id);
-        if ($commandes){
-            return view('clients.layouts.dash.dash-client')->with('commandes', $commandes);
-        }
-        return view('clients.layouts.dash.dash-client');
+        $projets= ProjectRequest::with('user.client')->where('user_id', Auth::id())->get();
+        $projet_en_cours = ProjectRequest::with('user.client')->where('user_id', Auth::id())->where('status', 'pending')->get();
+        $commande_en_cours= Commande::with('user.client')->where('client_id', $client->id)->where('status_id', '3')->get();
+        $projets_actifs= ProjectRequest::with('user.client')->where('user_id', Auth::id())->where('status', 'approuved')->get();
+        $stages_en_cours = Stage::where('user_id', Auth::id())->where('status', 'pending')->get();
+        $stages= Stage::where('user_id', Auth::id())->get();
+        $nouveaux_messages=UserDocument::where('user_id', Auth::id())->get();
+        
+        return view('clients.layouts.dash.new-dash',compact('commandes','projets','stages','projet_en_cours','commande_en_cours','projets_actifs','stages_en_cours','nouveaux_messages'));
+    }
+
+    public function commandes(){
+        $commandes = (new Commande())->getAllCommandeByClientId(session()->get("clientInfo")->id);
+        return view('clients.layouts.dash.dash-client',compact('commandes'));
     }
 
     public function commandeDetaile($uuid){

@@ -197,7 +197,7 @@ background: linear-gradient(135deg, #2c9e6a 0%, #1f5d4b 100%);
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">
                 <div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.3s; animation-name: fadeInRight;">
-                    <h1>A propos</h1>
+                    <h1>Comprendre le PAPE</h1>
                 </div><!-- //.HERO-TEXT -->
             </div><!--- END COL -->
         </div><!--- END CONTAINER -->

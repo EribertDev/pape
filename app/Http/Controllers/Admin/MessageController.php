@@ -26,7 +26,8 @@ class MessageController extends Controller
         $query = $request->get('query'); // Récupère le mot-clé de recherche
         $client=Client::all();
        
-        $data= Client::where('fist_name', 'like', '%' . $query . '%')->orWhere('last_name', 'like', '%' . $query . '%')->get();
+       
+        $data= Client::with('user')->where('fist_name', 'like', '%' . $query . '%')->orWhere('last_name', 'like', '%' . $query . '%')->get();
         return response()->json($data);
 
     

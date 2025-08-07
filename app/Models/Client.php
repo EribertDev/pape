@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Client extends Model
 {
@@ -84,6 +86,17 @@ class Client extends Model
     public function commandes(): HasMany
     {
         return $this->hasMany(Commande::class, 'client_id');
+    }
+
+    public function getUserIdByClientId($client_id){
+        return DB::table('client')->select('user_id')
+            ->where('id', $client_id)
+            ->first();
+    }
+
+      public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
     
 }

@@ -40,7 +40,8 @@ class AuthenticatedSessionController extends Controller
                 if ($client) {
                     session()->put('client_statut', Status::getNameById($client->status_id));
                     session()->put('clientInfo', $client);
-                } else {
+                }
+                else {
                     return response()->json(['msg' => 'Client introuvable', 'success' => false, 'data' => []], 422);
                 }
                 // Gestion pour les administrateurs
@@ -61,7 +62,45 @@ class AuthenticatedSessionController extends Controller
     }
     /**
      * Destroy an authenticated session.
+     * 
+     * 
+     * 
+     * 
+     * 
      */
+
+
+    protected function getRedirectUrlByRole(string $role, int $userId): ?string
+{
+    switch ($role) {
+        case 'Client':
+            $client = (new Client())->getClientByUserId($userId);
+            if (!$client) return null;
+            
+            session()->put([
+                'client_statut' => Status::getNameById($client->status_id),
+                'clientInfo' => $client
+            ]);
+            return '/home';
+            
+        case 'Administrateur':
+        case 'Editeur':
+        case 'Affilier':
+        case 'Super Admin':
+        case 'Gestionnaire':
+            $admin = (new Admin())->getAdminByUserId($userId);
+            if (!$admin) return null;
+            
+            session()->put([
+                'admin_statut' => Status::getNameById($admin->status_id),
+                'adminInfo' => $admin
+            ]);
+            return '/admin/dash';
+            
+        default:
+            return '/home';
+    }
+}
     public function destroy(Request $request): \Illuminate\Http\RedirectResponse
     {
         Auth::guard('web')->logout();

@@ -4,9 +4,39 @@
     <link rel="stylesheet" href="{{asset(('clients/assets/css/shop.css'))}}" />
     <link rel="stylesheet" href="{{asset(('clients/assets/css/profile.css'))}}" />
     <link rel="stylesheet" href="{{asset(('clients/assets/css/btn-groupe.css'))}}" />
+         <script src="https://cdn.tailwindcss.com"></script>
+
 @endsection
 
 @section('page-content')
+ <div class="mobile-nav fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50 md:hidden">
+        <div class="flex justify-around py-3">
+            <a href="{{route('dash.client')}}" class="text-primary flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-home text-lg mb-1"></i>
+                <span class="text-xs">Accueil</span>
+            </a>
+            <a href="{{route('dash.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-file-alt text-lg mb-1"></i>
+                <span class="text-xs">Commandes</span>
+            </a>
+            <a href="{{route('internships.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-graduation-cap text-lg mb-1"></i>
+                <span class="text-xs">Stages</span>
+            </a>
+            <a href="{{route('projects.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-project-diagram text-lg mb-1"></i>
+                <span class="text-xs">Projets</span>
+            </a>
+            <a href="{{route('message.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-comments text-lg mb-1"></i>
+                <span class="text-xs">Messages</span>
+            </a>
+            <a href="{{route('client.profile')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-user text-lg mb-1"></i>
+                <span class="text-xs">Profil</span>
+            </a>
+        </div>
+    </div>
     <section class="section-top">
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">

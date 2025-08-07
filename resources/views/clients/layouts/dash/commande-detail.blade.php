@@ -82,6 +82,35 @@
 @endsection
 
 @section('page-content')
+       <!-- Navigation Mobile -->
+    <div class="mobile-nav fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50 md:hidden">
+        <div class="flex justify-around py-3">
+            <a href="{{route('dash.client')}}" class="text-primary flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-home text-lg mb-1"></i>
+                <span class="text-xs">Accueil</span>
+            </a>
+            <a href="{{route('dash.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-file-alt text-lg mb-1"></i>
+                <span class="text-xs">Commandes</span>
+            </a>
+            <a href="{{route('internships.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-graduation-cap text-lg mb-1"></i>
+                <span class="text-xs">Stages</span>
+            </a>
+            <a href="{{route('projects.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-project-diagram text-lg mb-1"></i>
+                <span class="text-xs">Projets</span>
+            </a>
+            <a href="{{route('message.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-comments text-lg mb-1"></i>
+                <span class="text-xs">Messages</span>
+            </a>
+            <a href="{{route('client.profile')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-user text-lg mb-1"></i>
+                <span class="text-xs">Profil</span>
+            </a>
+        </div>
+    </div>
     <section class="section-top">
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">
@@ -105,13 +134,17 @@
                 <div class="sidebar-post">
                     <div class="sidebar_title"><h4>Tableau de Bord</h4></div>
                     <div class="sidebar-banner">
-                        <a class="profil-link-active" href="{{route('dash.client')}}">Mes commandes</a>
+                        <a href="{{route('dash.client')}}" class="btn-secondary mr-3">
+                            <i class="fas fa-arrow-left mr-2"></i> Retour
+                        </a>
                         <hr>
                         {{-- <a class="profil-link" href="{{route('pay.reclamation')}}">Réclamtion</a>
                         <hr> --}}
                         {{-- <a class="profil-link" href="#">Mes achats</a>
                         <hr>--}}
-                        <a class="profil-link" href="{{route('client.profile')}}">Profile</a>
+                       {{-- <a href="{{route('dash.client')}}" class="btn-secondary mr-3">
+                            <i class="fas fa-arrow-left mr-2"></i> Retour
+                        </a> --}}
                     </div><!-- END SOCIAL MEDIA POST -->
                 </div><!-- END SIDEBAR POST -->
             </div><!--- END COL -->
@@ -138,8 +171,37 @@
                                         <p class="mb-2"><span class="fw-bold text-black fs-6">Montant :</span> <span
                                             class="fs-6">{{$commande['amount']}} (XOF) F cfa</span></p>
                                         <p><span class="fw-bold text-black">Sujet : </span>{{$commande['subject']}}</p>
-                                        <div class="pd_text">
+                                        <div class="pd_text mb-5">
+                                              <div class="col-xs-12 bg-white mt-3 mb-3">
+                                                <div role="tabpanel" class="tab-pane fade show active" id="description">
+                                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier joint</p>
+                                                    @if ($commande->filesPath && count($commande->filesPath) > 0)
+                                                    <span>
+                                                        * {{ strtolower($commande->filesPath[0]->reference) }}
+                                                            <a href="{{ asset('storage/' . $commande->filesPath[0]->path) }}" download="{{ basename($commande->filesPath[0]->path) }}">
+                                                                <i class="ti-download  mx-2"></i>
+                                                            </a>
+                                                    </span>
+                                                    @if($commande->commune_stage)
+                                                        @foreach (json_decode($commande->commune_stage, true) as $index => $file)
+                                                        <div class="file-item">
+                                                            <i class="far fa-file-alt me-2"></i>
+                                                            <span>{{ $file['n'] }}</span> <!-- 'n' pour original_name -->
+                                                            <a href="{{ asset('storage/' . $file['p']) }}" download="{{ $file['n'] }}">
+                                                                <i class="fas fa-download"></i>
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+                                                    @endif
+                                                    @else
+                                                        <p>Aucun fichier joint disponible.</p>
+                                                    @endif
+                                                </div>
                                         </div>
+
+                                         
+
+
                                         @php
                                             $service = $commande->service?->name;
                                             $service = strtolower($service);
@@ -267,31 +329,7 @@
                             </div>
                         </div>
                         <div class="row">
-                               <div class="col-xs-12 bg-white mt-3">
-                                <div role="tabpanel" class="tab-pane fade show active" id="description">
-                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier joint</p>
-                                    @if ($commande->filesPath && count($commande->filesPath) > 0)
-                                       <span>
-                                        * {{ strtolower($commande->filesPath[0]->reference) }}
-                                            <a href="{{ asset('storage/' . $commande->filesPath[0]->path) }}" download="{{ basename($commande->filesPath[0]->path) }}">
-                                                <i class="ti-download  mx-2"></i>
-                                            </a>
-                                       </span>
-                                       @if($commande->commune_stage)
-                                          @foreach (json_decode($commande->commune_stage, true) as $index => $file)
-                                        <div class="file-item">
-                                            <i class="far fa-file-alt me-2"></i>
-                                            <span>{{ $file['n'] }}</span> <!-- 'n' pour original_name -->
-                                            <a href="{{ asset('storage/' . $file['p']) }}" download="{{ $file['n'] }}">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </div>
-                                @endforeach
-                                       @endif
-                                    @else
-                                        <p>Aucun fichier joint disponible.</p>
-                                    @endif
-                                </div>
+                             
                                    <!-- Section d'ajout de fichier -->
                                          <!-- Formulaire d'ajout de fichiers -->
                                     <div class="mt-4">
@@ -300,7 +338,7 @@
                                             <input type="hidden" name="commande_id" value="{{ $commande->id }}">
                                             
                                             <div class="mb-3">
-                                                <label for="newFiles" class="form-label">Ajouter des fichiers</label>
+                                                <label for="newFiles" class="form-label">Envoyer Fichier a l'equipe PAPE</label>
                                                 <input class="form-control" type="file" id="newFiles" name="files[]" multiple>
                                                 <div class="form-text">Formats acceptés: PDF, DOCX, XLSX, JPG, PNG. Max 10MB par fichier.</div>
                                             </div>
@@ -320,7 +358,7 @@
                             </div>
                             <div class="col-xs-12 bg-white mt-3">
                                 <div role="tabpanel" class="tab-pane fade show active" id="description">
-                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier de l'equipe PAPE</p>
+                                    <p class="fw-bold fs-6 mt-2 text-black">Fichier reçu de l'equipe PAPE</p>
                                     @if ($commande->attachments )
                                        <span>
                                             <a href="{{route('download.file', $commande->id)}}"  class="btn btn-sm btn-success"> Télécharger <i class="ti-download  mx-2"></i></a>

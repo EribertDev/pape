@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{asset(('clients/assets/css/profile.css'))}}"/>
     <link rel="stylesheet" href="{{asset(('clients/assets/css/btn-groupe.css'))}}"/>
     <link rel="stylesheet" href="{{asset(('stdev/css/badge-status.css'))}}"/>
+         <script src="https://cdn.tailwindcss.com"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .badge-pending {
@@ -45,6 +47,34 @@
 @endsection
 
 @section('page-content')
+ <div class="mobile-nav fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50 md:hidden">
+        <div class="flex justify-around py-3">
+            <a href="{{route('dash.client')}}" class="text-primary flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-home text-lg mb-1"></i>
+                <span class="text-xs">Accueil</span>
+            </a>
+            <a href="{{route('dash.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-file-alt text-lg mb-1"></i>
+                <span class="text-xs">Commandes</span>
+            </a>
+            <a href="{{route('internships.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-graduation-cap text-lg mb-1"></i>
+                <span class="text-xs">Stages</span>
+            </a>
+            <a href="{{route('projects.dash')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-project-diagram text-lg mb-1"></i>
+                <span class="text-xs">Projets</span>
+            </a>
+            <a href="{{route('message.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-comments text-lg mb-1"></i>
+                <span class="text-xs">Messages</span>
+            </a>
+            <a href="{{route('client.profile')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
+                <i class="fas fa-user text-lg mb-1"></i>
+                <span class="text-xs">Profil</span>
+            </a>
+        </div>
+    </div>
     <section class="section-top">
         <div class="container">
             <div class="col-lg-10 offset-lg-1 text-center">
@@ -67,18 +97,9 @@
                 <div class="container"><h2 class="fw-bold">Salut👋</h2>
                     <h2 class="fw-bold mb-2"> {{ session('clientInfo') ->fist_name}}</h2></div>
                 <span class="button-groups-1 d-flex justify-content-center d-block d-lg-none ">
-                  <button type="button" class="active"><a href="{{route('dash.client')}}" style="color: #FFF">Demandes de Stage</a></button>
-                  {{-- <button type="button"> <a href="{{route('dash.client')}}"
-                                            style="color: #1a2d62">Mes achats</a></button> --}}
-                                             <button type="button">
-                                        <a class="profil-link" href="{{route('internships.dash')}}">Mes Stages</a>
-                                </button>
-                                             <button type="button">
-                                        <a class="profil-link" href="{{route('projects.dash')}}">Projets</a>
-                                </button>
-                  <button type="button"> <a href="{{route('client.profile')}}"
-                                            style="color: #1a2d62">Profile</a>
-                    </button>
+                    <a href="{{route('dash.client')}}" class="btn-secondary mr-3">
+                            <i class="fas fa-arrow-left mr-2"></i> Retour
+                        </a>
                 </span>
                 <div class="sidebar-post d-none d-lg-block">
                     <div class="sidebar_title"><h4>Tableau de Bord</h4></div>
