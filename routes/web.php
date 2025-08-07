@@ -29,7 +29,7 @@ use App\Mail\FormationRequestMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\client\ProjectRequestController;
 use App\Http\Controllers\Admin\AdminProjectController;
-use App\Http\Controllers\Client\MessageController;
+use App\Http\Controllers\client\MessageController;
 
 
 /*
