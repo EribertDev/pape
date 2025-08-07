@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ReprographyOrderController;
 
-Route::middleware(['auth', 'role:Administrateur,Affilier'])->group(function () {
+Route::middleware(['auth', 'role:Administrateur,Affilier,Gestionnaire'])->group(function () {
     //
     Route::get('/admin/dash', DashController::class)->name('admin.dash');
      Route::post('/dashboard/export', [DashController::class, 'export'])->name('dashboard.export');

@@ -12,7 +12,6 @@ use App\Models\UserDocument;
 use App\Models\ProjectRequest;
 use App\Models\Stage;
 use App\Models\User;
-
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -26,8 +25,8 @@ class ClientDashController extends Controller
         $commandes = (new Commande())->getAllCommandeByClientId(session()->get("clientInfo")->id);
         $projets= ProjectRequest::with('user.client')->where('user_id', Auth::id())->get();
         $projet_en_cours = ProjectRequest::with('user.client')->where('user_id', Auth::id())->where('status', 'pending')->get();
-        $commande_en_cours= Commande::with('user.client')->where('client_id', $client->id)->where('status_id', '3')->get();
-        $projets_actifs= ProjectRequest::with('user.client')->where('user_id', Auth::id())->where('status', 'approuved')->get();
+        $commande_en_cours= Commande::with('client')->where('client_id', $client->id)->where('status_id', '3')->get();
+        $projets_actifs= ProjectRequest::with('user')->where('user_id', Auth::id())->where('status', 'approuved')->get();
         $stages_en_cours = Stage::where('user_id', Auth::id())->where('status', 'pending')->get();
         $stages= Stage::where('user_id', Auth::id())->get();
         $nouveaux_messages=UserDocument::where('user_id', Auth::id())->get();
