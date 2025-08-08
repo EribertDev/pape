@@ -63,7 +63,7 @@ class AdminProjectController extends Controller
     $path = $request->file('final_file')->store('final_files');
 
     // Mettre à jour la demande
-    $project->update(['final_path' => $path,
+    $project->update(['file_path' => $path,
             'status' => 'approved']);
 
     // Envoyer l'email
