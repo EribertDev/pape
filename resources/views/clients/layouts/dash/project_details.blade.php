@@ -1,5 +1,6 @@
 @extends('clients.master-1')
 @section('extra-style')
+<script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
 
     <style>
     body {
@@ -347,11 +348,38 @@
                                         </div>
                                         <p class="mb-0">Votre projet a été validé. Vous pouvez maintenant procéder au paiement.</p>
                                     </div>
-                                    <a href="" class="btn btn-success btn-lg w-100 py-3 fw-bold">
+                                    {{-- 
+                                    <a href="" class="btn btn-success btn-lg w-100 py-3 fw-bold payer"  data-amount-type ="PROJECT" data-uuid ="{{$project->id}}"  data-pay-id="{{ $payment->id ?? '' }}">
                                         <i class="fas fa-lock me-2"></i> Payer maintenant (100 000 F CFA)
-                                    </a>
+                                    </a> --}}
+                                      @php
+                                        $user_id = Auth::user()->id ?? '';
+                                        $project_id = $project->id ?? '';
+                                        $bd_id = \App\Models\ProjectRequest::where('id', $project_id)->value('id');
+                                        $Paidpayment =  \App\Models\Payement::where('project_id' , $project_id)
+                                        ->where('user_id', $user_id)
+                                        ->where('status_id', 20)
+                                        ->first();
+                                                            
+                                            
+                                        // Récupération des paiements correspondant aux conditions
+                                        $payments = \App\Models\Payement::where('project_id', $project_id)
+                                            ->where('user_id', $user_id)
+                                            ->get()  ; 
+                                        $PendingPayments = $payments->where('status_id', 3)->last();                  
+                                        
+                                        // Récupération des paiements correspondant aux conditions
+                                        $payments = \App\Models\Payement::where('project_id', $project_id)
+                                            ->where('user_id', $user_id)
+                                            ->get(); 
+                                                                
+                                    @endphp
+
+
                                     
-                                    <p class="text-center text-muted mt-2 mb-0">Paiement sécurisé</p>
+                                     <button class="btn btn-success btn-lg w-100 py-3 fw-bold payer" type="button"   data-amount-type ="PROJECT" data-id ="{{ $project->id }}"  data-pay-id="{{ $payment->id ?? '' }}" data-amount="10000">
+                                        <span class="spinner-border spinner-border-sm spinner me-2" aria-hidden="true" hidden></span><i class="fas fa-lock me-2"></i> Payer maintenant (100 000 F CFA)
+                                    </button>
                                     @break
 
                                 @case('paid')
@@ -360,7 +388,7 @@
                                             <i class="fas fa-check-circle me-3" style="font-size: 1.5rem;"></i>
                                             <div>
                                                 <h5 class="mb-1">Paiement effectué</h5>
-                                                <p class="mb-0">Le {{ $project->created_at->format('d/m/Y à H:i') }}</p>
+                                                <p class="mb-0">Le {{ $project->updated_at->format('d/m/Y à H:i') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -444,9 +472,9 @@
                                 </div>
                             </div>
                             
-                            <div class="step {{ $project->status === 'completed' ? 'completed' : '' }}">
+                            <div class="step {{ $project->status === 'paid' ? 'completed' : '' }}">
                                 <div class="step-icon">
-                                    <i class="fas fa-{{ $project->status === 'completed' ? 'check' : 'edit' }}"></i>
+                                    <i class="fas fa-{{ $project->status === 'paid' ? 'check' : 'edit' }}"></i>
                                 </div>
                                 <div class="step-text">
                                     <h6>Rédaction</h6>
@@ -473,8 +501,63 @@
     </div>
 </div>
 
-<script type="module" src="{{asset('clients/js-data/project-details.js')}}">
-    
+
 </script>
+@endsection
+@section('extra-scripts')
+
+<script type="module" src="{{asset('clients/js-data/project-details.js')}}"> </script>
+
+<div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="payModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div id="embed" style="width: 500px; height: 420px;position:absolute;" ></div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4 class="modal-title text-center fw-bold" id="exampleModalLabel">Succès</h4>
+                    <div>
+                        <img class="mt-3" src="{{asset('clients/assets/images/icon/valide.png')}}" alt="" style="width: 70px;height: 70px">
+                    </div>
+                    <div>
+                        <h5 class="mt-3" id="s_title_msg">Paiement éffectue avec succès</h5>
+                        <p class="text-muted" id="s_msg" >Merci pour votre confiance</p>
+                    </div>
+                    <button type="button" class="btn_two mt-3 cancel__pay" data-bs-dismiss="modal">ok</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="payErrorModal" tabindex="-1" aria-labelledby="payErrorModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div id="embed" style="width: 500px; height: 420px;position:absolute;" ></div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <h4 class="modal-title text-center fw-bold" id="exampleModalLabel">Erreur</h4>
+                    <div>
+                        <img class="mt-2" src="{{asset('clients/assets/images/icon/caution.png')}}" alt="" style="width: 70px;height: 70px">
+                    </div>
+                    <div>
+                        <h5 class="mt-2" id="e_title_msg">Paiement échoué ou annulé</h5>
+                        <p class="text-muted" id="e_msg">Si votre compte a été débité, veuillez cliquer sur le bouton "J'ai Payer" pour vérifier votre paiement ou contactez-nous.</p>
+                    </div>
+                    {{-- <div class="text-start">
+                        <p class="text-muted ms-4">Référence commande : <span id="ref__cmd"></span></p>
+                        <p class="text-muted ms-4">Id payement : <span id="id__pay"></span></p>
+                    </div> --}}
+                    <div class="d-flex justify-content-center mt-2 gap-3">
+                        <button type="button" class="btn_two mt-3 cancel__pay" data-bs-dismiss="modal" id="cancel__pay">OK</button>
+                        {{-- <button type="button" class="btn_one mt-3 border-0" >Réclamation</button> --}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+    
 @endsection
 

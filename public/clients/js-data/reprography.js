@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const isStudent = $('input[name="student_tariff"]').is(':checked');
         const deliveryMode = $('select[name="delivery_mode"]').val();
         const color = $('select[name="color"]').val();
-        const binding = $('input[name="binding"]').is(':checked');
+        const binding = true;
         const lamination = $('input[name="lamination"]').is(':checked');
         const commune = $('#communeSelect').val();
         

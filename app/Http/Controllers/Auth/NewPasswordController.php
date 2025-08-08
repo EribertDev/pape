@@ -48,7 +48,7 @@ class NewPasswordController extends Controller
             ]);
         }
 
-       return view('clients.layouts.email-verifypassword_reset');
+       return view('clients.layouts.email-verify.password_reset');
         
     }
 }

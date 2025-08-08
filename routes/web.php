@@ -233,6 +233,13 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+//Route Paiement Project
+Route::post('/pay/project',[ProjectRequestController::class,'newPayement'])->name('pay.project');
+Route::post('/pay/project/verify',[ProjectRequestController::class,'verifyPayement'])->name('pay.project.verify');
+Route::post('/pay/project/confirme',[ProjectRequestController::class,'confirmePayement'])->name('pay.project.confirme');
+Route::post('/pay/project/finish',[ProjectRequestController::class,'finishPayement'])->name('pay.project.finish');
+
+
 
 //Route Message 
 Route::middleware(['auth'])->group(function () {

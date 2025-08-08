@@ -110,13 +110,13 @@
                             // Récupération des paiements correspondant aux conditions
                             $payments = \App\Models\Payement::where('base_id', $bd_id)
                                 ->where('user_id', $user_id)
-                                ->get()  ; // Utilisez `get()` pour obtenir tous les résultats
+                                ->get()  ; 
                             $PendingPayments = $payments->where('status_id', 3)->last();                  
                             
                             // Récupération des paiements correspondant aux conditions
                             $payments = \App\Models\Payement::where('base_id', $bd_id)
                                 ->where('user_id', $user_id)
-                                ->get(); // Utilisez `get()` pour obtenir tous les résultats
+                                ->get(); 
                                                     
                        @endphp
                         @if( $Paidpayment)

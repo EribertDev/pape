@@ -71,14 +71,14 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
-                                        <i class="fas fa-file-upload"></i>Fichier à imprimer
+                                        <i class="fas fa-file-upload"></i>Fichier
                                     </label>
                                     
                                     <div class="file-upload-container" id="fileUploadContainer">
                                         <i class="fas fa-cloud-upload-alt"></i>
                                         <h5>Glissez-déposez votre fichier ici</h5>
                                         <p class="text-muted">ou cliquez pour parcourir</p>
-                                        <input type="file" name="file" class="d-none" id="fileInput" required>
+                                        <input type="file" name="file" class="d-none" id="fileInput"  required>
                                         <div class="file-info" id="fileInfo">Formats acceptés: PDF, DOC, DOCX, JPG, PNG</div>
                                     </div>
                                 </div>
@@ -118,15 +118,18 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
+                                    {{-- 
                                     <label class="form-label">
                                         <i class="fas fa-book"></i>Reliure
                                     </label>
+                                     --}}
                                     <div class="d-flex align-items-center">
                                         <div class="form-check form-switch me-3">
-                                            <input class="form-check-input" type="checkbox" name="binding" id="bindingCheck" role="switch" value="1">
+                                            <input class="form-check-input" type="checkbox" name="binding" id="bindingCheck" role="switch" value="1" hidden>
                                             <input type="hidden" name="binding" value="0">
                                         </div>
-                                        <label class="form-check-label" for="bindingCheck">Activer la reliure</label>
+                                        {{-- 
+                                        <label class="form-check-label" for="bindingCheck">Activer la reliure</label> --}}
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -143,7 +146,7 @@
                                 </div>
                             </div>
                             
-                            <div class="row mb-3" id="bindingTypeSection" style="display: none;">
+                            <div class="row mb-3" id="bindingTypeSection" >
                                 <div class="col-md-12">
                                     <label class="form-label">
                                         <i class="fas fa-bookmark"></i>Mode de reliure

@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ProjectReceived;
 use App\Mail\NewProject;
+use App\Models\User;
+use App\Models\Payement;
+use App\Models\Status;
 
 class ProjectRequestController extends Controller
 {
@@ -82,8 +85,10 @@ class ProjectRequestController extends Controller
     public function newPayement(Request $request) {
         $request->validate([
             'amount_type' => 'required',
-            'uuid' => 'required',
+            'id' => 'required',
         ]);
+
+        $amount = $request->amount;
 
         $data=$request->all();
 
@@ -117,17 +122,17 @@ class ProjectRequestController extends Controller
                 ]);
             }
         }
-        $bd=(new BaseDonne())->getByUuid($data['uuid']);
+        $project= ProjectRequest::find($data['id']);
 
-        if($bd){
+        if($project){
             $amount_type = $data['amount_type'];
-            if($amount_type =='BD'){
-                $amount = $bd->amount;
-                $description = "Paiement de la base de données ".$bd->name;
+            if($amount_type =='PROJECT'){
+                $amount = $amount;
+                $description = "Paiement pour le projet ".$project->title;
             }
             $pay=[
                 'commande_id'=> 3,
-                'base_id'=> $bd->id,
+                'project_id'=> $project->id,
                 'user_id'=> Auth::user()->id,
                 'status_id'=>Status::getIdByName('En attente de paiement'),
                 'amount'=> $amount,
@@ -145,6 +150,7 @@ class ProjectRequestController extends Controller
                         "description"=>$description,
                         "amount"=>(int)$amount,
                         "client"=>$client,
+                        
                       //  "transaction_id"=>$trans
                     ]
                 ], 200);
@@ -171,6 +177,8 @@ class ProjectRequestController extends Controller
       
         $staut = "En attente";
 
+       
+
         if($pay){
             $_pay = (new Payement())->updatePayement(
                 $data['id'],
@@ -183,9 +191,11 @@ class ProjectRequestController extends Controller
                 return response()->json([
                     "msg" => "Payment successfully registered",
                     "success" => true,
+                    "id"=>$pay->id,
                     "data"=>[
                         "transaction_id"=> $data['transaction_id'],
-                       
+                        "id"=>$pay->id,
+                        
                     ]
                 ], 200);
            } 
@@ -200,9 +210,9 @@ class ProjectRequestController extends Controller
 
     public function confirmePayement(Request $request) {
         //Api key 
-        \FedaPay\Fedapay::setApiKey("sk_live_JTay4TNNiNyZNWExXuO0Khks");
+        \FedaPay\Fedapay::setApiKey("sk_sandbox_WHk3VWXx2OoC_xzCkpI8UCqg");
         // mode test ou live
-        \FedaPay\FedaPay::setEnvironment('live'); // ou setEnvironment('live');
+        \FedaPay\FedaPay::setEnvironment('sandbox'); // ou setEnvironment('live');
         // Validation des données d'entrée
         $data = $request->validate([
             'pay_id' => 'required'
@@ -218,6 +228,8 @@ class ProjectRequestController extends Controller
         
             if ($transaction && $transaction->status === "approved") {
                 $status = "Payer";
+                ProjectRequest::where('id', $payement->project_id)->update(['status' => 'paid',
+            'updated_at' => date('Y-m-d H:i:s') ]);
             }
             // Mise à jour du statut du paiement
             (new Payement())->updatePayement($data['pay_id'], ['status_id' => Status::getIdByName(name: $status)]);
