@@ -13,7 +13,7 @@
         <div class="flex justify-around py-3">
             <a href="{{route('dash.client')}}" class="text-primary flex flex-col items-center" style="margin-right: 30px;">
                 <i class="fas fa-home text-lg mb-1"></i>
-                <span class="text-xs">Accueil</span>
+                <span class="text-xs">Mon Espace</span>
             </a>
             <a href="{{route('dash.client')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
                 <i class="fas fa-file-alt text-lg mb-1"></i>

@@ -63,7 +63,7 @@
         <div class="flex justify-around py-3">
             <a href="{{route('dash.client')}}" class="text-primary flex flex-col items-center" style="margin-right: 30px;">
                 <i class="fas fa-home text-lg mb-1"></i>
-                <span class="text-xs">Accueil</span>
+                <span class="text-xs">Mon Espace</span>
             </a>
             <a href="{{route('dash.commande')}}" class="text-gray-500 flex flex-col items-center" style="margin-right: 30px;">
                 <i class="fas fa-file-alt text-lg mb-1"></i>
@@ -371,7 +371,7 @@
                                     <div class="flex justify-between">
                                         <h4 class="font-medium text-blue-600" >{{ $request->user->client->fist_name }} {{ $request->user->client->last_name }}</h4>
                                         @if ($request->status == 'pending')
-                                            <span class="badge badge-pending">En attente de signature</span>
+                                            <span class="badge badge-pending">Contrat en attente de signature</span>
                                         @elseif ($request->status == 'under_review')
                                             <span class="badge badge-under_review">En cours de traitement</span>
                                         @elseif ($request->status == 'approved')
