@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\client;
 
 use App\Models\ProjectRequest;
@@ -13,6 +12,7 @@ use App\Mail\NewProject;
 use App\Models\User;
 use App\Models\Payement;
 use App\Models\Status;
+
 
 class ProjectRequestController extends Controller
 {
@@ -210,7 +210,7 @@ class ProjectRequestController extends Controller
 
     public function confirmePayement(Request $request) {
         //Api key 
-        \FedaPay\Fedapay::setApiKey("sk_sandbox_WHk3VWXx2OoC_xzCkpI8UCqg");
+        \FedaPay\FedaPay::setApiKey("sk_sandbox_WHk3VWXx2OoC_xzCkpI8UCqg");
         // mode test ou live
         \FedaPay\FedaPay::setEnvironment('sandbox'); // ou setEnvironment('live');
         // Validation des données d'entrée
