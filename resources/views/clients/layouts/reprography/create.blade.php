@@ -50,7 +50,7 @@
                                     <label class="form-label">
                                         <i class="fas fa-tasks"></i>Type de service
                                     </label>
-                                    <select name="service_types[]" class="form-select" multiple required style="height: 150px;">
+                                    <select name="service_types[]" class="form-select" required >
                                         <option value="impression">Impression</option>
                                         <option value="photocopie">Photocopie</option>
                                         <option value="saisie_texte">Saisie de texte</option>
