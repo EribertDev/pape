@@ -118,18 +118,18 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    {{-- 
+                                  
                                     <label class="form-label">
                                         <i class="fas fa-book"></i>Reliure
                                     </label>
-                                     --}}
+                                    
                                     <div class="d-flex align-items-center">
                                         <div class="form-check form-switch me-3">
                                             <input class="form-check-input" type="checkbox" name="binding" id="bindingCheck" role="switch" value="1" hidden>
                                             <input type="hidden" name="binding" value="0">
                                         </div>
-                                        {{-- 
-                                        <label class="form-check-label" for="bindingCheck">Activer la reliure</label> --}}
+                                       <input class="form-check-input" type="checkbox" name="binding" id="bindingCheck" role="switch" value="1">
+                                        <label class="form-check-label" for="bindingCheck">Activer la reliure</label> 
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">

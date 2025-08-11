@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
         if (commune === 'Cotonou' || commune === 'Calavi') {
             deliveryCost = 500;
         }
+        if (deliveryMode === 'Point relais') {
+            deliveryCost = 0;
+        }
+
         
         const totalCost = orderCost + deliveryCost;
         

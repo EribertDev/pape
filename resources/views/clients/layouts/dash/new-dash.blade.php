@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{asset(('clients/assets/css/styles_perso.css'))}}"/>
     <link rel="stylesheet" href="{{asset(('clients/assets/css/profile.css'))}}"/>
     <link rel="stylesheet" href="{{asset(('clients/assets/css/btn-groupe.css'))}}"/>
-    <link rel="stylesheet" href="{{asset(('sclients/assets/css/dash.css'))}}"/>
+    <link rel="stylesheet" href="{{asset(('clients/assets/css/dash.css'))}}"/>
     <link rel="stylesheet" href="{{asset(('stdev/css/badge-status.css'))}}"/>
 
     <link rel="stylesheet" href="{{asset(('stdev/css/style.css'))}}">

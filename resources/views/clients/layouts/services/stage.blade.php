@@ -200,7 +200,7 @@
                                         </label>
                                         <div class="file-upload btn btn-outline-primary w-100" >
                                             <i class="fas fa-cloud-upload-alt me-2"></i>Télécharger le fichier
-                                            <input type="file" id="recommendation_letter" name="recommendation_letter" class="form-control-file" accept=".pdf,.doc,.docx">
+                                            <input type="file" id="recommendation_letter" name="recommendation_letter" class="form-control-file" accept=".pdf,.doc,.docx" required>
                                         </div>
                                         <span class="file-info">Optionnel (PDF, DOC, DOCX)</span>
                                     </div>
@@ -216,7 +216,7 @@
                                                 <i class="fas fa-cloud-upload-alt me-2"></i>
                                                 <span id="cipFileName">Téléverser le fichier</span>
                                                 <input type="file" id="cip" name="cip" class="d-none" 
-                                                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required>
                                             </div>
                                             <div class="file-requirements text-muted mt-2">
                                                 Formats acceptés: PDF, JPG, PNG, DOC, DOCX (max 2MB)

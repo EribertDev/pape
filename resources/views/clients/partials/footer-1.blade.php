@@ -1,5 +1,4 @@
 <!-- START FOOTER -->
-
 <div class="footer section-padding">
     <div class="container">
         <div class="row">
@@ -8,9 +7,9 @@
                     <a href="{{route('home')}}"><img src="{{asset('clients/assets/images/icon/logo-syrram.png')}}" style="width: 70px;height: 60px" alt=""></a>
                     {{-- <p style="text-align: justify">SyRRaM, votre allié digital pour une rédaction rapide et efficace de mémoires et thèses, avec un suivi personnalisé.</p> --}}
                     <div class="pd_social_icon fs-4">
-                        <a href="https://www.facebook.com/CESIEofficiel?mibextid=ZbWKwL" style="color: white"><i class="fa fa-facebook"></i></a>
-                        <a href="https://wa.me/22962435929" style="color: white"><i class="fa fa-whatsapp"></i></a>
-                        <a href="https://www.youtube.com/@cesieofficiel" style="color: white"><i class="fa fa-youtube-play"></i></a>
+                        <a href="https://www.facebook.com/CESIEofficiel?mibextid=ZbWKwL" style="color: white"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/22962435929" style="color: white"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@cesieofficiel" style="color: white"><i class="fab fa-youtube-play"></i></a>
                     </div>
                 </div>
             </div><!--- END COL -->

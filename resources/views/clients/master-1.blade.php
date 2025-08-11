@@ -32,6 +32,9 @@
         <!-- Style CSS -->
         <link rel="stylesheet" href="{{asset('clients/assets/css/style.css')}}">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
         {{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @yield('extra-style')
