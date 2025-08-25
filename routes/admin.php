@@ -78,6 +78,8 @@ Route::middleware(['auth', 'role:Administrateur,Affilier,Gestionnaire'])->group(
     Route::get('admin/projects', [AdminProjectController::class, 'index'])->name('projects.index');
     Route::get('admin/projects/details/{id}', [AdminProjectController::class, 'details'])->name('projects.details');
     Route::get('projects/datatable', [AdminProjectController::class, 'datatable'])->name('projects.datatable');
+        Route::post('/admin/projects/{id}/accept', [AdminProjectController::class, 'acceptOrder'])->name('reprography.accept');
+
     Route::get('admin/projects/download/{id}', [AdminProjectController::class, 'download'])->name('admin.project-document.download');
     Route::post('admin/projects/upload-final-file', [AdminProjectController::class, 'uploadFinalFile'])->name('final-file.upload');
 
@@ -97,7 +99,7 @@ Route::middleware(['auth', 'role:Administrateur,Affilier,Gestionnaire'])->group(
     Route::get('reprography/datatable', [ReprographyOrderController::class, 'datatable'])->name('reprography.datatable');
     Route::get('admin/reprography/details/{id}', [ReprographyOrderController::class, 'details'])->name('reprography.details');
     Route::get('admin/reprography/download/{id}', [ReprographyOrderController::class, 'download'])->name('download.reprography_file');
-    Route::post('/admin/reprography/{id}/accept', [ReprographyOrderController::class, 'acceptOrder'])->name('reprography.accept');
+    Route::post('/admin/reprography/{id}/accept', [ReprographyOrderController::class, 'acceptOrder'])->name('project.accept');
     Route::post('/admin/reprography/{id}/reject', [ReprographyOrderController::class, 'rejectOrder'])->name('reprography.refuse');
     Route::post('/admin/reprography/{id}/complete', [ReprographyOrderController::class, 'completeOrder'])->name('reprography.complete');
     Route::post('/admin/reprography/{id}/cancel', [ReprographyOrderController::class, 'cancelOrder'])->name('reprography.cancel');

@@ -123,7 +123,7 @@
 
                         <div class="mb-4">
                             <label for="document" class="form-label fw-bold">Document utile (PDF, Word)</label>
-                            <input class="form-control @error('document') is-invalid @enderror" type="file" id="document" name="document" accept=".pdf,.doc,.docx" required>
+                            <input class="form-control @error('document') is-invalid @enderror" type="file" id="document" name="document" accept=".pdf,.doc,.docx" >
                             @error('document')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

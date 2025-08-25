@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Stage;
 use App\Mail\ProjectApprouved;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class AdminProjectController extends Controller
 {
@@ -77,4 +78,49 @@ class AdminProjectController extends Controller
 
 
         }
+
+
+
+
+                public function acceptOrder(Request $request, $id)
+    {
+        DB::beginTransaction();
+        
+        try {
+            $order = ProjectRequest::findOrFail($id);
+            
+            // Vérifier que la commande est bien en attente
+            if ($order->status !== 'pending') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Seules les commandes en attente peuvent être acceptées'
+                ], 400);
+            }
+            
+            // Mettre à jour le statut
+            $order->update([
+                'status' => 'approved',
+                'updated_at' => now(),
+            ]);
+            
+          
+            
+            DB::commit();
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Commande acceptée avec succès',
+                'data' => $order
+            ]);
+            
+        } catch (\Exception $e) {
+            DB::rollBack();
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur lors de l\'acceptation de la commande',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

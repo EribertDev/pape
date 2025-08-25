@@ -31,6 +31,9 @@ class StageContractMail extends Mailable
     public function build()
     {
         $pdfPath = Storage::path($this->internshipRequest->contract_path);
+        $letterPath=$this->internshipRequest->letterPath;
+       // $fileContent = Storage::disk('public')->get($this->internshipRequest->letterPath);
+        $letterName='Lettre de Demande de Stage_'.$this->internshipRequest->id.'.docx';
         $fileName = 'Contrat_Stage_'.$this->internshipRequest->id.'.pdf';
          $imageSrc = 'https://pape.cesiebenin.com/clients/assets/images/all-img/image.png';
 
@@ -53,6 +56,7 @@ class StageContractMail extends Mailable
                 'as' => $fileName,
                 'mime' => 'application/pdf',
             ]);
+          
     }
 
     /**

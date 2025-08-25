@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         'pending_signature': 'badge-info',
                         'under_review': 'badge-info',
                         'approved': 'badge-success',
+                        'paid': 'badge-info',
                         'rejected': 'badge-danger',
                         'completed': 'badge-secondary'
                     };
@@ -46,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         'under_review': 'En vérification',
                         'approved': 'Approuvé',
                         'rejected': 'Rejeté',
-                        'completed': 'Terminé'
+                        'completed': 'Terminé',
+                        'paid': 'Payé'
                     };
                     return `<span class="badge ${statusMap[data]}">${statusText[data]}</span>`;
                 }

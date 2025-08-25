@@ -392,6 +392,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if($project->file_path)
+                                    <div class="mt-3">
+                                        <a href="{{ route('project.download', ['id' => $project->id]) }}" class="btn btn-primary">
+                                            <i class="fas fa-download me-1"></i> Télécharger le projet final
+                                        </a>
+                                    </div>
+                                    @else
+                                    <div class="mt-3">
+                                        <a href="#" class="btn btn-secondary disabled">
+                                            <i class="fas fa-download me-1"></i> Projet final en cours de préparation
+                                            Vous pourriez télécharger le projet une fois qu'il sera prêt.
+                                        </a>
+                                    </div>
+                                    @endif
                                     @break
 
                                 @case('in_progress')
@@ -452,9 +466,9 @@
                         <h4 class="mb-4 text-center">Prochaines étapes</h4>
                         
                         <div class="steps">
-                            <div class="step {{ $project->status !== 'pending_payment' ? 'completed' : '' }}">
+                            <div class="step {{ $project->status !== 'pending' ? 'completed' : '' }}">
                                 <div class="step-icon">
-                                    <i class="fas fa-{{ $project->status !== 'pending_payment' ? 'check' : 'money-bill' }}"></i>
+                                    <i class="fas fa-{{ $project->status !== 'pending' ? 'check' : 'money-bill' }}"></i>
                                 </div>
                                 <div class="step-text">
                                     <h6>Paiement</h6>
@@ -462,9 +476,9 @@
                                 </div>
                             </div>
                             
-                            <div class="step {{ $project->status === 'in_progress' || $project->status === 'completed' ? 'completed' : '' }}">
+                            <div class="step {{ $project->status === 'approved' || $project->status === 'completed' ? 'completed' : '' }}">
                                 <div class="step-icon">
-                                    <i class="fas fa-{{ $project->status === 'in_progress' || $project->status === 'completed' ? 'check' : 'search' }}"></i>
+                                    <i class="fas fa-{{ $project->status === 'approved' || $project->status === 'completed' ? 'check' : 'search' }}"></i>
                                 </div>
                                 <div class="step-text">
                                     <h6>Analyse</h6>

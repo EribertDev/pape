@@ -92,8 +92,10 @@ class StageController extends Controller
 
     try {
         // Stockage de la lettre de recommandation
-        $letterPath = $request->file('recommendation_letter')->store('recommendation_letters');
+        $recommendation_letter = $request->file('recommendation_letter')->store('recommendation_letters');
         $cipPath = $request->file('cip')->store('cips');
+         
+       
         // Création de la demande
         $internshipRequest = Stage::create([
             'user_id' => auth()->id(),
@@ -104,16 +106,20 @@ class StageController extends Controller
             'duration' => $validated['duration'],
             'commune' => $validated['commune'],
             'structure' => $validated['structure'],
-            'recommendation_letter_path' => $letterPath,
+            'recommendation_letter_path' => $recommendation_letter,
             'binome' => $validated['binome'] ?? null,
             'status' => 'pending',
             'cip' => $cipPath,
             'message' => $validated['message'] ?? 'Aucun message fourni',
-        
+          
              
         ]);
-// 1. Chemin de l'image
-    $imageSrc = 'https://pape.cesiebenin.com/clients/assets/images/all-img/image.png';
+
+            // Générer la lettre de demande de stage
+        $letterPath = $this->generateInternshipRequestLetter($internshipRequest);
+        $internshipRequest->update(['letterPath' => $letterPath]);
+        // 1. Chemin de l'image
+        $imageSrc = 'https://pape.cesiebenin.com/clients/assets/images/all-img/image.png';
     
  
         // Génération du PDF
@@ -136,6 +142,7 @@ class StageController extends Controller
 
         // Mise à jour avec le chemin du contrat
         $internshipRequest->update(['contract_path' => $pdfPath]);
+       
 
         // Envoi du mail avec le contrat
         Mail::to(auth()->user()->email)
@@ -161,6 +168,114 @@ class StageController extends Controller
     }
 
     }
+    // Dans votre contrôleur ou service
+public function generateInternshipRequestLetter($internshipRequest)
+{
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        
+        // Section principale
+        $section = $phpWord->addSection();
+        
+        // En-tête
+        $header = $section->addHeader();
+        $header->addText('Lettre de Demande de Stage', ['bold' => true, 'size' => 16], ['alignment' => 'center']);
+        
+        // Contenu de la lettre
+        $section->addTextBreak(2);
+        
+        // Date et lieu
+        $section->addText('Fait à ' . $internshipRequest->commune . ', le ' . date('d/m/Y'));
+        $section->addTextBreak(2);
+        
+        // Coordonnées de l'étudiant
+        $section->addText($internshipRequest->user->client->fist_name);
+        $section->addText($internshipRequest->university);
+        $section->addText($internshipRequest->domaine . ' - ' . $internshipRequest->level);
+        $section->addText('Tél: ' . ($internshipRequest->user->client->phone_number ?? 'Non renseigné'));
+        $section->addText('Email: ' . $internshipRequest->user->email);
+        $section->addTextBreak(2);
+        
+        // Destinataire
+        $section->addText('À l\'attention de:');
+        $section->addText('Responsable des stages');
+        $section->addText($internshipRequest->company ?? 'Structure');
+        $section->addText($internshipRequest->commune);
+        $section->addTextBreak(2);
+        
+        // Objet
+        $section->addText('Objet: Demande de stage', ['bold' => true]);
+        $section->addTextBreak(1);
+        
+        // Corps de la lettre
+        $letterText = "Madame, Monsieur,\n\n"
+            . "Étudiant(e) en " . $internshipRequest->level . " à " . $internshipRequest->university . ", "
+            . "je me permets de vous adresser ma candidature pour effectuer un stage au sein de votre entreprise.\n\n"
+            . "Ce stage d'une durée de .$internshipRequest->duration. à compter du [date début] s'inscrit dans le cadre de ma formation "
+            . "en " . $internshipRequest->domaine . ".\n\n"
+            . "Votre entreprise, reconnue pour [spécialité de l'entreprise], représente à mes yeux "
+            . "un cadre idéal pour parfaire mes connaissances et acquérir une expérience professionnelle enrichissante.\n\n"
+            . "Je reste à votre disposition pour vous rencontrer afin de vous exposer plus en détail "
+            . "ma motivation et mes compétences.\n\n"
+            . "Dans l'attente de votre réponse, je vous prie d'agréer, Madame, Monsieur, "
+            . "l'expression de mes salutations distinguées.";
+        
+        $section->addText($letterText);
+        $section->addTextBreak(2);
+        
+        // Signature
+        $section->addText('Signature:');
+        $section->addText($internshipRequest->user->client->fist_name);
+        
+        $filename = 'Lettre_demande_stage_' . $internshipRequest->id . '.docx';
+        $directory = 'public/letters/';
+
+        // Créer le contenu du fichier
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+
+        // Sauvegarde temporaire pour obtenir le contenu
+        $tempPath = tempnam(sys_get_temp_dir(), 'phpword');
+        $objWriter->save($tempPath);
+
+        // Lire le contenu du fichier temporaire
+        $fileContent = file_get_contents($tempPath);
+
+        // Sauvegarder avec Storage
+        Storage::put($directory . $filename, $fileContent);
+
+        // Nettoyer le fichier temporaire
+        unlink($tempPath);
+
+        // Obtenir le chemin complet pour la base de données
+        $filepath = Storage::path($directory . $filename);
+        
+        return $filepath;
+}
+
+public function downloadLetter($id)
+{
+    $internshipRequest = Stage::findOrFail($id);
+    
+    // Vérifier si le chemin existe
+    if (!$internshipRequest->letterPath) {
+        return redirect()->back()->with('error', 'La lettre de demande de stage n\'a pas encore été générée.');
+    }
+    
+    // Extraire le nom de fichier du chemin complet
+    $filename = basename($internshipRequest->letterPath);
+    
+    // Chemin relatif dans le storage
+    $storagePath = 'letters/' . $filename;
+    
+    // Vérifier que le fichier existe
+    if (!Storage::disk('public')->exists($storagePath)) {
+        return redirect()->back()->with('error', 'Le fichier de la lettre est introuvable.');
+    }
+    
+    // Télécharger le fichier
+    return Storage::disk('public')->download($storagePath, $filename, [
+        'Content-Type' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ]);
+}
 
     /**
      * Display the specified resource.

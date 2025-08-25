@@ -26,6 +26,7 @@ class Stage extends Model
         'message',
         'authorization_path',
         'cip',
+        'letterPath'
     ];
 
     public function user()

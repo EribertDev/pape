@@ -142,6 +142,13 @@
                                 <th class="text-center text-primary">ACTIONS</th>
                             </tr>
                         </thead>
+                         <div class="text-end">
+                            <div class="cp_btn mb-4">
+                                <a href="{{route('project_request.create')}}" class="cta"><span>Nouvelle Demande</span>
+                                    
+                                </a>
+                            </div>
+                        </div>
                         <tbody>
                             @foreach($requests as $request)
                                 @php
@@ -166,6 +173,12 @@
                                             <span class="badge badge-under_review">En cours de traitement</span>
                                         @elseif ($request->status == 'approved')
                                             <span class="badge badge-approved">Traiter</span>
+                                        @elseif ($request->status == 'rejected')
+                                            <span class="badge badge-danger">Rejeter</span>
+                                        @elseif ($request->status == 'paid')
+                                            <span class="badge badge-under_review" text-primary >Payer</span>
+                                        @else
+                                            <span class="badge badge-secondary">{{ $request->status }}</span>
                                             
                                         @endif
                                     </td>

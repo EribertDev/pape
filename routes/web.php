@@ -189,6 +189,9 @@ Route::post('/upload-signed', [StageController::class, 'uploadSignedContract'])-
 Route::get('/internships/uploaded/{id}/uploaded', [DemandeStageController::class, 'downloadSignedContract'])
     ->name('internship.uploaded'); 
 
+Route::get('/internship-request/{id}/download-letter', [StageController::class, 'downloadLetter'])
+    ->name('internship.download-letter');
+
 
 // Admin
 Route::get('/admin/internships', [AdminController::class, 'index'])->name('admin.internships');

@@ -10,12 +10,12 @@
     <div class="content">
         <div class="container-fluid">
            <div class="row">
-               <h4 class="page-title col-9" >Stage : {{$request["id"]}}</h4>
+               <h4 class="page-title col-9" >Projets : {{$request["id"]}}</h4>
 
                <div class="col-3">
                    <div class="d-grid d-md-none gap-2 d-flex justify-content-end ">
                        @if (strtolower($request->status)==="pending")
-                           <a class="btn btn-success text-white btn-sm btn-floating accepter" data-mdb-ripple-init style="background-color:  #2eca7f;" href="#!" role="button" id="accepterBtn1">
+                           <a class="btn btn-success text-white btn-sm btn-floating accepter" data-mdb-ripple-init style="background-color:  #2eca7f;" href="#!" role="button" id="accepterBtn">
                             <i class="fa-solid fa-share" style="transform: rotateY(180deg)"></i>
                             </a>
                             <a class="btn btn-danger text-white btn-sm btn-floating reject" data-mdb-ripple-init style="background-color: #55acee;" href="#!" role="button" id="rejectBtn1">
@@ -29,10 +29,9 @@
 
                    <div class="d-grid d-none d-md-block gap-2 d-md-flex justify-content-end">
                     @if (strtolower($request->status)==="pending")
-                        <a class="btn btn-success text-white accepter" data-mdb-ripple-init style="background-color:   #2eca7f;" role="button" id="accepterBtn2">
-                            <i class="fa-solid fa-share" style="transform: rotateY(180deg)"></i>
-                            Accepter
-                        </a>
+                         <button class="action-btn btn-accept" id="acceptBtn" data-mdb-ripple-init style="background-color:  #2eca7f;">
+                            <i class="fas fa-check-circle"></i> Accepter
+                        </button>
                         <a class="btn btn-danger text-white reject" data-mdb-ripple-init style="background-color: #55acee;" role="button" id="rejectBtn2">
                             <i class="fa-solid fa-share" style="transform: rotateY(180deg)"></i>
                             Rejeter
@@ -130,6 +129,58 @@
         <script>
        
         $(document).ready(function() {
+             $('#acceptBtn').click(function() {
+            Swal.fire({
+                title: 'Accepter la commande',
+                text: "Voulez-vous vraiment accepter cette commande ?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#2eca7f',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Oui, accepter',
+                cancelButtonText: 'Annuler'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Envoyer la requête AJAX pour accepter la commande
+                    $.ajax({
+                        url:'/admin/projects/{{ $request->id }}/accept',
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        beforeSend: function() {
+                            Swal.showLoading();
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Commande acceptée',
+                                    text: response.message,
+                                    confirmButtonColor: '#2eca7f'
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Erreur',
+                                    text: response.message
+                                });
+                            }
+                        },
+                        error: function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Erreur',
+                                text: 'Une erreur est survenue lors de l\'acceptation de la commande'
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
     $('#authorizationForm').submit(function(e) {
         e.preventDefault();
         

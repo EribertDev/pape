@@ -136,9 +136,17 @@
                                 <th class="text-center text-primary"  >DÉTAILS</th>
                                 <th class="text-center text-primary">STATUT</th>
                                 <th class="text-center text-primary">CONTRAT</th>
+                              <th class="text-center text-primary"> LETTRE</th>
                                 <th class="text-center text-primary">EVOLUTION</th>
                             </tr>
                         </thead>
+                        <div class="text-end">
+                            <div class="cp_btn mb-4">
+                                <a href="{{route('stage')}}" class="cta"><span>Nouvelle Demande</span>
+                                    
+                                </a>
+                            </div>
+                        </div>
                         <tbody>
                             @foreach($requests as $request)
                                 @php
@@ -170,6 +178,16 @@
                                             <span class="text-muted">Non généré</span>
                                         @endif
                                     </td>
+                                    <td class="authorization" data-title="Lettre">
+                                        @if($request->letterPath)
+                                            <a href="{{ route('internship.download-letter', $request->id) }}" 
+                                            class="btn btn-success" 
+                                            download="Lettre_demande_stage_{{ $request->id }}.docx">
+                                                <i class="fas fa-download"></i> Télécharger la lettre
+                                            </a>
+                                        @else
+                                            <span class="text-muted">Non disponible</span>
+                                        @endif
                                     <td class="action">
                                         <span>
                                             @if($request->status == 'pending')

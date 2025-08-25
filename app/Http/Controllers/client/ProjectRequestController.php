@@ -44,13 +44,18 @@ class ProjectRequestController extends Controller
             'beneficiaries' => 'required|string',
             'partners' => 'required|string',
             'budget' => 'required|numeric|min:0',
-            'document' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'document' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
         // Gestion du fichier
-        $file = $request->file('document');
+      if ($request->hasFile('document')) {
+           $file = $request->file('document');
        
         $path = $file->store('project_documents');
+        } else {
+            $path = null;
+        }
+         
 
         $projectRequest = ProjectRequest::create([
             'user_id' => Auth::id(),
