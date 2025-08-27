@@ -3,6 +3,9 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Models\VideoCall;
+use Illuminate\Console\Scheduling\Schedule;
+
 
 class Kernel extends HttpKernel
 {
@@ -67,4 +70,11 @@ class Kernel extends HttpKernel
         'check.role' => \App\Http\Middleware\CheckAuthClient::class,
         'role' => \App\Http\Middleware\CheckUserRole::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+        {
+            $schedule->command('model:prune', [
+                '--model' => [VideoCall::class],
+            ])->daily();
+        }
 }

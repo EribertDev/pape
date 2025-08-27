@@ -118,6 +118,7 @@
                      data-wow-offset="0"
                      style="visibility: visible; animation-duration: 1s; animation-delay: 0.3s; animation-name: fadeInRight;">
                     <h1>Mon espace Client</h1>
+                 
                     {{-- <ul>
                          <li><a href="index.html">Mon espace Client</a></li>
                          <li> / Cart</li>
@@ -138,6 +139,22 @@
                             <i class="fas fa-arrow-left mr-2"></i> Retour
                         </a>
                         <hr>
+                        <div>
+                                   <div class="card mt-4">
+                                        <div class="card-header">
+                                            <h4><i class="fas fa-video"></i> Visioconférences</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <button class="btn btn-primary mb-3" onclick="createVideoCall({{ $commande->id }})" data-commande-id="{{ $commande->id }}">
+                                                <i class="fas fa-plus"></i> Créer une visioconférence
+                                            </button>
+
+                                           <div id="videoCallsList" data-commande-id="{{ $commande->id }}">
+                                                <!-- La liste des visioconférences sera chargée ici -->
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
                         {{-- <a class="profil-link" href="{{route('pay.reclamation')}}">Réclamtion</a>
                         <hr> --}}
                         {{-- <a class="profil-link" href="#">Mes achats</a>
@@ -150,6 +167,7 @@
             </div><!--- END COL -->
             <div class="col-lg-9 col-sm-12 col-xs-12">
                 <div class="prdct_dtls_page_area section-padding">
+                
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12 bg-white">
@@ -438,6 +456,7 @@
     </script>
     <script type="module" src="{{asset('clients/js-data/dash.js?'.Str::uuid())}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 
     <script>
         $(document).ready(function() {
@@ -536,6 +555,101 @@
                 });
             });
         });
+    </script>
+
+
+   <script>
+   function createVideoCall(commandeId) {
+    if (!confirm('Voulez-vous créer une nouvelle visioconférence pour cette commande?')) {
+        return;
+    }
+
+    fetch(`/commandes/${commandeId}/video-calls`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            loadVideoCalls(commandeId);
+            
+            // Ouvrir la visioconférence si désiré
+            if (confirm('Voulez-vous rejoindre la visioconférence maintenant?')) {
+                window.open(data.data.join_url, '_blank');
+            }
+        } else {
+            alert('Erreur: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        alert('Une erreur s\'est produite lors de la création de la visioconférence');
+    });
+}
+
+function loadVideoCalls(commandeId) {
+    fetch(`/list/${commandeId}/video-calls`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const container = document.getElementById('videoCallsList');
+            container.innerHTML = '';
+            
+            if (data.data.length === 0) {
+                console.log('Aucune visioconférence trouvée pour cette commande.');
+                container.innerHTML = '<p class="text-muted">Aucune visioconférence pour cette commande.</p>';
+                return;
+            }
+            
+            data.data.forEach(videoCall => {
+                console.log('Visioconférence:', videoCall);
+                const isActive = new Date(videoCall.starts_at) <= new Date() && 
+                                (!videoCall.ends_at || new Date(videoCall.ends_at) >= new Date());
+                          // Correction pour gérer le cas où participants est undefined
+                const participantsCount = videoCall.participants.length ;
+                console.log(`Participants connectés: ${participantsCount}`);
+                
+                const callElement = `
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Visioconférence du ${new Date(videoCall.created_at).toLocaleString()}
+                                ${isActive ? '<span class="badge badge-success ml-2">Active</span>' : 
+                                            '<span class="badge badge-secondary ml-2">Terminée</span>'}
+                            </h5>
+                            <p class="card-text">
+                                <strong>Créée par:</strong> ${videoCall.creator.email}<br>
+                              
+                            
+                                <strong>Salon:</strong> ${videoCall.room_name}
+                            </p>
+                            ${isActive ? `
+                            <a href="${videoCall.join_url}" class="btn btn-sm btn-primary" target="_blank">
+                                <i class="fas fa-phone"></i> Rejoindre
+                            </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += callElement;
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+}
+
+// Charger les visioconférences au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('videoCallsList');
+    const commandeId = container.getAttribute('data-commande-id');
+    loadVideoCalls(commandeId);
+});
     </script>
 
 @endsection

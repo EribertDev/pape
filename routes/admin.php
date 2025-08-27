@@ -105,6 +105,15 @@ Route::middleware(['auth', 'role:Administrateur,Affilier,Gestionnaire'])->group(
     Route::post('/admin/reprography/{id}/cancel', [ReprographyOrderController::class, 'cancelOrder'])->name('reprography.cancel');
 
 
+    //  Route Visioconférence
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/video-calls', [VideoCallController::class, 'adminIndex'])
+            ->name('video-calls.index');
+        
+        Route::get('/video-calls/{videoCall}', [VideoCallController::class, 'adminShow'])
+            ->name('video-calls.show');
+    });
+
 });
 
 

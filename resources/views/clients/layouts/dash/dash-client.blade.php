@@ -23,6 +23,9 @@
                     </ul>
                 </div><!-- //.HERO-TEXT -->
             </div><!--- END COL -->
+            <div id="videoCallsList">
+                <!-- Liste des visioconférences passées -->
+            </div>
         </div><!--- END CONTAINER -->
     </section>
 
@@ -137,6 +140,6 @@
     <script type="module" src="{{asset('clients/js-data/dash.js?'.Str::uuid())}}">
     <script type="text/javascript">
         $('select').niceSelect();
-    </script>
+
     
 @endsection

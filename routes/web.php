@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\client\ProjectRequestController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\client\MessageController;
+use App\Http\Controllers\VideoCallController;
 
 
 /*
@@ -257,7 +258,41 @@ Route::get('/reprography/commander', [ReprographyOrderController::class, 'create
 Route::post('/reprography/store', [ReprographyOrderController::class, 'store'])->name('reprography.store');
 
 
+//ROUTE VISIONFERENCE
+Route::middleware(['auth'])->group(function () {
+    // Routes pour les visioconférences Jitsi
+    Route::post('/commandes/{commande}/video-calls', [VideoCallController::class, 'create'])
+        ->name('video-calls.create');
+    
+    Route::get('/video-calls/{videoCall}/join', [VideoCallController::class, 'join'])
+        ->name('video-call.join');
+    
+    Route::post('/video-calls/{videoCall}/end', [VideoCallController::class, 'end'])
+        ->name('video-call.end');
+    
+    Route::get('/commandes/{commande}/video-calls', [VideoCallController::class, 'listByCommande'])
+        ->name('video-calls.list');
+    Route::post('/video-calls/{videoCall}/leave', [VideoCallController::class, 'leave'])
+    ->name('video-call.leave');
+});
 
+
+Route::middleware(['auth'])->group(function () {
+    // Routes pour les visioconférences
+    Route::post('/commandes/{commande}/video-calls', [VideoCallController::class, 'create'])
+        ->name('video-calls.create');
+    
+    Route::get('/video-calls/{videoCall}/join', [VideoCallController::class, 'join'])
+        ->name('video-call.join');
+
+     Route::post('/video-calls/{videoCall}/end', [VideoCallController::class, 'end'])
+        ->name('video-call.end');
+    
+    Route::get('/list/{commande}/video-calls', [VideoCallController::class, 'listByCommande'])
+        ->name('video-calls.list');
+    
+    
+});
 
 /*
 |--------------------------------------------------------------------------
