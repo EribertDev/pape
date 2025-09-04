@@ -45,7 +45,7 @@ class VideoCallInvitation extends Notification implements ShouldQueue
         return [
             'video_call_id' => $this->videoCall->id,
             'commande_id' => $this->videoCall->commande_id,
-            'message' => 'Nouvelle visioconférence pour la commande #' . $this->videoCall->commande_id
+            'message' => 'Nouvelle visioconférence pour la commande #' . $this->videoCall->subject
         ];
     }
 }

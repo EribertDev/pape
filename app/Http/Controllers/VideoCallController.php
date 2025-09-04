@@ -11,7 +11,11 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use App\Notifications\VideoCallInvitation;
 use Illuminate\Support\Facades\Notification;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\URL;
 class VideoCallController extends Controller
 {
      public function create(Request $request, $commandeId)
@@ -169,4 +173,180 @@ class VideoCallController extends Controller
             'message' => 'Participant removed'
         ]);
     }
+
+
+
+     // Afficher la page avec l'éditeur
+    public function showWithEditor($commandeId)
+    {
+        $commande = Commande::findOrFail($commandeId);
+        $documents = [];
+        $documentsPath = storage_path("app/collaborative-docs/{$commandeId}");
+        $videoCall = VideoCall::with(['commande', 'creator'])->findOrFail(12);
+        
+        if (file_exists($documentsPath)) {
+            $files = scandir($documentsPath);
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    $documents[] = [
+                        'name' => $file,
+                        'url' => Storage::url("collaborative-docs/{$commandeId}/{$file}")
+                    ];
+                }
+            }
+        }
+        
+        return view('clients.layouts.video-call.embedded', compact('commande', 'documents','videoCall'));
+    }
+    
+
+  
+
+        public function uploadDocument(Request $request, $commandeId)
+    {
+        try {
+            $request->validate([
+                'document' => 'required|file|mimes:doc,docx|max:10240'
+            ]);
+            
+            $file = $request->file('document');
+            $originalName = $file->getClientOriginalName();
+            $fileName = Str::slug(pathinfo($originalName, PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            
+            // Utiliser le disk 'collaborative'
+            $directory = "{$commandeId}";
+            
+            // Stocker le fichier avec le disk collaborative
+            $path = $file->storeAs($directory, $fileName, 'collaborative');
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Document téléchargé avec succès',
+                'document' => [
+                    'name' => $fileName,
+                    'original_name' => $originalName,
+                    'url' => Storage::disk('collaborative')->url("{$commandeId}/{$fileName}"),
+                    'size' => $file->getSize(),
+                    'path' => $path
+                ]
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur lors du téléchargement: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+    
+    public function listDocuments($commandeId)
+    {
+        try {
+            $documents = [];
+            $directory = "public/collaborative-docs/{$commandeId}";
+            
+            if (Storage::exists($directory)) {
+                $files = Storage::files($directory);
+                
+                foreach ($files as $file) {
+                    // Ignorer les fichiers cachés
+                    if (strpos(basename($file), '.') === 0) {
+                        continue;
+                    }
+                    
+                    $documents[] = [
+                        'name' => basename($file),
+                        'url' => Storage::url($file),
+                        'size' => Storage::size($file),
+                        'modified' => Storage::lastModified($file),
+                        'full_path' => $file
+                    ];
+                }
+            }
+            
+            return response()->json([
+                'success' => true,
+                'documents' => $documents
+            ], 200, [
+                'Content-Type' => 'application/json; charset=utf-8'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur: ' . $e->getMessage(),
+                'documents' => []
+            ], 500, [
+                'Content-Type' => 'application/json; charset=utf-8'
+            ]);
+        }
+    }
+    
+ public function getEditUrl($commandeId, $documentName)
+    {
+        try {
+            $documentName = urldecode($documentName);
+            // CHEMIN CORRECT
+            $filePath = storage_path("app/public/collaborative-docs/{$commandeId}/{$documentName}");
+            
+            if (!file_exists($filePath)) {
+                return response()->json([
+                    'success' => false, 
+                    'message' => 'Document non trouvé à: ' . $filePath
+                ], 404);
+            }
+            
+            $documentUrl = url("/storage/collaborative-docs/{$commandeId}/{$documentName}");
+            $editUrl = "https://view.officeapps.live.com/op/embed.aspx?src=" . urlencode($documentUrl);
+            
+            return response()->json([
+                'success' => true,
+                'editUrl' => $editUrl,
+                'directUrl' => $documentUrl
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+    
+    public function deleteDocument($commandeId, $documentName)
+    {
+        try {
+            $path = "public/collaborative-docs/{$commandeId}/" . urldecode($documentName);
+            
+            if (Storage::exists($path)) {
+                Storage::delete($path);
+                return response()->json([
+                    'success' => true, 
+                    'message' => 'Document supprimé avec succès'
+                ], 200, [
+                    'Content-Type' => 'application/json; charset=utf-8'
+                ]);
+            }
+            
+            return response()->json([
+                'success' => false, 
+                'message' => 'Document non trouvé'
+            ], 404, [
+                'Content-Type' => 'application/json; charset=utf-8'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur lors de la suppression: ' . $e->getMessage()
+            ], 500, [
+                'Content-Type' => 'application/json; charset=utf-8'
+            ]);
+        }
+    }
+
+
+
+
+    
 }

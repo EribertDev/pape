@@ -294,6 +294,17 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
+
+// Route Document collaboratifs 
+Route::middleware(['auth'])->group(function () {
+ // Routes pour les documents collaboratifs
+ Route::get('/api/commandes/{commandeId}/collaborative-docs', [VideoCallController::class, 'listDocuments']);
+   Route::get('/commandes/{commandeId}/collaborative-docs', [VideoCallController::class, 'showWithEditor']);
+    Route::post('/commandes/{commandeId}/collaborative-docs/upload', [VideoCallController::class, 'uploadDocument']);
+    Route::delete('/commandes/{commandeId}/collaborative-docs/{documentName}', [VideoCallController::class, 'deleteDocument']);
+    Route::get('/commandes/{commandeId}/collaborative-docs/{documentName}/edit-url', [VideoCallController::class, 'getEditUrl']);
+});
+
 /*
 |--------------------------------------------------------------------------
 |Route Admin

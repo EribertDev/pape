@@ -147,6 +147,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Admin::class);
     }
+    public function isAdmin()
+    {
+        // Adaptez cette logique selon votre système d'authentification
+        return $this->role === 'Admin' || $this->is_admin === true;
+    }
 
     public function role(): BelongsTo
     {

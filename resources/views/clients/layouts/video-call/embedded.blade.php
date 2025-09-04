@@ -218,6 +218,70 @@
         </button>
     </div>
 </div>
+<!-- Section pour les documents collaboratifs -->
+<div class="card mt-4">
+    <div class="card-header">
+        <h4><i class="fas fa-file-word me-2"></i>Édition Collaborative de Documents</h4>
+    </div>
+    <div class="card-body">
+        <!-- Interface d'upload pour l'admin -->
+       
+        <div class="mb-4 p-3 border rounded">
+            <h5><i class="fas fa-upload me-2"></i>Ajouter un document</h5>
+            <div class="mb-3">
+                <input type="file" class="form-control" id="collaborativeDocUpload" accept=".docx,.doc">
+                        <input type="hidden" id="videoCallId" value="{{ $videoCall->id }}">
+
+                <div class="form-text">Formats acceptés: .docx, .doc (max 10MB)</div>
+            </div>
+            <button class="btn btn-primary" onclick="uploadCollaborativeDocument({{ $videoCall->commande->id }})">
+                <i class="fas fa-upload me-1"></i>Uploader le document
+            </button>
+        </div>
+        <hr>
+       
+
+        <!-- Liste des documents disponibles -->
+        <h5><i class="fas fa-files me-2"></i>Documents disponibles</h5>
+        <div id="collaborativeDocumentsList" class="mb-4">
+            @if(isset($documents) && count($documents) > 0)
+                @foreach($documents as $document)
+                <div class="document-item d-flex justify-content-between align-items-center p-2 border rounded mb-2">
+                    <div>
+                        <i class="fas fa-file-word text-primary me-2"></i>
+                        <span>{{ $document['name'] }}</span>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-primary me-1" onclick="openWordOnlineEditor({{ $commande->id }}, '{{ $document['name'] }}')">
+                            <i class="fas fa-edit me-1"></i>Éditer
+                        </button>
+                        <a href="{{ $document['url'] }}" class="btn btn-sm btn-secondary me-1" download>
+                            <i class="fas fa-download me-1"></i>Télécharger
+                        </a>
+                        @if(auth()->user()->isAdmin())
+                        <button class="btn btn-sm btn-danger" onclick="deleteCollaborativeDocument({{ $commande->id }}, '{{ $document['name'] }}')">
+                            <i class="fas fa-trash me-1"></i>Supprimer
+                        </button>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+            @else
+                <p class="text-muted">Aucun document collaboratif disponible.</p>
+            @endif
+        </div>
+
+        <!-- Éditeur Word Online -->
+        <h5><i class="fas fa-edit me-2"></i>Éditeur</h5>
+        <div class="editor-container border rounded" id="wordOnlineEditor">
+            <div class="editor-placeholder text-center p-5">
+                <i class="fas fa-file-word fa-3x text-muted mb-3"></i>
+                <h4 class="text-muted">Sélectionnez un document à éditer</h4>
+                <p class="text-muted">Choisissez un document dans la liste ci-dessus pour commencer l'édition collaborative</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div id="notificationContainer"></div>
 @endsection
@@ -318,5 +382,241 @@
         document.getElementById('participantCount').textContent = 
             count + (count === 1 ? ' participant' : ' participants');
     }
+</script>
+
+<script>
+// Fonctions pour gérer les documents collaboratifs
+function uploadCollaborativeDocument(commandeId) {
+    const fileInput = document.getElementById('collaborativeDocUpload');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('Veuillez sélectionner un fichier Word');
+        return;
+    }
+    
+    // Vérification du type de fichier
+    const allowedTypes = ['.docx', '.doc'];
+    const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+    
+    if (!allowedTypes.includes(fileExtension)) {
+        alert('Seuls les documents Word (.docx, .doc) sont autorisés');
+        return;
+    }
+    
+    // Vérification de la taille du fichier
+    if (file.size > 10 * 1024 * 1024) {
+        alert('Le fichier ne doit pas dépasser 10MB');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('document', file);
+    
+    // Afficher un indicateur de chargement
+    const uploadBtn = fileInput.nextElementSibling;
+    const originalText = uploadBtn.innerHTML;
+    uploadBtn.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div> Upload en cours...';
+    uploadBtn.disabled = true;
+    
+    fetch(`/commandes/${commandeId}/collaborative-docs/upload`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: formData
+    })
+    .then(response => {
+        // Vérifier d'abord le type de contenu
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Réponse serveur invalide');
+        }
+        return response.json();
+    })
+    .then(data => {
+        uploadBtn.innerHTML = originalText;
+        uploadBtn.disabled = false;
+        
+        if (data.success) {
+            alert('Document téléchargé avec succès!');
+            fileInput.value = '';
+            // Recharger les documents
+            loadCollaborativeDocuments(commandeId);
+        } else {
+            alert('Erreur: ' + data.message);
+        }
+    })
+    .catch(error => {
+        uploadBtn.innerHTML = originalText;
+        uploadBtn.disabled = false;
+        console.error('Erreur:', error);
+        alert('Une erreur s\'est produite lors du téléchargement. Veuillez réessayer.');
+    });
+}
+
+function loadCollaborativeDocuments(commandeId) {
+    fetch(`/api/commandes/${commandeId}/collaborative-docs`)
+    .then(response => {
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Réponse serveur invalide');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const container = document.getElementById('collaborativeDocumentsList');
+        
+        if (data.success && data.documents.length > 0) {
+            let html = '';
+            data.documents.forEach(document => {
+                html += `
+                    <div class="document-item d-flex justify-content-between align-items-center p-2 border rounded mb-2">
+                        <div>
+                            <i class="fas fa-file-word text-primary me-2"></i>
+                            <span>${document.name}</span>
+                            <small class="text-muted ms-2">(${formatFileSize(document.size)})</small>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary me-1" onclick="openWordOnlineEditor(${commandeId}, '${encodeURIComponent(document.name)}')">
+                                <i class="fas fa-edit me-1"></i>Éditer
+                            </button>
+                            <a href="${document.url}" class="btn btn-sm btn-secondary me-1" download>
+                                <i class="fas fa-download me-1"></i>Télécharger
+                            </a>
+                            @if(auth()->user()->isAdmin())
+                            <button class="btn btn-sm btn-danger" onclick="deleteCollaborativeDocument(${commandeId}, '${encodeURIComponent(document.name)}')">
+                                <i class="fas fa-trash me-1"></i>Supprimer
+                            </button>
+                            @endif
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        } else {
+            container.innerHTML = '<p class="text-muted">Aucun document collaboratif disponible.</p>';
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        document.getElementById('collaborativeDocumentsList').innerHTML = 
+            '<p class="text-muted">Erreur lors du chargement des documents.</p>';
+    });
+}
+
+function openWordOnlineEditor(commandeId, documentName) {
+    const editorContainer = document.getElementById('wordOnlineEditor');
+    const decodedName = decodeURIComponent(documentName);
+    
+    // Afficher un indicateur de chargement
+    editorContainer.innerHTML = `
+        <div class="text-center p-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+            <p class="mt-2">Chargement de "${decodedName}"...</p>
+        </div>
+    `;
+    
+    fetch(`/commandes/${commandeId}/collaborative-docs/${documentName}/edit-url`)
+    .then(response => {
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Réponse serveur invalide');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            editorContainer.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center p-2 bg-light border-bottom">
+                    <span><i class="fas fa-file-word text-primary me-2"></i>${decodedName}</span>
+                    <button class="btn btn-sm btn-secondary" onclick="closeWordOnlineEditor()">
+                        <i class="fas fa-times me-1"></i>Fermer
+                    </button>   
+                </div>
+                <iframe src="${data.editUrl}" width="100%" height="400px" frameborder="0" style="border: none;"></iframe>
+            `;
+        } else {
+            editorContainer.innerHTML = `
+                <div class="alert alert-danger text-center">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    ${data.message || 'Erreur lors du chargement du document'}
+                </div>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        editorContainer.innerHTML = `
+            <div class="alert alert-danger text-center">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Erreur de connexion au serveur
+            </div>
+        `;
+    });
+}
+
+function deleteCollaborativeDocument(commandeId, documentName) {
+    const decodedName = decodeURIComponent(documentName);
+    
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer le document "${decodedName}"?`)) {
+        return;
+    }
+    
+    fetch(`/commandes/${commandeId}/collaborative-docs/${documentName}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Réponse serveur invalide');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Document supprimé avec succès');
+            loadCollaborativeDocuments(commandeId);
+            closeWordOnlineEditor();
+        } else {
+            alert('Erreur: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        alert('Une erreur s\'est produite lors de la suppression');
+    });
+}
+
+function closeWordOnlineEditor() {
+    const editorContainer = document.getElementById('wordOnlineEditor');
+    editorContainer.innerHTML = `
+        <div class="text-center p-5 text-muted">
+            <i class="fas fa-file-word fa-3x mb-3"></i>
+            <h4>Sélectionnez un document à éditer</h4>
+            <p>Choisissez un document dans la liste pour commencer l'édition collaborative</p>
+        </div>
+    `;
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+// Charger les documents au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    const commandeId = {{$videoCall->commande->id}};
+    loadCollaborativeDocuments(commandeId);
+});
 </script>
 @endsection

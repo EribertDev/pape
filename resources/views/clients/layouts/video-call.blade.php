@@ -6,8 +6,8 @@
 @section('extra-style')
 <style>
     .jitsi-container {
-        width: 100%;
-        height: 100vh;
+        width: 80%;
+        height: 80vh;
         background: #1a2d62;
     }
     
@@ -108,13 +108,14 @@
                 </button>
             </div>
             <button class="jitsi-btn jitsi-btn-end" onclick="endCall()">
-                <i class="fas fa-phone-slash"></i> Terminer l'appel
+                <i class="fas fa-phone-slash"></i> Termi l'appel
             </button>
         </div>
     </div>
     
     <div id="jitsi-container"></div>
 </div>
+
 @endsection
 
 @section('extra-scripts')
@@ -225,4 +226,6 @@
         });
     });
 </script>
+
+
 @endsection

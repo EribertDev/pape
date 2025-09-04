@@ -61,6 +61,12 @@ return [
         'url' => env('APP_URL').'/cip',
         'visibility' => 'public', // Sécurité pour fichiers sensibles
     ],
+    'collaborative' => [
+        'driver' => 'local',
+        'root' => storage_path('app/public/collaborative-docs'), // Doit être dans public/
+        'url' => env('APP_URL').'/storage/collaborative-docs',   // Doit utiliser /storage/
+        'visibility' => 'public',
+    ],
    
 
     ],
