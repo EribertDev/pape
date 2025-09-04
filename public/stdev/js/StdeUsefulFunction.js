@@ -132,9 +132,6 @@ export function clearLocalStorage() {
 
 
 export function info() {
-    console.log("%cSite créé par: %cSilas M. DAKO\n%cDéveloppeur Full Stack & Système Embarqué\nPassionné par les solutions numériques et doté de plus de 3 ans d'expérience, je suis enthousiaste 🤩 à l'idée de partager avec vous mes projets et mon parcours. 💻\nQue vous soyez ici pour explorer mes compétences en développement web, en conception d'applications 📱 ou en design graphique 🎨, j'espère que vous apprécierez ce voyage au cœur de mon univers numérique. 🤝\nN'hésitez pas à me contacter pour toute collaboration ou pour échanger des idées ! 🚀\nNuméro de téléphone: +229 91162617\nLien LinkedIn: https://www.linkedin.com/in/m-silas-dako-stdev-%F0%9F%92%BB%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB-40b91125b/",
-        "color: white; font-weight: bold;",
-        "color: white; background-color: #007BFF; font-weight: bold;",
-        "color: white; font-weight: bold;");
+    console.log("");
 
 }
