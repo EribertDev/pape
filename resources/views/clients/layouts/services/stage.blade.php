@@ -54,6 +54,21 @@
                                 </div>
                             </div>
                             
+                            <div class="form-group">
+                                <label class="form-label fw-bold" for="services">
+                                    <i class="fas fa-list-check"></i> Services voulus
+                                </label>
+                                <select name="services[]" id="services" class="form-control" multiple>
+                                    <option value="Stage académique">Stage académique</option>
+                                    <option value="Encadrement de mémoire ou thèse">Encadrement de mémoire ou thèse</option>
+                                    <option value="Bases de données">Bases de données</option>
+                                    <option value="Thèmes innovants">Thèmes innovants</option>
+                                    <option value="Rédaction de Projet ou Business plan">Rédaction de Projet ou Business plan</option>
+                                    <option value="Formation ">Formation</option>
+                                </select>
+                                <small class="text-muted">Maintenez Ctrl (Windows) ou Cmd (Mac) pour sélectionner plusieurs options.</small>
+                            </div>
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -162,7 +177,7 @@
                                     <div class="col-md-6">
                                         <label for="country" class="fw-bold">Commune souhaitée </label>
                                                                                                                     
-                                        <select name="commune" id="commune"  class="form-control">
+                                        <select name="commune" id="commune"  class="form-control" required>
                                                 <option value="" disabled selected>-- Sélectionnez une Commune --</option>
                                                 @foreach ($departements as $departement => $communes)
                                                     <optgroup label="{{ $departement }}">
@@ -177,7 +192,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="fieldlabels  fw-bold" for="structure">Structure désirée</label>
-                                        <select name="structure" id="structure"  class="form-control">
+                                        <select name="structure" id="structure"  class="form-control" required>
                                             <option value="" selected disabled>Quelles structure désirez vous</option>
                                             
                                                 <option  value="administration_publique">Administration Publique</option>
@@ -191,6 +206,20 @@
                                 </div>
                             </div>
                             
+                            <div class="form-group mb-3">
+                                <label class="form-label fw-bold d-block">
+                                    <i class="fas fa-question-circle me-1"></i> Seriez-vous apte à participer ou suivre une formation gratuite sur la culture administrative ?
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="btn-group" role="group" aria-label="Choix formation culture administrative">
+                                    <input type="radio" class="btn-check" name="admin_culture_training" id="trainingOui" value="oui" required>
+                                    <label class="btn btn-outline-primary" for="trainingOui">Oui</label>
+
+                                    <input type="radio" class="btn-check" name="admin_culture_training" id="trainingNon" value="non" required>
+                                    <label class="btn btn-outline-secondary" for="trainingNon">Non</label>
+                                </div>
+                            </div>
+
                             <div class="row">
                               
                                 <div class="col-lg-6">

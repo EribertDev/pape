@@ -27,6 +27,8 @@
                             <th>Étudiant</th>
                             <th>Université</th>
                             <th>Structure</th>
+                            <th>Services</th>
+                            <th>Formation ??</th>
                             <th>Spécialité</th>
                             <th>Durée</th>
                             <th>Commune</th>

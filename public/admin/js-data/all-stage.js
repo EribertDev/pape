@@ -24,6 +24,42 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             { data: 'university', name: 'university' },
             { data: 'structure', name: 'structure' },
+            {
+                data: 'services',
+                name: 'services',
+                render: function(data) {
+                    if (!data) return '—';
+
+                    const toBadges = (arr) => arr
+                        .filter(Boolean)
+                        .map(s => `<span class="badge badge-primary me-1">${s}</span>`)
+                        .join('');
+
+                    if (Array.isArray(data)) {
+                        return toBadges(data);
+                    }
+                    // au cas où ce soit une chaîne JSON côté API
+                    try {
+                        const parsed = JSON.parse(data);
+                        if (Array.isArray(parsed)) return toBadges(parsed);
+                    } catch (e) {}
+                    // sinon, afficher en badge unique
+                    return `<span class="badge badge-primary style="text-wrap: wrap;text-color: white;">${String(data)}</span>`;
+                }
+            },
+            {
+                data: 'admin_culture_training',
+                name: 'admin_culture_training',
+                render: function(data) {
+                    if (data === true || data === '1' || data === 1 || data === 'oui') {
+                        return '<span class="badge bg-success">Oui</span>';
+                    }
+                    if (data === false || data === '0' || data === 0 || data === 'non' || data == null) {
+                        return '<span class="badge bg-secondary">Non</span>';
+                    }
+                    return `<span class="badge bg-secondary">${data}</span>`;
+                }
+            },
             { 
                 data: 'specialite', name: 'specialite',
             },

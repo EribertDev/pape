@@ -18,6 +18,8 @@ class Stage extends Model
         'duration',
         'commune',
         'structure',
+        'services',
+        'admin_culture_training',
         'status',
         'recommendation_letter_path',
         'binome',
@@ -27,6 +29,11 @@ class Stage extends Model
         'authorization_path',
         'cip',
         'letterPath'
+    ];
+
+    protected $casts = [
+        'services' => 'array',
+        'admin_culture_training' => 'boolean',
     ];
 
     public function user()

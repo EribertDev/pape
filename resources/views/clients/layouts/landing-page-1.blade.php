@@ -195,7 +195,7 @@
                         <div class="feature-icon">
                             <i class="fas fa-file-alt"></i>
                         </div>
-                        <h3 class="feature-title">Demander Assistance pour la rédaction de vos mémoire/Thèse</h3>
+                        <h3 class="feature-title">Demande d'Encadrement de  mémoire/Thèse</h3>
                         <p class="feature-description">Bénéficiez d'un accompagnement expert pour la rédaction de vos travaux académiques.</p>
                         <a href="{{ auth()->check() ? route('redaction.offers') : '#' }}" 
                         @if(!auth()->check()) 
@@ -247,7 +247,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="feature-card h-100">
                         <div class="feature-icon bg-pape">
-                            <i class="fas fa-file-alt"></i> <!-- Icône document -->
+                            <i class="fas fa-file-alt"></i> 
                         </div>
                         <h3 class="feature-title">Assistance Projet/Business Plan</h3>
                         <p class="feature-description">Besoin d'aide pour rédiger votre projet ou business plan ?</p>

@@ -87,7 +87,10 @@ class StageController extends Controller
         'recommendation_letter' => 'required|file|mimes:pdf|max:2048',
         'binome' => 'nullable|string|max:255',
         'message' => 'nullable|string|max:1000',
-        'cip'   =>'required|file' // CIP n'est pas obligatoire
+        'cip'   =>'required|file', // CIP n'est pas obligatoire
+        'services' => 'nullable|array',
+        'services.*' => 'string|max:255',
+        'admin_culture_training' => 'required|in:oui,non'
     ]);
 
     try {
@@ -96,6 +99,12 @@ class StageController extends Controller
         $cipPath = $request->file('cip')->store('cips');
          
        
+        // Récupération et préparation des services sélectionnés (multi-sélection)
+        $servicesSelected = $request->input('services', []);
+        $servicesString = is_array($servicesSelected) && count($servicesSelected) > 0
+            ? implode(', ', $servicesSelected)
+            : null;
+
         // Création de la demande
         $internshipRequest = Stage::create([
             'user_id' => auth()->id(),
@@ -106,11 +115,16 @@ class StageController extends Controller
             'duration' => $validated['duration'],
             'commune' => $validated['commune'],
             'structure' => $validated['structure'],
+            'services' => $servicesSelected ?: null,
             'recommendation_letter_path' => $recommendation_letter,
             'binome' => $validated['binome'] ?? null,
             'status' => 'pending',
             'cip' => $cipPath,
-            'message' => $validated['message'] ?? 'Aucun message fourni',
+            'message' => (
+                isset($validated['message']) && $validated['message'] !== ''
+                    ? $validated['message']
+                    : 'Aucun message fourni'
+            ) . ' | Formation culture administrative: ' . ($validated['admin_culture_training'] === 'oui' ? 'Oui' : 'Non'),
           
              
         ]);
