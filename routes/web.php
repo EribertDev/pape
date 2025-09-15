@@ -303,6 +303,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/commandes/{commandeId}/collaborative-docs/upload', [VideoCallController::class, 'uploadDocument']);
     Route::delete('/commandes/{commandeId}/collaborative-docs/{documentName}', [VideoCallController::class, 'deleteDocument']);
     Route::get('/commandes/{commandeId}/collaborative-docs/{documentName}/edit-url', [VideoCallController::class, 'getEditUrl']);
+
+    // Nouvelle édition: charger .docx en HTML et sauvegarder depuis Quill
+    Route::get('/commandes/{commandeId}/collaborative-docs/{documentName}/load-html', [VideoCallController::class, 'loadDocxAsHtml']);
+    Route::post('/commandes/{commandeId}/collaborative-docs/{documentName}/save-html', [VideoCallController::class, 'saveHtmlToDocx']);
 });
 
 /*

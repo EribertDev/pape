@@ -168,7 +168,12 @@
     .notification-icon {
         font-size: 1.2rem;
     }
+    /* Quill editor styles */
+    .ql-container { min-height: 350px; background: #ffffff; }
+    .ql-toolbar.ql-snow { border-top-left-radius: 6px; border-top-right-radius: 6px; }
+    .ql-container.ql-snow { border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/quill@1.3.7/dist/quill.snow.css">
 @endsection
 
 @section('page-content')
@@ -271,14 +276,19 @@
             @endif
         </div>
 
-        <!-- Éditeur Word Online -->
+        <!-- Éditeur Quill -->
         <h5><i class="fas fa-edit me-2"></i>Éditeur</h5>
-        <div class="editor-container border rounded" id="wordOnlineEditor">
-            <div class="editor-placeholder text-center p-5">
-                <i class="fas fa-file-word fa-3x text-muted mb-3"></i>
-                <h4 class="text-muted">Sélectionnez un document à éditer</h4>
-                <p class="text-muted">Choisissez un document dans la liste ci-dessus pour commencer l'édition collaborative</p>
+        <div class="editor-container border rounded p-2" id="wordOnlineEditor">
+            <div class="mb-2 d-flex justify-content-between align-items-center">
+                <div>
+                    <small class="text-muted">Document: <span id="currentDocName">aucun</span></small>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary" id="btnSaveQuill"><i class="fas fa-save me-1"></i>Enregistrer</button>
+                </div>
             </div>
+            <div id="quillToolbar"></div>
+            <div id="quillEditor"></div>
         </div>
     </div>
 </div>
@@ -287,6 +297,7 @@
 @endsection
 
 @section('extra-scripts')
+<script src="https://unpkg.com/quill@1.3.7/dist/quill.min.js"></script>
 <script>
     let callStartTime = new Date();
     let timerInterval;
@@ -383,7 +394,6 @@
             count + (count === 1 ? ' participant' : ' participants');
     }
 </script>
-
 <script>
 // Fonctions pour gérer les documents collaboratifs
 function uploadCollaborativeDocument(commandeId) {
@@ -505,57 +515,69 @@ function loadCollaborativeDocuments(commandeId) {
     });
 }
 
-function openWordOnlineEditor(commandeId, documentName) {
-    const editorContainer = document.getElementById('wordOnlineEditor');
-    const decodedName = decodeURIComponent(documentName);
-    
-    // Afficher un indicateur de chargement
-    editorContainer.innerHTML = `
-        <div class="text-center p-5">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Chargement...</span>
-            </div>
-            <p class="mt-2">Chargement de "${decodedName}"...</p>
-        </div>
-    `;
-    
-    fetch(`/commandes/${commandeId}/collaborative-docs/${documentName}/edit-url`)
-    .then(response => {
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-            throw new Error('Réponse serveur invalide');
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            editorContainer.innerHTML = `
-                <div class="d-flex justify-content-between align-items-center p-2 bg-light border-bottom">
-                    <span><i class="fas fa-file-word text-primary me-2"></i>${decodedName}</span>
-                    <button class="btn btn-sm btn-secondary" onclick="closeWordOnlineEditor()">
-                        <i class="fas fa-times me-1"></i>Fermer
-                    </button>   
-                </div>
-                <iframe src="${data.editUrl}" width="100%" height="400px" frameborder="0" style="border: none;"></iframe>
-            `;
-        } else {
-            editorContainer.innerHTML = `
-                <div class="alert alert-danger text-center">
-                    <i class="fas fa-exclamation-triangle me-2"></i>
-                    ${data.message || 'Erreur lors du chargement du document'}
-                </div>
-            `;
-        }
-    })
-    .catch(error => {
-        console.error('Erreur:', error);
-        editorContainer.innerHTML = `
-            <div class="alert alert-danger text-center">
-                <i class="fas fa-exclamation-triangle me-2"></i>
-                Erreur de connexion au serveur
-            </div>
-        `;
+let quillInstance = null;
+let quillInitialized = false;
+function ensureQuill() {
+    if (quillInitialized) return;
+    const toolbarOptions = [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'align': [] }],
+        ['link', 'blockquote', 'code-block'],
+        ['clean']
+    ];
+    quillInstance = new Quill('#quillEditor', {
+        theme: 'snow',
+        modules: { toolbar: toolbarOptions }
     });
+    quillInitialized = true;
+}
+
+function openWordOnlineEditor(commandeId, documentName) {
+    ensureQuill();
+    const decodedName = decodeURIComponent(documentName);
+    document.getElementById('currentDocName').textContent = decodedName;
+    const spinner = `<div class="text-center p-2 text-muted"><div class="spinner-border spinner-border-sm me-2"></div>Chargement...</div>`;
+    quillInstance.setContents([]);
+    document.getElementById('quillEditor').insertAdjacentHTML('afterbegin', spinner);
+
+    fetch(`/commandes/${commandeId}/collaborative-docs/${documentName}/load-html`)
+        .then(r => r.json())
+        .then(data => {
+            document.querySelector('#quillEditor .spinner-border')?.parentElement?.remove();
+            if (data.success) {
+                // Charger le HTML dans Quill
+                const temp = document.createElement('div');
+                temp.innerHTML = data.html || '';
+                quillInstance.setText('');
+                quillInstance.clipboard.dangerouslyPasteHTML(temp.innerHTML);
+
+                // Brancher le bouton sauvegarder
+                const btn = document.getElementById('btnSaveQuill');
+                btn.onclick = function() {
+                    const html = quillInstance.root.innerHTML;
+                    fetch(`/commandes/${commandeId}/collaborative-docs/${documentName}/save-html`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                        body: JSON.stringify({ html })
+                    }).then(r => r.json()).then(resp => {
+                        if (resp.success) {
+                            alert('Document enregistré');
+                        } else {
+                            alert('Erreur: ' + (resp.message || 'Enregistrement'));
+                        }
+                    }).catch(() => alert('Erreur de connexion'));
+                };
+            } else {
+                alert(data.message || 'Erreur de chargement');
+            }
+        })
+        .catch(() => {
+            document.querySelector('#quillEditor .spinner-border')?.parentElement?.remove();
+            alert('Erreur de chargement');
+        });
 }
 
 function deleteCollaborativeDocument(commandeId, documentName) {
