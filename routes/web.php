@@ -18,7 +18,7 @@ use App\Http\Controllers\client\ClientProfileController;
 use App\Http\Controllers\client\services\ServiceController;
 use App\Http\Controllers\client\services\CommandeController;
 use App\Models\Affiler;
-use Illuminate\Http\Request; // Ajouter cette importation
+use Illuminate\Http\Request; 
 use App\Http\Controllers\client\ReprographyOrderController;
 use App\Http\Controllers\client\services\RedactionController;
 use App\Models\ThemeMemoire;
@@ -308,6 +308,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/commandes/{commandeId}/collaborative-docs/{documentName}/load-html', [VideoCallController::class, 'loadDocxAsHtml']);
     Route::post('/commandes/{commandeId}/collaborative-docs/{documentName}/save-html', [VideoCallController::class, 'saveHtmlToDocx']);
 });
+
+
+
 
 /*
 |--------------------------------------------------------------------------

@@ -63,8 +63,10 @@
                                     <option value="Encadrement de mémoire ou thèse">Encadrement de mémoire ou thèse</option>
                                     <option value="Bases de données">Bases de données</option>
                                     <option value="Thèmes innovants">Thèmes innovants</option>
-                                    <option value="Rédaction de Projet ou Business plan">Rédaction de Projet ou Business plan</option>
+                                    <option value="Rédaction de Projet/Business plan">Rédaction de Projet ou Business plan</option>
                                     <option value="Formation ">Formation</option>
+                                    <option value="Impression ">Impression de memoire ou thèse</option>
+                                    
                                 </select>
                                 <small class="text-muted">Maintenez Ctrl (Windows) ou Cmd (Mac) pour sélectionner plusieurs options.</small>
                             </div>
@@ -208,7 +210,7 @@
                             
                             <div class="form-group mb-3">
                                 <label class="form-label fw-bold d-block">
-                                    <i class="fas fa-question-circle me-1"></i> Seriez-vous apte à participer ou suivre une formation gratuite sur la culture administrative ?
+                                    <i class="fas fa-question-circle me-1"></i> Seriez-vous apte à suivre une formation gratuite sur la culture administrative ?
                                     <span class="text-danger">*</span>
                                 </label>
                                 <div class="btn-group" role="group" aria-label="Choix formation culture administrative">
@@ -235,6 +237,7 @@
                                     </div>
                                     
                                 </div>
+                                
                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-label fw-bold">

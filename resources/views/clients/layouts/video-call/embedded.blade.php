@@ -297,6 +297,9 @@
 @endsection
 
 @section('extra-scripts')
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="{{asset('clients/js-data/remote.js')"}}"></script>
+
 <script src="https://unpkg.com/quill@1.3.7/dist/quill.min.js"></script>
 <script>
     let callStartTime = new Date();
