@@ -31,6 +31,7 @@ use App\Http\Controllers\client\ProjectRequestController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\client\MessageController;
 use App\Http\Controllers\VideoCallController;
+use App\Http\Controllers\client\RemoteAccessController;
 
 
 /*
@@ -310,7 +311,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+// Page principale de contrôle à distance
+Route::get('/remote-access', [RemoteAccessController::class, 'index'])->name('remote-access.index');
 
+// Routes pour le signalement WebRTC
+Route::post('/remote-access/signal', [RemoteAccessController::class, 'handleSignal']);
+Route::get('/remote-access/session/{sessionId}', [RemoteAccessController::class, 'getSession']);
 
 /*
 |--------------------------------------------------------------------------

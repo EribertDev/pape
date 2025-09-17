@@ -4,6 +4,37 @@
 
 @section('extra-style')
 <style>
+
+      .remote-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .session-card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .remote-screen {
+            background-color: #2c3e50;
+            border-radius: 5px;
+            height: 400px;
+            overflow: hidden;
+        }
+        .control-tools {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .connection-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-connected { background-color: #28a745; }
+        .status-disconnected { background-color: #dc3545; }
+        .status-connecting { background-color: #ffc107; }
     .video-call-container {
         display: flex;
         flex-direction: column;
@@ -293,14 +324,112 @@
     </div>
 </div>
 
-<div id="notificationContainer"></div>
+ <div class="remote-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-desktop me-2"></i>Contrôle à Distance</h1>
+            <div id="connectionStatus" class="d-flex align-items-center">
+                <span class="connection-status status-disconnected"></span>
+                <span>Déconnecté</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card session-card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-user me-2"></i>Demander le contrôle</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="userId" class="form-label">Votre identifiant</label>
+                            <input type="text" class="form-control" id="userId" placeholder="Ex: user123">
+                        </div>
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">Votre nom</label>
+                            <input type="text" class="form-control" id="userName" placeholder="Ex: John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label for="targetSessionId" class="form-label">ID de session cible (optionnel)</label>
+                            <input type="text" class="form-control" id="targetSessionId" placeholder="Laisser vide pour une nouvelle session">
+                        </div>
+                        <button id="requestAccessBtn" class="btn btn-primary w-100">
+                            <i class="fas fa-hand-paper me-2"></i>Demander l'accès
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card session-card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-bell me-2"></i>Demandes entrantes</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="incomingRequests">
+                            <p class="text-muted text-center">Aucune demande pour le moment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card session-card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-desktop me-2"></i>Session active</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="activeSession" class="d-none">
+                            <div class="remote-screen mb-3" id="remoteScreen">
+                                <div class="h-100 d-flex align-items-center justify-content-center text-white">
+                                    <div class="text-center">
+                                        <i class="fas fa-spinner fa-spin fa-2x mb-2"></i>
+                                        <p>Connexion en cours...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="control-tools mb-3">
+                                <h6>Outils de contrôle</h6>
+                                <div class="btn-group w-100 mb-2">
+                                    <button class="btn btn-outline-secondary" onclick="sendControlCommand('take-screenshot')">
+                                        <i class="fas fa-camera"></i> Capture
+                                    </button>
+                                    <button class="btn btn-outline-secondary" onclick="sendControlCommand('lock-screen')">
+                                        <i class="fas fa-lock"></i> Verrouiller
+                                    </button>
+                                    <button class="btn btn-outline-secondary" onclick="sendControlCommand('open-file')">
+                                        <i class="fas fa-folder-open"></i> Fichier
+                                    </button>
+                                </div>
+                                
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="customCommand" placeholder="Commande personnalisée">
+                                    <button class="btn btn-primary" onclick="executeCustomCommand()">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button id="endSessionBtn" class="btn btn-danger">
+                                    <i class="fas fa-times me-2"></i>Terminer la session
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="noActiveSession" class="text-center py-4">
+                            <i class="fas fa-desktop fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Aucune session active</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('extra-scripts')
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-<script src="{{asset('clients/js-data/remote.js')"}}"></script>
-
 <script src="https://unpkg.com/quill@1.3.7/dist/quill.min.js"></script>
+<script src="{{asset('clients/js-data/remote.js')}}"></script>
 <script>
     let callStartTime = new Date();
     let timerInterval;
